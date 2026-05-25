@@ -6,100 +6,7 @@
   <title>RestaurantAIBot | Ask AI. Find Food. Anywhere on Earth.</title>
   <meta name="description" content="RestaurantAIBot helps people find restaurants anywhere on Earth using AI-powered food search, Google Maps, and live restaurant recommendations." />
   <link rel="canonical" href="https://restaurantaibot.com/" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://restaurantaibot.com/#organization",
-        "name": "RestaurantAIBot",
-        "url": "https://restaurantaibot.com/",
-        "slogan": "Ask AI. Find Food. Anywhere on Earth.",
-        "description": "RestaurantAIBot is an AI-powered global restaurant discovery platform that helps people search for dining options by craving, cuisine, location, vibe, and travel need.",
-        "knowsAbout": [
-          "restaurant discovery",
-          "AI restaurant search",
-          "food travel",
-          "local dining",
-          "Google Maps restaurant search",
-          "restaurant recommendations",
-          "global food search"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://restaurantaibot.com/#website",
-        "url": "https://restaurantaibot.com/",
-        "name": "RestaurantAIBot",
-        "description": "Ask AI to find food and restaurants anywhere on Earth.",
-        "publisher": {
-          "@id": "https://restaurantaibot.com/#organization"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://restaurantaibot.com/?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://restaurantaibot.com/#app",
-        "name": "RestaurantAIBot",
-        "applicationCategory": "TravelApplication",
-        "operatingSystem": "Web",
-        "url": "https://restaurantaibot.com/",
-        "description": "An AI restaurant finder that turns natural language food cravings into mapped restaurant recommendations.",
-        "featureList": [
-          "AI-powered restaurant search",
-          "Natural language food craving search",
-          "Google Maps restaurant discovery",
-          "Restaurant recommendation cards",
-          "Global dining search"
-        ],
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock"
-        },
-        "creator": {
-          "@id": "https://restaurantaibot.com/#organization"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://restaurantaibot.com/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What does RestaurantAIBot do?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "RestaurantAIBot helps users search for restaurants by typing natural language food requests, such as cuisine, location, atmosphere, or dining need."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can RestaurantAIBot find restaurants in different countries?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. RestaurantAIBot is designed for global restaurant discovery and can search by city, country, cuisine, and dining preference."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is RestaurantAIBot a restaurant?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. RestaurantAIBot is a restaurant discovery tool, not a restaurant. Individual restaurant pages can use Restaurant schema when those pages are created."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -111,7 +18,7 @@
     body, html {
       height: 100%;
       overflow: hidden;
-      background: #f8f9fa;
+      background: #f5f7fb;
     }
 
     .app-container {
@@ -121,39 +28,38 @@
     }
 
     .sidebar {
-      width: 35%;
-      max-width: 500px;
+      width: 36%;
+      max-width: 520px;
       min-width: 340px;
       display: flex;
       flex-direction: column;
       background: #ffffff;
       border-right: 1px solid #ddd;
-      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.06);
       z-index: 10;
     }
 
     .brand-header {
-      padding: 22px;
+      padding: 24px;
       border-bottom: 1px solid #eee;
+      background: linear-gradient(135deg,#ff6b35,#ff9559);
+      color: white;
     }
 
     .brand-header h1 {
-      color: #ff6b35;
-      font-size: 1.55rem;
-      margin-bottom: 8px;
+      font-size: 1.7rem;
+      margin-bottom: 10px;
     }
 
     .brand-header h2 {
-      color: #111827;
-      font-size: 1.2rem;
-      line-height: 1.25;
-      margin-bottom: 8px;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
     }
 
     .brand-header p {
-      color: #555;
       font-size: 0.95rem;
-      line-height: 1.45;
+      line-height: 1.5;
+      opacity: 0.95;
     }
 
     .chat-history {
@@ -163,11 +69,11 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      background: #f8f9fa;
+      background: #f5f7fb;
     }
 
     .message {
-      max-width: 90%;
+      max-width: 92%;
       padding: 13px 15px;
       border-radius: 16px;
       line-height: 1.45;
@@ -178,7 +84,6 @@
       align-self: flex-end;
       background: #1a73e8;
       color: #fff;
-      border-bottom-right-radius: 4px;
     }
 
     .ai-msg {
@@ -186,39 +91,65 @@
       background: #fff;
       color: #222;
       border: 1px solid #ddd;
-      border-bottom-left-radius: 4px;
     }
 
     .restaurant-card {
       background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 16px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      border: 1px solid #eee;
+    }
+
+    .restaurant-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: #ddd;
+    }
+
+    .restaurant-content {
       padding: 15px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
     }
 
     .restaurant-card h3 {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
       color: #111827;
-      margin-bottom: 6px;
     }
 
     .restaurant-card p {
+      margin-bottom: 6px;
       color: #555;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      margin-bottom: 5px;
+      font-size: 0.92rem;
     }
 
     .tag {
       display: inline-block;
       background: #fff3ed;
       color: #ff6b35;
-      padding: 5px 9px;
+      padding: 6px 10px;
       border-radius: 999px;
       font-size: 0.8rem;
       font-weight: bold;
-      margin-top: 5px;
+      margin-top: 6px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .card-actions a {
+      text-decoration: none;
+      background: #ff6b35;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: bold;
     }
 
     .input-container {
@@ -238,14 +169,9 @@
       outline: none;
     }
 
-    .chat-input:focus {
-      border-color: #ff6b35;
-      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.16);
-    }
-
     .send-btn {
       background: #ff6b35;
-      color: #fff;
+      color: white;
       border: none;
       border-radius: 999px;
       padding: 0 20px;
@@ -253,24 +179,10 @@
       cursor: pointer;
     }
 
-    .send-btn:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
     #map-container {
       flex: 1;
       height: 100%;
-      background: #e5e3df;
-    }
-
-    .map-fallback {
-      height: 100%;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 24px;
-      color: #333;
+      background: #ddd;
     }
 
     @media (max-width: 850px) {
@@ -300,37 +212,27 @@
   <div class="app-container">
     <aside class="sidebar">
       <div class="brand-header">
-        <h1>RestaurantAIBot.com</h1>
+        <h1>🍕 RestaurantAIBot</h1>
         <h2>Ask AI. Find Food. Anywhere on Earth.</h2>
-        <p>Type exactly what you are craving, and watch our global AI map out the perfect restaurant instantly.</p>
+        <p>Search restaurants by craving, mood, city, budget, or vibe.</p>
       </div>
 
       <div class="chat-history" id="chatHistory">
         <div class="message ai-msg">
-          Try: “quiet sushi with outdoor seating in Vancouver” or “late-night tacos in Austin.”
+          Try “best pizza in Chicago” or “quiet sushi in Tokyo.”
         </div>
       </div>
 
       <div class="input-container">
-        <input
-          type="text"
-          class="chat-input"
-          id="userInput"
-          placeholder="Type food craving + location..."
-        />
+        <input type="text" class="chat-input" id="userInput" placeholder="Search food + city..." />
         <button class="send-btn" id="sendBtn">Search</button>
       </div>
     </aside>
 
-    <main id="map-container">
-      <div class="map-fallback">
-        <div>
-          <h2>Global AI Food Map</h2>
-          <p>Map loads when your Google Maps API key is active.</p>
-        </div>
-      </div>
-    </main>
+    <main id="map-container"></main>
   </div>
+
+  <script src="/quick-searches.js"></script>
 
   <script>
     let map;
@@ -345,9 +247,7 @@
       return String(text)
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+        .replace(/>/g, '&gt;');
     }
 
     function addMessage(text, type) {
@@ -360,14 +260,26 @@
     }
 
     function addRestaurantCard(restaurant) {
+      const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurant.name + ' ' + restaurant.address)}`;
+
       const card = document.createElement('div');
       card.className = 'restaurant-card';
+
       card.innerHTML = `
-        <h3>${escapeHtml(restaurant.name)}</h3>
-        <p><strong>Rating:</strong> ${escapeHtml(restaurant.rating)}</p>
-        <p><strong>Address:</strong> ${escapeHtml(restaurant.address)}</p>
-        <span class="tag">AI Match</span>
+        <img class="restaurant-image" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="Restaurant">
+
+        <div class="restaurant-content">
+          <h3>${escapeHtml(restaurant.name)}</h3>
+          <p><strong>⭐ Rating:</strong> ${escapeHtml(restaurant.rating)}</p>
+          <p><strong>📍 Address:</strong> ${escapeHtml(restaurant.address)}</p>
+          <span class="tag">AI Recommended</span>
+
+          <div class="card-actions">
+            <a href="${mapsLink}" target="_blank">Directions</a>
+          </div>
+        </div>
       `;
+
       chatHistory.appendChild(card);
     }
 
@@ -380,32 +292,23 @@
       map = new google.maps.Map(document.getElementById('map-container'), {
         center: { lat: 25.0, lng: 0.0 },
         zoom: 3,
-        mapTypeControl: false,
-        fullscreenControl: false,
-        streetViewControl: false
+        mapTypeControl: false
       });
+
       mapsReady = true;
     }
 
     async function loadGoogleMaps() {
-      try {
-        const response = await fetch('/api/config');
-        const config = await response.json();
+      const response = await fetch('/api/config');
+      const config = await response.json();
 
-        if (!config.googleMapsApiKey) {
-          addMessage('Google Maps API key is missing. Add it to your .env file as GOOGLE_MAPS_API_KEY.', 'ai-msg');
-          return;
-        }
+      window.initMap = initMap;
 
-        window.initMap = initMap;
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(config.googleMapsApiKey)}&callback=initMap`;
-        script.async = true;
-        script.defer = true;
-        document.head.appendChild(script);
-      } catch (error) {
-        addMessage('Could not load map settings from the server.', 'ai-msg');
-      }
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${config.googleMapsApiKey}&callback=initMap`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
     }
 
     async function handleSearch() {
@@ -414,9 +317,8 @@
 
       addMessage(escapeHtml(query), 'user-msg');
       userInput.value = '';
-      sendBtn.disabled = true;
 
-      const loading = addMessage('Thinking... mapping your request...', 'ai-msg');
+      const loading = addMessage('Searching restaurants...', 'ai-msg');
 
       try {
         const response = await fetch('/api/search', {
@@ -426,70 +328,56 @@
         });
 
         const data = await response.json();
+
         loading.remove();
 
         if (!data.success) {
-          addMessage(escapeHtml(data.error || 'Search failed.'), 'ai-msg');
+          addMessage('Search failed.', 'ai-msg');
           return;
         }
 
-        if (!data.restaurants || data.restaurants.length === 0) {
-          addMessage('No matches found. Try a clearer city and food type.', 'ai-msg');
-          return;
-        }
+        addMessage(data.aiExplanation, 'ai-msg');
 
-        addMessage(escapeHtml(data.aiExplanation), 'ai-msg');
         clearMarkers();
 
-        const bounds = mapsReady ? new google.maps.LatLngBounds() : null;
+        const bounds = new google.maps.LatLngBounds();
 
         data.restaurants.forEach(restaurant => {
           addRestaurantCard(restaurant);
 
-          if (!mapsReady || !restaurant.lat || !restaurant.lng) return;
+          if (!restaurant.lat || !restaurant.lng) return;
 
-          const position = { lat: restaurant.lat, lng: restaurant.lng };
+          const position = {
+            lat: restaurant.lat,
+            lng: restaurant.lng
+          };
+
           const marker = new google.maps.Marker({
             position,
             map,
-            title: restaurant.name,
-            animation: google.maps.Animation.DROP
-          });
-
-          const infoWindow = new google.maps.InfoWindow({
-            content: `
-              <div style="padding:8px;color:#202124;max-width:220px;">
-                <strong>${escapeHtml(restaurant.name)}</strong><br>
-                <span>★ ${escapeHtml(restaurant.rating)}</span><br>
-                <small>${escapeHtml(restaurant.address)}</small>
-              </div>
-            `
-          });
-
-          marker.addListener('click', () => {
-            infoWindow.open({ anchor: marker, map });
+            title: restaurant.name
           });
 
           markers.push(marker);
           bounds.extend(position);
         });
 
-        if (mapsReady && markers.length > 0) {
+        if (markers.length > 0) {
           map.fitBounds(bounds);
-          if (map.getZoom() > 16) map.setZoom(15);
         }
+
       } catch (error) {
         loading.remove();
-        addMessage('Connection error. Check that the server is running and your API keys are set.', 'ai-msg');
-      } finally {
-        sendBtn.disabled = false;
-        chatHistory.scrollTop = chatHistory.scrollHeight;
+        addMessage('Connection error.', 'ai-msg');
       }
     }
 
     sendBtn.addEventListener('click', handleSearch);
-    userInput.addEventListener('keydown', event => {
-      if (event.key === 'Enter') handleSearch();
+
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        handleSearch();
+      }
     });
 
     loadGoogleMaps();
