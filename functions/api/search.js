@@ -4,6 +4,9 @@ export async function onRequestPost(context) {
   try {
     const body = await request.json();
     const message = body.message;
+    const lat = Number(body.lat);
+    const lng = Number(body.lng);
+    const hasCoordinates = Number.isFinite(lat) && Number.isFinite(lng);
 
     if (!message || !message.trim()) {
       return jsonResponse({
@@ -31,7 +34,7 @@ export async function onRequestPost(context) {
         messages: [
           {
             role: 'system',
-            content: "You are a restaurant travel assistant. Extract the search location and restaurant criteria from the user's prompt. Respond ONLY as JSON with keys: location and cuisine. If location is missing, use 'near me'."
+            content: "You are a restaurant search assistant. Extract what kind of restaurant or food the user wants. Respond ONLY as JSON with keys: location and cuisine. If the user asks for near me, nearby, closest, local, or does not mention a city, set location to near me. Keep cuisine short, like pizza, tacos, breakfast, sushi, romantic dinner, vegan food, seafood, coffee, or restaurant."
           },
           {
             role: 'user',
@@ -56,7 +59,15 @@ export async function onRequestPost(context) {
     const cuisine = parsedSearch.cuisine || 'restaurant';
 
     const googleUrl = new URL('https://maps.googleapis.com/maps/api/place/textsearch/json');
-    googleUrl.searchParams.set('query', `${cuisine} in ${location}`);
+
+    if (hasCoordinates && isNearMeSearch(message, location)) {
+      googleUrl.searchParams.set('query', cuisine);
+      googleUrl.searchParams.set('location', `${lat},${lng}`);
+      googleUrl.searchParams.set('radius', '8000');
+    } else {
+      googleUrl.searchParams.set('query', `${cuisine} in ${location}`);
+    }
+
     googleUrl.searchParams.set('key', env.GOOGLE_MAPS_API_KEY);
 
     const googleResponse = await fetch(googleUrl.toString());
@@ -78,15 +89,19 @@ export async function onRequestPost(context) {
         name: place.name,
         address: place.formatted_address,
         rating: place.rating || 'N/A',
+        openNow: place.opening_hours?.open_now,
+        priceLevel: place.price_level,
         lat: place.geometry?.location?.lat,
         lng: place.geometry?.location?.lng,
         placeId: place.place_id
       }))
       .filter(place => place.lat && place.lng);
 
+    const areaText = hasCoordinates && isNearMeSearch(message, location) ? 'near you' : `in ${location}`;
+
     return jsonResponse({
       success: true,
-      aiExplanation: `I found these restaurant matches for ${cuisine} in ${location}.`,
+      aiExplanation: `I found these ${cuisine} matches ${areaText}.`,
       restaurants
     });
   } catch (error) {
@@ -97,6 +112,16 @@ export async function onRequestPost(context) {
       error: 'Failed to process restaurant search.'
     }, 500);
   }
+}
+
+function isNearMeSearch(message, location) {
+  const text = `${message} ${location}`.toLowerCase();
+  return text.includes('near me') ||
+    text.includes('nearby') ||
+    text.includes('closest') ||
+    text.includes('around me') ||
+    text.includes('local') ||
+    location.toLowerCase() === 'near me';
 }
 
 function jsonResponse(data, status = 200) {
