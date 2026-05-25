@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RestaurantAIBot | Ask AI. Find Food. Anywhere on Earth.</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      background: #f8f9fa;
+    }
+
+    .app-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .sidebar {
+      width: 35%;
+      max-width: 500px;
+      min-width: 340px;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      border-right: 1px solid #ddd;
+      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.06);
+      z-index: 10;
+    }
+
+    .brand-header {
+      padding: 22px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .brand-header h1 {
+      color: #ff6b35;
+      font-size: 1.55rem;
+      margin-bottom: 8px;
+    }
+
+    .brand-header h2 {
+      color: #111827;
+      font-size: 1.2rem;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .brand-header p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .chat-history {
+      flex: 1;
+      padding: 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: #f8f9fa;
+    }
+
+    .message {
+      max-width: 90%;
+      padding: 13px 15px;
+      border-radius: 16px;
+      line-height: 1.45;
+      font-size: 0.95rem;
+    }
+
+    .user-msg {
+      align-self: flex-end;
+      background: #1a73e8;
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .ai-msg {
+      align-self: flex-start;
+      background: #fff;
+      color: #222;
+      border: 1px solid #ddd;
+      border-bottom-left-radius: 4px;
+    }
+
+    .restaurant-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+    }
+
+    .restaurant-card h3 {
+      font-size: 1.05rem;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+
+    .restaurant-card p {
+      color: #555;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #fff3ed;
+      color: #ff6b35;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .input-container {
+      padding: 15px;
+      display: flex;
+      gap: 10px;
+      background: #fff;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      padding: 13px 15px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: #ff6b35;
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.16);
+    }
+
+    .send-btn {
+      background: #ff6b35;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .send-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    #map-container {
+      flex: 1;
+      height: 100%;
+      background: #e5e3df;
+    }
+
+    .map-fallback {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+      color: #333;
+    }
+
+    @media (max-width: 850px) {
+      body, html {
+        overflow: auto;
+      }
+
+      .app-container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .sidebar {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        height: 65vh;
+      }
+
+      #map-container {
+        height: 45vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="brand-header">
+        <h1>RestaurantAIBot.com</h1>
+        <h2>Ask AI. Find Food. Anywhere on Earth.</h2>
+        <p>Type exactly what you are craving, and watch our global AI map out the perfect restaurant instantly.</p>
+      </div>
+
+      <div class="chat-history" id="chatHistory">
+        <div class="message ai-msg">
+          Try: “quiet sushi with outdoor seating in Vancouver” or “late-night tacos in Austin.”
+        </div>
+      </div>
+
+      <div class="input-container">
+        <input
+          type="text"
+          class="chat-input"
+          id="userInput"
+          placeholder="Type food craving + location..."
+        />
+        <button class="send-btn" id="sendBtn">Search</button>
+      </div>
+    </aside>
+
+    <main id="map-container">
+      <div class="map-fallback">
+        <div>
+          <h2>Global AI Food Map</h2>
+          <p>Map loads when your Google Maps API key is active.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    let map;
+    let markers = [];
+    let mapsReady = false;
+
+    const chatHistory = document.getElementById('chatHistory');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function addMessage(text, type) {
+      const div = document.createElement('div');
+      div.className = `message ${type}`;
+      div.innerHTML = text;
+      chatHistory.appendChild(div);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+      return div;
+    }
+
+    function addRestaurantCard(restaurant) {
+      const card = document.createElement('div');
+      card.className = 'restaurant-card';
+      card.innerHTML = `
+        <h3>${escapeHtml(restaurant.name)}</h3>
+        <p><strong>Rating:</strong> ${escapeHtml(restaurant.rating)}</p>
+        <p><strong>Address:</strong> ${escapeHtml(restaurant.address)}</p>
+        <span class="tag">AI Match</span>
+      `;
+      chatHistory.appendChild(card);
+    }
+
+    function clearMarkers() {
+      markers.forEach(marker => marker.setMap(null));
+      markers = [];
+    }
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map-container'), {
+        center: { lat: 25.0, lng: 0.0 },
+        zoom: 3,
+        mapTypeControl: false,
+        fullscreenControl: false,
+        streetViewControl: false
+      });
+      mapsReady = true;
+    }
+
+    async function loadGoogleMaps() {
+      try {
+        const response = await fetch('/api/config');
+        const config = await response.json();
+
+        if (!config.googleMapsApiKey) {
+          addMessage('Google Maps API key is missing. Add it to your .env file as GOOGLE_MAPS_API_KEY.', 'ai-msg');
+          return;
+        }
+
+        window.initMap = initMap;
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(config.googleMapsApiKey)}&callback=initMap`;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      } catch (error) {
+        addMessage('Could not load map settings from the server.', 'ai-msg');
+      }
+    }
+
+    async function handleSearch() {
+      const query = userInput.value.trim();
+      if (!query) return;
+
+      addMessage(escapeHtml(query), 'user-msg');
+      userInput.value = '';
+      sendBtn.disabled = true;
+
+      const loading = addMessage('Thinking... mapping your request...', 'ai-msg');
+
+      try {
+        const response = await fetch('/api/search', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: query })
+        });
+
+        const data = await response.json();
+        loading.remove();
+
+        if (!data.success) {
+          addMessage(escapeHtml(data.error || 'Search failed.'), 'ai-msg');
+          return;
+        }
+
+        if (!data.restaurants || data.restaurants.length === 0) {
+          addMessage('No matches found. Try a clearer city and food type.', 'ai-msg');
+          return;
+        }
+
+        addMessage(escapeHtml(data.aiExplanation), 'ai-msg');
+        clearMarkers();
+
+        const bounds = mapsReady ? new google.maps.LatLngBounds() : null;
+
+        data.restaurants.forEach(restaurant => {
+          addRestaurantCard(restaurant);
+
+          if (!mapsReady || !restaurant.lat || !restaurant.lng) return;
+
+          const position = { lat: restaurant.lat, lng: restaurant.lng };
+          const marker = new google.maps.Marker({
+            position,
+            map,
+            title: restaurant.name,
+            animation: google.maps.Animation.DROP
+          });
+
+          const infoWindow = new google.maps.InfoWindow({
+            content: `
+              <div style="padding:8px;color:#202124;max-width:220px;">
+                <strong>${escapeHtml(restaurant.name)}</strong><br>
+                <span>★ ${escapeHtml(restaurant.rating)}</span><br>
+                <small>${escapeHtml(restaurant.address)}</small>
+              </div>
+            `
+          });
+
+          marker.addListener('click', () => {
+            infoWindow.open({ anchor: marker, map });
+          });
+
+          markers.push(marker);
+          bounds.extend(position);
+        });
+
+        if (mapsReady && markers.length > 0) {
+          map.fitBounds(bounds);
+          if (map.getZoom() > 16) map.setZoom(15);
+        }
+      } catch (error) {
+        loading.remove();
+        addMessage('Connection error. Check that the server is running and your API keys are set.', 'ai-msg');
+      } finally {
+        sendBtn.disabled = false;
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      }
+    }
+
+    sendBtn.addEventListener('click', handleSearch);
+    userInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter') handleSearch();
+    });
+
+    loadGoogleMaps();
+  </script>
+</body>
+</html>
