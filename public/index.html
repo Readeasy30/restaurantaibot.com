@@ -59,7 +59,18 @@
     .brand-header p {
       font-size: 0.95rem;
       line-height: 1.5;
-      opacity: 0.95;
+    }
+
+    .near-me-btn {
+      margin-top: 14px;
+      border: none;
+      background: white;
+      color: #ff6b35;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      width: fit-content;
     }
 
     .chat-history {
@@ -105,7 +116,6 @@
       width: 100%;
       height: 150px;
       object-fit: cover;
-      background: #ddd;
     }
 
     .restaurant-content {
@@ -113,9 +123,7 @@
     }
 
     .restaurant-card h3 {
-      font-size: 1.1rem;
       margin-bottom: 8px;
-      color: #111827;
     }
 
     .restaurant-card p {
@@ -182,29 +190,6 @@
     #map-container {
       flex: 1;
       height: 100%;
-      background: #ddd;
-    }
-
-    @media (max-width: 850px) {
-      body, html {
-        overflow: auto;
-      }
-
-      .app-container {
-        flex-direction: column;
-        height: auto;
-      }
-
-      .sidebar {
-        width: 100%;
-        max-width: none;
-        min-width: 0;
-        height: 65vh;
-      }
-
-      #map-container {
-        height: 45vh;
-      }
     }
   </style>
 </head>
@@ -215,11 +200,13 @@
         <h1>🍕 RestaurantAIBot</h1>
         <h2>Ask AI. Find Food. Anywhere on Earth.</h2>
         <p>Search restaurants by craving, mood, city, budget, or vibe.</p>
+
+        <button class="near-me-btn" id="nearMeBtn">📍 Use My Location</button>
       </div>
 
       <div class="chat-history" id="chatHistory">
         <div class="message ai-msg">
-          Try “best pizza in Chicago” or “quiet sushi in Tokyo.”
+          Try “pizza near me” or “best sushi in Tokyo.”
         </div>
       </div>
 
@@ -237,18 +224,13 @@
   <script>
     let map;
     let markers = [];
-    let mapsReady = false;
+    let userLat = null;
+    let userLng = null;
 
     const chatHistory = document.getElementById('chatHistory');
     const userInput = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
-
-    function escapeHtml(text) {
-      return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-    }
+    const nearMeBtn = document.getElementById('nearMeBtn');
 
     function addMessage(text, type) {
       const div = document.createElement('div');
@@ -269,9 +251,9 @@
         <img class="restaurant-image" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="Restaurant">
 
         <div class="restaurant-content">
-          <h3>${escapeHtml(restaurant.name)}</h3>
-          <p><strong>⭐ Rating:</strong> ${escapeHtml(restaurant.rating)}</p>
-          <p><strong>📍 Address:</strong> ${escapeHtml(restaurant.address)}</p>
+          <h3>${restaurant.name}</h3>
+          <p>⭐ ${restaurant.rating}</p>
+          <p>${restaurant.address}</p>
           <span class="tag">AI Recommended</span>
 
           <div class="card-actions">
@@ -290,12 +272,9 @@
 
     function initMap() {
       map = new google.maps.Map(document.getElementById('map-container'), {
-        center: { lat: 25.0, lng: 0.0 },
-        zoom: 3,
-        mapTypeControl: false
+        center: { lat: 39.8283, lng: -98.5795 },
+        zoom: 4
       });
-
-      mapsReady = true;
     }
 
     async function loadGoogleMaps() {
@@ -311,30 +290,47 @@
       document.head.appendChild(script);
     }
 
+    function requestLocation() {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          userLat = position.coords.latitude;
+          userLng = position.coords.longitude;
+
+          addMessage('📍 Location enabled. You can now search near you.', 'ai-msg');
+
+          map.setCenter({ lat: userLat, lng: userLng });
+          map.setZoom(12);
+        },
+        () => {
+          addMessage('Location access denied.', 'ai-msg');
+        }
+      );
+    }
+
     async function handleSearch() {
       const query = userInput.value.trim();
       if (!query) return;
 
-      addMessage(escapeHtml(query), 'user-msg');
-      userInput.value = '';
+      addMessage(query, 'user-msg');
 
       const loading = addMessage('Searching restaurants...', 'ai-msg');
 
       try {
         const response = await fetch('/api/search', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: query })
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: query,
+            lat: userLat,
+            lng: userLng
+          })
         });
 
         const data = await response.json();
 
         loading.remove();
-
-        if (!data.success) {
-          addMessage('Search failed.', 'ai-msg');
-          return;
-        }
 
         addMessage(data.aiExplanation, 'ai-msg');
 
@@ -342,24 +338,20 @@
 
         const bounds = new google.maps.LatLngBounds();
 
-        data.restaurants.forEach(restaurant => {
+        data.restaurants.forEach((restaurant) => {
           addRestaurantCard(restaurant);
 
-          if (!restaurant.lat || !restaurant.lng) return;
-
-          const position = {
-            lat: restaurant.lat,
-            lng: restaurant.lng
-          };
-
           const marker = new google.maps.Marker({
-            position,
+            position: {
+              lat: restaurant.lat,
+              lng: restaurant.lng
+            },
             map,
             title: restaurant.name
           });
 
           markers.push(marker);
-          bounds.extend(position);
+          bounds.extend(marker.position);
         });
 
         if (markers.length > 0) {
@@ -368,10 +360,11 @@
 
       } catch (error) {
         loading.remove();
-        addMessage('Connection error.', 'ai-msg');
+        addMessage('Search failed.', 'ai-msg');
       }
     }
 
+    nearMeBtn.addEventListener('click', requestLocation);
     sendBtn.addEventListener('click', handleSearch);
 
     userInput.addEventListener('keydown', (e) => {
