@@ -37,6 +37,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://restaurantaibot.com/vegan-restaurants-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://restaurantaibot.com/seafood-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://restaurantaibot.com/coffee-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://restaurantaibot.com/dinner-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://restaurantaibot.com/cheap-eats-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://restaurantaibot.com/outdoor-dining-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://restaurantaibot.com/privacy.html</loc>
     <priority>0.4</priority>
   </url>
