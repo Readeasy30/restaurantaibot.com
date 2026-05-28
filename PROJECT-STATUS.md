@@ -22,7 +22,9 @@ Current workflow file:
 - Homepage search interface
 - Quick search buttons
 - SEO-ready core pages
-- Basic support pages
+- Improved support pages
+- Restaurant owner / advertiser interest page
+- Dedicated UX goals file
 
 ## Current stable architecture
 
@@ -32,6 +34,7 @@ Current workflow file:
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
 - `public/sitemap.xml` lists core pages.
+- `UX-GOALS.md` locks product and visitor experience rules.
 
 ## Added support pages
 
@@ -39,6 +42,7 @@ Current workflow file:
 - Contact
 - Privacy
 - Terms
+- Restaurant owner / advertiser interest
 
 ## Completed safe queue
 
@@ -52,15 +56,20 @@ Current workflow file:
 8. Added `AGENT-INSTRUCTIONS.md`.
 9. Added `LOCKED-CHECKPOINT.md`.
 10. Added `CODEX-WORKFLOW.md` for Codex-first repo editing.
+11. Upgraded `public/about.html` from placeholder to full support page.
+12. Upgraded `public/contact.html` from placeholder to full support page.
+13. Upgraded `public/privacy.html` from placeholder to clearer privacy page.
+14. Added `public/owner-advertise.html` for restaurant owner and advertiser interest.
+15. Added `UX-GOALS.md`.
+16. Added owner / advertiser page to sitemap.
 
 ## Current safe queue
 
-1. Upgrade About, Contact, and Privacy pages from placeholder pages into more useful pages.
-2. Add an advertising / restaurant owner interest page without adding live ad code or payment setup.
-3. Add city and cuisine SEO landing pages.
-4. Improve API validation and error handling.
-5. Add a manual test checklist.
-6. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
+1. Add first city and cuisine SEO landing pages.
+2. Improve API validation and error handling.
+3. Add a manual test checklist.
+4. Improve quick search buttons and homepage links to include restaurant owner page.
+5. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
 
 ## Blocked items
 
