@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Vegan food near me',
     'Seafood in Miami',
     'Coffee near me',
-    'Romantic dinner in Chicago',
+    'Nice dinner in Chicago',
     'Cheap eats in Las Vegas',
     'Outdoor dining in Los Angeles'
   ];
