@@ -17,6 +17,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://restaurantaibot.com/pizza-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://restaurantaibot.com/tacos-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://restaurantaibot.com/sushi-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://restaurantaibot.com/breakfast-near-me.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://restaurantaibot.com/privacy.html</loc>
     <priority>0.4</priority>
   </url>
