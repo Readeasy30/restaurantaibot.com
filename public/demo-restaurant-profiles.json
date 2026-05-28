@@ -1,0 +1,28 @@
+{
+  "status": "demo-only",
+  "note": "These restaurant profiles are sample data for future profile templates. They are not paid listings and should not be shown as real sponsored content until manual approval, disclosures, and business rules are ready.",
+  "profiles": [
+    {
+      "id": "sample-bistro-dallas",
+      "restaurantName": "Sample Bistro",
+      "city": "Dallas",
+      "neighborhood": "Demo District",
+      "cuisine": "Casual American",
+      "goodFor": ["lunch", "dinner", "family meals", "takeout"],
+      "summary": "A sample restaurant profile used to plan future owner listing pages.",
+      "website": "https://example.com",
+      "label": "Demo Profile"
+    },
+    {
+      "id": "sample-pizza-chicago",
+      "restaurantName": "Sample Pizza Kitchen",
+      "city": "Chicago",
+      "neighborhood": "Demo Neighborhood",
+      "cuisine": "Pizza",
+      "goodFor": ["pizza night", "family meals", "casual dinner"],
+      "summary": "A sample pizza profile for future restaurant page layout testing.",
+      "website": "https://example.com",
+      "label": "Demo Profile"
+    }
+  ]
+}
