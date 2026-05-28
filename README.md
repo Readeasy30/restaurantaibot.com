@@ -2,11 +2,21 @@
 
 Ask AI. Find Food. Anywhere on Earth.
 
-RestaurantAIBot is an AI restaurant discovery website. Visitors can search by craving, city, mood, budget, dining style, or “near me.” The site uses AI to understand the search and Google Maps / Places results to show restaurant matches.
+RestaurantAIBot is an AI-powered worldwide restaurant discovery website. Visitors can search by craving, city, mood, budget, dining style, travel destination, or “near me.” The site uses AI to understand the food intent, then uses live restaurant and map search data from Google Places / Maps to show restaurant matches.
+
+## Product positioning
+
+RestaurantAIBot is not a generic web crawler. It is a restaurant discovery app that combines:
+
+- AI food-intent parsing
+- worldwide city and nearby restaurant search
+- Google Places / Maps restaurant data
+- simple consumer search pages
+- city, cuisine, and dining-style landing pages
 
 ## Live goal
 
-Build a useful restaurant search site that can later grow into:
+Build a useful worldwide restaurant search site that can later grow into:
 
 - City and cuisine landing pages for SEO
 - Restaurant owner lead capture
@@ -28,11 +38,13 @@ No live payments, live ad scripts, private keys, or tracking scripts should be a
 ## Main files
 
 - `public/index.html` — main search page
-- `public/quick-searches.js` — quick search buttons
+- `public/quick-searches.js` — quick search buttons, URL query support, and injected homepage links
+- `public/popular-searches.html` — popular restaurant search hub
 - `public/about.html` — About page
 - `public/contact.html` — Contact page
 - `public/privacy.html` — Privacy page
 - `public/terms.html` — Terms page
+- `public/owner-advertise.html` — restaurant owner / advertiser interest page
 - `public/robots.txt` — crawler rules
 - `public/sitemap.xml` — sitemap for core pages
 - `functions/api/search.js` — AI + Google Places restaurant search endpoint
@@ -41,6 +53,8 @@ No live payments, live ad scripts, private keys, or tracking scripts should be a
 - `AGENT-INSTRUCTIONS.md` — production build instructions
 - `LOCKED-CHECKPOINT.md` — locked project direction and next queue
 - `PROJECT-STATUS.md` — current project status
+- `UX-GOALS.md` — product and visitor experience goals
+- `MANUAL-TEST-CHECKLIST.md` — manual test checklist
 
 ## Cloudflare Pages settings
 
@@ -86,9 +100,8 @@ Do not do without explicit approval:
 
 ## Current safe build queue
 
-1. Upgrade About, Contact, and Privacy pages.
-2. Add restaurant owner / advertiser interest page.
-3. Add first SEO landing pages.
-4. Improve API validation and error handling.
-5. Add more structured content for restaurant discovery.
-6. Remove `.chatgpt-connector-test.md` once connector testing is no longer needed.
+1. Add internal links between SEO pages.
+2. Add safe local advertising planning document.
+3. Add more city landing pages.
+4. Update sitemap in smaller chunks if connector permits.
+5. Remove `.chatgpt-connector-test.md` once connector testing is no longer needed.
