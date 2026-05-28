@@ -29,9 +29,10 @@ Current workflow file:
 - Restaurant marketing tools information page
 - Restaurant marketing planning document
 - Demo-only promotions data file
+- Sample restaurant profile template
 - Dedicated UX goals file
 - Manual test checklist
-- Expanded city landing pages
+- Expanded U.S. and international city landing pages
 
 ## Current stable architecture
 
@@ -45,6 +46,7 @@ Current workflow file:
 - `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
 - `RESTAURANT-MARKETING-PLAN.md` describes future restaurant marketing tools and packages.
 - `public/demo-promotions.json` contains demo-only future placement data and is not live paid advertising.
+- `public/sample-restaurant-profile.html` shows a demo future restaurant profile layout.
 
 ## Operational status
 
@@ -57,6 +59,7 @@ Currently operational:
 - City landing pages
 - Restaurant owner / advertiser interest page
 - Advertiser intake interest page
+- Demo profile page for future restaurant listings
 
 Not operational yet:
 
@@ -77,6 +80,7 @@ Not operational yet:
 - Restaurant owner / advertiser interest
 - Restaurant marketing tools
 - Advertiser intake
+- Sample restaurant profile
 
 ## Added SEO pages
 
@@ -92,7 +96,7 @@ Not operational yet:
 - Outdoor dining near me
 - Popular searches hub
 
-## Added city pages
+## Added U.S. city pages
 
 - Chicago restaurants
 - New York restaurants
@@ -102,6 +106,13 @@ Not operational yet:
 - Las Vegas restaurants
 - Atlanta restaurants
 - Denver restaurants
+
+## Added international city pages
+
+- Tokyo restaurants
+- London restaurants
+- Paris restaurants
+- Toronto restaurants
 
 ## Connector filter note
 
@@ -141,13 +152,15 @@ A later full sitemap update that included many new page URLs was also blocked by
 28. Added `public/demo-promotions.json` as demo-only future placement data.
 29. Added `public/advertiser-intake.html`.
 30. Added city landing pages for Los Angeles, Las Vegas, Atlanta, and Denver.
+31. Added `public/sample-restaurant-profile.html`.
+32. Added international city landing pages for Tokyo, London, Paris, and Toronto.
 
 ## Current safe queue
 
-1. Add internal links between SEO pages.
-2. Add a demo restaurant profile template page.
-3. Add more international city landing pages: Tokyo, London, Paris, Toronto.
-4. Update sitemap again in smaller chunks if connector permits.
+1. Add a city index / worldwide restaurant cities hub page.
+2. Add internal links between SEO pages and city pages.
+3. Update sitemap again in smaller chunks if connector permits.
+4. Add a demo restaurant profile data file for future templates.
 5. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
 
 ## Blocked items
