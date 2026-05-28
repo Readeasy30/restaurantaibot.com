@@ -4,9 +4,21 @@ Last updated: 2026-05-28
 
 ## Product goal
 
-RestaurantAIBot should help visitors find restaurants quickly by typing a simple food request, city, mood, budget, dining style, or nearby search.
+RestaurantAIBot should help visitors find restaurants worldwide by typing a simple food request, city, travel destination, mood, budget, dining style, or nearby search.
 
 The site should feel useful on the first visit, especially on mobile.
+
+## Product positioning
+
+RestaurantAIBot combines AI and live restaurant/map search data.
+
+Use this wording:
+
+- AI helps understand what the visitor wants.
+- Live restaurant and map search data helps return restaurant matches.
+- The site can support worldwide restaurant discovery by city, destination, or nearby search.
+
+Avoid saying the site crawls the whole internet unless that feature is intentionally built later.
 
 ## Main visitor promise
 
@@ -22,9 +34,10 @@ Visitors should understand in a few seconds:
 ## Primary user actions
 
 1. Search for food by craving plus city.
-2. Use location for nearby restaurant search.
-3. Open restaurant directions or map result.
-4. Contact RestaurantAIBot with feedback, partnership interest, or restaurant owner interest.
+2. Search for restaurants in a travel destination or worldwide city.
+3. Use location for nearby restaurant search.
+4. Open restaurant directions or map result.
+5. Contact RestaurantAIBot with feedback, partnership interest, or restaurant owner interest.
 
 ## UX rules
 
@@ -45,13 +58,13 @@ Do not add live ads, payment setup, tracking scripts, sponsored placement claims
 
 ## SEO/content direction
 
-Future SEO pages should support useful restaurant discovery around:
+Future SEO pages should support useful worldwide restaurant discovery around:
 
 - cities
 - cuisines
 - travel food searches
 - breakfast, lunch, dinner, late-night food
 - pizza, tacos, sushi, seafood, vegan food, coffee
-- romantic dinner, family-friendly dining, cheap eats, outdoor dining
+- nice dinner, family-friendly dining, cheap eats, outdoor dining
 
 Each SEO page should help the visitor search faster and should link back to the main restaurant search page.
