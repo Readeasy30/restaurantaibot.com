@@ -1,6 +1,16 @@
 # RestaurantAIBot Project Status
 
-Last updated: 2026-05-27
+Last updated: 2026-05-28
+
+## Codex-first workflow
+
+Codex is the primary workflow for routine RestaurantAIBot repository editing.
+
+Use the ChatGPT GitHub connector only for small reads, checks, reviews, or emergency single-file edits when Codex is unavailable.
+
+Current workflow file:
+
+- `CODEX-WORKFLOW.md`
 
 ## Current stable systems
 
@@ -41,6 +51,7 @@ Last updated: 2026-05-27
 7. Added `public/sitemap.xml`.
 8. Added `AGENT-INSTRUCTIONS.md`.
 9. Added `LOCKED-CHECKPOINT.md`.
+10. Added `CODEX-WORKFLOW.md` for Codex-first repo editing.
 
 ## Current safe queue
 
