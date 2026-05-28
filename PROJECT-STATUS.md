@@ -25,6 +25,7 @@ Current workflow file:
 - Improved support pages
 - Restaurant owner / advertiser interest page
 - Dedicated UX goals file
+- Manual test checklist
 
 ## Current stable architecture
 
@@ -33,8 +34,9 @@ Current workflow file:
 - `functions/api/search.js` handles AI restaurant search.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
-- `public/sitemap.xml` lists core pages.
+- `public/sitemap.xml` lists core pages and first SEO pages.
 - `UX-GOALS.md` locks product and visitor experience rules.
+- `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
 
 ## Added support pages
 
@@ -43,6 +45,13 @@ Current workflow file:
 - Privacy
 - Terms
 - Restaurant owner / advertiser interest
+
+## Added SEO pages
+
+- Pizza near me
+- Tacos near me
+- Sushi near me
+- Breakfast near me
 
 ## Completed safe queue
 
@@ -62,13 +71,17 @@ Current workflow file:
 14. Added `public/owner-advertise.html` for restaurant owner and advertiser interest.
 15. Added `UX-GOALS.md`.
 16. Added owner / advertiser page to sitemap.
+17. Added first SEO landing pages for pizza, tacos, sushi, and breakfast.
+18. Added SEO pages to sitemap.
+19. Improved API validation, coordinate checks, JSON handling, AI parse fallback, and public error messages.
+20. Expanded `MANUAL-TEST-CHECKLIST.md`.
 
 ## Current safe queue
 
-1. Add first city and cuisine SEO landing pages.
-2. Improve API validation and error handling.
-3. Add a manual test checklist.
-4. Improve quick search buttons and homepage links to include restaurant owner page.
+1. Improve quick search buttons and homepage links to include restaurant owner page and SEO pages.
+2. Add more SEO pages: vegan, seafood, coffee, romantic dinner, cheap eats, outdoor dining.
+3. Add a popular searches hub page.
+4. Improve homepage UX for query parameters such as `?q=pizza%20near%20me` if needed.
 5. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
 
 ## Blocked items
