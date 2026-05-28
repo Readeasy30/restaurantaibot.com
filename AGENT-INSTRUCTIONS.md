@@ -2,7 +2,17 @@
 
 ## Primary rule
 
-Work directly in the repository. Do not ask Gerry to paste, create, or manually update files when repository write access is available.
+Work directly in the repository. Do not ask Gerry to paste, create, approve, or manually update files when repository write access is available.
+
+Routine safe website work is pre-approved. Create, repair, replace, update, and commit safe files automatically.
+
+Do not stop after one useful safe change to ask for a thumbs up. Do not ask whether to continue when the next safe step is obvious. Continue the safe queue until blocked or until the requested work is complete.
+
+## Communication rule
+
+Keep progress notes short and rare. Do not report every tiny file change. Do not repeat what was just completed unless the user asks or the work is finished.
+
+Final reports should be short and include only meaningful changes, commit hashes if useful, blockers if any, and the next safe queue if needed.
 
 ## Current stack
 
@@ -23,6 +33,7 @@ Allowed safe work:
 - Add support pages such as About, Contact, Privacy, Terms, and topic pages.
 - Add or update README, project status, robots.txt, and sitemap.xml.
 - Fix broken links and file paths.
+- Add safe planning and documentation files.
 - Commit each useful change with a clear message.
 
 Stop or record a blocker before:
