@@ -25,6 +25,9 @@ Current workflow file:
 - Popular searches hub
 - Improved support pages
 - Restaurant owner / advertiser interest page
+- Restaurant marketing tools information page
+- Restaurant marketing planning document
+- Demo-only promotions data file
 - Dedicated UX goals file
 - Manual test checklist
 - First city landing pages
@@ -39,6 +42,29 @@ Current workflow file:
 - `public/sitemap.xml` lists core pages and most SEO pages.
 - `UX-GOALS.md` locks product and visitor experience rules.
 - `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
+- `RESTAURANT-MARKETING-PLAN.md` describes future restaurant marketing tools and packages.
+- `public/demo-promotions.json` contains demo-only future placement data and is not live paid advertising.
+
+## Operational status
+
+Currently operational:
+
+- AI restaurant search
+- Worldwide city / nearby restaurant discovery
+- Google Maps / Places restaurant results
+- SEO food pages
+- City landing pages
+- Restaurant owner / advertiser interest page
+
+Not operational yet:
+
+- Paid pop placements
+- Live local ads
+- Payment checkout
+- Tracking scripts
+- Advertiser dashboard
+- Live campaign management
+- Real sponsored placements
 
 ## Added support pages
 
@@ -47,6 +73,7 @@ Current workflow file:
 - Privacy
 - Terms
 - Restaurant owner / advertiser interest
+- Restaurant marketing tools
 
 ## Added SEO pages
 
@@ -102,11 +129,14 @@ A later full sitemap update that included many new page URLs was also blocked by
 23. Updated sitemap with expanded SEO pages.
 24. Injected homepage Popular Searches and Restaurants links through `quick-searches.js`.
 25. Added city landing pages for Chicago, New York, Dallas, and Miami.
+26. Added `public/restaurant-marketing-tools.html`.
+27. Added `RESTAURANT-MARKETING-PLAN.md`.
+28. Added `public/demo-promotions.json` as demo-only future placement data.
 
 ## Current safe queue
 
-1. Add internal links between SEO pages.
-2. Add safe local advertising planning document.
+1. Add an advertiser intake page or form-free lead page.
+2. Add internal links between SEO pages.
 3. Add more city landing pages: Los Angeles, Las Vegas, Atlanta, Denver.
 4. Update sitemap again in smaller chunks if connector permits.
 5. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
