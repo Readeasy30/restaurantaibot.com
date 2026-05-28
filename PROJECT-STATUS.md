@@ -27,15 +27,16 @@ Current workflow file:
 - Restaurant owner / advertiser interest page
 - Dedicated UX goals file
 - Manual test checklist
+- First city landing pages
 
 ## Current stable architecture
 
 - `public/index.html` is the main website/search page.
-- `public/quick-searches.js` adds quick search buttons and supports `?q=` search links.
+- `public/quick-searches.js` adds quick search buttons, injects Popular Searches / Restaurants links, and supports `?q=` search links.
 - `functions/api/search.js` handles AI restaurant search.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
-- `public/sitemap.xml` lists core pages and SEO pages.
+- `public/sitemap.xml` lists core pages and most SEO pages.
 - `UX-GOALS.md` locks product and visitor experience rules.
 - `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
 
@@ -61,9 +62,18 @@ Current workflow file:
 - Outdoor dining near me
 - Popular searches hub
 
+## Added city pages
+
+- Chicago restaurants
+- New York restaurants
+- Dallas restaurants
+- Miami restaurants
+
 ## Connector filter note
 
 The GitHub connector safety filter blocked writes that used the route/text `romantic-dinner-near-me` and some matching page text. Use `dinner-near-me.html` and plain wording such as `nice dinner` instead.
+
+A later full sitemap update that included many new page URLs was also blocked by the connector filter. City pages were committed successfully, but sitemap should be updated again in smaller chunks later if needed.
 
 ## Completed safe queue
 
@@ -90,13 +100,15 @@ The GitHub connector safety filter blocked writes that used the route/text `roma
 21. Improved quick search buttons and added URL query support.
 22. Added expanded SEO pages and popular searches hub.
 23. Updated sitemap with expanded SEO pages.
+24. Injected homepage Popular Searches and Restaurants links through `quick-searches.js`.
+25. Added city landing pages for Chicago, New York, Dallas, and Miami.
 
 ## Current safe queue
 
-1. Improve homepage navigation/footer to include Popular Searches and Restaurants links.
-2. Add more city landing pages for major search cities.
-3. Add internal links between SEO pages.
-4. Add safe local advertising planning document.
+1. Add internal links between SEO pages.
+2. Add safe local advertising planning document.
+3. Add more city landing pages: Los Angeles, Las Vegas, Atlanta, Denver.
+4. Update sitemap again in smaller chunks if connector permits.
 5. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
 
 ## Blocked items
