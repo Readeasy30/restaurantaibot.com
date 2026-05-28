@@ -25,12 +25,13 @@ Current workflow file:
 - Popular searches hub
 - Improved support pages
 - Restaurant owner / advertiser interest page
+- Advertiser intake interest page
 - Restaurant marketing tools information page
 - Restaurant marketing planning document
 - Demo-only promotions data file
 - Dedicated UX goals file
 - Manual test checklist
-- First city landing pages
+- Expanded city landing pages
 
 ## Current stable architecture
 
@@ -55,6 +56,7 @@ Currently operational:
 - SEO food pages
 - City landing pages
 - Restaurant owner / advertiser interest page
+- Advertiser intake interest page
 
 Not operational yet:
 
@@ -74,6 +76,7 @@ Not operational yet:
 - Terms
 - Restaurant owner / advertiser interest
 - Restaurant marketing tools
+- Advertiser intake
 
 ## Added SEO pages
 
@@ -95,6 +98,10 @@ Not operational yet:
 - New York restaurants
 - Dallas restaurants
 - Miami restaurants
+- Los Angeles restaurants
+- Las Vegas restaurants
+- Atlanta restaurants
+- Denver restaurants
 
 ## Connector filter note
 
@@ -132,12 +139,14 @@ A later full sitemap update that included many new page URLs was also blocked by
 26. Added `public/restaurant-marketing-tools.html`.
 27. Added `RESTAURANT-MARKETING-PLAN.md`.
 28. Added `public/demo-promotions.json` as demo-only future placement data.
+29. Added `public/advertiser-intake.html`.
+30. Added city landing pages for Los Angeles, Las Vegas, Atlanta, and Denver.
 
 ## Current safe queue
 
-1. Add an advertiser intake page or form-free lead page.
-2. Add internal links between SEO pages.
-3. Add more city landing pages: Los Angeles, Las Vegas, Atlanta, Denver.
+1. Add internal links between SEO pages.
+2. Add a demo restaurant profile template page.
+3. Add more international city landing pages: Tokyo, London, Paris, Toronto.
 4. Update sitemap again in smaller chunks if connector permits.
 5. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
 
