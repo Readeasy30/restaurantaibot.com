@@ -13,6 +13,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://restaurantaibot.com/owner-advertise.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://restaurantaibot.com/privacy.html</loc>
     <priority>0.4</priority>
   </url>
