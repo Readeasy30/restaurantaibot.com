@@ -2,13 +2,28 @@ export async function onRequestPost(context) {
   const { request, env } = context;
 
   try {
-    const body = await request.json();
-    const message = body.message;
+    if (!isJsonRequest(request)) {
+      return jsonResponse({
+        success: false,
+        error: 'Please send restaurant search requests as JSON.'
+      }, 415);
+    }
+
+    const body = await safeReadJson(request);
+
+    if (!body) {
+      return jsonResponse({
+        success: false,
+        error: 'Invalid JSON request body.'
+      }, 400);
+    }
+
+    const message = sanitizeText(body.message, 180);
     const lat = Number(body.lat);
     const lng = Number(body.lng);
-    const hasCoordinates = Number.isFinite(lat) && Number.isFinite(lng);
+    const hasCoordinates = isValidLatLng(lat, lng);
 
-    if (!message || !message.trim()) {
+    if (!message) {
       return jsonResponse({
         success: false,
         error: 'Search message is required.'
@@ -18,7 +33,7 @@ export async function onRequestPost(context) {
     if (!env.OPENAI_API_KEY || !env.GOOGLE_MAPS_API_KEY) {
       return jsonResponse({
         success: false,
-        error: 'Missing Cloudflare secrets: OPENAI_API_KEY or GOOGLE_MAPS_API_KEY.'
+        error: 'Restaurant search is not fully configured yet.'
       }, 500);
     }
 
@@ -49,14 +64,14 @@ export async function onRequestPost(context) {
       console.error('OpenAI error:', errorText);
       return jsonResponse({
         success: false,
-        error: 'OpenAI search parsing failed.'
+        error: 'AI search parsing failed. Try a simpler food and city search.'
       }, 500);
     }
 
     const aiData = await aiResponse.json();
-    const parsedSearch = JSON.parse(aiData.choices[0].message.content);
-    const location = parsedSearch.location || 'near me';
-    const cuisine = parsedSearch.cuisine || 'restaurant';
+    const parsedSearch = safeParseAiSearch(aiData);
+    const location = sanitizeText(parsedSearch.location, 80) || 'near me';
+    const cuisine = sanitizeText(parsedSearch.cuisine, 80) || 'restaurant';
 
     const googleUrl = new URL('https://maps.googleapis.com/maps/api/place/textsearch/json');
 
@@ -77,17 +92,25 @@ export async function onRequestPost(context) {
       console.error('Google Places error:', errorText);
       return jsonResponse({
         success: false,
-        error: 'Google restaurant search failed.'
+        error: 'Restaurant map search failed. Try again or search a city name.'
       }, 500);
     }
 
     const googleData = await googleResponse.json();
 
+    if (googleData.status && !['OK', 'ZERO_RESULTS'].includes(googleData.status)) {
+      console.error('Google Places status:', googleData.status, googleData.error_message || '');
+      return jsonResponse({
+        success: false,
+        error: 'Restaurant search service returned an error. Try a different search.'
+      }, 502);
+    }
+
     const restaurants = (googleData.results || [])
       .slice(0, 10)
       .map(place => ({
-        name: place.name,
-        address: place.formatted_address,
+        name: place.name || 'Restaurant',
+        address: place.formatted_address || 'Address unavailable',
         rating: place.rating || 'N/A',
         openNow: place.opening_hours?.open_now,
         priceLevel: place.price_level,
@@ -95,13 +118,15 @@ export async function onRequestPost(context) {
         lng: place.geometry?.location?.lng,
         placeId: place.place_id
       }))
-      .filter(place => place.lat && place.lng);
+      .filter(place => Number.isFinite(place.lat) && Number.isFinite(place.lng));
 
     const areaText = hasCoordinates && isNearMeSearch(message, location) ? 'near you' : `in ${location}`;
 
     return jsonResponse({
       success: true,
-      aiExplanation: `I found these ${cuisine} matches ${areaText}.`,
+      aiExplanation: restaurants.length
+        ? `I found these ${cuisine} matches ${areaText}.`
+        : `I could not find matching ${cuisine} restaurants ${areaText}. Try another city, neighborhood, or food type.`,
       restaurants
     });
   } catch (error) {
@@ -111,6 +136,43 @@ export async function onRequestPost(context) {
       success: false,
       error: 'Failed to process restaurant search.'
     }, 500);
+  }
+}
+
+function isJsonRequest(request) {
+  const contentType = request.headers.get('content-type') || '';
+  return contentType.includes('application/json');
+}
+
+async function safeReadJson(request) {
+  try {
+    return await request.json();
+  } catch {
+    return null;
+  }
+}
+
+function sanitizeText(value, maxLength) {
+  if (typeof value !== 'string') return '';
+  return value.replace(/\s+/g, ' ').trim().slice(0, maxLength);
+}
+
+function isValidLatLng(lat, lng) {
+  return Number.isFinite(lat) &&
+    Number.isFinite(lng) &&
+    lat >= -90 &&
+    lat <= 90 &&
+    lng >= -180 &&
+    lng <= 180;
+}
+
+function safeParseAiSearch(aiData) {
+  try {
+    const content = aiData?.choices?.[0]?.message?.content;
+    const parsed = JSON.parse(content || '{}');
+    return typeof parsed === 'object' && parsed ? parsed : {};
+  } catch {
+    return {};
   }
 }
 
