@@ -1,0 +1,39 @@
+{
+  "status": "demo-only",
+  "note": "These are sample promotion records for future planning. They are not live paid ads and should not be shown as real sponsored placements until business rules, disclosures, and approval are ready.",
+  "promotions": [
+    {
+      "id": "demo-dallas-tacos",
+      "city": "Dallas",
+      "category": "tacos",
+      "label": "Demo Sponsored Placement",
+      "restaurantName": "Sample Taco House",
+      "headline": "Featured taco spot in Dallas",
+      "offerText": "Ask about today’s taco special.",
+      "ctaText": "View restaurant",
+      "url": "https://example.com"
+    },
+    {
+      "id": "demo-chicago-pizza",
+      "city": "Chicago",
+      "category": "pizza",
+      "label": "Demo Sponsored Placement",
+      "restaurantName": "Sample Pizza Kitchen",
+      "headline": "Featured pizza spot in Chicago",
+      "offerText": "Plan a simple pizza night.",
+      "ctaText": "View restaurant",
+      "url": "https://example.com"
+    },
+    {
+      "id": "demo-miami-seafood",
+      "city": "Miami",
+      "category": "seafood",
+      "label": "Demo Sponsored Placement",
+      "restaurantName": "Sample Seafood Grill",
+      "headline": "Featured seafood spot in Miami",
+      "offerText": "Explore seafood dinner ideas.",
+      "ctaText": "View restaurant",
+      "url": "https://example.com"
+    }
+  ]
+}
