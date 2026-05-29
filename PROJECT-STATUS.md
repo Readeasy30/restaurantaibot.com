@@ -37,6 +37,7 @@ Current workflow files:
 - Sample restaurant profile template
 - Dedicated UX goals file
 - Updated manual test checklist
+- Expanded sitemap coverage
 - Expanded U.S. and international city landing pages
 - Cross-linked food SEO landing pages
 - Cross-linked city landing pages where connector allowed writes
@@ -49,7 +50,7 @@ Current workflow files:
 - `functions/api/search.js` handles AI restaurant search.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
-- `public/sitemap.xml` lists core pages, SEO pages, and the restaurant cities hub.
+- `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub.
 - `UX-GOALS.md` locks product and visitor experience rules.
 - `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
 - `RESTAURANT-MARKETING-PLAN.md` describes future restaurant marketing tools and packages.
@@ -198,6 +199,8 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 61. Removed `.chatgpt-connector-test.md` after successful production commits.
 62. Updated `CURRENT-TASK.md` with the next clean safe queue.
 63. Updated `MANUAL-TEST-CHECKLIST.md` for the current site, food pages, city pages, demo files, query links, and safety checks.
+64. Expanded `public/sitemap.xml` to include support pages, food pages, city pages, and restaurant owner pages.
+65. Verified `public/robots.txt` allows crawling and points to the sitemap.
 
 ## Current safe queue
 
