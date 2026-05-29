@@ -23,6 +23,7 @@ Current workflow file:
 - Quick search buttons with URL query support
 - SEO-ready core pages
 - Popular searches hub
+- Restaurant cities hub
 - Improved support pages
 - Restaurant owner / advertiser interest page
 - Advertiser intake interest page
@@ -41,7 +42,7 @@ Current workflow file:
 - `functions/api/search.js` handles AI restaurant search.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
-- `public/sitemap.xml` lists core pages and most SEO pages.
+- `public/sitemap.xml` lists core pages, SEO pages, and the restaurant cities hub.
 - `UX-GOALS.md` locks product and visitor experience rules.
 - `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
 - `RESTAURANT-MARKETING-PLAN.md` describes future restaurant marketing tools and packages.
@@ -57,6 +58,7 @@ Currently operational:
 - Google Maps / Places restaurant results
 - SEO food pages
 - City landing pages
+- Restaurant cities hub
 - Restaurant owner / advertiser interest page
 - Advertiser intake interest page
 - Demo profile page for future restaurant listings
@@ -95,6 +97,7 @@ Not operational yet:
 - Cheap eats near me
 - Outdoor dining near me
 - Popular searches hub
+- Restaurant cities hub
 
 ## Added U.S. city pages
 
@@ -118,7 +121,7 @@ Not operational yet:
 
 The GitHub connector safety filter blocked writes that used the route/text `romantic-dinner-near-me` and some matching page text. Use `dinner-near-me.html` and plain wording such as `nice dinner` instead.
 
-A later full sitemap update that included many new page URLs was also blocked by the connector filter. City pages were committed successfully, but sitemap should be updated again in smaller chunks later if needed.
+A later full sitemap update that included many new page URLs was also blocked by the connector filter. Smaller sitemap updates should be used when possible.
 
 ## Completed safe queue
 
@@ -154,14 +157,16 @@ A later full sitemap update that included many new page URLs was also blocked by
 30. Added city landing pages for Los Angeles, Las Vegas, Atlanta, and Denver.
 31. Added `public/sample-restaurant-profile.html`.
 32. Added international city landing pages for Tokyo, London, Paris, and Toronto.
+33. Added `public/restaurant-cities.html` as the city/worldwide restaurant hub.
+34. Added `restaurant-cities.html` to `public/sitemap.xml`.
 
 ## Current safe queue
 
-1. Add a city index / worldwide restaurant cities hub page.
-2. Add internal links between SEO pages and city pages.
-3. Update sitemap again in smaller chunks if connector permits.
-4. Add a demo restaurant profile data file for future templates.
-5. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
+1. Add internal links between SEO pages and city pages.
+2. Add a demo restaurant profile data file for future templates if still useful.
+3. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
+4. Run browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
+5. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
 
 ## Blocked items
 
