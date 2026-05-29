@@ -20,7 +20,7 @@ Use this checklist after safe production commits.
 
 ## Navigation
 
-Check these links from the homepage, support pages, food pages, and city pages:
+Check these links from the homepage, support pages, food pages, city pages, and 404 page:
 
 - Home / Search
 - Popular Searches
@@ -32,6 +32,14 @@ Check these links from the homepage, support pages, food pages, and city pages:
 - Terms
 - Restaurant marketing tools
 - Advertiser intake
+
+## 404 page
+
+1. Open a fake page such as `/missing-test-page.html`.
+2. Confirm the custom 404 page appears.
+3. Confirm it links back to Search, Popular Searches, City Guides, and For Restaurants.
+4. Confirm it includes `noindex,follow` in the page metadata.
+5. Confirm it is readable on mobile.
 
 ## Restaurant search
 
@@ -175,6 +183,7 @@ Expected behavior:
 2. Confirm it points to `https://restaurantaibot.com/sitemap.xml`.
 3. Open `/sitemap.xml`.
 4. Confirm all core pages, support pages, SEO pages, city pages, and the restaurant cities hub are listed.
+5. Confirm `/404.html` is not listed as a normal sitemap page.
 
 ## Safety checks
 
