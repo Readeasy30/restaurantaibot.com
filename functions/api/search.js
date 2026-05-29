@@ -49,7 +49,7 @@ export async function onRequestPost(context) {
         messages: [
           {
             role: 'system',
-            content: 'You are a restaurant search assistant. Extract what kind of restaurant or food the user wants. Respond ONLY as JSON with keys: location and cuisine. If the user asks for near me, nearby, closest, local, or does not mention a city, set location to near me. Keep cuisine short, like pizza, tacos, breakfast, sushi, nice dinner, vegan food, seafood, coffee, or restaurant.'
+            content: 'You are a restaurant search assistant. Extract what kind of restaurant or food the user wants. Respond ONLY as JSON with keys: location and cuisine. If the user asks for near me, around me, closest to me, current location, my location, nearby without naming a city, local without naming a city, or does not mention a city, set location to near me. If the user names a city or area, use that city or area as location even when the user says local. Keep cuisine short, like pizza, tacos, breakfast, sushi, nice dinner, vegan food, seafood, coffee, or restaurant.'
           },
           {
             role: 'user',
@@ -185,13 +185,16 @@ function safeParseAiSearch(aiData) {
 }
 
 function isNearMeSearch(message, location) {
-  const text = `${message} ${location}`.toLowerCase();
+  const lowerLocation = location.toLowerCase();
+  if (lowerLocation === 'near me') return true;
+
+  const text = message.toLowerCase();
   return text.includes('near me') ||
-    text.includes('nearby') ||
-    text.includes('closest') ||
     text.includes('around me') ||
-    text.includes('local') ||
-    location.toLowerCase() === 'near me';
+    text.includes('closest to me') ||
+    text.includes('current location') ||
+    text.includes('my location') ||
+    text.includes('nearby me');
 }
 
 function jsonResponse(data, status = 200) {
