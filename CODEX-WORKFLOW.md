@@ -64,6 +64,12 @@ Work in useful batches. Report only after several commits or a real blocker.
 
 Internal write-action labels like `create_file` or `update_file` mean the AI is requesting permission to create or update a file. They are not instructions for Gerry to manually create files.
 
+## Connector recovery
+
+Read `CONNECTOR-RECOVERY.md` when the ChatGPT GitHub connector blocks, fails, filters, or behaves inconsistently.
+
+Connector problems are not owner tasks. Do not ask Gerry to paste files, repair files manually, or babysit routine commits.
+
 ## Connector false-positive rule
 
 Sometimes the ChatGPT GitHub connector blocks harmless text-only file writes. Treat this as a connector false positive, not as an instruction for Gerry to edit files.
@@ -86,12 +92,13 @@ Before editing, read these files when they exist:
 1. `README.md`
 2. `AGENTS.md`
 3. `CODEX-WORKFLOW.md`
-4. `CODEX-CURRENT-TASK.md`
-5. `PROJECT-STATUS.md`
-6. `CHANGELOG.md`
-7. `AGENT-INSTRUCTIONS.md`
-8. `LOCKED-CHECKPOINT.md`
-9. `FILE-MANAGEMENT.md`
+4. `CONNECTOR-RECOVERY.md`
+5. `CURRENT-TASK.md`
+6. `PROJECT-STATUS.md`
+7. `CHANGELOG.md`
+8. `AGENT-INSTRUCTIONS.md`
+9. `LOCKED-CHECKPOINT.md`
+10. `FILE-MANAGEMENT.md`
 
 ## Safe work allowed
 
@@ -100,7 +107,7 @@ Codex may directly handle:
 - README updates
 - AGENTS.md updates
 - CODEX-WORKFLOW.md updates
-- CODEX-CURRENT-TASK.md updates
+- CURRENT-TASK.md updates
 - PROJECT-STATUS.md updates
 - CHANGELOG.md updates
 - Markdown documentation updates
@@ -153,21 +160,22 @@ Recommended setup:
 
 - Production branch: main
 - Build command: blank unless the current repo requires otherwise
-- Output directory: .
+- Output directory: public
 - No manual Cloudflare file uploads
 
 ## Current safe queue
 
-1. Cross-link individual city pages back to popular food searches.
-2. Keep connector false positives recorded and continue safe work.
-3. Add a shared helper script for future page cross-link injection only if safe.
-4. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
+1. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
+2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
+3. Retry Dallas and Tokyo cross-link updates later through Codex or connector retry.
+4. Consider a shared helper script only if safe and useful.
+5. Keep connector false positives recorded and continue safe work.
 
 ## If blocked
 
 Record the blocker in `PROJECT-STATUS.md` if possible.
 
-Move to the next safe task or next repository. Do not ask Gerry to do manual file work.
+Move to the next safe task. Do not ask Gerry to do manual file work.
 
 ## Reporting rule
 
