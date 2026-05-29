@@ -36,6 +36,7 @@ Current workflow files:
 - Improved quick-search submit behavior
 - Custom 404 visitor recovery page
 - Conservative Cloudflare security headers
+- Safe Cloudflare redirects for old paths
 - Google Maps integration
 - Cloudflare Pages deployment
 - Cloudflare Functions API
@@ -70,6 +71,7 @@ Current workflow files:
 - `public/index.html` is the main website/search page.
 - `public/404.html` is the custom noindex visitor recovery page for broken or outdated links.
 - `public/_headers` adds conservative Cloudflare security headers and `no-store` for `/api/*`.
+- `public/_redirects` adds safe 301 redirects for likely old paths including `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html`.
 - `public/quick-searches.js` adds quick search buttons, injects Popular Searches / Cities / Restaurant links, supports `?q=` search links, and now submits through the search form event.
 - `functions/api/search.js` handles AI restaurant search, prevents bad `near me` searches without browser location, and keeps `local + city` searches as city searches.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
@@ -101,6 +103,7 @@ Currently operational in repo:
 - Demo profile page for future restaurant listings
 - Custom 404 visitor recovery page
 - Conservative Cloudflare security headers
+- Safe old-path redirects
 
 Live browser render status:
 
@@ -261,6 +264,9 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 86. Added `public/_headers` with conservative Cloudflare security headers and `Cache-Control: no-store` for `/api/*`.
 87. Updated `MANUAL-TEST-CHECKLIST.md` with security header verification.
 88. Updated `CHANGELOG.md` for security headers.
+89. Added `public/_redirects` with safe 301 redirects for likely old paths.
+90. Updated `MANUAL-TEST-CHECKLIST.md` with redirect tests.
+91. Updated `CHANGELOG.md` for safe redirects.
 
 ## Current safe queue
 
