@@ -4,12 +4,13 @@ Last updated: 2026-05-29
 
 RestaurantAIBot safe build queue:
 
-1. Run manual/browser tests using `MANUAL-TEST-CHECKLIST.md`.
-2. Retry Dallas and Tokyo city-page cross-link updates later through Codex or a connector retry.
-3. Consider a shared helper script for future cross-link injection only if it stays simple and safe.
-4. Keep internal links strong between search, food pages, city pages, and restaurant owner pages.
-5. Keep simple HTML, CSS, and JavaScript.
-6. Keep Cloudflare Pages publishing from `main`.
+1. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
+2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
+3. Retry Dallas and Tokyo city-page cross-link updates later through Codex or a connector retry.
+4. Consider a shared helper script for future cross-link injection only if it stays simple and safe.
+5. Keep internal links strong between search, food pages, city pages, and restaurant owner pages.
+6. Keep simple HTML, CSS, and JavaScript.
+7. Keep Cloudflare Pages publishing from `main`.
 
 Connector rule:
 
