@@ -24,7 +24,7 @@ Current workflow files:
 - `CODEX-WORKFLOW.md`
 - `CODEX-CURRENT-TASK.md`
 - `PROJECT-STATUS.md`
-- `CHANGELOG.md` required
+- `CHANGELOG.md`
 - `CURRENT-TASK.md`
 - `CONNECTOR-RECOVERY.md`
 
@@ -54,6 +54,7 @@ Current workflow files:
 - Browser smoke test notes
 - Dedicated UX goals file
 - Updated README
+- Updated changelog
 - Updated manual test checklist
 - Expanded sitemap coverage
 - Expanded U.S. and international city landing pages
@@ -71,6 +72,7 @@ Current workflow files:
 - `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub.
 - `CODEX-WORKFLOW.md` links to `CONNECTOR-RECOVERY.md` for connector failure handling.
 - `CONNECTOR-RECOVERY.md` records connector-failure recovery rules so Gerry does not manually edit files.
+- `CHANGELOG.md` tracks safe production changes.
 - `UX-GOALS.md` locks product and visitor experience rules.
 - `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
 - `BROWSER-SMOKE-TEST.md` records live smoke-test attempts and honest verification limits.
@@ -242,15 +244,15 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 77. Added `CODEX-CURRENT-TASK.md` for the current safe work queue.
 78. Improved `public/quick-searches.js` so quick search buttons and `/?q=` links submit through the search form event instead of a brittle button-click shortcut.
 79. Updated `MANUAL-TEST-CHECKLIST.md` to test quick search buttons and query-link form submission.
+80. Expanded `CHANGELOG.md` with current production updates, fixes, connector false positives, and safety notes.
 
 ## Current safe queue
 
-1. Confirm or create `CHANGELOG.md`.
-2. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
-3. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
-4. Use Codex or a later connector retry to update `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` if the false-positive filter allows it.
-5. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
-6. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
+1. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
+2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
+3. Use Codex or a later connector retry to update `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` if the false-positive filter allows it.
+4. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
+5. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
 
 ## Blocked items
 
