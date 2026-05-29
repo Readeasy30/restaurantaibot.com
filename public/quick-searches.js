@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const input = document.getElementById('userInput');
-  const sendBtn = document.getElementById('sendBtn');
+  const form = document.getElementById('searchForm');
   const sidebar = document.querySelector('.brand-header');
 
-  if (!input || !sendBtn || !sidebar) return;
+  if (!input || !form || !sidebar) return;
 
   addSiteLinks();
   addQuickSearchButtons();
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     quickSearches.forEach(search => {
       const button = document.createElement('button');
       button.type = 'button';
-      button.innerText = search;
+      button.textContent = search;
       button.style.border = 'none';
       button.style.borderRadius = '999px';
       button.style.padding = '8px 12px';
@@ -87,6 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function runSearch(search) {
     input.value = search;
-    sendBtn.click();
+    form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
   }
 });
