@@ -38,6 +38,7 @@ Current workflow files:
 - Dedicated UX goals file
 - Manual test checklist
 - Expanded U.S. and international city landing pages
+- Cross-linked food SEO landing pages
 
 ## Current stable architecture
 
@@ -169,11 +170,21 @@ A later full sitemap update that included many new page URLs was also blocked by
 37. Strengthened `AGENTS.md` so future AI/Codex work does not ask Gerry to manually edit files.
 38. Added city-guide cross-links and quick city/food search paths to `public/popular-searches.html`.
 39. Expanded `public/demo-restaurant-profiles.json` with more demo-only profile examples and disclosures.
+40. Added cross-links and quick city searches to `public/pizza-near-me.html`.
+41. Added cross-links and quick city searches to `public/tacos-near-me.html`.
+42. Added cross-links and quick city searches to `public/sushi-near-me.html`.
+43. Added cross-links and quick city searches to `public/breakfast-near-me.html`.
+44. Added cross-links and quick city searches to `public/vegan-restaurants-near-me.html`.
+45. Added cross-links and quick city searches to `public/seafood-near-me.html`.
+46. Added cross-links and quick city searches to `public/coffee-near-me.html`.
+47. Added cross-links and quick city searches to `public/dinner-near-me.html`.
+48. Added cross-links and quick city searches to `public/cheap-eats-near-me.html`.
+49. Added cross-links and quick city searches to `public/outdoor-dining-near-me.html`.
 
 ## Current safe queue
 
-1. Add cross-links from individual food SEO pages back to popular searches and city guides.
-2. Add cross-links from individual city pages back to popular food searches.
+1. Add cross-links from individual city pages back to popular food searches.
+2. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
 3. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
 4. Run browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
 5. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
