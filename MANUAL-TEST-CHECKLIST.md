@@ -35,7 +35,8 @@ Check these links from the homepage, support pages, food pages, and city pages:
 
 Test these searches:
 
-- `pizza near me`
+- `pizza near me` before location is enabled
+- `pizza near me` after location is enabled
 - `best sushi in Tokyo`
 - `late night tacos in Dallas`
 - `cheap breakfast in New York`
@@ -48,8 +49,11 @@ Expected behavior:
 
 - User message appears in chat.
 - AI response appears in chat.
+- `pizza near me` without browser location asks the visitor to click Use My Location or type a city.
+- `pizza near me` with browser location searches nearby restaurants.
+- City searches run without needing location.
 - Restaurant cards appear when results are available.
-- Map markers appear when results include coordinates.
+- Map markers appear when results include coordinates and map is configured.
 - Direction links open Google Maps in a new tab.
 - Empty or no-result searches show a useful message.
 - Search links using `/?q=` place the query into the search box and run the search.
@@ -60,6 +64,7 @@ Expected behavior:
 2. If location is allowed, confirm the page says location is enabled.
 3. Search `pizza near me`.
 4. If location is denied, confirm the page gives a useful message and still allows city search.
+5. Confirm a `near me` search without location returns a helpful instruction instead of searching `in near me`.
 
 ## Mobile check
 
