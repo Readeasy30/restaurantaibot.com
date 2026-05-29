@@ -12,6 +12,14 @@ Codex should handle repository file work directly. Use Codex/GitHub access or th
 
 Do not ask Gerry to paste, create, replace, or manually update repo files. Work in useful batches. Report only after several useful commits or a real blocker.
 
+## Codex access
+
+The confirmed GitHub repository target is `Wholelychit/restaurantaibot.com` on `main`.
+
+Local file access and commit access are separate. If local `git` is unavailable or a local `.git` folder is not visible, continue safe file work in Codex and use the GitHub connector or other Codex/GitHub repository access for safe commits when available.
+
+Do not ask Gerry to fix access by using terminal Git, VS Code, manual file copying, manual pasting, or manual repository edits.
+
 ## Safe work allowed
 
 - README updates
