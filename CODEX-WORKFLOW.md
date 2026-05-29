@@ -33,6 +33,14 @@ Workflow:
 3. GitHub stores files and commits.
 4. Cloudflare Pages publishes from GitHub when connected.
 
+## Codex access path
+
+The confirmed repository target is `Wholelychit/restaurantaibot.com` on default branch `main`.
+
+Codex local file access and commit access are separate. If terminal `git` is unavailable or `.git` is not visible in a local folder, that does not make Gerry responsible for manual repo work. Continue safe file work in Codex and use the GitHub connector or another Codex/GitHub commit path when available.
+
+Do not ask Gerry to use terminal Git, VS Code, manual file copying, manual file pasting, or manual GitHub edits to resolve routine access friction.
+
 ## Main rule
 
 Codex should handle repository file work directly.
