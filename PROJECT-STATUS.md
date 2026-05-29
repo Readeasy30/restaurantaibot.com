@@ -19,6 +19,7 @@ Current workflow files:
 ## Current stable systems
 
 - AI restaurant search
+- Improved near-me search handling
 - Google Maps integration
 - Cloudflare Pages deployment
 - Cloudflare Functions API
@@ -51,7 +52,7 @@ Current workflow files:
 
 - `public/index.html` is the main website/search page.
 - `public/quick-searches.js` adds quick search buttons, injects Popular Searches / Cities / Restaurant links, and supports `?q=` search links.
-- `functions/api/search.js` handles AI restaurant search.
+- `functions/api/search.js` handles AI restaurant search and now prevents bad `near me` searches without browser location.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
 - `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub.
@@ -221,6 +222,8 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 70. Added `CONNECTOR-RECOVERY.md` to document connector failure handling.
 71. Linked `CONNECTOR-RECOVERY.md` from `CODEX-WORKFLOW.md`.
 72. Improved homepage map fallback behavior when Google Maps config or script loading fails.
+73. Improved near-me search handling so a near-me query without browser location asks the visitor to enable location or type a city instead of searching `in near me`.
+74. Updated `MANUAL-TEST-CHECKLIST.md` to test near-me searches with and without browser location.
 
 ## Current safe queue
 
