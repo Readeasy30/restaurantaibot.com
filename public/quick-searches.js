@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navs.forEach(nav => {
       addLinkIfMissing(nav, '/popular-searches.html', 'Popular Searches');
-      addLinkIfMissing(nav, '/cities.html', 'Cities');
+      addLinkIfMissing(nav, '/restaurant-cities.html', 'Cities');
       addLinkIfMissing(nav, '/owner-advertise.html', 'Restaurants');
       addLinkIfMissing(nav, '/restaurant-marketing-tools.html', 'Marketing Tools');
     });
