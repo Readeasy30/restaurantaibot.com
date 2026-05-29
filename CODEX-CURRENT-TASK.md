@@ -19,6 +19,12 @@ Workflow:
 3. GitHub stores files and commits.
 4. Cloudflare Pages publishes from GitHub when connected.
 
+## Codex access status
+
+The GitHub connector can see `Wholelychit/restaurantaibot.com` on default branch `main`, so safe commits can use that connector when file SHAs are available.
+
+Local terminal Git is not required for Gerry. If local `git` is unavailable or `.git` is not visible in a Codex shell, keep working through Codex/GitHub access and do not ask Gerry to use terminal Git, VS Code, manual copy/paste, or manual GitHub edits.
+
 ## Current project focus
 
 RestaurantAIBot is a restaurant discovery and future restaurant-marketing website.
