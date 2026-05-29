@@ -2,7 +2,12 @@
 
 ## Non-negotiable work rule
 
-AI and Codex handle file work directly.
+AI and Codex handle repository file work directly.
+
+Gerry does not manually edit repository files.
+Gerry does not paste replacement files.
+Gerry does not create files by hand.
+Gerry does not copy code into GitHub.
 
 Do not ask Gerry to create files.
 Do not ask Gerry to paste files.
