@@ -32,7 +32,10 @@ Current workflow files:
 
 - AI restaurant search
 - Improved near-me search handling
+- Improved local-city search handling
 - Improved quick-search submit behavior
+- Custom 404 visitor recovery page
+- Conservative Cloudflare security headers
 - Google Maps integration
 - Cloudflare Pages deployment
 - Cloudflare Functions API
@@ -65,11 +68,13 @@ Current workflow files:
 ## Current stable architecture
 
 - `public/index.html` is the main website/search page.
+- `public/404.html` is the custom noindex visitor recovery page for broken or outdated links.
+- `public/_headers` adds conservative Cloudflare security headers and `no-store` for `/api/*`.
 - `public/quick-searches.js` adds quick search buttons, injects Popular Searches / Cities / Restaurant links, supports `?q=` search links, and now submits through the search form event.
-- `functions/api/search.js` handles AI restaurant search and now prevents bad `near me` searches without browser location.
+- `functions/api/search.js` handles AI restaurant search, prevents bad `near me` searches without browser location, and keeps `local + city` searches as city searches.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
-- `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub.
+- `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub. `404.html` should stay out of the sitemap.
 - `CODEX-WORKFLOW.md` links to `CONNECTOR-RECOVERY.md` for connector failure handling.
 - `CONNECTOR-RECOVERY.md` records connector-failure recovery rules so Gerry does not manually edit files.
 - `CHANGELOG.md` tracks safe production changes.
@@ -94,6 +99,8 @@ Currently operational in repo:
 - Restaurant owner / advertiser interest page
 - Advertiser intake interest page
 - Demo profile page for future restaurant listings
+- Custom 404 visitor recovery page
+- Conservative Cloudflare security headers
 
 Live browser render status:
 
@@ -121,6 +128,7 @@ Not operational yet:
 - Restaurant marketing tools
 - Advertiser intake
 - Sample restaurant profile
+- Custom 404 page
 
 ## Added SEO pages
 
@@ -245,6 +253,14 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 78. Improved `public/quick-searches.js` so quick search buttons and `/?q=` links submit through the search form event instead of a brittle button-click shortcut.
 79. Updated `MANUAL-TEST-CHECKLIST.md` to test quick search buttons and query-link form submission.
 80. Expanded `CHANGELOG.md` with current production updates, fixes, connector false positives, and safety notes.
+81. Refined `functions/api/search.js` near-me detection so `local + city` searches remain city searches.
+82. Updated `MANUAL-TEST-CHECKLIST.md` with a `local tacos in Dallas` regression test.
+83. Added `public/404.html` as a custom visitor recovery page with `noindex,follow`.
+84. Updated `MANUAL-TEST-CHECKLIST.md` with 404 page test coverage.
+85. Updated `CHANGELOG.md` for the custom 404 page.
+86. Added `public/_headers` with conservative Cloudflare security headers and `Cache-Control: no-store` for `/api/*`.
+87. Updated `MANUAL-TEST-CHECKLIST.md` with security header verification.
+88. Updated `CHANGELOG.md` for security headers.
 
 ## Current safe queue
 
