@@ -8,328 +8,55 @@
   <link rel="canonical" href="https://restaurantaibot.com/" />
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    html, body {
-      min-height: 100%;
-      background: #f5f7fb;
-      color: #222;
-    }
-
-    body {
-      overflow: hidden;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    button, input {
-      font: inherit;
-    }
-
-    .app-container {
-      display: flex;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    .sidebar {
-      width: 36%;
-      max-width: 540px;
-      min-width: 360px;
-      display: flex;
-      flex-direction: column;
-      background: #ffffff;
-      border-right: 1px solid #ddd;
-      z-index: 10;
-    }
-
-    .brand-header {
-      padding: 22px 24px 20px;
-      border-bottom: 1px solid #eee;
-      background: linear-gradient(135deg,#ff6b35,#ff9559);
-      color: white;
-    }
-
-    .site-nav {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-      font-size: .88rem;
-    }
-
-    .site-nav a {
-      text-decoration: none;
-      background: rgba(255,255,255,.18);
-      color: #fff;
-      padding: 7px 10px;
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 999px;
-      font-weight: 700;
-    }
-
-    .brand-header h1 {
-      font-size: 1.75rem;
-      margin-bottom: 10px;
-      line-height: 1.1;
-    }
-
-    .brand-header h2 {
-      font-size: 1.08rem;
-      line-height: 1.4;
-      margin-bottom: 10px;
-    }
-
-    .brand-header p {
-      font-size: 0.96rem;
-      line-height: 1.5;
-    }
-
-    .near-me-btn {
-      margin-top: 14px;
-      border: none;
-      background: white;
-      color: #ff6b35;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-weight: bold;
-      cursor: pointer;
-      width: fit-content;
-      min-height: 42px;
-    }
-
-    .near-me-btn:focus,
-    .send-btn:focus,
-    .chat-input:focus,
-    .site-nav a:focus,
-    .footer-nav a:focus,
-    .card-actions a:focus {
-      outline: 3px solid rgba(26,115,232,.35);
-      outline-offset: 2px;
-    }
-
-    .chat-history {
-      flex: 1;
-      padding: 18px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      background: #f5f7fb;
-    }
-
-    .message {
-      max-width: 92%;
-      padding: 13px 15px;
-      border-radius: 16px;
-      line-height: 1.45;
-      font-size: 0.95rem;
-      word-wrap: break-word;
-    }
-
-    .user-msg {
-      align-self: flex-end;
-      background: #1a73e8;
-      color: #fff;
-    }
-
-    .ai-msg {
-      align-self: flex-start;
-      background: #fff;
-      color: #222;
-      border: 1px solid #ddd;
-    }
-
-    .restaurant-card {
-      background: #fff;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      border: 1px solid #eee;
-    }
-
-    .restaurant-image {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .restaurant-content {
-      padding: 15px;
-    }
-
-    .restaurant-card h3 {
-      margin-bottom: 8px;
-      line-height: 1.25;
-    }
-
-    .restaurant-card p {
-      margin-bottom: 6px;
-      color: #555;
-      font-size: 0.92rem;
-      line-height: 1.45;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #fff3ed;
-      color: #ff6b35;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      margin-top: 6px;
-    }
-
-    .card-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
-
-    .card-actions a {
-      text-decoration: none;
-      background: #ff6b35;
-      color: white;
-      padding: 9px 13px;
-      border-radius: 999px;
-      font-size: 0.86rem;
-      font-weight: bold;
-    }
-
-    .input-container {
-      padding: 15px;
-      display: flex;
-      gap: 10px;
-      background: #fff;
-      border-top: 1px solid #ddd;
-    }
-
-    .chat-input {
-      flex: 1;
-      border: 1px solid #ccc;
-      border-radius: 999px;
-      padding: 13px 15px;
-      font-size: 1rem;
-      outline: none;
-      min-width: 0;
-    }
-
-    .send-btn {
-      background: #ff6b35;
-      color: white;
-      border: none;
-      border-radius: 999px;
-      padding: 0 20px;
-      font-weight: bold;
-      cursor: pointer;
-      min-height: 46px;
-    }
-
-    .site-footer {
-      padding: 12px 15px 14px;
-      background: #fff;
-      border-top: 1px solid #eee;
-      color: #666;
-      font-size: .82rem;
-      line-height: 1.45;
-    }
-
-    .footer-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .footer-nav a {
-      color: #d94c1f;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    #map-container {
-      flex: 1;
-      height: 100%;
-      min-height: 320px;
-    }
-
-    .map-fallback {
-      height: 100%;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      text-align: center;
-      color: #555;
-      background: #eef2f7;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    html, body { min-height: 100%; background: #f5f7fb; color: #222; }
+    body { overflow: hidden; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .app-container { display: flex; height: 100vh; width: 100vw; }
+    .sidebar { width: 36%; max-width: 540px; min-width: 360px; display: flex; flex-direction: column; background: #ffffff; border-right: 1px solid #ddd; z-index: 10; }
+    .brand-header { padding: 22px 24px 20px; border-bottom: 1px solid #eee; background: linear-gradient(135deg,#ff6b35,#ff9559); color: white; }
+    .site-nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; font-size: .88rem; }
+    .site-nav a { text-decoration: none; background: rgba(255,255,255,.18); color: #fff; padding: 7px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; font-weight: 700; }
+    .brand-header h1 { font-size: 1.75rem; margin-bottom: 10px; line-height: 1.1; }
+    .brand-header h2 { font-size: 1.08rem; line-height: 1.4; margin-bottom: 10px; }
+    .brand-header p { font-size: 0.96rem; line-height: 1.5; }
+    .near-me-btn { margin-top: 14px; border: none; background: white; color: #ff6b35; padding: 10px 14px; border-radius: 999px; font-weight: bold; cursor: pointer; width: fit-content; min-height: 42px; }
+    .near-me-btn:focus,.send-btn:focus,.chat-input:focus,.site-nav a:focus,.footer-nav a:focus,.card-actions a:focus { outline: 3px solid rgba(26,115,232,.35); outline-offset: 2px; }
+    .chat-history { flex: 1; padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; background: #f5f7fb; }
+    .message { max-width: 92%; padding: 13px 15px; border-radius: 16px; line-height: 1.45; font-size: 0.95rem; word-wrap: break-word; }
+    .user-msg { align-self: flex-end; background: #1a73e8; color: #fff; }
+    .ai-msg { align-self: flex-start; background: #fff; color: #222; border: 1px solid #ddd; }
+    .restaurant-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border: 1px solid #eee; }
+    .restaurant-image { width: 100%; height: 150px; object-fit: cover; }
+    .restaurant-content { padding: 15px; }
+    .restaurant-card h3 { margin-bottom: 8px; line-height: 1.25; }
+    .restaurant-card p { margin-bottom: 6px; color: #555; font-size: 0.92rem; line-height: 1.45; }
+    .tag { display: inline-block; background: #fff3ed; color: #ff6b35; padding: 6px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: bold; margin-top: 6px; }
+    .card-actions { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+    .card-actions a { text-decoration: none; background: #ff6b35; color: white; padding: 9px 13px; border-radius: 999px; font-size: 0.86rem; font-weight: bold; }
+    .input-container { padding: 15px; display: flex; gap: 10px; background: #fff; border-top: 1px solid #ddd; }
+    .chat-input { flex: 1; border: 1px solid #ccc; border-radius: 999px; padding: 13px 15px; font-size: 1rem; outline: none; min-width: 0; }
+    .send-btn { background: #ff6b35; color: white; border: none; border-radius: 999px; padding: 0 20px; font-weight: bold; cursor: pointer; min-height: 46px; }
+    .site-footer { padding: 12px 15px 14px; background: #fff; border-top: 1px solid #eee; color: #666; font-size: .82rem; line-height: 1.45; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+    .footer-nav a { color: #d94c1f; font-weight: 700; text-decoration: none; }
+    #map-container { flex: 1; height: 100%; min-height: 320px; }
+    .map-fallback { height: 100%; display: grid; place-items: center; padding: 24px; text-align: center; color: #555; background: #eef2f7; line-height: 1.5; }
     @media (max-width: 820px) {
-      body {
-        overflow: auto;
-      }
-
-      .app-container {
-        flex-direction: column;
-        min-height: 100vh;
-        height: auto;
-      }
-
-      .sidebar {
-        width: 100%;
-        max-width: none;
-        min-width: 0;
-        min-height: 65vh;
-        border-right: none;
-      }
-
-      .brand-header {
-        padding: 18px 16px;
-      }
-
-      .brand-header h1 {
-        font-size: 1.55rem;
-      }
-
-      .chat-history {
-        min-height: 300px;
-      }
-
-      .input-container {
-        position: sticky;
-        bottom: 0;
-        z-index: 20;
-      }
-
-      #map-container {
-        width: 100%;
-        height: 38vh;
-        flex: none;
-      }
+      body { overflow: auto; }
+      .app-container { flex-direction: column; min-height: 100vh; height: auto; }
+      .sidebar { width: 100%; max-width: none; min-width: 0; min-height: 65vh; border-right: none; }
+      .brand-header { padding: 18px 16px; }
+      .brand-header h1 { font-size: 1.55rem; }
+      .chat-history { min-height: 300px; }
+      .input-container { position: sticky; bottom: 0; z-index: 20; }
+      #map-container { width: 100%; height: 38vh; flex: none; }
     }
-
     @media (max-width: 480px) {
-      .input-container {
-        flex-direction: column;
-      }
-
-      .send-btn,
-      .near-me-btn,
-      .chat-input {
-        width: 100%;
-      }
-
-      .message {
-        max-width: 100%;
-      }
+      .input-container { flex-direction: column; }
+      .send-btn,.near-me-btn,.chat-input { width: 100%; }
+      .message { max-width: 100%; }
     }
   </style>
 </head>
@@ -344,18 +71,14 @@
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms</a>
         </nav>
-
         <h1>🍕 RestaurantAIBot</h1>
         <h2>Ask AI. Find Food. Anywhere on Earth.</h2>
         <p>Search restaurants by craving, mood, city, budget, or vibe.</p>
-
         <button class="near-me-btn" id="nearMeBtn" type="button" aria-label="Use my location for nearby restaurant search">📍 Use My Location</button>
       </div>
 
       <div class="chat-history" id="chatHistory" aria-live="polite" aria-label="Restaurant search conversation">
-        <div class="message ai-msg">
-          Try “pizza near me” or “best sushi in Tokyo.”
-        </div>
+        <div class="message ai-msg">Try “pizza near me” or “best sushi in Tokyo.”</div>
       </div>
 
       <form class="input-container" id="searchForm" aria-label="Restaurant search form">
@@ -392,6 +115,16 @@
     const userInput = document.getElementById('userInput');
     const searchForm = document.getElementById('searchForm');
     const nearMeBtn = document.getElementById('nearMeBtn');
+    const mapContainer = document.getElementById('map-container');
+
+    function setMapFallback(message) {
+      if (!mapContainer || map) return;
+      mapContainer.innerHTML = '';
+      const fallback = document.createElement('div');
+      fallback.className = 'map-fallback';
+      fallback.textContent = message;
+      mapContainer.appendChild(fallback);
+    }
 
     function addMessage(text, type) {
       const div = document.createElement('div');
@@ -456,7 +189,8 @@
     }
 
     function initMap() {
-      map = new google.maps.Map(document.getElementById('map-container'), {
+      mapContainer.innerHTML = '';
+      map = new google.maps.Map(mapContainer, {
         center: { lat: 39.8283, lng: -98.5795 },
         zoom: 4,
         mapTypeControl: false,
@@ -470,6 +204,7 @@
         const config = await response.json();
 
         if (!config.googleMapsApiKey) {
+          setMapFallback('Map setup is not configured yet. You can still search by food and city once restaurant search is configured.');
           addMessage('Map setup is missing. Restaurant search may not work yet.', 'ai-msg');
           return;
         }
@@ -480,8 +215,13 @@
         script.src = `https://maps.googleapis.com/maps/api/js?key=${config.googleMapsApiKey}&callback=initMap`;
         script.async = true;
         script.defer = true;
+        script.onerror = () => {
+          setMapFallback('Map could not load. Try refreshing, or search by city and confirm details directly with the restaurant.');
+          addMessage('Map could not load right now.', 'ai-msg');
+        };
         document.head.appendChild(script);
       } catch (error) {
+        setMapFallback('Map could not load. Try searching by city, then confirm details directly with the restaurant.');
         addMessage('Map could not load right now.', 'ai-msg');
       }
     }
@@ -496,9 +236,7 @@
         (position) => {
           userLat = position.coords.latitude;
           userLng = position.coords.longitude;
-
           addMessage('📍 Location enabled. You can now search near you.', 'ai-msg');
-
           if (map) {
             map.setCenter({ lat: userLat, lng: userLng });
             map.setZoom(12);
@@ -516,20 +254,13 @@
 
       addMessage(query, 'user-msg');
       userInput.value = '';
-
       const loading = addMessage('Searching restaurants...', 'ai-msg');
 
       try {
         const response = await fetch('/api/search', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: query,
-            lat: userLat,
-            lng: userLng
-          })
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: query, lat: userLat, lng: userLng })
         });
 
         const data = await response.json();
@@ -541,9 +272,7 @@
         }
 
         addMessage(data.aiExplanation || 'Here are matching restaurants.', 'ai-msg');
-
         clearMarkers();
-
         const restaurants = Array.isArray(data.restaurants) ? data.restaurants : [];
 
         if (!restaurants.length) {
@@ -555,18 +284,8 @@
 
         restaurants.forEach((restaurant) => {
           addRestaurantCard(restaurant);
-
           if (!map || !Number.isFinite(restaurant.lat) || !Number.isFinite(restaurant.lng)) return;
-
-          const marker = new google.maps.Marker({
-            position: {
-              lat: restaurant.lat,
-              lng: restaurant.lng
-            },
-            map,
-            title: restaurant.name
-          });
-
+          const marker = new google.maps.Marker({ position: { lat: restaurant.lat, lng: restaurant.lng }, map, title: restaurant.name });
           markers.push(marker);
           bounds.extend(marker.position);
         });
