@@ -68,6 +68,7 @@ No live payments, live ad scripts, private keys, user accounts, uploads, orderin
 - `LOCKED-CHECKPOINT.md` — locked project direction and next queue
 - `PROJECT-STATUS.md` — current project status
 - `CHANGELOG.md` — safe production change history
+- `REPO-AUDIT.md` — repo-level audit notes and search findings
 - `UX-GOALS.md` — product and visitor experience goals
 - `MANUAL-TEST-CHECKLIST.md` — manual test checklist
 - `BROWSER-SMOKE-TEST.md` — live smoke-test notes and verification limits
@@ -129,6 +130,7 @@ Do not add a GitHub Actions deployment workflow unless Cloudflare auto-deploy is
 - `public/_redirects` redirects likely old paths such as `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html` to current pages.
 - `functions/api/search.js` handles near-me searches carefully and keeps `local + city` queries as city searches.
 - `public/quick-searches.js` submits quick searches through the real search form event.
+- `REPO-AUDIT.md` records repo-level checks for broken paths, brittle JS patterns, exposed-key patterns, and leftover TODO/FIXME markers.
 
 ## Safe development rules
 
