@@ -36,6 +36,7 @@ Current workflow files:
 - Demo restaurant profile data file
 - Sample restaurant profile template
 - Dedicated UX goals file
+- Updated README
 - Updated manual test checklist
 - Expanded sitemap coverage
 - Expanded U.S. and international city landing pages
@@ -201,6 +202,8 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 63. Updated `MANUAL-TEST-CHECKLIST.md` for the current site, food pages, city pages, demo files, query links, and safety checks.
 64. Expanded `public/sitemap.xml` to include support pages, food pages, city pages, and restaurant owner pages.
 65. Verified `public/robots.txt` allows crawling and points to the sitemap.
+66. Updated `README.md` to match the current site structure, safe workflow, SEO pages, city pages, and known connector false positives.
+67. Refreshed `CURRENT-TASK.md` after README update.
 
 ## Current safe queue
 
