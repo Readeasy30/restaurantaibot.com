@@ -39,6 +39,9 @@ No live payments, live ad scripts, private keys, user accounts, uploads, orderin
 ## Main files
 
 - `public/index.html` — main search page
+- `public/404.html` — custom visitor recovery page for broken links
+- `public/_headers` — conservative Cloudflare security headers and `no-store` for API responses
+- `public/_redirects` — safe 301 redirects for likely old paths
 - `public/quick-searches.js` — quick search buttons, URL query support, and injected homepage links
 - `public/popular-searches.html` — popular restaurant search hub
 - `public/restaurant-cities.html` — city restaurant guide hub
@@ -59,11 +62,15 @@ No live payments, live ad scripts, private keys, user accounts, uploads, orderin
 - `AGENTS.md` — AI work rules
 - `AGENT-INSTRUCTIONS.md` — production build instructions
 - `CODEX-WORKFLOW.md` — Codex-first repo editing workflow
+- `CODEX-CURRENT-TASK.md` — Codex current safe queue
 - `CURRENT-TASK.md` — current safe queue
+- `CONNECTOR-RECOVERY.md` — connector failure recovery rules
 - `LOCKED-CHECKPOINT.md` — locked project direction and next queue
 - `PROJECT-STATUS.md` — current project status
+- `CHANGELOG.md` — safe production change history
 - `UX-GOALS.md` — product and visitor experience goals
 - `MANUAL-TEST-CHECKLIST.md` — manual test checklist
+- `BROWSER-SMOKE-TEST.md` — live smoke-test notes and verification limits
 
 ## Food SEO pages
 
@@ -115,6 +122,14 @@ Use the native Cloudflare Pages GitHub integration.
 
 Do not add a GitHub Actions deployment workflow unless Cloudflare auto-deploy is removed later. The current setup already deploys every push to `main`, so a separate workflow would add unnecessary duplicate deployment risk.
 
+## Current production hardening
+
+- `public/404.html` recovers visitors from broken links and is marked `noindex,follow`.
+- `public/_headers` adds conservative security headers without using a strict CSP that could break Google Maps.
+- `public/_redirects` redirects likely old paths such as `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html` to current pages.
+- `functions/api/search.js` handles near-me searches carefully and keeps `local + city` queries as city searches.
+- `public/quick-searches.js` submits quick searches through the real search form event.
+
 ## Safe development rules
 
 Allowed:
@@ -123,7 +138,7 @@ Allowed:
 - Improve copy, navigation, mobile layout, accessibility, and support pages
 - Add SEO landing pages
 - Add planning pages for restaurant owners and advertisers
-- Add README, checklist, sitemap, and status files
+- Add README, checklist, sitemap, changelog, and status files
 - Add demo-only planning JSON files that do not create live paid placement
 
 Do not do without explicit approval:
@@ -148,7 +163,8 @@ Known connector false positives:
 
 ## Current safe build queue
 
-1. Retry Dallas and Tokyo cross-link updates later through Codex or a connector retry.
-2. Consider a simple shared helper script only if it reduces future duplicate edits without changing the stack.
-3. Run manual/browser tests using `MANUAL-TEST-CHECKLIST.md`.
-4. Keep live ads, payments, tracking, dashboards, and sponsored placements inactive until direct approval.
+1. Run manual/browser tests using `MANUAL-TEST-CHECKLIST.md`.
+2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
+3. Retry Dallas and Tokyo cross-link updates later through Codex or a connector retry.
+4. Consider a simple shared helper script only if it reduces future duplicate edits without changing the stack.
+5. Keep live ads, payments, tracking, dashboards, and sponsored placements inactive until direct approval.
