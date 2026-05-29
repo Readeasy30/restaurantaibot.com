@@ -35,6 +35,7 @@ Current workflow files:
 - Demo-only promotions data file
 - Demo restaurant profile data file
 - Sample restaurant profile template
+- Browser smoke test notes
 - Dedicated UX goals file
 - Updated README
 - Updated manual test checklist
@@ -54,6 +55,7 @@ Current workflow files:
 - `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub.
 - `UX-GOALS.md` locks product and visitor experience rules.
 - `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
+- `BROWSER-SMOKE-TEST.md` records live smoke-test attempts and honest verification limits.
 - `RESTAURANT-MARKETING-PLAN.md` describes future restaurant marketing tools and packages.
 - `public/demo-promotions.json` contains demo-only future placement data and is not live paid advertising.
 - `public/demo-restaurant-profiles.json` contains demo-only future restaurant profile data and is not paid placement.
@@ -61,17 +63,23 @@ Current workflow files:
 
 ## Operational status
 
-Currently operational:
+Currently operational in repo:
 
-- AI restaurant search
-- Worldwide city / nearby restaurant discovery
-- Google Maps / Places restaurant results
+- AI restaurant search files
+- Worldwide city / nearby restaurant discovery files
+- Google Maps / Places restaurant result files
 - SEO food pages
 - City landing pages
 - Restaurant cities hub
 - Restaurant owner / advertiser interest page
 - Advertiser intake interest page
 - Demo profile page for future restaurant listings
+
+Live browser render status:
+
+- ChatGPT web fetch could not reliably verify live page rendering from this chat environment on 2026-05-29.
+- This is not proof the site is broken.
+- A real browser or Codex/browser environment should run the manual checklist.
 
 Not operational yet:
 
@@ -204,16 +212,20 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 65. Verified `public/robots.txt` allows crawling and points to the sitemap.
 66. Updated `README.md` to match the current site structure, safe workflow, SEO pages, city pages, and known connector false positives.
 67. Refreshed `CURRENT-TASK.md` after README update.
+68. Added `BROWSER-SMOKE-TEST.md` to record live smoke-test attempt and next verification steps.
+69. Updated `CURRENT-TASK.md` after smoke-test note.
 
 ## Current safe queue
 
-1. Use Codex or a later connector retry to update `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` if the false-positive filter allows it.
-2. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
-3. Run manual/browser tests using the updated `MANUAL-TEST-CHECKLIST.md`.
-4. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
+1. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
+2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
+3. Use Codex or a later connector retry to update `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` if the false-positive filter allows it.
+4. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
+5. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
 
 ## Blocked items
 
+- ChatGPT web fetch could not reliably verify live public rendering from this environment.
 - Connector false positive: `public/dallas-restaurants.html` text-only cross-link update blocked twice.
 - Connector false positive: `public/tokyo-restaurants.html` text-only cross-link update blocked twice.
 - Do not add private API keys, payment setup, live ad scripts, analytics tracking, or live sponsorship placement without explicit approval.
