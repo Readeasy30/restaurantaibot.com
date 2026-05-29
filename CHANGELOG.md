@@ -8,6 +8,7 @@
 - Added this changelog to track safe production changes.
 - Added `CONNECTOR-RECOVERY.md` to document what to do when the ChatGPT GitHub connector blocks, filters, or behaves inconsistently.
 - Added `BROWSER-SMOKE-TEST.md` to record live smoke-test attempts and honest verification limits.
+- Added `REPO-AUDIT.md` to record repo-level checks for broken paths, brittle JavaScript patterns, obvious secret patterns, and leftover TODO/FIXME markers.
 - Added expanded support, food SEO, city, restaurant owner, and demo-planning pages across the current static site.
 - Added demo-only planning data files for future promotions and restaurant profiles.
 - Added `public/404.html` so broken or outdated links guide visitors back to Search, Popular Searches, City Guides, and For Restaurants.
@@ -20,7 +21,7 @@
 - Standardized `CODEX-WORKFLOW.md` with the ChatGPT 5.5 + Codex + GitHub + Cloudflare production workflow.
 - Linked `CONNECTOR-RECOVERY.md` from `CODEX-WORKFLOW.md`.
 - Updated `PROJECT-STATUS.md` to include required repo-local workflow files and current safe queue.
-- Updated `README.md` to match the current site structure, production hardening files, safe workflow, SEO pages, city pages, Cloudflare setup, and known connector false positives.
+- Updated `README.md` to match the current site structure, production hardening files, audit notes, safe workflow, SEO pages, city pages, Cloudflare setup, and known connector false positives.
 - Updated `CURRENT-TASK.md` and `CODEX-CURRENT-TASK.md` with the current safe queue.
 - Expanded `public/sitemap.xml` to include support pages, food pages, city pages, and restaurant owner pages.
 - Verified `public/robots.txt` allows crawling and points to the sitemap.
