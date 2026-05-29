@@ -12,6 +12,7 @@
 - Added demo-only planning data files for future promotions and restaurant profiles.
 - Added `public/404.html` so broken or outdated links guide visitors back to Search, Popular Searches, City Guides, and For Restaurants.
 - Added `public/_headers` with conservative Cloudflare security headers and `no-store` caching for `/api/*`.
+- Added `public/_redirects` with safe 301 redirects for likely old paths such as `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html`.
 
 ### Changed
 
@@ -23,7 +24,7 @@
 - Updated `CURRENT-TASK.md` and `CODEX-CURRENT-TASK.md` with the current safe queue.
 - Expanded `public/sitemap.xml` to include support pages, food pages, city pages, and restaurant owner pages.
 - Verified `public/robots.txt` allows crawling and points to the sitemap.
-- Updated `MANUAL-TEST-CHECKLIST.md` for current homepage, 404 page, security headers, food page, city page, query-link, near-me, local-city, demo-file, and safety checks.
+- Updated `MANUAL-TEST-CHECKLIST.md` for current homepage, redirects, 404 page, security headers, food page, city page, query-link, near-me, local-city, demo-file, and safety checks.
 - Improved `public/index.html` map fallback behavior when Google Maps config or script loading fails.
 - Improved `functions/api/search.js` so `near me` searches without browser location ask the visitor to enable location or type a city instead of searching `in near me`.
 - Refined `functions/api/search.js` so city searches using the word `local`, such as `local tacos in Dallas`, remain city searches and do not require browser location.
