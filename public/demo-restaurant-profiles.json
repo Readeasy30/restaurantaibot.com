@@ -1,6 +1,6 @@
 {
   "status": "demo-only",
-  "note": "These restaurant profiles are sample data for future profile templates. They are not paid listings and should not be shown as real sponsored content until manual approval, disclosures, and business rules are ready.",
+  "notice": "Sample profile data for future RestaurantAIBot templates. This is not paid advertising, not live placement, and not connected to payments.",
   "profiles": [
     {
       "id": "sample-bistro-dallas",
@@ -10,8 +10,10 @@
       "cuisine": "Casual American",
       "goodFor": ["lunch", "dinner", "family meals", "takeout"],
       "summary": "A sample restaurant profile used to plan future owner listing pages.",
+      "searchQuery": "family dinner in Dallas",
       "website": "https://example.com",
-      "label": "Demo Profile"
+      "label": "Demo Profile",
+      "disclosure": "Demo profile only. Confirm all real restaurant details directly with the restaurant."
     },
     {
       "id": "sample-pizza-chicago",
@@ -21,8 +23,36 @@
       "cuisine": "Pizza",
       "goodFor": ["pizza night", "family meals", "casual dinner"],
       "summary": "A sample pizza profile for future restaurant page layout testing.",
+      "searchQuery": "pizza in Chicago",
       "website": "https://example.com",
-      "label": "Demo Profile"
+      "label": "Demo Profile",
+      "disclosure": "Demo profile only. Confirm all real restaurant details directly with the restaurant."
+    },
+    {
+      "id": "sample-seafood-miami",
+      "restaurantName": "Sample Coastal Seafood",
+      "city": "Miami",
+      "neighborhood": "Demo Waterfront",
+      "cuisine": "Seafood",
+      "goodFor": ["seafood dinner", "travel meals", "outdoor dining ideas"],
+      "summary": "A sample seafood profile for future city and cuisine pages.",
+      "searchQuery": "seafood dinner in Miami",
+      "website": "https://example.com",
+      "label": "Demo Profile",
+      "disclosure": "Demo profile only. Confirm all real restaurant details directly with the restaurant."
+    },
+    {
+      "id": "sample-cafe-london",
+      "restaurantName": "Sample Quiet Cafe",
+      "city": "London",
+      "neighborhood": "Demo High Street",
+      "cuisine": "Coffee",
+      "goodFor": ["coffee", "quiet meetings", "light food"],
+      "summary": "A sample cafe profile for quiet coffee, work-friendly meals, and travel search examples.",
+      "searchQuery": "quiet coffee shop in London",
+      "website": "https://example.com",
+      "label": "Demo Profile",
+      "disclosure": "Demo profile only. Confirm all real restaurant details directly with the restaurant."
     }
   ]
 }
