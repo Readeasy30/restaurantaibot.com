@@ -267,6 +267,8 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 89. Added `public/_redirects` with safe 301 redirects for likely old paths.
 90. Updated `MANUAL-TEST-CHECKLIST.md` with redirect tests.
 91. Updated `CHANGELOG.md` for safe redirects.
+92. Updated `README.md` to document `public/404.html`, `public/_headers`, `public/_redirects`, `CONNECTOR-RECOVERY.md`, `CODEX-CURRENT-TASK.md`, `CHANGELOG.md`, and `BROWSER-SMOKE-TEST.md`.
+93. Updated `CHANGELOG.md` after README sync.
 
 ## Current safe queue
 
