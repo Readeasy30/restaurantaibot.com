@@ -33,6 +33,24 @@ Check these links from the homepage, support pages, food pages, city pages, and 
 - Restaurant marketing tools
 - Advertiser intake
 
+## Redirects
+
+After Cloudflare deploys, test these old paths:
+
+- `/cities.html` should redirect to `/restaurant-cities.html`.
+- `/city-guides.html` should redirect to `/restaurant-cities.html`.
+- `/restaurants.html` should redirect to `/restaurant-cities.html`.
+- `/search.html` should redirect to `/`.
+- `/owner.html` should redirect to `/owner-advertise.html`.
+- `/advertise.html` should redirect to `/owner-advertise.html`.
+- `/marketing.html` should redirect to `/restaurant-marketing-tools.html`.
+
+Expected behavior:
+
+- Redirects should be 301 redirects.
+- Redirects should land on working pages.
+- Redirects should not break the custom 404 page for truly unknown paths.
+
 ## 404 page
 
 1. Open a fake page such as `/missing-test-page.html`.
