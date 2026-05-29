@@ -20,7 +20,7 @@
 - Standardized `CODEX-WORKFLOW.md` with the ChatGPT 5.5 + Codex + GitHub + Cloudflare production workflow.
 - Linked `CONNECTOR-RECOVERY.md` from `CODEX-WORKFLOW.md`.
 - Updated `PROJECT-STATUS.md` to include required repo-local workflow files and current safe queue.
-- Updated `README.md` to match the current site structure, safe workflow, SEO pages, city pages, Cloudflare setup, and known connector false positives.
+- Updated `README.md` to match the current site structure, production hardening files, safe workflow, SEO pages, city pages, Cloudflare setup, and known connector false positives.
 - Updated `CURRENT-TASK.md` and `CODEX-CURRENT-TASK.md` with the current safe queue.
 - Expanded `public/sitemap.xml` to include support pages, food pages, city pages, and restaurant owner pages.
 - Verified `public/robots.txt` allows crawling and points to the sitemap.
