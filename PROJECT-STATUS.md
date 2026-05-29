@@ -13,6 +13,7 @@ Use the ChatGPT GitHub connector only for small reads, checks, reviews, or emerg
 Current workflow files:
 
 - `CODEX-WORKFLOW.md`
+- `CONNECTOR-RECOVERY.md`
 - `CURRENT-TASK.md`
 
 ## Current stable systems
@@ -23,6 +24,7 @@ Current workflow files:
 - Cloudflare Functions API
 - GitHub auto deploy from `main`
 - Homepage search interface
+- Improved homepage map fallback behavior
 - Quick search buttons with URL query support
 - SEO-ready core pages
 - Popular searches hub
@@ -53,6 +55,8 @@ Current workflow files:
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
 - `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub.
+- `CODEX-WORKFLOW.md` links to `CONNECTOR-RECOVERY.md` for connector failure handling.
+- `CONNECTOR-RECOVERY.md` records connector-failure recovery rules so Gerry does not manually edit files.
 - `UX-GOALS.md` locks product and visitor experience rules.
 - `MANUAL-TEST-CHECKLIST.md` documents post-commit manual tests.
 - `BROWSER-SMOKE-TEST.md` records live smoke-test attempts and honest verification limits.
@@ -141,7 +145,7 @@ The GitHub connector safety filter blocked writes that used one sensitive dinner
 
 A later full sitemap update that included many new page URLs was also blocked by the connector filter. Smaller sitemap updates should be used when possible.
 
-Text-only cross-link updates for `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` were blocked twice by the connector filter even after simplification. Treat these as false positives under `CODEX-WORKFLOW.md`. Do not ask Gerry to fix these manually.
+Text-only cross-link updates for `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` were blocked twice by the connector filter even after simplification. Treat these as false positives under `CODEX-WORKFLOW.md` and `CONNECTOR-RECOVERY.md`. Do not ask Gerry to fix these manually.
 
 ## Completed safe queue
 
@@ -214,6 +218,9 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 67. Refreshed `CURRENT-TASK.md` after README update.
 68. Added `BROWSER-SMOKE-TEST.md` to record live smoke-test attempt and next verification steps.
 69. Updated `CURRENT-TASK.md` after smoke-test note.
+70. Added `CONNECTOR-RECOVERY.md` to document connector failure handling.
+71. Linked `CONNECTOR-RECOVERY.md` from `CODEX-WORKFLOW.md`.
+72. Improved homepage map fallback behavior when Google Maps config or script loading fails.
 
 ## Current safe queue
 
