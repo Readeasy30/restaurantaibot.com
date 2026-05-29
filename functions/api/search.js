@@ -49,7 +49,7 @@ export async function onRequestPost(context) {
         messages: [
           {
             role: 'system',
-            content: "You are a restaurant search assistant. Extract what kind of restaurant or food the user wants. Respond ONLY as JSON with keys: location and cuisine. If the user asks for near me, nearby, closest, local, or does not mention a city, set location to near me. Keep cuisine short, like pizza, tacos, breakfast, sushi, romantic dinner, vegan food, seafood, coffee, or restaurant."
+            content: 'You are a restaurant search assistant. Extract what kind of restaurant or food the user wants. Respond ONLY as JSON with keys: location and cuisine. If the user asks for near me, nearby, closest, local, or does not mention a city, set location to near me. Keep cuisine short, like pizza, tacos, breakfast, sushi, nice dinner, vegan food, seafood, coffee, or restaurant.'
           },
           {
             role: 'user',
@@ -72,10 +72,18 @@ export async function onRequestPost(context) {
     const parsedSearch = safeParseAiSearch(aiData);
     const location = sanitizeText(parsedSearch.location, 80) || 'near me';
     const cuisine = sanitizeText(parsedSearch.cuisine, 80) || 'restaurant';
+    const wantsNearby = isNearMeSearch(message, location);
+
+    if (wantsNearby && !hasCoordinates) {
+      return jsonResponse({
+        success: false,
+        error: 'For “near me” searches, click Use My Location first or type a city, like “pizza in Chicago.”'
+      }, 400);
+    }
 
     const googleUrl = new URL('https://maps.googleapis.com/maps/api/place/textsearch/json');
 
-    if (hasCoordinates && isNearMeSearch(message, location)) {
+    if (wantsNearby) {
       googleUrl.searchParams.set('query', cuisine);
       googleUrl.searchParams.set('location', `${lat},${lng}`);
       googleUrl.searchParams.set('radius', '8000');
@@ -120,7 +128,7 @@ export async function onRequestPost(context) {
       }))
       .filter(place => Number.isFinite(place.lat) && Number.isFinite(place.lng));
 
-    const areaText = hasCoordinates && isNearMeSearch(message, location) ? 'near you' : `in ${location}`;
+    const areaText = wantsNearby ? 'near you' : `in ${location}`;
 
     return jsonResponse({
       success: true,
