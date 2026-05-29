@@ -185,6 +185,19 @@ Expected behavior:
 4. Confirm all core pages, support pages, SEO pages, city pages, and the restaurant cities hub are listed.
 5. Confirm `/404.html` is not listed as a normal sitemap page.
 
+## Security headers
+
+After Cloudflare deploys, check response headers on the homepage and `/api/config`.
+
+Expected behavior:
+
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `X-Frame-Options: DENY`
+- `Permissions-Policy` blocks camera, microphone, payment, and usb while allowing geolocation for the site.
+- `/api/*` responses include `Cache-Control: no-store`.
+- Google Maps and restaurant search still work after headers deploy.
+
 ## Safety checks
 
 1. Confirm no API keys are visible in GitHub files.
