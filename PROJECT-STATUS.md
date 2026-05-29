@@ -40,6 +40,7 @@ Current workflow files:
 - Expanded U.S. and international city landing pages
 - Cross-linked food SEO landing pages
 - Cross-linked city landing pages where connector allowed writes
+- Removed old connector test file
 
 ## Current stable architecture
 
@@ -194,14 +195,15 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 58. Added city-to-food cross-links to `public/london-restaurants.html`.
 59. Added city-to-food cross-links to `public/paris-restaurants.html`.
 60. Added city-to-food cross-links to `public/toronto-restaurants.html`.
+61. Removed `.chatgpt-connector-test.md` after successful production commits.
+62. Updated `CURRENT-TASK.md` with the next clean safe queue.
 
 ## Current safe queue
 
-1. Use Codex or a later connector retry to update `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` if the false-positive filter allows it.
-2. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
-3. Remove `.chatgpt-connector-test.md` after more successful production commits if desired.
-4. Run browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
-5. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
+1. Run browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
+2. Use Codex or a later connector retry to update `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` if the false-positive filter allows it.
+3. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
+4. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
 
 ## Blocked items
 
