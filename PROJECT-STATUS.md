@@ -32,6 +32,7 @@ Current workflow files:
 
 - AI restaurant search
 - Improved near-me search handling
+- Improved quick-search submit behavior
 - Google Maps integration
 - Cloudflare Pages deployment
 - Cloudflare Functions API
@@ -63,7 +64,7 @@ Current workflow files:
 ## Current stable architecture
 
 - `public/index.html` is the main website/search page.
-- `public/quick-searches.js` adds quick search buttons, injects Popular Searches / Cities / Restaurant links, and supports `?q=` search links.
+- `public/quick-searches.js` adds quick search buttons, injects Popular Searches / Cities / Restaurant links, supports `?q=` search links, and now submits through the search form event.
 - `functions/api/search.js` handles AI restaurant search and now prevents bad `near me` searches without browser location.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
@@ -239,6 +240,8 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 75. Standardized `AGENTS.md` with the current no-local-Git workflow.
 76. Standardized `CODEX-WORKFLOW.md` with the ChatGPT 5.5 + Codex + GitHub + Cloudflare workflow.
 77. Added `CODEX-CURRENT-TASK.md` for the current safe work queue.
+78. Improved `public/quick-searches.js` so quick search buttons and `/?q=` links submit through the search form event instead of a brittle button-click shortcut.
+79. Updated `MANUAL-TEST-CHECKLIST.md` to test quick search buttons and query-link form submission.
 
 ## Current safe queue
 
