@@ -31,6 +31,7 @@
 - Refined `functions/api/search.js` so city searches using the word `local`, such as `local tacos in Dallas`, remain city searches and do not require browser location.
 - Improved `public/quick-searches.js` so quick search buttons and `/?q=` links submit through the search form event instead of a brittle button-click shortcut.
 - Improved internal links across food SEO pages, city pages, and the Popular Searches hub where connector writes allowed it.
+- Updated `CONNECTOR-RECOVERY.md` after smaller Dallas/Tokyo retries succeeded.
 
 ### Fixed
 
@@ -39,12 +40,14 @@
 - Fixed bad near-me search behavior when the visitor has not enabled location.
 - Fixed local city search behavior so `local + city` queries are not treated as location-required near-me searches.
 - Fixed quick-search submission reliability by dispatching the actual form submit event.
+- Added the missing Cities navigation link to `public/dallas-restaurants.html`.
+- Added the missing Cities navigation link to `public/tokyo-restaurants.html`.
 
 ### Known connector false positives
 
-- `public/dallas-restaurants.html` city-to-food cross-link update was blocked twice by the connector despite being harmless text-only content.
-- `public/tokyo-restaurants.html` city-to-food cross-link update was blocked twice by the connector despite being harmless text-only content.
-- These are recorded as connector false positives. Do not ask Gerry to edit these files manually.
+- Larger full-page city-to-food cross-link rewrites for `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` were blocked twice by the connector.
+- Smaller retries later succeeded for both files by adding the missing `restaurant-cities.html` navigation link.
+- Full city-to-food cross-link expansion can still be retried later through Codex or smaller commits if useful.
 
 ### Notes
 
