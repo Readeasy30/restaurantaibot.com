@@ -1,0 +1,9 @@
+/cities.html /restaurant-cities.html 301
+/city-guides.html /restaurant-cities.html 301
+/restaurant-guides.html /restaurant-cities.html 301
+/restaurants.html /restaurant-cities.html 301
+/search.html / 301
+/home.html / 301
+/owner.html /owner-advertise.html 301
+/advertise.html /owner-advertise.html 301
+/marketing.html /restaurant-marketing-tools.html 301
