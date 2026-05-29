@@ -39,6 +39,7 @@ Test these searches:
 
 - `pizza near me` before location is enabled
 - `pizza near me` after location is enabled
+- `local tacos in Dallas`
 - `best sushi in Tokyo`
 - `late night tacos in Dallas`
 - `cheap breakfast in New York`
@@ -55,6 +56,7 @@ Expected behavior:
 - `pizza near me` without browser location asks the visitor to click Use My Location or type a city.
 - `pizza near me` with browser location searches nearby restaurants.
 - City searches run without needing location.
+- `local tacos in Dallas` remains a Dallas city search and does not require browser location.
 - Restaurant cards appear when results are available.
 - Map markers appear when results include coordinates and map is configured.
 - Direction links open Google Maps in a new tab.
@@ -68,6 +70,7 @@ Expected behavior:
 3. Search `pizza near me`.
 4. If location is denied, confirm the page gives a useful message and still allows city search.
 5. Confirm a `near me` search without location returns a helpful instruction instead of searching `in near me`.
+6. Confirm a city search that includes the word `local` does not require location.
 
 ## Mobile check
 
@@ -186,4 +189,4 @@ Expected behavior:
 
 ## Blocked / do not test yet
 
-Do not test payments, live ads, analytics tracking, sponsored placements, user accounts, upload systems, public AI tools beyond the controlled search flow, ordering integrations, or private API-key changes. Those are not active features yet.
+Do not test payments, live ads, analytics tracking, sponsored placements, user accounts, upload systems, public AI tools beyond the controlled restaurant search flow, ordering integrations, or private API-key changes. Those are not active features yet.
