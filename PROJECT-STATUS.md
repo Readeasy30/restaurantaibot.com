@@ -2,19 +2,31 @@
 
 Last updated: 2026-05-29
 
+## Repository
+
+`Wholelychit/restaurantaibot.com`
+
 ## Codex-first workflow
 
-Codex is the primary workflow for routine RestaurantAIBot repository editing.
+Use ChatGPT 5.5 and Codex as the production workflow.
 
-Gerry does not manually edit, paste, create, replace, or copy repository files. ChatGPT/Codex should handle safe file work directly when write access is available.
+- ChatGPT 5.5 manages the plan.
+- Codex performs repository work.
+- GitHub stores files and commits.
+- Cloudflare Pages publishes from GitHub when connected.
+- Gerry should not be asked to paste, create, replace, or manually update repo files.
 
-Use the ChatGPT GitHub connector only for small reads, checks, reviews, or emergency single-file edits when Codex is unavailable.
+Use the ChatGPT GitHub connector only for small reads, checks, reviews, emergency single-file edits, or when Codex is awkward or blocked.
 
 Current workflow files:
 
+- `AGENTS.md`
 - `CODEX-WORKFLOW.md`
-- `CONNECTOR-RECOVERY.md`
+- `CODEX-CURRENT-TASK.md`
+- `PROJECT-STATUS.md`
+- `CHANGELOG.md` required
 - `CURRENT-TASK.md`
+- `CONNECTOR-RECOVERY.md`
 
 ## Current stable systems
 
@@ -224,14 +236,18 @@ Text-only cross-link updates for `public/dallas-restaurants.html` and `public/to
 72. Improved homepage map fallback behavior when Google Maps config or script loading fails.
 73. Improved near-me search handling so a near-me query without browser location asks the visitor to enable location or type a city instead of searching `in near me`.
 74. Updated `MANUAL-TEST-CHECKLIST.md` to test near-me searches with and without browser location.
+75. Standardized `AGENTS.md` with the current no-local-Git workflow.
+76. Standardized `CODEX-WORKFLOW.md` with the ChatGPT 5.5 + Codex + GitHub + Cloudflare workflow.
+77. Added `CODEX-CURRENT-TASK.md` for the current safe work queue.
 
 ## Current safe queue
 
-1. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
-2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
-3. Use Codex or a later connector retry to update `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` if the false-positive filter allows it.
-4. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
-5. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
+1. Confirm or create `CHANGELOG.md`.
+2. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
+3. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
+4. Use Codex or a later connector retry to update `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` if the false-positive filter allows it.
+5. Consider adding a shared helper script for future page cross-link injection if it can be done safely.
+6. Keep all live ads, payments, tracking, dashboards, and sponsored placements inactive until approval.
 
 ## Blocked items
 
