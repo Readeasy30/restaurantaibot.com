@@ -19,12 +19,6 @@ Workflow:
 3. GitHub stores files and commits.
 4. Cloudflare Pages publishes from GitHub when connected.
 
-## Codex access status
-
-The GitHub connector can see `Wholelychit/restaurantaibot.com` on default branch `main`, so safe commits can use that connector when file SHAs are available.
-
-Local terminal Git is not required for Gerry. If local `git` is unavailable or `.git` is not visible in a Codex shell, keep working through Codex/GitHub access and do not ask Gerry to use terminal Git, VS Code, manual copy/paste, or manual GitHub edits.
-
 ## Current project focus
 
 RestaurantAIBot is a restaurant discovery and future restaurant-marketing website.
@@ -33,32 +27,17 @@ Keep the site simple, fast, mobile-first, and useful for visitors looking for fo
 
 ## Current safe queue
 
-1. Preserve the current stack and deployment setup.
-2. Review current pages and API/function files before changing production code.
-3. Improve homepage, navigation, footer, and mobile experience.
-4. Upgrade About, Contact, and Privacy pages from placeholders if needed.
-5. Add restaurant owner / advertiser interest content without live ads, tracking, or payment setup.
-6. Add city/cuisine SEO landing pages.
-7. Improve API validation and error handling without exposing keys.
-8. Add or improve titles, meta descriptions, canonical URLs, robots.txt, and sitemap.xml.
-9. Add a manual test checklist.
+1. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
+2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
+3. Consider a shared helper script for future cross-link injection only if it stays simple and safe.
+4. Keep internal links strong between search, food pages, city pages, and restaurant owner pages.
+5. Full city-to-food cross-link expansion for Dallas and Tokyo is optional later; smaller navigation-link repairs already succeeded.
+6. Keep simple HTML, CSS, and JavaScript.
+7. Keep Cloudflare Pages publishing from `main`.
 
 ## Stop points
 
-Stop before:
-
-- private keys or API keys
-- real OpenAI or Google Maps key commits
-- live ads or tracking
-- payment setup
-- user accounts
-- upload systems
-- public AI tools
-- ordering integrations
-- scraping systems that violate site terms
-- framework migration
-- major code deletion
-- changes that could break current search/API behavior without a safe repair path
+Stop before private keys, live ads, tracking, payment setup, user accounts, upload systems, ordering integrations, framework migration, major code deletion, or changes that could break current search/API behavior without a safe repair path.
 
 ## Reporting
 
