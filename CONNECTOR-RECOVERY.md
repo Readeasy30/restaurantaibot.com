@@ -37,8 +37,14 @@ If the ChatGPT GitHub connector fails, blocks, filters, or behaves inconsistentl
 
 ## Known connector false positives
 
-- `public/dallas-restaurants.html` city-to-food cross-link update
-- `public/tokyo-restaurants.html` city-to-food cross-link update
+The connector previously blocked larger text-only city-page cross-link rewrites for:
+
+- `public/dallas-restaurants.html`
+- `public/tokyo-restaurants.html`
+
+A smaller retry later succeeded for both files by adding the missing `restaurant-cities.html` navigation link only.
+
+Full city-to-food cross-link expansion can still be retried later through Codex or smaller commits if useful.
 
 ## Safe continuation
 
