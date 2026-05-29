@@ -11,10 +11,12 @@ Use this checklist after safe production commits.
 3. Confirm the search panel is visible.
 4. Confirm the map area loads or shows a clear setup/fallback message.
 5. Confirm quick search buttons appear under the header.
-6. Confirm the homepage navigation includes Search, Popular Searches, Cities, About, Contact, and For Restaurants where available.
-7. Confirm the injected Cities link points to `/restaurant-cities.html`, not `/cities.html`.
-8. Confirm the footer warning says restaurant details can change.
-9. Confirm the page works on desktop and mobile width.
+6. Click at least three quick search buttons and confirm each one runs a search.
+7. Confirm `/?q=` links place the query into the search box and run through the search form.
+8. Confirm the homepage navigation includes Search, Popular Searches, Cities, About, Contact, and For Restaurants where available.
+9. Confirm the injected Cities link points to `/restaurant-cities.html`, not `/cities.html`.
+10. Confirm the footer warning says restaurant details can change.
+11. Confirm the page works on desktop and mobile width.
 
 ## Navigation
 
@@ -49,6 +51,7 @@ Expected behavior:
 
 - User message appears in chat.
 - AI response appears in chat.
+- Quick search buttons submit through the search form, not a brittle button-click shortcut.
 - `pizza near me` without browser location asks the visitor to click Use My Location or type a city.
 - `pizza near me` with browser location searches nearby restaurants.
 - City searches run without needing location.
