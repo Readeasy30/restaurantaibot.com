@@ -17,6 +17,8 @@
 
 ### Changed
 
+- Fixed Codex access documentation by confirming `Wholelychit/restaurantaibot.com` as the GitHub connector target and clarifying that local file access, terminal Git access, and connector commit access are separate.
+- Updated `AGENTS.md`, `CODEX-WORKFLOW.md`, and `CODEX-CURRENT-TASK.md` so future Codex runs do not ask Gerry to use terminal Git, VS Code, manual file copying, manual paste updates, or manual GitHub edits to resolve routine access friction.
 - Standardized `AGENTS.md` with the no-local-Git workflow.
 - Standardized `CODEX-WORKFLOW.md` with the ChatGPT 5.5 + Codex + GitHub + Cloudflare production workflow.
 - Linked `CONNECTOR-RECOVERY.md` from `CODEX-WORKFLOW.md`.
