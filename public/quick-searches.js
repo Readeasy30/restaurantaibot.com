@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       addLinkIfMissing(nav, '/popular-searches.html', 'Popular Searches');
       addLinkIfMissing(nav, '/restaurant-cities.html', 'Cities');
       addLinkIfMissing(nav, '/owner-advertise.html', 'Restaurants');
+      addLinkIfMissing(nav, '/restaurant-owner-resources.html', 'Owner Resources');
       addLinkIfMissing(nav, '/restaurant-marketing-tools.html', 'Marketing Tools');
     });
   }
