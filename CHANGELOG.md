@@ -1,5 +1,27 @@
 # CHANGELOG.md
 
+## 2026-06-02
+
+### Added
+
+- Added `public/restaurant-owner-resources.html` as a restaurant owner resource hub.
+- Added `public/restaurant-growth-checklist.html` for website, menu, Google profile, review, social, promotion, and repeat-customer basics.
+- Added `public/google-business-profile-checklist-restaurants.html` for restaurant profile basics, photos, services, and review rhythm.
+- Added `public/restaurant-website-checklist.html` for mobile-first restaurant website clarity.
+- Added `public/restaurant-review-response-templates.html` for safe, human restaurant review response examples.
+- Added `public/slow-night-restaurant-promotion-ideas.html` for simple restaurant promotion planning.
+
+### Changed
+
+- Updated `public/sitemap.xml` to include the new restaurant owner resource pages.
+- Updated `public/quick-searches.js` so homepage navigation includes Owner Resources.
+- Updated `README.md` to document the owner resource pages and their use of the marketing-system direction.
+
+### Safety notes
+
+- No private keys, API keys, live ads, tracking scripts, payment setup, user accounts, upload systems, ordering integrations, framework rebuilds, or major code deletion were added.
+- New pages are static educational/lead-support content only.
+
 ## 2026-05-29
 
 ### Added
