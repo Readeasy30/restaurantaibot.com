@@ -34,6 +34,8 @@ Current workflow files:
 - Optional OpenAI parsing with local parsing fallback
 - Safe demo restaurant results when Google Maps is not configured or live search temporarily fails
 - Clear demo-result labels on homepage restaurant cards
+- Root `index.html` fallback redirect if Cloudflare is accidentally pointed at repository root
+- Root `_redirects` fallback for key public pages if Cloudflare is accidentally pointed at repository root
 - Improved near-me search handling
 - Improved local-city search handling
 - Improved quick-search submit behavior
@@ -73,6 +75,8 @@ Current workflow files:
 ## Current stable architecture
 
 - `public/index.html` is the main website/search page.
+- Root `index.html` now redirects to `/public/index.html` as a safety net only. Preferred Cloudflare output directory remains `public`.
+- Root `_redirects` now maps key root URLs to `/public/...` as a safety net only. Preferred Cloudflare output directory remains `public`.
 - `public/404.html` is the custom noindex visitor recovery page for broken or outdated links.
 - `public/_headers` adds conservative Cloudflare security headers and `no-store` for `/api/*`.
 - `public/_redirects` adds safe 301 redirects for likely old paths including `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html`.
@@ -99,6 +103,7 @@ Currently operational in repo:
 
 - Restaurant search API files
 - Demo fallback search when API keys are not fully configured
+- Root publishing fallback files
 - Worldwide city / nearby restaurant discovery files
 - Google Maps / Places restaurant result files when configured
 - SEO food pages
@@ -117,6 +122,7 @@ Live browser render status:
 - Needs a real browser / Cloudflare Pages check after latest commits.
 - GitHub Actions workflow runs are not present for these commits, so there is no repo-side CI result to read.
 - Cloudflare Pages should publish from GitHub if the project is connected and set to output directory `public`.
+- Root fallback protects against a wrong output-directory setting but the preferred fix remains Cloudflare output directory `public`.
 
 Not operational yet:
 
@@ -130,7 +136,7 @@ Not operational yet:
 
 ## Current safe queue
 
-1. Confirm Cloudflare Pages deployed commit `a794f749fee4fb1c7322f99875d445211e27fb08` or later.
+1. Confirm Cloudflare Pages deployed commit `453ec794b338885c0279adb9995ff316f6c0d9f3` or later.
 2. Browser-test `https://restaurantaibot.com/` and `https://www.restaurantaibot.com/`.
 3. Test these searches: `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
 4. Confirm demo results are clearly labeled when API keys are missing.
