@@ -27,12 +27,16 @@
     .message { max-width: 92%; padding: 13px 15px; border-radius: 16px; line-height: 1.45; font-size: 0.95rem; word-wrap: break-word; }
     .user-msg { align-self: flex-end; background: #1a73e8; color: #fff; }
     .ai-msg { align-self: flex-start; background: #fff; color: #222; border: 1px solid #ddd; }
+    .demo-msg { border-color: #ffb088; background: #fff7ed; }
     .restaurant-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border: 1px solid #eee; }
+    .restaurant-card.demo-card { border-color: #ffb088; }
     .restaurant-image { width: 100%; height: 150px; object-fit: cover; }
     .restaurant-content { padding: 15px; }
     .restaurant-card h3 { margin-bottom: 8px; line-height: 1.25; }
     .restaurant-card p { margin-bottom: 6px; color: #555; font-size: 0.92rem; line-height: 1.45; }
-    .tag { display: inline-block; background: #fff3ed; color: #ff6b35; padding: 6px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: bold; margin-top: 6px; }
+    .tag { display: inline-block; background: #fff3ed; color: #ff6b35; padding: 6px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: bold; margin-top: 6px; margin-right: 6px; }
+    .demo-tag { background: #fff7d6; color: #8a5a00; }
+    .source-note { color: #666; font-size: .82rem; margin-top: 8px; }
     .card-actions { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
     .card-actions a { text-decoration: none; background: #ff6b35; color: white; padding: 9px 13px; border-radius: 999px; font-size: 0.86rem; font-weight: bold; }
     .input-container { padding: 15px; display: flex; gap: 10px; background: #fff; border-top: 1px solid #ddd; }
@@ -135,14 +139,15 @@
       return div;
     }
 
-    function addRestaurantCard(restaurant) {
+    function addRestaurantCard(restaurant, demoMode = false) {
       const safeName = restaurant.name || 'Restaurant';
       const safeAddress = restaurant.address || 'Address unavailable';
       const safeRating = restaurant.rating || 'N/A';
+      const source = restaurant.source || (demoMode ? 'Demo result' : 'Restaurant data');
       const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(safeName + ' ' + safeAddress)}`;
 
       const card = document.createElement('div');
-      card.className = 'restaurant-card';
+      card.className = demoMode ? 'restaurant-card demo-card' : 'restaurant-card';
 
       const image = document.createElement('img');
       image.className = 'restaurant-image';
@@ -164,7 +169,17 @@
 
       const tag = document.createElement('span');
       tag.className = 'tag';
-      tag.textContent = 'AI Recommended';
+      tag.textContent = demoMode ? 'Sample Match' : 'AI Recommended';
+
+      const sourceTag = document.createElement('span');
+      sourceTag.className = demoMode ? 'tag demo-tag' : 'tag';
+      sourceTag.textContent = source;
+
+      const note = document.createElement('p');
+      note.className = 'source-note';
+      note.textContent = demoMode
+        ? 'Demo example only. Use live map/search setup before treating this as a real listing.'
+        : 'Confirm details directly with the restaurant before visiting.';
 
       const actions = document.createElement('div');
       actions.className = 'card-actions';
@@ -173,11 +188,11 @@
       directions.href = mapsLink;
       directions.target = '_blank';
       directions.rel = 'noopener noreferrer';
-      directions.textContent = 'Directions';
-      directions.setAttribute('aria-label', `Get directions to ${safeName}`);
+      directions.textContent = demoMode ? 'Search on Google Maps' : 'Directions';
+      directions.setAttribute('aria-label', `Search Google Maps for ${safeName}`);
 
       actions.appendChild(directions);
-      content.append(title, rating, address, tag, actions);
+      content.append(title, rating, address, tag, sourceTag, note, actions);
       card.append(image, content);
       chatHistory.appendChild(card);
       chatHistory.scrollTop = chatHistory.scrollHeight;
@@ -204,8 +219,8 @@
         const config = await response.json();
 
         if (!config.googleMapsApiKey) {
-          setMapFallback('Map setup is not configured yet. You can still search by food and city once restaurant search is configured.');
-          addMessage('Map setup is missing. Restaurant search may not work yet.', 'ai-msg');
+          setMapFallback('Live map setup is not configured yet. Search still works with safe demo examples until Google Maps is connected.');
+          addMessage('Live map setup is not configured yet. You can still try food and city searches to preview the experience.', 'ai-msg demo-msg');
           return;
         }
 
@@ -217,12 +232,12 @@
         script.defer = true;
         script.onerror = () => {
           setMapFallback('Map could not load. Try refreshing, or search by city and confirm details directly with the restaurant.');
-          addMessage('Map could not load right now.', 'ai-msg');
+          addMessage('Map could not load right now. Search may show demo examples if live search is unavailable.', 'ai-msg demo-msg');
         };
         document.head.appendChild(script);
       } catch (error) {
         setMapFallback('Map could not load. Try searching by city, then confirm details directly with the restaurant.');
-        addMessage('Map could not load right now.', 'ai-msg');
+        addMessage('Map could not load right now. Search may show demo examples if live search is unavailable.', 'ai-msg demo-msg');
       }
     }
 
@@ -271,7 +286,8 @@
           return;
         }
 
-        addMessage(data.aiExplanation || 'Here are matching restaurants.', 'ai-msg');
+        const messageType = data.demoMode ? 'ai-msg demo-msg' : 'ai-msg';
+        addMessage(data.aiExplanation || 'Here are matching restaurants.', messageType);
         clearMarkers();
         const restaurants = Array.isArray(data.restaurants) ? data.restaurants : [];
 
@@ -283,7 +299,7 @@
         const bounds = map ? new google.maps.LatLngBounds() : null;
 
         restaurants.forEach((restaurant) => {
-          addRestaurantCard(restaurant);
+          addRestaurantCard(restaurant, Boolean(data.demoMode));
           if (!map || !Number.isFinite(restaurant.lat) || !Number.isFinite(restaurant.lng)) return;
           const marker = new google.maps.Marker({ position: { lat: restaurant.lat, lng: restaurant.lng }, map, title: restaurant.name });
           markers.push(marker);
