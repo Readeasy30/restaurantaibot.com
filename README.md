@@ -14,6 +14,7 @@ RestaurantAIBot is not a generic web crawler. It is a restaurant discovery app t
 - simple consumer search pages
 - city, cuisine, and dining-style landing pages
 - restaurant owner / advertiser planning pages
+- restaurant owner resource pages
 
 ## Live goal
 
@@ -50,13 +51,19 @@ No live payments, live ad scripts, private keys, user accounts, uploads, orderin
 - `public/privacy.html` — Privacy page
 - `public/terms.html` — Terms page
 - `public/owner-advertise.html` — restaurant owner / advertiser interest page
+- `public/restaurant-owner-resources.html` — restaurant owner resource hub
+- `public/restaurant-growth-checklist.html` — restaurant growth checklist page
+- `public/google-business-profile-checklist-restaurants.html` — Google Business Profile checklist page
+- `public/restaurant-website-checklist.html` — restaurant website checklist page
+- `public/restaurant-review-response-templates.html` — review response templates page
+- `public/slow-night-restaurant-promotion-ideas.html` — slow-night promotion ideas page
 - `public/restaurant-marketing-tools.html` — future restaurant marketing tools page
 - `public/advertiser-intake.html` — advertiser interest intake page
 - `public/sample-restaurant-profile.html` — sample/demo restaurant profile page
 - `public/demo-promotions.json` — demo-only future placement data
 - `public/demo-restaurant-profiles.json` — demo-only future restaurant profile data
 - `public/robots.txt` — crawler rules
-- `public/sitemap.xml` — sitemap for core, support, SEO, and city pages
+- `public/sitemap.xml` — sitemap for core, support, SEO, city, and owner-resource pages
 - `functions/api/search.js` — AI + Google Places restaurant search endpoint
 - `functions/api/config.js` — exposes browser-safe Maps config from Cloudflare env vars
 - `AGENTS.md` — AI work rules
@@ -101,6 +108,17 @@ No live payments, live ad scripts, private keys, user accounts, uploads, orderin
 - `public/paris-restaurants.html`
 - `public/toronto-restaurants.html`
 
+## Restaurant owner resource pages
+
+These pages use the direction from `Wholelychit/marketing-system` and are safe static content only:
+
+- `public/restaurant-owner-resources.html`
+- `public/restaurant-growth-checklist.html`
+- `public/google-business-profile-checklist-restaurants.html`
+- `public/restaurant-website-checklist.html`
+- `public/restaurant-review-response-templates.html`
+- `public/slow-night-restaurant-promotion-ideas.html`
+
 ## Cloudflare Pages settings
 
 - Project: `restaurantaibot`
@@ -129,7 +147,7 @@ Do not add a GitHub Actions deployment workflow unless Cloudflare auto-deploy is
 - `public/_headers` adds conservative security headers without using a strict CSP that could break Google Maps.
 - `public/_redirects` redirects likely old paths such as `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html` to current pages.
 - `functions/api/search.js` handles near-me searches carefully and keeps `local + city` queries as city searches.
-- `public/quick-searches.js` submits quick searches through the real search form event.
+- `public/quick-searches.js` submits quick searches through the real search form event and injects the owner resource link.
 - `REPO-AUDIT.md` records repo-level checks for broken paths, brittle JS patterns, exposed-key patterns, and leftover TODO/FIXME markers.
 
 ## Safe development rules
@@ -167,6 +185,6 @@ Known connector false positives:
 
 1. Run manual/browser tests using `MANUAL-TEST-CHECKLIST.md`.
 2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
-3. Retry Dallas and Tokyo cross-link updates later through Codex or a connector retry.
+3. Add more owner resource pages from the marketing repo when useful.
 4. Consider a simple shared helper script only if it reduces future duplicate edits without changing the stack.
 5. Keep live ads, payments, tracking, dashboards, and sponsored placements inactive until direct approval.
