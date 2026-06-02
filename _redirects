@@ -2,8 +2,9 @@
 # These protect the site if Cloudflare Pages is accidentally pointed at the repository root instead of /public.
 # Preferred production output directory remains: public
 
-/public/index.html  /  301
-/public/            /  301
+/quick-searches.js                       /public/quick-searches.js                       200
+/demo-promotions.json                    /public/demo-promotions.json                    200
+/demo-restaurant-profiles.json           /public/demo-restaurant-profiles.json           200
 
 /about.html                              /public/about.html                              200
 /contact.html                            /public/contact.html                            200
@@ -13,6 +14,11 @@
 /restaurant-cities.html                  /public/restaurant-cities.html                  200
 /owner-advertise.html                    /public/owner-advertise.html                    200
 /restaurant-owner-resources.html         /public/restaurant-owner-resources.html         200
+/restaurant-growth-checklist.html        /public/restaurant-growth-checklist.html        200
+/google-business-profile-checklist-restaurants.html /public/google-business-profile-checklist-restaurants.html 200
+/restaurant-website-checklist.html       /public/restaurant-website-checklist.html       200
+/restaurant-review-response-templates.html /public/restaurant-review-response-templates.html 200
+/slow-night-restaurant-promotion-ideas.html /public/slow-night-restaurant-promotion-ideas.html 200
 /restaurant-marketing-tools.html         /public/restaurant-marketing-tools.html         200
 /advertiser-intake.html                  /public/advertiser-intake.html                  200
 /sample-restaurant-profile.html          /public/sample-restaurant-profile.html          200
