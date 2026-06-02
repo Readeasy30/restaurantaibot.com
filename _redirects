@@ -1,0 +1,46 @@
+# Root fallback redirects
+# These protect the site if Cloudflare Pages is accidentally pointed at the repository root instead of /public.
+# Preferred production output directory remains: public
+
+/public/index.html  /  301
+/public/            /  301
+
+/about.html                              /public/about.html                              200
+/contact.html                            /public/contact.html                            200
+/privacy.html                            /public/privacy.html                            200
+/terms.html                              /public/terms.html                              200
+/popular-searches.html                   /public/popular-searches.html                   200
+/restaurant-cities.html                  /public/restaurant-cities.html                  200
+/owner-advertise.html                    /public/owner-advertise.html                    200
+/restaurant-owner-resources.html         /public/restaurant-owner-resources.html         200
+/restaurant-marketing-tools.html         /public/restaurant-marketing-tools.html         200
+/advertiser-intake.html                  /public/advertiser-intake.html                  200
+/sample-restaurant-profile.html          /public/sample-restaurant-profile.html          200
+
+/pizza-near-me.html                      /public/pizza-near-me.html                      200
+/tacos-near-me.html                      /public/tacos-near-me.html                      200
+/sushi-near-me.html                      /public/sushi-near-me.html                      200
+/breakfast-near-me.html                  /public/breakfast-near-me.html                  200
+/vegan-restaurants-near-me.html          /public/vegan-restaurants-near-me.html          200
+/seafood-near-me.html                    /public/seafood-near-me.html                    200
+/coffee-near-me.html                     /public/coffee-near-me.html                     200
+/dinner-near-me.html                     /public/dinner-near-me.html                     200
+/cheap-eats-near-me.html                 /public/cheap-eats-near-me.html                 200
+/outdoor-dining-near-me.html             /public/outdoor-dining-near-me.html             200
+
+/chicago-restaurants.html                /public/chicago-restaurants.html                200
+/new-york-restaurants.html               /public/new-york-restaurants.html               200
+/dallas-restaurants.html                 /public/dallas-restaurants.html                 200
+/miami-restaurants.html                  /public/miami-restaurants.html                  200
+/los-angeles-restaurants.html            /public/los-angeles-restaurants.html            200
+/las-vegas-restaurants.html              /public/las-vegas-restaurants.html              200
+/atlanta-restaurants.html                /public/atlanta-restaurants.html                200
+/denver-restaurants.html                 /public/denver-restaurants.html                 200
+/tokyo-restaurants.html                  /public/tokyo-restaurants.html                  200
+/london-restaurants.html                 /public/london-restaurants.html                 200
+/paris-restaurants.html                  /public/paris-restaurants.html                  200
+/toronto-restaurants.html                /public/toronto-restaurants.html                200
+
+/404.html                                /public/404.html                                200
+/robots.txt                              /public/robots.txt                              200
+/sitemap.xml                             /public/sitemap.xml                             200
