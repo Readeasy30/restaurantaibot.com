@@ -1,0 +1,12 @@
+# Root fallback headers
+# Preferred production output directory remains: public, which uses public/_headers.
+# This file protects the site if Cloudflare Pages is accidentally pointed at repository root.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(self), microphone=(), camera=(), payment=()
+
+/api/*
+  Cache-Control: no-store
