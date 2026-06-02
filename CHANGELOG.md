@@ -10,17 +10,22 @@
 - Added `public/restaurant-website-checklist.html` for mobile-first restaurant website clarity.
 - Added `public/restaurant-review-response-templates.html` for safe, human restaurant review response examples.
 - Added `public/slow-night-restaurant-promotion-ideas.html` for simple restaurant promotion planning.
+- Added safe demo fallback restaurant search in `functions/api/search.js` so the site can show sample results when Google Maps is not configured or live search temporarily fails.
 
 ### Changed
 
 - Updated `public/sitemap.xml` to include the new restaurant owner resource pages.
 - Updated `public/quick-searches.js` so homepage navigation includes Owner Resources.
 - Updated `README.md` to document the owner resource pages and their use of the marketing-system direction.
+- Updated `functions/api/search.js` so OpenAI parsing is optional and local parsing can handle common city/cuisine searches before API keys are connected.
+- Updated `public/index.html` to clearly label demo search results and avoid making sample results look like verified live restaurant listings.
+- Updated homepage map fallback language so visitors know they can still preview food and city searches before live Google Maps setup is complete.
 
 ### Safety notes
 
 - No private keys, API keys, live ads, tracking scripts, payment setup, user accounts, upload systems, ordering integrations, framework rebuilds, or major code deletion were added.
 - New pages are static educational/lead-support content only.
+- Demo fallback results are clearly labeled as sample matches and tell visitors to confirm real details before visiting a restaurant.
 
 ## 2026-05-29
 
