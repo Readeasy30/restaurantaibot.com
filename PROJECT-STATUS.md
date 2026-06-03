@@ -1,28 +1,29 @@
 # RestaurantAIBot Project Status
 
-Last updated: 2026-06-02
+Last updated: 2026-06-03
 
 ## Repository
 
 `Wholelychit/restaurantaibot.com`
 
-## Codex-first workflow
+## Codex-first / Grok-compatible workflow
 
-Use ChatGPT 5.5 and Codex as the production workflow.
+Use ChatGPT 5.5, Codex, Grok when useful, GitHub, and Cloudflare Pages as the production workflow.
 
 - ChatGPT 5.5 manages the plan.
-- Codex performs repository work.
+- Codex or Grok can review and continue safe repository work when connected to GitHub.
 - GitHub stores files and commits.
 - Cloudflare Pages publishes from GitHub when connected.
 - Gerry should not be asked to paste, create, replace, or manually update repo files.
 
-Use the ChatGPT GitHub connector only for small reads, checks, reviews, emergency single-file edits, or when Codex is awkward or blocked.
+Use the ChatGPT GitHub connector only for small reads, checks, reviews, emergency single-file edits, or when Codex/Grok is awkward or blocked.
 
 Current workflow files:
 
 - `AGENTS.md`
 - `CODEX-WORKFLOW.md`
 - `CODEX-CURRENT-TASK.md`
+- `GROK-GITHUB-BUILD-PROMPT.md`
 - `PROJECT-STATUS.md`
 - `CHANGELOG.md`
 - `CURRENT-TASK.md`
@@ -72,6 +73,7 @@ Current workflow files:
 - Cross-linked food SEO landing pages
 - Cross-linked city landing pages where connector allowed writes
 - Removed old connector test file
+- Added Grok/GitHub build prompt for safe AI-assisted review and build continuation
 
 ## Current stable architecture
 
@@ -89,6 +91,7 @@ Current workflow files:
 - `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub. `404.html` should stay out of the sitemap.
 - `CODEX-WORKFLOW.md` links to `CONNECTOR-RECOVERY.md` for connector failure handling.
 - `CONNECTOR-RECOVERY.md` records connector-failure recovery rules so Gerry does not manually edit files.
+- `GROK-GITHUB-BUILD-PROMPT.md` gives Grok a safe GitHub build prompt that preserves the stack and safety locks.
 - `CHANGELOG.md` tracks safe production changes.
 - `REPO-AUDIT.md` records repo-level checks for broken paths, brittle JavaScript patterns, obvious secret patterns, and leftover TODO/FIXME markers.
 - `UX-GOALS.md` locks product and visitor experience rules.
@@ -119,6 +122,7 @@ Currently operational in repo:
 - Conservative Cloudflare security headers
 - Safe old-path redirects
 - Repo audit notes
+- Grok/GitHub build prompt
 
 Live browser render status:
 
@@ -139,12 +143,13 @@ Not operational yet:
 
 ## Current safe queue
 
-1. Confirm Cloudflare Pages deployed commit `a955e6ab8cd495cb7fc80a88869e713100b4463b` or later.
+1. Confirm Cloudflare Pages deployed commit `e0850c7a1050c055abb952a88caae66478db9741` or later.
 2. Browser-test `https://restaurantaibot.com/` and `https://www.restaurantaibot.com/`.
 3. Test these searches: `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
 4. Confirm demo results are clearly labeled when API keys are missing.
 5. If live domain still fails, fix Cloudflare DNS / Pages custom domain connection before doing more site design.
-6. Keep live ads, payments, tracking, dashboards, ordering, uploads, and accounts inactive until direct approval.
+6. Use `GROK-GITHUB-BUILD-PROMPT.md` when asking Grok to review/build with GitHub access.
+7. Keep live ads, payments, tracking, dashboards, ordering, uploads, and accounts inactive until direct approval.
 
 ## Safety lock
 
