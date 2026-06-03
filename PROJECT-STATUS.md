@@ -74,6 +74,8 @@ Current workflow files:
 - Cross-linked city landing pages where connector allowed writes
 - Removed old connector test file
 - Added Grok/GitHub build prompt for safe AI-assisted review and build continuation
+- Added missing owner-resource pages to sitemap
+- Updated README to match current owner-resource page inventory
 
 ## Current stable architecture
 
@@ -88,7 +90,7 @@ Current workflow files:
 - `functions/api/search.js` handles restaurant search, prevents bad `near me` searches without browser location, keeps `local + city` searches as city searches, uses OpenAI parsing when configured, uses local parsing when OpenAI is missing, and returns clearly labeled demo results when Google Maps is missing or temporarily failing.
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
-- `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, and the restaurant cities hub. `404.html` should stay out of the sitemap.
+- `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, restaurant owner resources, and the restaurant cities hub. `404.html` should stay out of the sitemap.
 - `CODEX-WORKFLOW.md` links to `CONNECTOR-RECOVERY.md` for connector failure handling.
 - `CONNECTOR-RECOVERY.md` records connector-failure recovery rules so Gerry does not manually edit files.
 - `GROK-GITHUB-BUILD-PROMPT.md` gives Grok a safe GitHub build prompt that preserves the stack and safety locks.
@@ -123,6 +125,7 @@ Currently operational in repo:
 - Safe old-path redirects
 - Repo audit notes
 - Grok/GitHub build prompt
+- Sitemap coverage for current owner-resource pages
 
 Live browser render status:
 
@@ -143,7 +146,7 @@ Not operational yet:
 
 ## Current safe queue
 
-1. Confirm Cloudflare Pages deployed commit `e0850c7a1050c055abb952a88caae66478db9741` or later.
+1. Confirm Cloudflare Pages deployed commit `2bd94d0b1edc56b8d26a3c27a9763f252dcc2c30` or later.
 2. Browser-test `https://restaurantaibot.com/` and `https://www.restaurantaibot.com/`.
 3. Test these searches: `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
 4. Confirm demo results are clearly labeled when API keys are missing.
