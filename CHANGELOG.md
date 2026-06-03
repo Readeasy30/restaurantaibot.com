@@ -7,6 +7,7 @@
 - Added `GROK-GITHUB-BUILD-PROMPT.md` so Grok, Codex, or another GitHub-connected AI assistant can review and continue the safe RestaurantAIBot build without changing the stack or asking Gerry for manual repo edits.
 - Added a visible live-data setup notice through `public/quick-searches.js` so homepage visitors understand that food/city search can be previewed while Google Maps is being connected.
 - Added homepage search tips for food-plus-city searches, near-me searches, and restaurant detail confirmation.
+- Added `functions/api/health.js` to show whether live Google Maps and optional OpenAI configuration are present as booleans only. The endpoint never returns secret values.
 
 ### Changed
 
@@ -19,7 +20,7 @@
 
 - No private keys, API keys, live ads, tracking scripts, payment setup, user accounts, upload systems, ordering integrations, affiliate links, framework rebuilds, or major code deletion were added.
 - The Grok prompt keeps work limited to safe plain HTML/CSS/JS, Cloudflare Pages, documentation, SEO, mobile, accessibility, and small bug-fix improvements.
-- Sitemap, README, status, homepage setup-notice, and search-guidance changes are safe static/documentation updates only.
+- Sitemap, README, status, homepage setup-notice, search-guidance, and API health-check changes are safe static/API diagnostics updates only.
 - API keys must be entered directly in Cloudflare Variables and Secrets, not in GitHub or chat.
 
 ## 2026-06-02
