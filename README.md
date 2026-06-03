@@ -73,6 +73,7 @@ No live payments, live ad scripts, private keys, user accounts, uploads, orderin
 - `public/sitemap.xml` — sitemap for core, support, SEO, city, and owner-resource pages
 - `functions/api/search.js` — AI + Google Places restaurant search endpoint
 - `functions/api/config.js` — exposes browser-safe Maps config from Cloudflare env vars
+- `tools/validate_static_site.py` — local repo-side static validation helper
 - `AGENTS.md` — AI work rules
 - `AGENT-INSTRUCTIONS.md` — production build instructions
 - `CODEX-WORKFLOW.md` — Codex-first repo editing workflow
@@ -150,6 +151,16 @@ Add these in Cloudflare Pages settings:
 
 Do not commit real API keys to GitHub.
 
+## Local checks
+
+Run the static validation helper before larger design or content batches:
+
+```bash
+python tools/validate_static_site.py
+```
+
+This helper checks required files, sitemap coverage, robots, headers, redirects, internal links, homepage behavior terms, API behavior terms, and blocked live-feature script terms. It does not replace browser testing on the live Cloudflare Pages site.
+
 ## Deployment rule
 
 Use the native Cloudflare Pages GitHub integration.
@@ -163,6 +174,7 @@ Do not add a GitHub Actions deployment workflow unless Cloudflare auto-deploy is
 - `public/_redirects` redirects likely old paths such as `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html` to current pages.
 - `functions/api/search.js` handles near-me searches carefully and keeps `local + city` queries as city searches.
 - `public/quick-searches.js` submits quick searches through the real search form event and injects the owner resource link.
+- `tools/validate_static_site.py` provides local repo-side static validation before more design work.
 - `REPO-AUDIT.md` records repo-level checks for broken paths, brittle JS patterns, exposed-key patterns, and leftover TODO/FIXME markers.
 
 ## Safe development rules
@@ -198,8 +210,9 @@ Known connector false positives:
 
 ## Current safe build queue
 
-1. Run manual/browser tests using `MANUAL-TEST-CHECKLIST.md`.
-2. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
-3. Add more owner resource pages from the marketing repo when useful.
-4. Consider a simple shared helper script only if it reduces future duplicate edits without changing the stack.
-5. Keep live ads, payments, tracking, dashboards, and sponsored placements inactive until direct approval.
+1. Run repo-side validation with `python tools/validate_static_site.py`.
+2. Run manual/browser tests using `MANUAL-TEST-CHECKLIST.md`.
+3. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
+4. Add more owner resource pages from the marketing repo when useful.
+5. Consider a simple shared helper script only if it reduces future duplicate edits without changing the stack.
+6. Keep live ads, payments, tracking, dashboards, and sponsored placements inactive until direct approval.
