@@ -45,6 +45,7 @@ Current workflow files:
 - Conservative Cloudflare security headers
 - Safe Cloudflare redirects for old paths
 - Repo audit notes
+- Repo-side static validation helper at `tools/validate_static_site.py`
 - Google Maps integration when Cloudflare env var is configured
 - Cloudflare Pages deployment
 - Cloudflare Functions API
@@ -91,6 +92,7 @@ Current workflow files:
 - `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
 - `public/robots.txt` allows crawling and points to sitemap.
 - `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, restaurant owner resources, and the restaurant cities hub. `404.html` should stay out of the sitemap.
+- `tools/validate_static_site.py` is a local-only static preflight helper for required files, sitemap coverage, robots, headers, redirects, links, homepage behavior terms, API behavior terms, and blocked live-feature script terms.
 - `CODEX-WORKFLOW.md` links to `CONNECTOR-RECOVERY.md` for connector failure handling.
 - `CONNECTOR-RECOVERY.md` records connector-failure recovery rules so Gerry does not manually edit files.
 - `GROK-GITHUB-BUILD-PROMPT.md` gives Grok a safe GitHub build prompt that preserves the stack and safety locks.
@@ -126,6 +128,7 @@ Currently operational in repo:
 - Repo audit notes
 - Grok/GitHub build prompt
 - Sitemap coverage for current owner-resource pages
+- Static validation helper for repo-side checks
 
 Live browser render status:
 
@@ -146,13 +149,14 @@ Not operational yet:
 
 ## Current safe queue
 
-1. Confirm Cloudflare Pages deployed commit `2bd94d0b1edc56b8d26a3c27a9763f252dcc2c30` or later.
-2. Browser-test `https://restaurantaibot.com/` and `https://www.restaurantaibot.com/`.
-3. Test these searches: `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
-4. Confirm demo results are clearly labeled when API keys are missing.
-5. If live domain still fails, fix Cloudflare DNS / Pages custom domain connection before doing more site design.
-6. Use `GROK-GITHUB-BUILD-PROMPT.md` when asking Grok to review/build with GitHub access.
-7. Keep live ads, payments, tracking, dashboards, ordering, uploads, and accounts inactive until direct approval.
+1. Run repo-side validation with `python tools/validate_static_site.py` before more design changes.
+2. Confirm Cloudflare Pages deployed commit `3b388c40f4ef05139450468fa5db3fbbd18ff833` or later.
+3. Browser-test `https://restaurantaibot.com/` and `https://www.restaurantaibot.com/`.
+4. Test these searches: `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
+5. Confirm demo results are clearly labeled when API keys are missing.
+6. If live domain still fails, fix Cloudflare DNS / Pages custom domain connection before doing more site design.
+7. Use `GROK-GITHUB-BUILD-PROMPT.md` when asking Grok to review/build with GitHub access.
+8. Keep live ads, payments, tracking, dashboards, ordering, uploads, and accounts inactive until direct approval.
 
 ## Safety lock
 
