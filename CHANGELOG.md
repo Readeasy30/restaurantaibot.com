@@ -8,6 +8,7 @@
 - Added a visible live-data setup notice through `public/quick-searches.js` so homepage visitors understand that food/city search can be previewed while Google Maps is being connected.
 - Added homepage search tips for food-plus-city searches, near-me searches, and restaurant detail confirmation.
 - Added `functions/api/health.js` to show whether live Google Maps and optional OpenAI configuration are present as booleans only. The endpoint never returns secret values.
+- Added `public/system-status.html`, a public system status page that checks `/api/health` without exposing secret values.
 
 ### Changed
 
@@ -15,12 +16,14 @@
 - Updated `README.md` so the documented main files and owner-resource page list match the current repository.
 - Updated `PROJECT-STATUS.md` to record the current Cloudflare environment-variable blocker: wrong/empty Google Maps variable and empty OpenAI variable.
 - Improved quick-search button focus styling and added automatic live-map status text when the Google Maps key is detected.
+- Added `System Status` to injected homepage/footer navigation through `public/quick-searches.js`.
+- Added `system-status.html` to `public/sitemap.xml`.
 
 ### Safety notes
 
 - No private keys, API keys, live ads, tracking scripts, payment setup, user accounts, upload systems, ordering integrations, affiliate links, framework rebuilds, or major code deletion were added.
 - The Grok prompt keeps work limited to safe plain HTML/CSS/JS, Cloudflare Pages, documentation, SEO, mobile, accessibility, and small bug-fix improvements.
-- Sitemap, README, status, homepage setup-notice, search-guidance, and API health-check changes are safe static/API diagnostics updates only.
+- Sitemap, README, status, homepage setup-notice, search-guidance, API health-check, and system-status page changes are safe static/API diagnostics updates only.
 - API keys must be entered directly in Cloudflare Variables and Secrets, not in GitHub or chat.
 
 ## 2026-06-02
