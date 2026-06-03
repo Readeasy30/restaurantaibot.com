@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Status | RestaurantAIBot</title>
+  <meta name="description" content="Check RestaurantAIBot live search setup status, including safe Google Maps and AI parsing readiness checks." />
+  <link rel="canonical" href="https://restaurantaibot.com/system-status.html" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; color: #222; line-height: 1.6; }
+    header { background: linear-gradient(135deg,#ff6b35,#ff9559); color: white; padding: 28px 20px; }
+    .wrap { width: min(960px, calc(100% - 32px)); margin: 0 auto; }
+    nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+    nav a { color: white; text-decoration: none; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; padding: 7px 11px; font-weight: 700; }
+    main { padding: 24px 0 42px; }
+    .card { background: white; border: 1px solid #e7e7e7; border-radius: 18px; padding: 20px; box-shadow: 0 8px 18px rgba(0,0,0,.06); margin-bottom: 16px; }
+    .status-box { background: #fff7ed; border-color: #ffb088; }
+    code { background: #f1f3f6; padding: 2px 5px; border-radius: 6px; }
+    pre { white-space: pre-wrap; background: #111827; color: #f9fafb; border-radius: 14px; padding: 16px; overflow-x: auto; }
+    button, .button { display: inline-block; border: none; background: #ff6b35; color: white; text-decoration: none; border-radius: 999px; padding: 11px 16px; font-weight: 700; cursor: pointer; }
+    .muted { color: #666; font-size: .95rem; }
+    .ok { color: #137333; font-weight: 700; }
+    .warn { color: #9a5800; font-weight: 700; }
+    footer { color: #666; font-size: .9rem; padding: 20px 0 28px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Main navigation">
+        <a href="/">Search</a>
+        <a href="/popular-searches.html">Popular Searches</a>
+        <a href="/restaurant-cities.html">Cities</a>
+        <a href="/owner-advertise.html">For Restaurants</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <h1>RestaurantAIBot System Status</h1>
+      <p>Use this page to check whether live map and AI search services are connected.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card status-box">
+      <h2>Live setup check</h2>
+      <p>This page calls <code>/api/health</code>. It reports only true or false values. It never shows API key values.</p>
+      <button id="checkStatus" type="button">Check Live Status</button>
+      <p id="summary" class="muted">Status not checked yet.</p>
+      <pre id="result">Click the button to check live setup.</pre>
+    </section>
+
+    <section class="card">
+      <h2>What the results mean</h2>
+      <p><strong>Google Maps true</strong> means Cloudflare can see the Google Maps key and live restaurant search can be tested.</p>
+      <p><strong>Google Maps false</strong> means the site will stay in safe demo mode until <code>GOOGLE_MAPS_API_KEY</code> is added in Cloudflare Variables and Secrets, then redeployed.</p>
+      <p><strong>OpenAI true</strong> means optional AI parsing can be tested. <strong>OpenAI false</strong> is okay because local parsing still works.</p>
+    </section>
+
+    <section class="card">
+      <h2>Test searches after Google Maps is connected</h2>
+      <ul>
+        <li><a href="/?q=pizza%20in%20Chicago">pizza in Chicago</a></li>
+        <li><a href="/?q=tacos%20in%20Dallas">tacos in Dallas</a></li>
+        <li><a href="/?q=sushi%20in%20Tokyo">sushi in Tokyo</a></li>
+        <li>For <strong>pizza near me</strong>, go to Search, click <strong>Use My Location</strong>, then search.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    Restaurant details can change. Confirm hours, menus, allergies, prices, and availability with the restaurant.
+  </footer>
+
+  <script>
+    const button = document.getElementById('checkStatus');
+    const result = document.getElementById('result');
+    const summary = document.getElementById('summary');
+
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      summary.textContent = 'Checking live setup...';
+      result.textContent = 'Loading...';
+
+      try {
+        const response = await fetch('/api/health', { cache: 'no-store' });
+        const data = await response.json();
+        result.textContent = JSON.stringify(data, null, 2);
+
+        const mapsReady = Boolean(data?.services?.googleMapsConfigured);
+        const aiReady = Boolean(data?.services?.openAiConfigured);
+        summary.innerHTML = mapsReady
+          ? '<span class="ok">Google Maps is configured.</span> Now test live restaurant searches.'
+          : '<span class="warn">Google Maps is not configured yet.</span> Search stays in demo mode until Cloudflare variables are fixed and redeployed.';
+
+        if (!aiReady) {
+          summary.innerHTML += ' OpenAI parsing is optional and currently off.';
+        }
+      } catch (error) {
+        summary.innerHTML = '<span class="warn">Could not read /api/health yet.</span> Cloudflare may still be deploying.';
+        result.textContent = 'Health check failed. Try again after the latest deployment finishes.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
