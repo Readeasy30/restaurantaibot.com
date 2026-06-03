@@ -6,6 +6,19 @@ Last updated: 2026-06-03
 
 `Wholelychit/restaurantaibot.com`
 
+## Locked checkpoint — 2026-06-03
+
+Current stable checkpoint is locked at or after commit:
+
+`042211fae14c9344d29315189fbf8163d80a897b`
+
+Additional checkpoint commits made after that:
+
+- `3598c74b46f80044a6d53117cb115dd34e5cf06a` — `public/system-status.html` marked `noindex, nofollow`.
+- Sitemap diagnostic-page cleanup attempted after this checkpoint; verify latest `public/sitemap.xml` before the next build batch.
+
+Do not repeat completed Cloudflare/DNS diagnosis unless the live domain breaks again.
+
 ## Codex-first / Grok-compatible workflow
 
 Use ChatGPT 5.5, Codex, Grok when useful, GitHub, and Cloudflare Pages as the production workflow.
@@ -41,6 +54,13 @@ Current workflow files:
 - Improved near-me search handling
 - Improved local-city search handling
 - Improved quick-search submit behavior
+- Homepage live-data setup notice
+- Homepage search tips
+- Injected System Status navigation link
+- API health endpoint at `functions/api/health.js`
+- System Status page at `public/system-status.html`
+- System Status page marked `noindex, nofollow`
+- `/api/config` readiness fields: `googleMapsConfigured` and `mapStatus`
 - Custom 404 visitor recovery page
 - Conservative Cloudflare security headers
 - Safe Cloudflare redirects for old paths
@@ -85,13 +105,15 @@ Current workflow files:
 - Root `_redirects` maps key root URLs/assets to `/public/...` as a safety net only. Preferred Cloudflare output directory remains `public`.
 - Root `_headers` mirrors conservative security headers as a safety net only. Preferred Cloudflare output directory remains `public`.
 - `public/404.html` is the custom noindex visitor recovery page for broken or outdated links.
+- `public/system-status.html` is a clickable diagnostic page for owner/developer checks and should stay `noindex, nofollow`.
 - `public/_headers` adds conservative Cloudflare security headers and `no-store` for `/api/*`.
 - `public/_redirects` adds safe 301 redirects for likely old paths including `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html`.
-- `public/quick-searches.js` adds quick search buttons, injects Popular Searches / Cities / Restaurant links, supports `?q=` search links, and submits through the search form event.
+- `public/quick-searches.js` adds quick search buttons, injects Popular Searches / Cities / Restaurant / Owner Resources / Marketing Tools / System Status links, supports `?q=` search links, adds search tips, checks map readiness, and submits through the search form event.
 - `functions/api/search.js` handles restaurant search, prevents bad `near me` searches without browser location, keeps `local + city` searches as city searches, uses OpenAI parsing when configured, uses local parsing when OpenAI is missing, and returns clearly labeled demo results when Google Maps is missing or temporarily failing.
-- `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables.
+- `functions/api/config.js` returns the browser-safe Google Maps key from Cloudflare environment variables and readiness fields.
+- `functions/api/health.js` returns boolean-only readiness values for Google Maps/OpenAI setup and never returns secret values.
 - `public/robots.txt` allows crawling and points to sitemap.
-- `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, restaurant owner resources, and the restaurant cities hub. `404.html` should stay out of the sitemap.
+- `public/sitemap.xml` lists core pages, support pages, SEO food pages, city pages, restaurant owner resources, and the restaurant cities hub. `404.html` and diagnostic-only pages should stay out of the sitemap.
 - `tools/validate_static_site.py` is a local-only static preflight helper for required files, sitemap coverage, robots, headers, redirects, links, homepage behavior terms, API behavior terms, and blocked live-feature script terms.
 - `CODEX-WORKFLOW.md` links to `CONNECTOR-RECOVERY.md` for connector failure handling.
 - `CONNECTOR-RECOVERY.md` records connector-failure recovery rules so Gerry does not manually edit files.
@@ -112,6 +134,8 @@ Currently operational in repo:
 
 - Restaurant search API files
 - Demo fallback search when API keys are not fully configured
+- API health endpoint for boolean-only key-readiness checks
+- System Status page for owner/developer checks
 - Root publishing fallback files
 - Root fallback security headers
 - Worldwide city / nearby restaurant discovery files
@@ -132,10 +156,17 @@ Currently operational in repo:
 
 Live browser render status:
 
-- Needs a real browser / Cloudflare Pages check after latest commits.
-- GitHub Actions workflow runs are not present for these commits, so there is no repo-side CI result to read.
-- Cloudflare Pages should publish from GitHub if the project is connected and set to output directory `public`.
-- Root fallback protects against a wrong output-directory setting but the preferred fix remains Cloudflare output directory `public`.
+- Earlier live-domain issue was resolved: `restaurantaibot.com` loads the site.
+- DNS/custom domains/deployment/build settings were reported good by the connected Cloudflare-side check.
+- Live Google Maps/Places still depends on correctly setting Cloudflare Variables and Secrets, then redeploying.
+- Browser check target after deployment: `https://restaurantaibot.com/system-status.html`.
+
+Cloudflare variables status:
+
+- Required for live map/search: `GOOGLE_MAPS_API_KEY`.
+- Optional for AI parsing: `OPENAI_API_KEY`.
+- These keys must be entered directly in Cloudflare Variables and Secrets, not in chat or GitHub.
+- Wrong variable name `Google maps api` must not be used.
 
 Not operational yet:
 
@@ -147,15 +178,15 @@ Not operational yet:
 - Live campaign management
 - Real sponsored placements
 
-## Current safe queue
+## Current safe queue after lock
 
-1. Run repo-side validation with `python tools/validate_static_site.py` before more design changes.
-2. Confirm Cloudflare Pages deployed commit `3b388c40f4ef05139450468fa5db3fbbd18ff833` or later.
-3. Browser-test `https://restaurantaibot.com/` and `https://www.restaurantaibot.com/`.
-4. Test these searches: `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
-5. Confirm demo results are clearly labeled when API keys are missing.
-6. If live domain still fails, fix Cloudflare DNS / Pages custom domain connection before doing more site design.
-7. Use `GROK-GITHUB-BUILD-PROMPT.md` when asking Grok to review/build with GitHub access.
+1. Verify latest Cloudflare deployment includes the newest GitHub commit.
+2. Browser-test `https://restaurantaibot.com/system-status.html` and click `Check Live Status`.
+3. Browser-test `https://restaurantaibot.com/api/config`.
+4. If `googleMapsConfigured` is false, fix Cloudflare variable name/value and redeploy.
+5. If `googleMapsConfigured` is true, test: `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` after clicking Use My Location.
+6. Verify `public/sitemap.xml` does not include diagnostic-only `system-status.html`.
+7. Run repo-side validation with `python tools/validate_static_site.py` before the next design batch.
 8. Keep live ads, payments, tracking, dashboards, ordering, uploads, and accounts inactive until direct approval.
 
 ## Safety lock
