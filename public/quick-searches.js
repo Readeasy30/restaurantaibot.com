@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       addLinkIfMissing(nav, '/owner-advertise.html', 'Restaurants');
       addLinkIfMissing(nav, '/restaurant-owner-resources.html', 'Owner Resources');
       addLinkIfMissing(nav, '/restaurant-marketing-tools.html', 'Marketing Tools');
+      addLinkIfMissing(nav, '/system-status.html', 'System Status');
     });
   }
 
