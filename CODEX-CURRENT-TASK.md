@@ -1,56 +1,45 @@
 # CODEX-CURRENT-TASK.md
 
-Last updated: 2026-06-02
+Last updated: 2026-06-03
 
 ## Repository
 
 `Wholelychit/restaurantaibot.com`
 
-## Current operating mode
+## Current task: Safe repository review
 
-Use ChatGPT 5.5 and Codex as the production workflow.
+Find bugs, SEO problems, broken links, accessibility issues, bad mobile layout, performance problems, and practical improvement ideas.
 
-No local Git. No terminal Git. No VS Code requirement. No manual repo file creation or paste updates.
+## Rules
 
-Workflow:
+- Do not redesign the site.
+- Do not convert to React, Vite, Next.js, TypeScript, Tailwind, or any build tools.
+- Keep the current plain HTML/CSS/JS structure where this repo uses plain HTML/CSS/JS.
+- Do not delete major working code.
+- Do not add API keys, tracking scripts, ads, payment systems, affiliate links, or user accounts.
+- Do not make risky production changes.
+- Fix small safe issues directly when possible.
+- For larger or risky issues, list them clearly before changing anything.
+- Work in safe batches and do not stop after one small fix.
+- If this repo contains non-website, backend, template, or planning files, review only what applies and do not force a framework or structure change.
 
-1. ChatGPT 5.5 manages the plan.
-2. Codex performs repository work.
-3. GitHub stores files and commits.
-4. Cloudflare Pages publishes from GitHub when connected.
+## Check these areas
 
-## Current locked checkpoint
+1. HTML errors and missing tags
+2. Broken links and bad navigation
+3. SEO title tags, meta descriptions, canonical links, headings, and alt text
+4. Mobile layout problems
+5. Accessibility problems
+6. CSS conflicts or layout bugs
+7. JavaScript errors
+8. Page speed and image size issues
+9. Missing `robots.txt` or `sitemap.xml`
+10. Missing privacy, disclaimer, contact, or footer links if needed
 
-RestaurantAIBot now has a safer MVP search path:
+## Deliverables
 
-- `functions/api/search.js` no longer hard-fails only because `OPENAI_API_KEY` is missing.
-- Local parsing can handle common city and cuisine searches before OpenAI is connected.
-- If Google Maps is not configured or live search temporarily fails, the API returns clearly labeled demo results instead of a dead-end error.
-- `public/index.html` labels demo cards as sample matches and warns visitors to confirm real details before visiting.
-- No live ads, payments, tracking, accounts, uploads, ordering integrations, private keys, or framework changes were added.
-
-## Current project focus
-
-RestaurantAIBot is a restaurant discovery and future restaurant-marketing website.
-
-Keep the site simple, fast, mobile-first, and useful for visitors looking for food and restaurant owners looking for visibility.
-
-## Current safe queue
-
-1. Run real browser/manual tests using `MANUAL-TEST-CHECKLIST.md`.
-2. Check whether Cloudflare Pages has deployed commit `c52e568b6827705fc3d07c4a90c69b34a2d7f529` or later.
-3. Test homepage searches before API keys are configured, especially `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
-4. Review `BROWSER-SMOKE-TEST.md` after browser testing and update it with real pass/fail results.
-5. Consider a shared helper script for future cross-link injection only if it stays simple and safe.
-6. Keep internal links strong between search, food pages, city pages, and restaurant owner pages.
-7. Full city-to-food cross-link expansion for Dallas and Tokyo is optional later; smaller navigation-link repairs already succeeded.
-8. Keep simple HTML, CSS, and JavaScript.
-9. Keep Cloudflare Pages publishing from `main`.
+Report: summary reviewed, bugs found, SEO problems, broken links, mobile/layout problems, accessibility issues, performance problems, safe fixes completed, suggested next improvements, and commit messages used.
 
 ## Stop points
 
-Stop before private keys, live ads, tracking, payment setup, user accounts, upload systems, ordering integrations, framework migration, major code deletion, or changes that could break current search/API behavior without a safe repair path.
-
-## Reporting
-
-Report only after useful commits or a real blocker.
+Stop before private keys, API keys, live tracking, live ads, payment setup, user accounts, upload systems, affiliate links, framework migration, major code deletion, or anything that risks breaking production.
