@@ -18,12 +18,13 @@
 - Improved quick-search button focus styling and added automatic live-map status text when the Google Maps key is detected.
 - Added `System Status` to injected homepage/footer navigation through `public/quick-searches.js`.
 - Added `system-status.html` to `public/sitemap.xml`.
+- Updated `/api/config` to include `googleMapsConfigured` and `mapStatus` readiness fields while keeping `Cache-Control: no-store`.
 
 ### Safety notes
 
 - No private keys, API keys, live ads, tracking scripts, payment setup, user accounts, upload systems, ordering integrations, affiliate links, framework rebuilds, or major code deletion were added.
 - The Grok prompt keeps work limited to safe plain HTML/CSS/JS, Cloudflare Pages, documentation, SEO, mobile, accessibility, and small bug-fix improvements.
-- Sitemap, README, status, homepage setup-notice, search-guidance, API health-check, and system-status page changes are safe static/API diagnostics updates only.
+- Sitemap, README, status, homepage setup-notice, search-guidance, API health-check, system-status page, and config-readiness changes are safe static/API diagnostics updates only.
 - API keys must be entered directly in Cloudflare Variables and Secrets, not in GitHub or chat.
 
 ## 2026-06-02
