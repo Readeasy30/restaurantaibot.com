@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     'Outdoor dining in Los Angeles'
   ];
 
+  const searchTips = [
+    'Best format: food + city, like “tacos in Dallas.”',
+    'For nearby searches, click Use My Location first.',
+    'Always confirm hours, menus, allergies, and prices before visiting.'
+  ];
+
   const input = document.getElementById('userInput');
   const form = document.getElementById('searchForm');
   const sidebar = document.querySelector('.brand-header');
@@ -20,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addSiteLinks();
   addSetupNotice();
+  addSearchTips();
   addQuickSearchButtons();
+  checkLiveDataStatus();
   runSearchFromUrl();
 
   function addSiteLinks() {
@@ -77,6 +85,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function addSearchTips() {
+    if (document.getElementById('searchTips')) return;
+
+    const tips = document.createElement('div');
+    tips.id = 'searchTips';
+    tips.setAttribute('aria-label', 'Restaurant search tips');
+    tips.style.marginTop = '12px';
+    tips.style.padding = '10px 12px';
+    tips.style.borderRadius = '14px';
+    tips.style.background = 'rgba(255,255,255,.14)';
+    tips.style.border = '1px solid rgba(255,255,255,.26)';
+    tips.style.fontSize = '.84rem';
+    tips.style.lineHeight = '1.4';
+
+    const title = document.createElement('strong');
+    title.textContent = 'Search tips';
+    title.style.display = 'block';
+    title.style.marginBottom = '4px';
+
+    const list = document.createElement('ul');
+    list.style.marginLeft = '18px';
+
+    searchTips.forEach(tip => {
+      const item = document.createElement('li');
+      item.textContent = tip;
+      item.style.marginBottom = '3px';
+      list.appendChild(item);
+    });
+
+    tips.append(title, list);
+
+    const nearMeBtn = document.getElementById('nearMeBtn');
+    if (nearMeBtn && nearMeBtn.nextSibling) {
+      sidebar.insertBefore(tips, nearMeBtn.nextSibling);
+    } else {
+      sidebar.appendChild(tips);
+    }
+  }
+
   function addQuickSearchButtons() {
     const intro = document.createElement('p');
     intro.textContent = 'Popular searches:';
@@ -102,6 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
       button.style.fontWeight = 'bold';
       button.style.cursor = 'pointer';
       button.style.fontSize = '0.8rem';
+      button.style.minHeight = '36px';
+
+      button.addEventListener('focus', () => {
+        button.style.outline = '3px solid rgba(255,255,255,.65)';
+        button.style.outlineOffset = '2px';
+      });
+
+      button.addEventListener('blur', () => {
+        button.style.outline = 'none';
+      });
 
       button.addEventListener('click', () => runSearch(search));
 
@@ -109,6 +166,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     sidebar.append(intro, wrap);
+  }
+
+  async function checkLiveDataStatus() {
+    try {
+      const response = await fetch('/api/config', { cache: 'no-store' });
+      if (!response.ok) return;
+
+      const config = await response.json();
+      if (!config.googleMapsApiKey) return;
+
+      const notice = document.getElementById('liveDataSetupNotice');
+      if (!notice) return;
+
+      notice.innerHTML = '<strong>Live map connected</strong><span>Search food plus city, or use your location for nearby restaurant results.</span>';
+      notice.style.background = 'rgba(255,255,255,.25)';
+    } catch (error) {
+      // Keep the default setup notice when config cannot be checked.
+    }
   }
 
   function runSearchFromUrl() {
