@@ -53,6 +53,13 @@ No live payments, live ad scripts, private keys, user accounts, uploads, orderin
 - `public/owner-advertise.html` — restaurant owner / advertiser interest page
 - `public/restaurant-owner-resources.html` — restaurant owner resource hub
 - `public/restaurant-growth-checklist.html` — restaurant growth checklist page
+- `public/restaurant-growth-starter-checkup.html` — restaurant starter checkup page
+- `public/restaurant-menu-copy-tips.html` — restaurant menu copy tips page
+- `public/restaurant-photo-checklist.html` — restaurant photo checklist page
+- `public/restaurant-catering-private-events.html` — restaurant catering and private events page tips
+- `public/local-restaurant-seo-basics.html` — local restaurant SEO basics page
+- `public/restaurant-customer-loyalty-ideas.html` — restaurant loyalty ideas page
+- `public/restaurant-social-post-ideas.html` — restaurant social post ideas page
 - `public/google-business-profile-checklist-restaurants.html` — Google Business Profile checklist page
 - `public/restaurant-website-checklist.html` — restaurant website checklist page
 - `public/restaurant-review-response-templates.html` — review response templates page
@@ -70,6 +77,7 @@ No live payments, live ad scripts, private keys, user accounts, uploads, orderin
 - `AGENT-INSTRUCTIONS.md` — production build instructions
 - `CODEX-WORKFLOW.md` — Codex-first repo editing workflow
 - `CODEX-CURRENT-TASK.md` — Codex current safe queue
+- `GROK-GITHUB-BUILD-PROMPT.md` — Grok/GitHub safe build prompt
 - `CURRENT-TASK.md` — current safe queue
 - `CONNECTOR-RECOVERY.md` — connector failure recovery rules
 - `LOCKED-CHECKPOINT.md` — locked project direction and next queue
@@ -114,6 +122,13 @@ These pages use the direction from `Wholelychit/marketing-system` and are safe s
 
 - `public/restaurant-owner-resources.html`
 - `public/restaurant-growth-checklist.html`
+- `public/restaurant-growth-starter-checkup.html`
+- `public/restaurant-menu-copy-tips.html`
+- `public/restaurant-photo-checklist.html`
+- `public/restaurant-catering-private-events.html`
+- `public/local-restaurant-seo-basics.html`
+- `public/restaurant-customer-loyalty-ideas.html`
+- `public/restaurant-social-post-ideas.html`
 - `public/google-business-profile-checklist-restaurants.html`
 - `public/restaurant-website-checklist.html`
 - `public/restaurant-review-response-templates.html`
