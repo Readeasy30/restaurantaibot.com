@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!input || !form || !sidebar) return;
 
   addSiteLinks();
+  addSetupNotice();
   addQuickSearchButtons();
   runSearchFromUrl();
 
@@ -41,6 +42,39 @@ document.addEventListener('DOMContentLoaded', () => {
     link.href = href;
     link.textContent = text;
     nav.appendChild(link);
+  }
+
+  function addSetupNotice() {
+    if (document.getElementById('liveDataSetupNotice')) return;
+
+    const notice = document.createElement('div');
+    notice.id = 'liveDataSetupNotice';
+    notice.setAttribute('role', 'status');
+    notice.innerHTML = '<strong>Live data setup mode</strong><span>Search by food and city now. Real map results turn on after Google Maps is connected.</span>';
+    notice.style.marginTop = '14px';
+    notice.style.padding = '11px 12px';
+    notice.style.borderRadius = '14px';
+    notice.style.background = 'rgba(255,255,255,.18)';
+    notice.style.border = '1px solid rgba(255,255,255,.38)';
+    notice.style.fontSize = '.9rem';
+    notice.style.lineHeight = '1.4';
+
+    const strong = notice.querySelector('strong');
+    const span = notice.querySelector('span');
+    if (strong) {
+      strong.style.display = 'block';
+      strong.style.marginBottom = '3px';
+    }
+    if (span) {
+      span.style.display = 'block';
+    }
+
+    const nearMeBtn = document.getElementById('nearMeBtn');
+    if (nearMeBtn) {
+      sidebar.insertBefore(notice, nearMeBtn);
+    } else {
+      sidebar.appendChild(notice);
+    }
   }
 
   function addQuickSearchButtons() {
