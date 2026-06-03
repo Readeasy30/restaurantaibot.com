@@ -1,5 +1,16 @@
 # CHANGELOG.md
 
+## 2026-06-03
+
+### Added
+
+- Added `GROK-GITHUB-BUILD-PROMPT.md` so Grok, Codex, or another GitHub-connected AI assistant can review and continue the safe RestaurantAIBot build without changing the stack or asking Gerry for manual repo edits.
+
+### Safety notes
+
+- No private keys, API keys, live ads, tracking scripts, payment setup, user accounts, upload systems, ordering integrations, affiliate links, framework rebuilds, or major code deletion were added.
+- The Grok prompt keeps work limited to safe plain HTML/CSS/JS, Cloudflare Pages, documentation, SEO, mobile, accessibility, and small bug-fix improvements.
+
 ## 2026-06-02
 
 ### Added
@@ -77,8 +88,3 @@
 - Larger full-page city-to-food cross-link rewrites for `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` were blocked twice by the connector.
 - Smaller retries later succeeded for both files by adding the missing `restaurant-cities.html` navigation link.
 - Full city-to-food cross-link expansion can still be retried later through Codex or smaller commits if useful.
-
-### Notes
-
-- Cloudflare remains publisher only and should publish from GitHub.
-- No private keys, API keys, live ads, live tracking, payment setup, affiliate links, accounts, upload systems, public AI tools beyond the controlled restaurant search flow, framework rebuilds, automated ordering integrations, scraping systems, or major code deletion were added.
