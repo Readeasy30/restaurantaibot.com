@@ -1,18 +1,19 @@
 # Current Task
 
-Last updated: 2026-06-02
+Last updated: 2026-06-03
 
 RestaurantAIBot safe build queue:
 
-1. Confirm Cloudflare Pages deployed commit `e9e82d2c24882eb88c4d4e2c9d38e4b9b79ce867` or later.
-2. Browser-test `https://restaurantaibot.com/` and `https://www.restaurantaibot.com/`.
-3. Test `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
-4. Confirm demo results are clearly labeled when API keys are missing.
-5. Confirm root fallback does not create `/public/index.html` redirect loops.
-6. If live domain still fails, fix Cloudflare DNS / Pages custom domain connection before doing more site design.
-7. Keep internal links strong between search, food pages, city pages, and restaurant owner pages.
-8. Keep simple HTML, CSS, and JavaScript.
-9. Keep Cloudflare Pages publishing from `main`; preferred output directory remains `public`.
+1. Run repo-side validation with `python tools/validate_static_site.py` before more design changes.
+2. Confirm Cloudflare Pages deployed commit `3b388c40f4ef05139450468fa5db3fbbd18ff833` or later.
+3. Browser-test `https://restaurantaibot.com/` and `https://www.restaurantaibot.com/`.
+4. Test `pizza in Chicago`, `tacos in Dallas`, `sushi in Tokyo`, and `pizza near me` without location.
+5. Confirm demo results are clearly labeled when API keys are missing.
+6. Confirm root fallback does not create `/public/index.html` redirect loops.
+7. If live domain still fails, fix Cloudflare DNS / Pages custom domain connection before doing more site design.
+8. Keep internal links strong between search, food pages, city pages, and restaurant owner pages.
+9. Keep simple HTML, CSS, and JavaScript.
+10. Keep Cloudflare Pages publishing from `main`; preferred output directory remains `public`.
 
 Connector rule:
 
