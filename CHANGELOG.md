@@ -6,18 +6,20 @@
 
 - Added `GROK-GITHUB-BUILD-PROMPT.md` so Grok, Codex, or another GitHub-connected AI assistant can review and continue the safe RestaurantAIBot build without changing the stack or asking Gerry for manual repo edits.
 - Added a visible live-data setup notice through `public/quick-searches.js` so homepage visitors understand that food/city search can be previewed while Google Maps is being connected.
+- Added homepage search tips for food-plus-city searches, near-me searches, and restaurant detail confirmation.
 
 ### Changed
 
 - Updated `public/sitemap.xml` to include missing live owner-resource pages: `restaurant-photo-checklist.html` and `restaurant-catering-private-events.html`.
 - Updated `README.md` so the documented main files and owner-resource page list match the current repository.
 - Updated `PROJECT-STATUS.md` to record the current Cloudflare environment-variable blocker: wrong/empty Google Maps variable and empty OpenAI variable.
+- Improved quick-search button focus styling and added automatic live-map status text when the Google Maps key is detected.
 
 ### Safety notes
 
 - No private keys, API keys, live ads, tracking scripts, payment setup, user accounts, upload systems, ordering integrations, affiliate links, framework rebuilds, or major code deletion were added.
 - The Grok prompt keeps work limited to safe plain HTML/CSS/JS, Cloudflare Pages, documentation, SEO, mobile, accessibility, and small bug-fix improvements.
-- Sitemap, README, status, and homepage setup-notice changes are safe static/documentation updates only.
+- Sitemap, README, status, homepage setup-notice, and search-guidance changes are safe static/documentation updates only.
 - API keys must be entered directly in Cloudflare Variables and Secrets, not in GitHub or chat.
 
 ## 2026-06-02
