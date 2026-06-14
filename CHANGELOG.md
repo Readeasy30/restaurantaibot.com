@@ -9,12 +9,15 @@
 - Expanded `public/demo-promotions.json` with demo-only Smart Promo Card campaign fields including today's feature, cuisine tags, match keywords, meal times, target mode, disclosure, and sample profile link.
 - Updated `public/quick-searches.js` to show a homepage "Today’s feature" demo Smart Promo Card loaded from `demo-promotions.json`, with clear demo/sponsored labeling and a matching search button.
 - Rebuilt `public/owner-advertise.html` as a restaurant owner sales page for Smart Promo Cards, slow-night promotions, traveler visibility, and fast restaurant website packages.
+- Added `public/restaurant-website-starter.html` as a dedicated sales/template page for the Restaurant Website Starter package.
+- Updated `public/sitemap.xml` and `public/owner-advertise.html` so the Restaurant Website Starter page is discoverable.
 
 ### Safety notes
 
 - No live paid ads, payment checkout, tracking scripts, user accounts, owner uploads, dashboards, private keys, automated ordering, or framework changes were added.
 - Today's promo card is a demo-only example and does not activate real paid placement.
 - The owner sales page uses inquiry-only email CTAs and does not activate payment checkout or live sponsored placement.
+- The Restaurant Website Starter page is inquiry-only and does not collect payments, upload files, or create owner accounts.
 - Future paid placements still require business rules, disclosures, legal/privacy updates, payment setup, and manual review.
 
 ## 2026-06-03
