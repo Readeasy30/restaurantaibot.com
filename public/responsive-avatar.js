@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('bitesGuideAvatar')) return;
 
   const path = window.location.pathname;
-  const isSearchPage = path === '/' || path.endsWith('/index.html');
   const isOwnerPage = path.includes('owner-advertise');
   const isWebsiteStarterPage = path.includes('restaurant-website-starter');
+  const language = window.RestaurantAIBotLanguage;
+  const t = (key, fallback = '') => language && typeof language.t === 'function' ? language.t(key, fallback) : fallback;
 
   const context = getPageContext();
   addAvatarStyles();
@@ -13,36 +14,36 @@ document.addEventListener('DOMContentLoaded', () => {
   function getPageContext() {
     if (isOwnerPage) {
       return {
-        eyebrow: 'Bites for owners',
-        title: 'Want more hungry customers?',
-        message: 'I can explain Smart Promo Cards, slow-night pushes, traveler visibility, and fast restaurant websites.',
+        eyebrow: t('ownerEyebrow', 'Bites for owners'),
+        title: t('ownerTitle', 'Want more hungry customers?'),
+        message: t('ownerMessage', 'I can explain Smart Promo Cards, slow-night pushes, traveler visibility, and fast restaurant websites.'),
         buttons: [
-          { label: 'Website Starter', href: '/restaurant-website-starter.html' },
-          { label: 'Start inquiry', href: '#owner-inquiry' }
+          { label: t('websiteStarter', 'Website Starter'), href: '/restaurant-website-starter.html' },
+          { label: t('startInquiry', 'Start inquiry'), href: '#owner-inquiry' }
         ]
       };
     }
 
     if (isWebsiteStarterPage) {
       return {
-        eyebrow: 'Bites website guide',
-        title: 'This is the starter website idea.',
-        message: 'A restaurant owner sends basic details. We turn them into a clean mobile site with calls, directions, menu highlights, and SEO basics.',
+        eyebrow: t('websiteEyebrow', 'Bites website guide'),
+        title: t('websiteTitle', 'This is the starter website idea.'),
+        message: t('websiteMessage', 'A restaurant owner sends basic details. We turn them into a clean mobile site with calls, directions, menu highlights, and SEO basics.'),
         buttons: [
-          { label: 'Email inquiry', href: '#owner-inquiry' },
-          { label: 'Owner packages', href: '/owner-advertise.html' }
+          { label: t('emailInquiry', 'Email inquiry'), href: '#owner-inquiry' },
+          { label: t('ownerPackages', 'Owner packages'), href: '/owner-advertise.html' }
         ]
       };
     }
 
     return {
-      eyebrow: 'Bites food guide',
-      title: 'Tell me what you’re hungry for.',
-      message: 'Try a simple search like “tacos in Dallas,” “pizza near me,” or “romantic dinner in Paris.”',
+      eyebrow: t('homeEyebrow', 'Bites food guide'),
+      title: t('homeTitle', 'Tell me what you’re hungry for.'),
+      message: t('homeMessage', 'Try a simple search like “tacos in Dallas,” “pizza near me,” or “romantic dinner in Paris.”'),
       buttons: [
-        { label: 'Tacos in Dallas', search: 'tacos in Dallas' },
-        { label: 'Pizza near me', search: 'pizza near me' },
-        { label: 'Food near hotel', search: 'food near my hotel' }
+        { label: t('searchDallas', 'Tacos in Dallas'), search: 'tacos in Dallas' },
+        { label: t('searchPizza', 'Pizza near me'), search: 'pizza near me' },
+        { label: t('searchHotel', 'Food near hotel'), search: 'food near my hotel' }
       ]
     };
   }
@@ -128,17 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       .bites-avatar.is-collapsed .bites-card { display: none; }
       .bites-avatar.is-collapsed .bites-mini { display: inline-flex; align-items: center; gap: 8px; }
-      .bites-sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
       @media (max-width: 820px) {
         .bites-avatar {
           right: 12px;
@@ -186,14 +176,14 @@ document.addEventListener('DOMContentLoaded', () => {
     eyebrow.textContent = context.eyebrow;
     const name = document.createElement('div');
     name.className = 'bites-name';
-    name.textContent = 'Bites';
+    name.textContent = t('bitesName', 'Bites');
     nameWrap.append(eyebrow, name);
 
     const toggle = document.createElement('button');
     toggle.type = 'button';
     toggle.className = 'bites-toggle';
     toggle.setAttribute('aria-expanded', 'true');
-    toggle.textContent = 'Hide';
+    toggle.textContent = t('hide', 'Hide');
 
     const body = document.createElement('div');
     body.className = 'bites-body';
@@ -229,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mini = document.createElement('button');
     mini.type = 'button';
     mini.className = 'bites-mini';
-    mini.innerHTML = '<span aria-hidden="true">🍽️</span><span>Ask Bites</span>';
+    mini.innerHTML = `<span aria-hidden="true">🍽️</span><span>${escapeHtml(t('askBites', 'Ask Bites'))}</span>`;
 
     toggle.addEventListener('click', () => collapseAvatar(true));
     mini.addEventListener('click', () => collapseAvatar(false));
@@ -245,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function collapseAvatar(collapsed) {
       avatar.classList.toggle('is-collapsed', collapsed);
       toggle.setAttribute('aria-expanded', String(!collapsed));
-      toggle.textContent = collapsed ? 'Show' : 'Hide';
+      toggle.textContent = collapsed ? t('show', 'Show') : t('hide', 'Hide');
       if (!collapsed) toggle.focus();
     }
   }
@@ -255,18 +245,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!input || !messageElement) return;
 
     input.addEventListener('focus', () => {
-      messageElement.textContent = 'Good searches use food + place + need. Example: “cheap breakfast in New York” or “seafood near my hotel in Miami.”';
+      messageElement.textContent = t('inputFocus', 'Good searches use food + place + need. Example: “cheap breakfast in New York” or “seafood near my hotel in Miami.”');
     });
 
     input.addEventListener('input', () => {
       const value = input.value.toLowerCase();
       if (!value) return;
       if (value.includes('near me')) {
-        messageElement.textContent = 'For “near me,” click Use My Location first. You can also type a city instead.';
+        messageElement.textContent = t('nearMeHint', 'For “near me,” click Use My Location first. You can also type a city instead.');
       } else if (value.includes('hotel') || value.includes('airport') || value.includes('station')) {
-        messageElement.textContent = 'Traveler search detected. Add the city or landmark for better matches.';
+        messageElement.textContent = t('travelerHint', 'Traveler search detected. Add the city or landmark for better matches.');
       } else if (value.includes('cheap') || value.includes('budget')) {
-        messageElement.textContent = 'Budget search detected. Try adding lunch, dinner, family, or city for better results.';
+        messageElement.textContent = t('budgetHint', 'Budget search detected. Try adding lunch, dinner, family, or city for better results.');
       }
     });
   }
@@ -282,5 +272,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.location.href = `/?q=${encodeURIComponent(searchText)}`;
+  }
+
+  function escapeHtml(value) {
+    const div = document.createElement('div');
+    div.textContent = value;
+    return div.innerHTML;
   }
 });
