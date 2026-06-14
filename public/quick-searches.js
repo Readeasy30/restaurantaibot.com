@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('userInput');
   const form = document.getElementById('searchForm');
   const sidebar = document.querySelector('.brand-header');
+  const chatHistory = document.getElementById('chatHistory');
 
   if (!input || !form || !sidebar) return;
 
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   addSetupNotice();
   addSearchTips();
   addQuickSearchButtons();
+  addTodaysFeaturePromoCard();
   checkLiveDataStatus();
   runSearchFromUrl();
 
@@ -167,6 +169,86 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     sidebar.append(intro, wrap);
+  }
+
+  async function addTodaysFeaturePromoCard() {
+    if (!chatHistory || document.getElementById('todaysFeaturePromoCard')) return;
+
+    try {
+      const response = await fetch('/demo-promotions.json', { cache: 'no-store' });
+      if (!response.ok) return;
+
+      const data = await response.json();
+      const promotions = Array.isArray(data.promotions) ? data.promotions : [];
+      const promo = promotions.find(item => item.todaysFeature) || promotions[0];
+      if (!promo) return;
+
+      const card = document.createElement('section');
+      card.id = 'todaysFeaturePromoCard';
+      card.className = 'restaurant-card demo-card';
+      card.setAttribute('aria-label', 'Today demo smart promo card');
+
+      const content = document.createElement('div');
+      content.className = 'restaurant-content';
+
+      const label = document.createElement('span');
+      label.className = 'tag demo-tag';
+      label.textContent = promo.label || 'Demo sponsored example';
+
+      const title = document.createElement('h3');
+      title.textContent = `Today’s feature: ${promo.restaurantName || 'Sample restaurant offer'}`;
+
+      const headline = document.createElement('p');
+      headline.innerHTML = `<strong>${escapeHtml(promo.headline || 'Smart Promo Card example')}</strong>`;
+
+      const offer = document.createElement('p');
+      offer.textContent = promo.offerText || 'This demo shows how a restaurant offer could appear when it matches a visitor search.';
+
+      const match = document.createElement('p');
+      match.textContent = promo.reason || 'Shown when the city, cuisine, time, and visitor intent match.';
+
+      const note = document.createElement('p');
+      note.className = 'source-note';
+      note.textContent = promo.disclosure || 'Demo only. Not a paid placement.';
+
+      const actions = document.createElement('div');
+      actions.className = 'card-actions';
+
+      const trySearch = document.createElement('button');
+      trySearch.type = 'button';
+      trySearch.textContent = `Try ${promo.category || 'food'} in ${promo.city || 'this city'}`;
+      stylePromoButton(trySearch);
+      trySearch.addEventListener('click', () => runSearch(`${promo.category || 'food'} in ${promo.city || ''}`.trim()));
+
+      const sampleLink = document.createElement('a');
+      sampleLink.href = promo.url || '/sample-restaurant-profile.html';
+      sampleLink.textContent = promo.ctaText || 'View sample profile';
+
+      actions.append(trySearch, sampleLink);
+      content.append(label, title, headline, offer, match, note, actions);
+      card.appendChild(content);
+      chatHistory.appendChild(card);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    } catch (error) {
+      // Keep homepage search working if demo promotion data cannot be loaded.
+    }
+  }
+
+  function stylePromoButton(button) {
+    button.style.border = 'none';
+    button.style.background = '#ff6b35';
+    button.style.color = 'white';
+    button.style.padding = '9px 13px';
+    button.style.borderRadius = '999px';
+    button.style.fontSize = '0.86rem';
+    button.style.fontWeight = 'bold';
+    button.style.cursor = 'pointer';
+  }
+
+  function escapeHtml(value) {
+    const div = document.createElement('div');
+    div.textContent = value;
+    return div.innerHTML;
   }
 
   async function checkLiveDataStatus() {
