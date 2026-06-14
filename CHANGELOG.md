@@ -13,6 +13,8 @@
 - Updated `public/sitemap.xml` and `public/owner-advertise.html` so the Restaurant Website Starter page is discoverable.
 - Added `public/responsive-avatar.js`, a lightweight responsive text avatar named Bites that gives page-aware help without video, voice, payments, tracking, or accounts.
 - Loaded the Bites avatar on the homepage, restaurant owner page, and Restaurant Website Starter page.
+- Added `public/language-choices.js` with first-layer language choices for English, Spanish, French, German, Italian, Portuguese, Japanese, Korean, and Chinese.
+- Updated Bites so it can auto-load language choices and show translated guide text, buttons, and search hints.
 
 ### Safety notes
 
@@ -21,6 +23,7 @@
 - The owner sales page uses inquiry-only email CTAs and does not activate payment checkout or live sponsored placement.
 - The Restaurant Website Starter page is inquiry-only and does not collect payments, upload files, or create owner accounts.
 - The Bites avatar is text-only, collapsible, and does not use voice, video, user accounts, or behavioral tracking.
+- Language choices are a first-layer guide translation feature only; they do not claim certified full-page translation yet.
 - Future paid placements still require business rules, disclosures, legal/privacy updates, payment setup, and manual review.
 
 ## 2026-06-03
