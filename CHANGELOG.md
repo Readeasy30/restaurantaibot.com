@@ -8,11 +8,13 @@
 - Added `RESTAURANT-OWNER-POPUP-ADS-WEBSITE-PROGRAM.md` to plan Smart Promo Cards, timed dining offers, owner packages, manual review, Stripe Payment Links later, and fast restaurant website offers.
 - Expanded `public/demo-promotions.json` with demo-only Smart Promo Card campaign fields including today's feature, cuisine tags, match keywords, meal times, target mode, disclosure, and sample profile link.
 - Updated `public/quick-searches.js` to show a homepage "Today’s feature" demo Smart Promo Card loaded from `demo-promotions.json`, with clear demo/sponsored labeling and a matching search button.
+- Rebuilt `public/owner-advertise.html` as a restaurant owner sales page for Smart Promo Cards, slow-night promotions, traveler visibility, and fast restaurant website packages.
 
 ### Safety notes
 
 - No live paid ads, payment checkout, tracking scripts, user accounts, owner uploads, dashboards, private keys, automated ordering, or framework changes were added.
 - Today's promo card is a demo-only example and does not activate real paid placement.
+- The owner sales page uses inquiry-only email CTAs and does not activate payment checkout or live sponsored placement.
 - Future paid placements still require business rules, disclosures, legal/privacy updates, payment setup, and manual review.
 
 ## 2026-06-03
