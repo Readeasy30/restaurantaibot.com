@@ -64,6 +64,7 @@ The homepage now has:
 - WebApplication structured data
 - crawlable explanation card inside the app interface
 - internal links to AI Finder, Popular Searches, Cities, and For Restaurants
+- Local / Traveler mode buttons with search examples
 
 ### New page
 
@@ -91,35 +92,42 @@ Purpose:
 - add AI Finder to injected navigation
 - add Website Starter to injected navigation
 - make the new AI Finder page discoverable in sitemap
+- add Local / Traveler mode to the homepage helper layer
 
 ## Standout features to build next
 
-### 1. Local / Traveler mode
+### 1. Local / Traveler mode — started
 
-Homepage buttons:
+Homepage buttons now exist:
 
 - I live here
 - I am visiting
 
-Local mode should emphasize:
+Local mode emphasizes:
 
 - near me
 - cheap eats
 - family dinner
 - coffee
-- lunch near work
-- hidden gems
+- lunch
+- date night
 - outdoor dining
 
-Traveler mode should emphasize:
+Traveler mode emphasizes:
 
 - food near hotel
 - food near airport
-- food near train station
-- restaurants near attractions
-- local favorite food
-- tourist-friendly dinner
-- language help
+- food near station
+- city food
+- beach-area food
+- convention center dinner
+- language help later
+
+Next improvement:
+
+- make Bites avatar change its message after a mode is selected
+- add mode-aware SEO pages later
+- add city-aware traveler examples later
 
 ### 2. City + cuisine landing pages
 
