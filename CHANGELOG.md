@@ -11,6 +11,8 @@
 - Rebuilt `public/owner-advertise.html` as a restaurant owner sales page for Smart Promo Cards, slow-night promotions, traveler visibility, and fast restaurant website packages.
 - Added `public/restaurant-website-starter.html` as a dedicated sales/template page for the Restaurant Website Starter package.
 - Updated `public/sitemap.xml` and `public/owner-advertise.html` so the Restaurant Website Starter page is discoverable.
+- Added `public/responsive-avatar.js`, a lightweight responsive text avatar named Bites that gives page-aware help without video, voice, payments, tracking, or accounts.
+- Loaded the Bites avatar on the homepage, restaurant owner page, and Restaurant Website Starter page.
 
 ### Safety notes
 
@@ -18,6 +20,7 @@
 - Today's promo card is a demo-only example and does not activate real paid placement.
 - The owner sales page uses inquiry-only email CTAs and does not activate payment checkout or live sponsored placement.
 - The Restaurant Website Starter page is inquiry-only and does not collect payments, upload files, or create owner accounts.
+- The Bites avatar is text-only, collapsible, and does not use voice, video, user accounts, or behavioral tracking.
 - Future paid placements still require business rules, disclosures, legal/privacy updates, payment setup, and manual review.
 
 ## 2026-06-03
