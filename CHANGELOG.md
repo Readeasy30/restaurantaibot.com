@@ -18,6 +18,7 @@
 - Added `public/ai-restaurant-finder.html` as a crawlable SEO landing page explaining RestaurantAIBot for locals, travelers, language-help visitors, and restaurant owners.
 - Added `SEO-STANDOUT-GROWTH-PLAN.md` to define the SEO positioning, page families, standout feature roadmap, content rules, and 30-day build order.
 - Added homepage Local / Traveler mode buttons through `public/quick-searches.js` with mode-specific search ideas for locals and visitors.
+- Added the first city + cuisine SEO page batch: `public/tacos-in-dallas.html`, `public/seafood-in-miami.html`, and `public/breakfast-in-new-york.html`.
 
 ### Changed
 
@@ -25,7 +26,10 @@
 - Updated `public/quick-searches.js` so injected homepage/footer navigation includes AI Finder and Website Starter links.
 - Updated `public/quick-searches.js` so choosing Local or Traveler mode creates a helpful search card, preloads a suggested query, and keeps search behavior demo-safe.
 - Updated `public/sitemap.xml` to include `ai-restaurant-finder.html`.
-- Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started and list the next improvements.
+- Updated `public/sitemap.xml` to include the first city + cuisine SEO pages.
+- Updated `public/popular-searches.html` to link to the new city + cuisine SEO pages.
+- Updated `public/restaurant-cities.html` to link to the new city + cuisine SEO pages from the city hub and related city cards.
+- Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started, mark the first city + cuisine page batch as complete, and list the next SEO pages.
 
 ### Safety notes
 
@@ -36,6 +40,7 @@
 - The Bites avatar is text-only, collapsible, and does not use voice, video, user accounts, or behavioral tracking.
 - Language choices are a first-layer guide translation feature only; they do not claim certified full-page translation yet.
 - SEO updates add honest crawler-friendly content and structured data only; they do not add fake reviews, fake listings, keyword stuffing, or fake restaurant availability.
+- City + cuisine pages are search-help pages only; they do not claim live rankings, verified availability, open status, or allergy safety.
 - Local / Traveler mode only changes helper prompts and suggested searches; it does not track users or create profiles.
 - Future paid placements still require business rules, disclosures, legal/privacy updates, payment setup, and manual review.
 
