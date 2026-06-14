@@ -17,12 +17,15 @@
 - Updated Bites so it can auto-load language choices and show translated guide text, buttons, and search hints.
 - Added `public/ai-restaurant-finder.html` as a crawlable SEO landing page explaining RestaurantAIBot for locals, travelers, language-help visitors, and restaurant owners.
 - Added `SEO-STANDOUT-GROWTH-PLAN.md` to define the SEO positioning, page families, standout feature roadmap, content rules, and 30-day build order.
+- Added homepage Local / Traveler mode buttons through `public/quick-searches.js` with mode-specific search ideas for locals and visitors.
 
 ### Changed
 
 - Improved `public/index.html` homepage SEO with stronger title/description, canonical/robots tags, Open Graph metadata, Twitter card metadata, WebSite/SearchAction structured data, Organization structured data, WebApplication structured data, and a crawlable explanation card with internal links.
 - Updated `public/quick-searches.js` so injected homepage/footer navigation includes AI Finder and Website Starter links.
+- Updated `public/quick-searches.js` so choosing Local or Traveler mode creates a helpful search card, preloads a suggested query, and keeps search behavior demo-safe.
 - Updated `public/sitemap.xml` to include `ai-restaurant-finder.html`.
+- Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started and list the next improvements.
 
 ### Safety notes
 
@@ -33,6 +36,7 @@
 - The Bites avatar is text-only, collapsible, and does not use voice, video, user accounts, or behavioral tracking.
 - Language choices are a first-layer guide translation feature only; they do not claim certified full-page translation yet.
 - SEO updates add honest crawler-friendly content and structured data only; they do not add fake reviews, fake listings, keyword stuffing, or fake restaurant availability.
+- Local / Traveler mode only changes helper prompts and suggested searches; it does not track users or create profiles.
 - Future paid placements still require business rules, disclosures, legal/privacy updates, payment setup, and manual review.
 
 ## 2026-06-03
