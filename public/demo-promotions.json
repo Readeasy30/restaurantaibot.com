@@ -1,39 +1,72 @@
 {
   "status": "demo-only",
-  "note": "These are sample promotion records for future planning. They are not live paid ads and should not be shown as real sponsored placements until business rules, disclosures, and approval are ready.",
+  "note": "These are sample promotion records for future planning and homepage demo cards. They are not live paid ads and should not be shown as real sponsored placements until business rules, disclosures, payments, tracking, and approval are ready.",
+  "placementRules": {
+    "requiredDisclosure": "Demo sponsored example",
+    "maxCardsNearTop": 1,
+    "maxCardsPerResultPage": 2,
+    "frequencyCap": "Demo cards should not block search results or pretend to be organic recommendations."
+  },
   "promotions": [
     {
       "id": "demo-dallas-tacos",
+      "todaysFeature": true,
       "city": "Dallas",
+      "neighborhood": "Downtown Dallas",
       "category": "tacos",
-      "label": "Demo Sponsored Placement",
+      "cuisineTags": ["tacos", "mexican", "lunch", "dinner"],
+      "matchKeywords": ["taco", "tacos", "mexican", "dallas", "lunch", "dinner", "cheap eats"],
+      "targetMode": "both",
+      "mealTimes": ["lunch", "dinner"],
+      "targetDays": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "label": "Demo sponsored example",
       "restaurantName": "Sample Taco House",
-      "headline": "Featured taco spot in Dallas",
-      "offerText": "Ask about today’s taco special.",
-      "ctaText": "View restaurant",
-      "url": "https://example.com"
+      "headline": "Today's featured taco idea in Dallas",
+      "offerText": "A sample card for a lunch or dinner taco special. This shows how a local restaurant offer could appear at the right food moment.",
+      "reason": "Shown when someone searches for tacos, Mexican food, Dallas, lunch, dinner, or cheap eats.",
+      "ctaText": "View sample profile",
+      "url": "/sample-restaurant-profile.html",
+      "disclosure": "Demo only. Not a paid placement. Restaurant details must be confirmed before visiting."
     },
     {
       "id": "demo-chicago-pizza",
+      "todaysFeature": false,
       "city": "Chicago",
+      "neighborhood": "Chicago",
       "category": "pizza",
-      "label": "Demo Sponsored Placement",
+      "cuisineTags": ["pizza", "italian", "family", "dinner"],
+      "matchKeywords": ["pizza", "chicago", "italian", "family", "dinner", "date night"],
+      "targetMode": "both",
+      "mealTimes": ["dinner", "late-night"],
+      "targetDays": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "label": "Demo sponsored example",
       "restaurantName": "Sample Pizza Kitchen",
-      "headline": "Featured pizza spot in Chicago",
-      "offerText": "Plan a simple pizza night.",
-      "ctaText": "View restaurant",
-      "url": "https://example.com"
+      "headline": "Featured pizza night idea in Chicago",
+      "offerText": "A sample card for a family pizza night or casual dinner search.",
+      "reason": "Shown when someone searches for pizza, Italian food, Chicago, dinner, or family-friendly dining.",
+      "ctaText": "View sample profile",
+      "url": "/sample-restaurant-profile.html",
+      "disclosure": "Demo only. Not a paid placement. Restaurant details must be confirmed before visiting."
     },
     {
       "id": "demo-miami-seafood",
+      "todaysFeature": false,
       "city": "Miami",
+      "neighborhood": "Miami Beach area",
       "category": "seafood",
-      "label": "Demo Sponsored Placement",
+      "cuisineTags": ["seafood", "beach", "traveler", "dinner"],
+      "matchKeywords": ["seafood", "miami", "beach", "traveler", "hotel", "dinner", "local seafood"],
+      "targetMode": "traveler",
+      "mealTimes": ["lunch", "dinner"],
+      "targetDays": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "label": "Demo sponsored example",
       "restaurantName": "Sample Seafood Grill",
-      "headline": "Featured seafood spot in Miami",
-      "offerText": "Explore seafood dinner ideas.",
-      "ctaText": "View restaurant",
-      "url": "https://example.com"
+      "headline": "Featured seafood idea for Miami visitors",
+      "offerText": "A sample card for seafood searches near beach, hotel, or travel areas.",
+      "reason": "Shown when someone searches for seafood, Miami, beach dining, hotel-area food, or traveler-friendly dinner.",
+      "ctaText": "View sample profile",
+      "url": "/sample-restaurant-profile.html",
+      "disclosure": "Demo only. Not a paid placement. Restaurant details must be confirmed before visiting."
     }
   ]
 }
