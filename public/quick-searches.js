@@ -12,6 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
     'Outdoor dining in Los Angeles'
   ];
 
+  const localSearches = [
+    'Lunch near me',
+    'Cheap eats near me',
+    'Family dinner near me',
+    'Coffee near me',
+    'Date night near me',
+    'Outdoor dining near me'
+  ];
+
+  const travelerSearches = [
+    'Food near my hotel',
+    'Restaurants near airport',
+    'Local food in Paris',
+    'Sushi near Tokyo Station',
+    'Seafood near beach in Miami',
+    'Dinner near convention center'
+  ];
+
   const searchTips = [
     'Best format: food + city, like “tacos in Dallas.”',
     'For nearby searches, click Use My Location first.',
@@ -28,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   addSiteLinks();
   addSetupNotice();
   addSearchTips();
+  addAudienceModeButtons();
   addQuickSearchButtons();
   addTodaysFeaturePromoCard();
   checkLiveDataStatus();
@@ -127,6 +146,159 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       sidebar.appendChild(tips);
     }
+  }
+
+  function addAudienceModeButtons() {
+    if (document.getElementById('audienceModePicker')) return;
+
+    const section = document.createElement('section');
+    section.id = 'audienceModePicker';
+    section.setAttribute('aria-label', 'Choose local or traveler restaurant search mode');
+    section.style.marginTop = '14px';
+    section.style.padding = '12px';
+    section.style.borderRadius = '16px';
+    section.style.background = 'rgba(255,255,255,.18)';
+    section.style.border = '1px solid rgba(255,255,255,.32)';
+
+    const title = document.createElement('strong');
+    title.textContent = 'Choose your search mode';
+    title.style.display = 'block';
+    title.style.marginBottom = '8px';
+
+    const intro = document.createElement('p');
+    intro.textContent = 'RestaurantAIBot can help like a local guide or a travel food helper.';
+    intro.style.fontSize = '.86rem';
+    intro.style.lineHeight = '1.4';
+    intro.style.marginBottom = '10px';
+
+    const modeGrid = document.createElement('div');
+    modeGrid.style.display = 'grid';
+    modeGrid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+    modeGrid.style.gap = '8px';
+
+    const localButton = createModeButton({
+      label: 'I live here',
+      detail: 'nearby, value, family, hidden gems',
+      emoji: '🏠',
+      mode: 'local'
+    });
+
+    const travelerButton = createModeButton({
+      label: 'I am visiting',
+      detail: 'hotel, airport, attractions, language help',
+      emoji: '🧳',
+      mode: 'traveler'
+    });
+
+    modeGrid.append(localButton, travelerButton);
+    section.append(title, intro, modeGrid);
+
+    const nearMeBtn = document.getElementById('nearMeBtn');
+    if (nearMeBtn && nearMeBtn.nextSibling) {
+      sidebar.insertBefore(section, nearMeBtn.nextSibling);
+    } else {
+      sidebar.appendChild(section);
+    }
+  }
+
+  function createModeButton({ label, detail, emoji, mode }) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.setAttribute('aria-label', `${label}: ${detail}`);
+    button.dataset.mode = mode;
+    button.style.border = 'none';
+    button.style.borderRadius = '16px';
+    button.style.padding = '11px 10px';
+    button.style.background = '#fff';
+    button.style.color = '#d94c1f';
+    button.style.cursor = 'pointer';
+    button.style.textAlign = 'left';
+    button.style.minHeight = '86px';
+    button.style.boxShadow = '0 8px 20px rgba(0,0,0,.08)';
+
+    const emojiSpan = document.createElement('span');
+    emojiSpan.textContent = emoji;
+    emojiSpan.style.display = 'block';
+    emojiSpan.style.fontSize = '1.25rem';
+    emojiSpan.style.marginBottom = '4px';
+
+    const labelSpan = document.createElement('strong');
+    labelSpan.textContent = label;
+    labelSpan.style.display = 'block';
+    labelSpan.style.lineHeight = '1.2';
+
+    const detailSpan = document.createElement('span');
+    detailSpan.textContent = detail;
+    detailSpan.style.display = 'block';
+    detailSpan.style.fontSize = '.76rem';
+    detailSpan.style.color = '#555';
+    detailSpan.style.lineHeight = '1.3';
+    detailSpan.style.marginTop = '4px';
+
+    button.append(emojiSpan, labelSpan, detailSpan);
+    button.addEventListener('focus', () => {
+      button.style.outline = '3px solid rgba(255,255,255,.65)';
+      button.style.outlineOffset = '2px';
+    });
+    button.addEventListener('blur', () => {
+      button.style.outline = 'none';
+    });
+    button.addEventListener('click', () => activateAudienceMode(mode));
+
+    return button;
+  }
+
+  function activateAudienceMode(mode) {
+    const searches = mode === 'traveler' ? travelerSearches : localSearches;
+    const message = mode === 'traveler'
+      ? 'Traveler mode ready. Try food near your hotel, airport, station, landmark, or city.'
+      : 'Local mode ready. Try nearby food, cheap eats, family dinner, coffee, or date night.';
+
+    addModeMessage(mode, message, searches);
+    input.value = searches[0];
+    input.focus();
+  }
+
+  function addModeMessage(mode, message, searches) {
+    if (!chatHistory) return;
+
+    const existing = document.getElementById('audienceModeResult');
+    if (existing) existing.remove();
+
+    const card = document.createElement('section');
+    card.id = 'audienceModeResult';
+    card.className = 'restaurant-card demo-card';
+    card.setAttribute('aria-label', `${mode} restaurant search ideas`);
+
+    const content = document.createElement('div');
+    content.className = 'restaurant-content';
+
+    const label = document.createElement('span');
+    label.className = 'tag demo-tag';
+    label.textContent = mode === 'traveler' ? 'Traveler mode' : 'Local mode';
+
+    const title = document.createElement('h3');
+    title.textContent = mode === 'traveler' ? 'Search like a traveler' : 'Search like a local';
+
+    const copy = document.createElement('p');
+    copy.textContent = message;
+
+    const actions = document.createElement('div');
+    actions.className = 'card-actions';
+
+    searches.forEach(search => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = search;
+      stylePromoButton(button);
+      button.addEventListener('click', () => runSearch(search));
+      actions.appendChild(button);
+    });
+
+    content.append(label, title, copy, actions);
+    card.appendChild(content);
+    chatHistory.prepend(card);
+    chatHistory.scrollTop = 0;
   }
 
   function addQuickSearchButtons() {
