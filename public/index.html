@@ -3,9 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RestaurantAIBot | Ask AI. Find Food. Anywhere on Earth.</title>
-  <meta name="description" content="RestaurantAIBot helps people find restaurants anywhere on Earth using AI-powered food search, Google Maps, and live restaurant recommendations." />
+  <title>AI Restaurant Finder Near Me, by City, Food, Mood, Budget | RestaurantAIBot</title>
+  <meta name="description" content="RestaurantAIBot helps locals and travelers find restaurants by food, city, mood, budget, nearby location, hotel area, language, or dining occasion." />
   <link rel="canonical" href="https://restaurantaibot.com/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="RestaurantAIBot | AI Restaurant Finder" />
+  <meta property="og:description" content="Ask for tacos in Dallas, pizza near me, seafood in Miami, romantic dinner in Paris, or food near your hotel." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://restaurantaibot.com/" />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "RestaurantAIBot",
+        "url": "https://restaurantaibot.com/",
+        "description": "AI restaurant finder for locals and travelers.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://restaurantaibot.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "name": "RestaurantAIBot",
+        "url": "https://restaurantaibot.com/",
+        "email": "wholelychit@gmail.com"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "RestaurantAIBot",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web",
+        "url": "https://restaurantaibot.com/",
+        "description": "Search restaurants by craving, city, mood, budget, nearby location, traveler need, or language guide preference."
+      }
+    ]
+  }
+  </script>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
@@ -28,6 +66,13 @@
     .user-msg { align-self: flex-end; background: #1a73e8; color: #fff; }
     .ai-msg { align-self: flex-start; background: #fff; color: #222; border: 1px solid #ddd; }
     .demo-msg { border-color: #ffb088; background: #fff7ed; }
+    .seo-card { background: #fff; border: 1px solid #e5e7eb; border-left: 6px solid #ff6b35; border-radius: 18px; padding: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+    .seo-card h2 { font-size: 1.06rem; margin-bottom: 8px; line-height: 1.25; color: #d94c1f; }
+    .seo-card p { color: #555; font-size: .9rem; line-height: 1.45; margin-bottom: 8px; }
+    .seo-card ul { padding-left: 18px; color: #555; font-size: .9rem; line-height: 1.45; }
+    .seo-card li { margin-bottom: 5px; }
+    .seo-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .seo-links a { text-decoration: none; background: #fff3ed; color: #d94c1f; padding: 7px 10px; border-radius: 999px; font-size: .8rem; font-weight: 800; }
     .restaurant-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border: 1px solid #eee; }
     .restaurant-card.demo-card { border-color: #ffb088; }
     .restaurant-image { width: 100%; height: 150px; object-fit: cover; }
@@ -70,19 +115,36 @@
       <div class="brand-header">
         <nav class="site-nav" aria-label="Main navigation">
           <a href="/">Search</a>
+          <a href="/ai-restaurant-finder.html">AI Finder</a>
+          <a href="/popular-searches.html">Popular Searches</a>
+          <a href="/restaurant-cities.html">Cities</a>
+          <a href="/owner-advertise.html">Restaurants</a>
           <a href="/about.html">About</a>
           <a href="/contact.html">Contact</a>
-          <a href="/privacy.html">Privacy</a>
-          <a href="/terms.html">Terms</a>
         </nav>
         <h1>🍕 RestaurantAIBot</h1>
-        <h2>Ask AI. Find Food. Anywhere on Earth.</h2>
-        <p>Search restaurants by craving, mood, city, budget, or vibe.</p>
+        <h2>AI restaurant finder for locals and travelers.</h2>
+        <p>Search by craving, city, nearby location, hotel area, mood, budget, occasion, or language help.</p>
         <button class="near-me-btn" id="nearMeBtn" type="button" aria-label="Use my location for nearby restaurant search">📍 Use My Location</button>
       </div>
 
       <div class="chat-history" id="chatHistory" aria-live="polite" aria-label="Restaurant search conversation">
-        <div class="message ai-msg">Try “pizza near me” or “best sushi in Tokyo.”</div>
+        <div class="message ai-msg">Try “pizza near me,” “cheap tacos in Dallas,” or “romantic dinner in Paris.”</div>
+        <section class="seo-card" aria-label="About RestaurantAIBot">
+          <h2>Find food faster with AI restaurant search</h2>
+          <p>RestaurantAIBot helps people search for restaurants in plain language. It is built for locals who want quick nearby ideas and travelers who need food near hotels, airports, stations, landmarks, beaches, convention centers, or downtown areas.</p>
+          <ul>
+            <li>Search by food: pizza, tacos, sushi, seafood, vegan, breakfast, coffee, burgers, barbecue, ramen, and more.</li>
+            <li>Search by need: cheap eats, date night, family dinner, outdoor dining, late night, quick lunch, or traveler-friendly food.</li>
+            <li>Use the Bites guide for first-layer language help while the site grows.</li>
+          </ul>
+          <div class="seo-links">
+            <a href="/ai-restaurant-finder.html">How AI Finder works</a>
+            <a href="/popular-searches.html">Popular searches</a>
+            <a href="/restaurant-cities.html">City pages</a>
+            <a href="/owner-advertise.html">For restaurants</a>
+          </div>
+        </section>
       </div>
 
       <form class="input-container" id="searchForm" aria-label="Restaurant search form">
@@ -93,8 +155,9 @@
 
       <footer class="site-footer">
         <nav class="footer-nav" aria-label="Footer navigation">
-          <a href="/about.html">About</a>
-          <a href="/contact.html">Contact</a>
+          <a href="/ai-restaurant-finder.html">AI Finder</a>
+          <a href="/popular-searches.html">Popular Searches</a>
+          <a href="/restaurant-cities.html">Cities</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms</a>
         </nav>
