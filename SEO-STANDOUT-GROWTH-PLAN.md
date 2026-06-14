@@ -66,11 +66,14 @@ The homepage now has:
 - internal links to AI Finder, Popular Searches, Cities, and For Restaurants
 - Local / Traveler mode buttons with search examples
 
-### New page
+### New pages
 
 Added:
 
 - `public/ai-restaurant-finder.html`
+- `public/tacos-in-dallas.html`
+- `public/seafood-in-miami.html`
+- `public/breakfast-in-new-york.html`
 
 Purpose:
 
@@ -79,6 +82,7 @@ Purpose:
 - describe local and traveler use cases
 - link to search examples
 - link to restaurant owner packages
+- start the city + cuisine SEO system
 
 ### Navigation and sitemap
 
@@ -86,6 +90,8 @@ Updated:
 
 - `public/quick-searches.js`
 - `public/sitemap.xml`
+- `public/popular-searches.html`
+- `public/restaurant-cities.html`
 
 Purpose:
 
@@ -93,6 +99,8 @@ Purpose:
 - add Website Starter to injected navigation
 - make the new AI Finder page discoverable in sitemap
 - add Local / Traveler mode to the homepage helper layer
+- link city + cuisine pages from Popular Searches
+- link city + cuisine pages from Restaurant Cities
 
 ## Standout features to build next
 
@@ -129,14 +137,17 @@ Next improvement:
 - add mode-aware SEO pages later
 - add city-aware traveler examples later
 
-### 2. City + cuisine landing pages
+### 2. City + cuisine landing pages — first batch complete
 
-Build pages around high-value combinations:
+Completed pages:
 
-- pizza in Chicago
 - tacos in Dallas
 - seafood in Miami
 - breakfast in New York
+
+Next pages to build:
+
+- pizza in Chicago
 - sushi in Tokyo
 - romantic dinner in Paris
 - coffee in London
@@ -295,10 +306,11 @@ Add visible signals:
 - AI Restaurant Finder page
 - Local / Traveler mode
 - sitemap/navigation cleanup
+- first city + cuisine SEO pages
 
 ### Week 2
 
-- Build 5 city + cuisine pages
+- Build 5 more city + cuisine pages
 - Improve Popular Searches hub
 - Improve Restaurant Cities hub
 - Add related internal links
