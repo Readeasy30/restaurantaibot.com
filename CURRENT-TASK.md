@@ -24,22 +24,26 @@ Current locked direction:
   - Food near hotel
   - Restaurants near airport
   - Restaurants near convention center
-- New food-intent SEO pages added and linked:
+- Food/place-intent SEO pages added and linked:
+  - Food near tourist attraction
+  - Restaurants near museum
+  - Restaurants near beach
   - Food near train station
   - Restaurants near stadium
   - Restaurants near shopping mall
   - Restaurants near park
   - Lunch near me
   - Brunch near me
+  - Group dinner near me
   - Family dinner near me
   - Evening food near me
   - Special dinner near me
-- Popular Searches updated to link the new food-intent pages.
+- Popular Searches updated to link the new food and place pages.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
 - Homepage orange background polished.
-- Sitemap updated with legal, intake, traveler, and new food-intent pages.
+- Sitemap updated with legal, intake, traveler, place, and food-intent pages.
 
 ## Continue from here
 
@@ -56,10 +60,10 @@ Current locked direction:
 Possible next pages:
 
 - local food in major cities
-- food near tourist attraction
-- group dinner near me
-- restaurants near museum
-- restaurants near beach
+- restaurants near college campus
+- restaurants near hospital
+- restaurants near office building
+- coffee near hotel
 
 ## Connector notes
 
@@ -74,15 +78,14 @@ Check these URLs:
 1. `https://restaurantaibot.com/`
 2. `https://restaurantaibot.com/sitemap.xml`
 3. `https://restaurantaibot.com/popular-searches.html`
-4. `https://restaurantaibot.com/restaurants-near-shopping-mall.html`
-5. `https://restaurantaibot.com/restaurants-near-park.html`
-6. `https://restaurantaibot.com/lunch-near-me.html`
-7. `https://restaurantaibot.com/brunch-near-me.html`
-8. `https://restaurantaibot.com/food-near-train-station.html`
-9. `https://restaurantaibot.com/restaurants-near-stadium.html`
-10. `https://restaurantaibot.com/family-dinner-near-me.html`
-11. `https://restaurantaibot.com/evening-food-near-me.html`
-12. `https://restaurantaibot.com/special-dinner-near-me.html`
+4. `https://restaurantaibot.com/food-near-tourist-attraction.html`
+5. `https://restaurantaibot.com/restaurants-near-museum.html`
+6. `https://restaurantaibot.com/restaurants-near-beach.html`
+7. `https://restaurantaibot.com/group-dinner-near-me.html`
+8. `https://restaurantaibot.com/restaurants-near-shopping-mall.html`
+9. `https://restaurantaibot.com/restaurants-near-park.html`
+10. `https://restaurantaibot.com/lunch-near-me.html`
+11. `https://restaurantaibot.com/brunch-near-me.html`
 
 ## Safety rule
 
