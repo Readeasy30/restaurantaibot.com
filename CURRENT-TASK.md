@@ -33,37 +33,20 @@ Current locked direction:
   - Romantic dinner in Paris
   - Coffee in London
   - Cheap eats in Las Vegas
+- Traveler-intent SEO pages:
+  - Food near hotel
+  - Restaurants near airport
+  - Restaurants near convention center
+- Popular Searches updated with traveler-intent links.
 - Popular Searches and Restaurant Cities hubs updated with city + cuisine links.
 - Sitemap updated with the second city + cuisine SEO batch.
 - Project status updated to the June 14 locked checkpoint.
 - Codex current task updated to the June 14 locked checkpoint.
-- Changelog updated through latest owner-intake work.
+- Changelog updated through latest SEO work.
 
 ## Continue from here
 
-### Next build batch 1 — traveler-intent SEO pages
-
-Create:
-
-- `public/food-near-hotel.html`
-- `public/restaurants-near-airport.html`
-- `public/restaurants-near-convention-center.html`
-
-Reason:
-
-Travelers have urgent search intent. These pages can stand out quickly.
-
-Rules:
-
-- Do not fake restaurant rankings.
-- Do not claim live open status.
-- Do not claim verified availability.
-- Do not claim allergy safety.
-- Include search examples and related links.
-- Include confirmation warning.
-- Keep Webmasters LLC footer and Disclaimer links.
-
-### Next build batch 2 — internal linking cleanup
+### Next build batch 1 — internal linking cleanup
 
 Add links to `restaurant-owner-intake.html` from:
 
@@ -72,17 +55,39 @@ Add links to `restaurant-owner-intake.html` from:
 - `public/restaurant-owner-resources.html`.
 - `public/quick-searches.js` injected navigation if useful.
 
-### Next build batch 3 — sitemap cleanup
+Add links to traveler-intent pages from:
+
+- homepage helper / injected links if useful
+- AI Finder page
+- Restaurant Cities page if useful
+- related city pages over time
+
+### Next build batch 2 — sitemap cleanup
 
 Retry adding these pages to sitemap as a tiny focused commit:
 
 - `public/disclaimer.html`
 - `public/founder-complimentary-promo-cards.html`
 - `public/restaurant-owner-intake.html`
+- `public/food-near-hotel.html`
+- `public/restaurants-near-airport.html`
+- `public/restaurants-near-convention-center.html`
+
+### Next build batch 3 — more SEO expansion
+
+Possible next pages:
+
+- food near train station
+- restaurants near stadium
+- family dinner near me
+- date night restaurants near me
+- late night food near me
+- local food in major cities
 
 ## Connector notes
 
 - Sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice earlier.
+- Sitemap update for traveler-intent pages was blocked once.
 - A full owner-page replacement was blocked once before a smaller owner-page update succeeded.
 - The second city + cuisine sitemap update succeeded.
 - Do not ask Gerry to edit files manually.
@@ -93,16 +98,15 @@ Retry adding these pages to sitemap as a tiny focused commit:
 Check these URLs:
 
 1. `https://restaurantaibot.com/`
-2. `https://restaurantaibot.com/owner-advertise.html`
-3. `https://restaurantaibot.com/founder-complimentary-promo-cards.html`
-4. `https://restaurantaibot.com/restaurant-owner-intake.html`
-5. `https://restaurantaibot.com/disclaimer.html`
-6. `https://restaurantaibot.com/ai-restaurant-finder.html`
-7. `https://restaurantaibot.com/pizza-in-chicago.html`
-8. `https://restaurantaibot.com/sushi-in-tokyo.html`
-9. `https://restaurantaibot.com/romantic-dinner-in-paris.html`
-10. `https://restaurantaibot.com/coffee-in-london.html`
-11. `https://restaurantaibot.com/cheap-eats-in-las-vegas.html`
+2. `https://restaurantaibot.com/food-near-hotel.html`
+3. `https://restaurantaibot.com/restaurants-near-airport.html`
+4. `https://restaurantaibot.com/restaurants-near-convention-center.html`
+5. `https://restaurantaibot.com/popular-searches.html`
+6. `https://restaurantaibot.com/owner-advertise.html`
+7. `https://restaurantaibot.com/founder-complimentary-promo-cards.html`
+8. `https://restaurantaibot.com/restaurant-owner-intake.html`
+9. `https://restaurantaibot.com/disclaimer.html`
+10. `https://restaurantaibot.com/ai-restaurant-finder.html`
 
 ## Safety rule
 
