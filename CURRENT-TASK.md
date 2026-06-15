@@ -24,8 +24,13 @@ Current locked direction:
   - Food near hotel
   - Restaurants near airport
   - Restaurants near convention center
-- Food/place/event/transit-intent SEO pages added:
+- Food/place/event/transit/market-intent SEO pages added:
   - Local food in major cities
+  - Restaurants near farmers market
+  - Coffee near farmers market
+  - Food near public market
+  - Restaurants near boardwalk
+  - Dessert near boardwalk
   - Breakfast near hotel
   - Lunch near hotel
   - Breakfast near airport
@@ -75,11 +80,12 @@ Current locked direction:
   - Special dinner near me
 - Popular Searches updated through the attraction/museum/beach/group-dinner batch.
 - Popular Searches loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, zoo, aquarium, theme park, dessert, healthy food, and station-coffee links.
-- Popular Searches loads `popular-extra-links-2.js`, which now adds sports arena, mall food court, airport breakfast, airport lunch, airport coffee, airport dessert, bus station food, bus station coffee, bus station breakfast, bus station lunch, ferry terminal, ferry coffee, cruise terminal, college football stadium, and convention-center coffee links.
+- Popular Searches loads `popular-extra-links-2.js`, which now adds market, boardwalk, sports arena, mall food court, airport, bus station, ferry terminal, ferry coffee, cruise terminal, college football stadium, and convention-center coffee links.
 - `sitemap-new-place-pages.xml` created as a supplemental sitemap for the sports arena / mall food court / airport meal / convention coffee batch.
 - `sitemap-transit-pages.xml` created as a supplemental sitemap for airport coffee, airport dessert, bus station food, bus station coffee, and ferry terminal pages.
 - `sitemap-terminal-pages.xml` created as a supplemental sitemap for cruise terminal, ferry coffee, bus station breakfast, bus station lunch, and college football stadium pages.
-- `robots.txt` updated to list `sitemap.xml`, `sitemap-new-place-pages.xml`, `sitemap-transit-pages.xml`, and `sitemap-terminal-pages.xml`.
+- `sitemap-market-boardwalk-pages.xml` created as a supplemental sitemap for farmers market, public market, and boardwalk pages.
+- `robots.txt` updated to list `sitemap.xml`, `sitemap-new-place-pages.xml`, `sitemap-transit-pages.xml`, `sitemap-terminal-pages.xml`, and `sitemap-market-boardwalk-pages.xml`.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
@@ -100,11 +106,11 @@ Current locked direction:
 
 Possible next pages:
 
-- restaurants near farmers market
-- coffee near farmers market
-- food near public market
-- restaurants near boardwalk
-- dessert near boardwalk
+- breakfast near public market
+- coffee near public market
+- lunch near public market
+- seafood near boardwalk
+- coffee near boardwalk
 
 ## Connector notes
 
@@ -126,14 +132,15 @@ Check these URLs:
 3. `https://restaurantaibot.com/sitemap-new-place-pages.xml`
 4. `https://restaurantaibot.com/sitemap-transit-pages.xml`
 5. `https://restaurantaibot.com/sitemap-terminal-pages.xml`
-6. `https://restaurantaibot.com/robots.txt`
-7. `https://restaurantaibot.com/popular-searches.html`
-8. `https://restaurantaibot.com/popular-extra-links-2.js`
-9. `https://restaurantaibot.com/food-near-cruise-terminal.html`
-10. `https://restaurantaibot.com/coffee-near-ferry-terminal.html`
-11. `https://restaurantaibot.com/breakfast-near-bus-station.html`
-12. `https://restaurantaibot.com/lunch-near-bus-station.html`
-13. `https://restaurantaibot.com/restaurants-near-college-football-stadium.html`
+6. `https://restaurantaibot.com/sitemap-market-boardwalk-pages.xml`
+7. `https://restaurantaibot.com/robots.txt`
+8. `https://restaurantaibot.com/popular-searches.html`
+9. `https://restaurantaibot.com/popular-extra-links-2.js`
+10. `https://restaurantaibot.com/restaurants-near-farmers-market.html`
+11. `https://restaurantaibot.com/coffee-near-farmers-market.html`
+12. `https://restaurantaibot.com/food-near-public-market.html`
+13. `https://restaurantaibot.com/restaurants-near-boardwalk.html`
+14. `https://restaurantaibot.com/dessert-near-boardwalk.html`
 
 ## Safety rule
 
