@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const quickSearches = [
     'Pizza near me',
+    'Food near my hotel',
+    'Restaurants near airport',
     'Late night tacos in Dallas',
     'Quiet sushi in Tokyo',
     'Cheap breakfast in New York',
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const travelerSearches = [
     'Food near my hotel',
     'Restaurants near airport',
+    'Restaurants near convention center',
     'Local food in Paris',
     'Sushi near Tokyo Station',
     'Seafood near beach in Miami',
@@ -36,10 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
     'Always confirm hours, menus, allergies, and prices before visiting.'
   ];
 
+  const ambienceImage = '/images/restaurant-ambience-hero.svg';
+  const promoImage = '/images/promo-card-food.svg';
+
   const input = document.getElementById('userInput');
   const form = document.getElementById('searchForm');
   const sidebar = document.querySelector('.brand-header');
   const chatHistory = document.getElementById('chatHistory');
+  const mapContainer = document.getElementById('map-container');
 
   if (!input || !form || !sidebar) return;
 
@@ -48,7 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
   addSearchTips();
   addAudienceModeButtons();
   addQuickSearchButtons();
+  addAmbienceFeatureCard();
   addTodaysFeaturePromoCard();
+  enhanceMapFallback();
+  replaceRemoteRestaurantImages();
   checkLiveDataStatus();
   runSearchFromUrl();
 
@@ -59,8 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
       addLinkIfMissing(nav, '/ai-restaurant-finder.html', 'AI Finder');
       addLinkIfMissing(nav, '/popular-searches.html', 'Popular Searches');
       addLinkIfMissing(nav, '/restaurant-cities.html', 'Cities');
+      addLinkIfMissing(nav, '/food-near-hotel.html', 'Food Near Hotel');
+      addLinkIfMissing(nav, '/restaurants-near-airport.html', 'Airport Food');
       addLinkIfMissing(nav, '/owner-advertise.html', 'Restaurants');
       addLinkIfMissing(nav, '/founder-complimentary-promo-cards.html', 'Founder Cards');
+      addLinkIfMissing(nav, '/restaurant-owner-intake.html', 'Owner Intake');
       addLinkIfMissing(nav, '/restaurant-website-starter.html', 'Website Starter');
       addLinkIfMissing(nav, '/restaurant-owner-resources.html', 'Owner Resources');
       addLinkIfMissing(nav, '/restaurant-marketing-tools.html', 'Marketing Tools');
@@ -99,16 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
       strong.style.display = 'block';
       strong.style.marginBottom = '3px';
     }
-    if (span) {
-      span.style.display = 'block';
-    }
+    if (span) span.style.display = 'block';
 
     const nearMeBtn = document.getElementById('nearMeBtn');
-    if (nearMeBtn) {
-      sidebar.insertBefore(notice, nearMeBtn);
-    } else {
-      sidebar.appendChild(notice);
-    }
+    if (nearMeBtn) sidebar.insertBefore(notice, nearMeBtn);
+    else sidebar.appendChild(notice);
   }
 
   function addSearchTips() {
@@ -143,11 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
     tips.append(title, list);
 
     const nearMeBtn = document.getElementById('nearMeBtn');
-    if (nearMeBtn && nearMeBtn.nextSibling) {
-      sidebar.insertBefore(tips, nearMeBtn.nextSibling);
-    } else {
-      sidebar.appendChild(tips);
-    }
+    if (nearMeBtn && nearMeBtn.nextSibling) sidebar.insertBefore(tips, nearMeBtn.nextSibling);
+    else sidebar.appendChild(tips);
   }
 
   function addAudienceModeButtons() {
@@ -178,10 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
     modeGrid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
     modeGrid.style.gap = '8px';
 
-    const localButton = createModeButton({ label: 'I live here', detail: 'nearby, value, family, hidden gems', emoji: '🏠', mode: 'local' });
-    const travelerButton = createModeButton({ label: 'I am visiting', detail: 'hotel, airport, attractions, language help', emoji: '🧳', mode: 'traveler' });
+    modeGrid.append(
+      createModeButton({ label: 'I live here', detail: 'nearby, value, family, hidden gems', emoji: '🏠', mode: 'local' }),
+      createModeButton({ label: 'I am visiting', detail: 'hotel, airport, attractions, language help', emoji: '🧳', mode: 'traveler' })
+    );
 
-    modeGrid.append(localButton, travelerButton);
     section.append(title, intro, modeGrid);
 
     const nearMeBtn = document.getElementById('nearMeBtn');
@@ -244,21 +250,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!chatHistory) return;
     const existing = document.getElementById('audienceModeResult');
     if (existing) existing.remove();
+
     const card = document.createElement('section');
     card.id = 'audienceModeResult';
     card.className = 'restaurant-card demo-card';
     card.setAttribute('aria-label', `${mode} restaurant search ideas`);
+
     const content = document.createElement('div');
     content.className = 'restaurant-content';
+
     const label = document.createElement('span');
     label.className = 'tag demo-tag';
     label.textContent = mode === 'traveler' ? 'Traveler mode' : 'Local mode';
+
     const title = document.createElement('h3');
     title.textContent = mode === 'traveler' ? 'Search like a traveler' : 'Search like a local';
+
     const copy = document.createElement('p');
     copy.textContent = message;
+
     const actions = document.createElement('div');
     actions.className = 'card-actions';
+
     searches.forEach(search => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -267,6 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
       button.addEventListener('click', () => runSearch(search));
       actions.appendChild(button);
     });
+
     content.append(label, title, copy, actions);
     card.appendChild(content);
     chatHistory.prepend(card);
@@ -279,11 +293,13 @@ document.addEventListener('DOMContentLoaded', () => {
     intro.style.marginTop = '14px';
     intro.style.fontWeight = '800';
     intro.style.fontSize = '0.9rem';
+
     const wrap = document.createElement('div');
     wrap.style.marginTop = '8px';
     wrap.style.display = 'flex';
     wrap.style.flexWrap = 'wrap';
     wrap.style.gap = '8px';
+
     quickSearches.forEach(search => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -302,7 +318,52 @@ document.addEventListener('DOMContentLoaded', () => {
       button.addEventListener('click', () => runSearch(search));
       wrap.appendChild(button);
     });
+
     sidebar.append(intro, wrap);
+  }
+
+  function addAmbienceFeatureCard() {
+    if (!chatHistory || document.getElementById('ambienceFeatureCard')) return;
+
+    const card = document.createElement('section');
+    card.id = 'ambienceFeatureCard';
+    card.className = 'restaurant-card demo-card';
+    card.setAttribute('aria-label', 'Restaurant ambience image card');
+
+    const image = document.createElement('img');
+    image.className = 'restaurant-image';
+    image.src = ambienceImage;
+    image.alt = 'Warm restaurant ambience image only, not a verified restaurant photo';
+    image.loading = 'lazy';
+
+    const content = document.createElement('div');
+    content.className = 'restaurant-content';
+
+    const label = document.createElement('span');
+    label.className = 'tag demo-tag';
+    label.textContent = 'Ambience image';
+
+    const title = document.createElement('h3');
+    title.textContent = 'Search food with a little more flavor';
+
+    const copy = document.createElement('p');
+    copy.textContent = 'Photos and visuals help the site feel warm while live maps are being connected. These images are ambience only, not verified restaurant photos.';
+
+    const actions = document.createElement('div');
+    actions.className = 'card-actions';
+
+    const hotelLink = document.createElement('a');
+    hotelLink.href = '/food-near-hotel.html';
+    hotelLink.textContent = 'Food near hotel';
+
+    const airportLink = document.createElement('a');
+    airportLink.href = '/restaurants-near-airport.html';
+    airportLink.textContent = 'Airport food';
+
+    actions.append(hotelLink, airportLink);
+    content.append(label, title, copy, actions);
+    card.append(image, content);
+    chatHistory.appendChild(card);
   }
 
   async function addTodaysFeaturePromoCard() {
@@ -314,42 +375,104 @@ document.addEventListener('DOMContentLoaded', () => {
       const promotions = Array.isArray(data.promotions) ? data.promotions : [];
       const promo = promotions.find(item => item.todaysFeature) || promotions[0];
       if (!promo) return;
+
       const card = document.createElement('section');
       card.id = 'todaysFeaturePromoCard';
       card.className = 'restaurant-card demo-card';
       card.setAttribute('aria-label', 'Today demo smart promo card');
+
+      const image = document.createElement('img');
+      image.className = 'restaurant-image';
+      image.src = promoImage;
+      image.alt = 'Food promo ambience image only, not a verified restaurant photo';
+      image.loading = 'lazy';
+
       const content = document.createElement('div');
       content.className = 'restaurant-content';
+
       const label = document.createElement('span');
       label.className = 'tag demo-tag';
       label.textContent = promo.label || 'Demo sponsored example';
+
       const title = document.createElement('h3');
       title.textContent = `Today’s feature: ${promo.restaurantName || 'Sample restaurant offer'}`;
+
       const headline = document.createElement('p');
       headline.innerHTML = `<strong>${escapeHtml(promo.headline || 'Smart Promo Card example')}</strong>`;
+
       const offer = document.createElement('p');
       offer.textContent = promo.offerText || 'This demo shows how a restaurant offer could appear when it matches a visitor search.';
+
       const match = document.createElement('p');
       match.textContent = promo.reason || 'Shown when the city, cuisine, time, and visitor intent match.';
+
       const note = document.createElement('p');
       note.className = 'source-note';
       note.textContent = promo.disclosure || 'Demo only. Not a paid placement.';
+
       const actions = document.createElement('div');
       actions.className = 'card-actions';
+
       const trySearch = document.createElement('button');
       trySearch.type = 'button';
       trySearch.textContent = `Try ${promo.category || 'food'} in ${promo.city || 'this city'}`;
       stylePromoButton(trySearch);
       trySearch.addEventListener('click', () => runSearch(`${promo.category || 'food'} in ${promo.city || ''}`.trim()));
+
       const sampleLink = document.createElement('a');
       sampleLink.href = promo.url || '/sample-restaurant-profile.html';
       sampleLink.textContent = promo.ctaText || 'View sample profile';
+
       actions.append(trySearch, sampleLink);
       content.append(label, title, headline, offer, match, note, actions);
-      card.appendChild(content);
+      card.append(image, content);
       chatHistory.appendChild(card);
       chatHistory.scrollTop = chatHistory.scrollHeight;
     } catch (error) {}
+  }
+
+  function enhanceMapFallback() {
+    if (!mapContainer) return;
+
+    const apply = () => {
+      const fallback = mapContainer.querySelector('.map-fallback');
+      if (!fallback || fallback.dataset.ambienceEnhanced === 'true') return;
+      fallback.dataset.ambienceEnhanced = 'true';
+      fallback.style.background = '#101827';
+      fallback.style.color = '#fff7ed';
+      fallback.style.padding = '26px';
+      fallback.innerHTML = `
+        <div style="max-width:720px;width:min(92%,720px);background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.25);text-align:left;color:#222">
+          <img src="${ambienceImage}" alt="Restaurant ambience image only, not a verified restaurant photo" style="width:100%;height:260px;object-fit:cover;display:block">
+          <div style="padding:22px">
+            <span style="display:inline-block;background:#fff7d6;color:#8a5a00;border-radius:999px;padding:6px 10px;font-weight:800;font-size:.82rem;margin-bottom:10px">Ambience image only</span>
+            <h2 style="font-size:1.45rem;line-height:1.2;margin:0 0 8px;color:#d94c1f">Live maps are not connected yet</h2>
+            <p style="margin:0 0 12px;color:#555;line-height:1.5">Search still works with safe demo examples while Google Maps is being connected. Photos and visuals are for mood only, not verified restaurant listings.</p>
+            <p style="margin:0;color:#666;font-size:.9rem">Confirm hours, menus, prices, offers, allergies, and availability directly with the restaurant.</p>
+          </div>
+        </div>`;
+    };
+
+    apply();
+    const observer = new MutationObserver(apply);
+    observer.observe(mapContainer, { childList: true, subtree: true });
+  }
+
+  function replaceRemoteRestaurantImages() {
+    if (!chatHistory) return;
+
+    const replace = () => {
+      chatHistory.querySelectorAll('img.restaurant-image').forEach(img => {
+        if (img.src.includes('images.unsplash.com')) {
+          img.src = ambienceImage;
+          img.alt = 'Restaurant ambience image only, not a verified restaurant photo';
+        }
+      });
+    };
+
+    replace();
+    const observer = new MutationObserver(replace);
+    observer.observe(chatHistory, { childList: true, subtree: true });
   }
 
   function stylePromoButton(button) {
@@ -363,7 +486,11 @@ document.addEventListener('DOMContentLoaded', () => {
     button.style.cursor = 'pointer';
   }
 
-  function escapeHtml(value) { const div = document.createElement('div'); div.textContent = value; return div.innerHTML; }
+  function escapeHtml(value) {
+    const div = document.createElement('div');
+    div.textContent = value;
+    return div.innerHTML;
+  }
 
   async function checkLiveDataStatus() {
     try {
