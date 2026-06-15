@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Chicago pizza ambience</title>
+  <desc id="desc">Stylized pizza and city ambience image for mood only, not a verified restaurant photo.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#1f2937"/><stop offset=".55" stop-color="#7f1d1d"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+    <radialGradient id="glow" cx="45%" cy="42%" r="55%"><stop offset="0" stop-color="#fff7ad" stop-opacity=".85"/><stop offset=".45" stop-color="#f97316" stop-opacity=".28"/><stop offset="1" stop-color="#111827" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/><rect width="1200" height="720" fill="url(#glow)"/>
+  <path d="M80 472h70V305h42v167h66V250h48v222h70V334h44v138h700v248H80z" fill="#111827" opacity=".76"/>
+  <circle cx="465" cy="400" r="172" fill="#fff7ed"/><circle cx="465" cy="400" r="140" fill="#fbbf24"/><path d="M465 400 L594 350 A140 140 0 0 1 572 478 Z" fill="#fff7ed" opacity=".9"/>
+  <circle cx="402" cy="350" r="20" fill="#dc2626"/><circle cx="496" cy="337" r="18" fill="#dc2626"/><circle cx="525" cy="430" r="21" fill="#dc2626"/><circle cx="422" cy="458" r="17" fill="#16a34a"/><circle cx="365" cy="414" r="16" fill="#16a34a"/>
+  <rect x="690" y="290" width="310" height="160" rx="30" fill="#fff7ed" opacity=".95"/><rect x="730" y="330" width="230" height="18" rx="9" fill="#b91c1c"/><rect x="730" y="372" width="180" height="14" rx="7" fill="#9ca3af"/><rect x="730" y="405" width="210" height="14" rx="7" fill="#9ca3af"/>
+  <text x="600" y="664" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" fill="#fff7ed">Chicago pizza ambience only · confirm details directly</text>
+</svg>
