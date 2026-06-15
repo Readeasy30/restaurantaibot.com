@@ -23,13 +23,14 @@ Major June 14 completed commits include:
 - `a19b3160f473935a76e08642094150fa0e51ba56` — added site-wide Disclaimer page naming Webmasters LLC.
 - `bc22b81080b3710a8125f87873f29f43e090c349` — wired Founder Cards into owner page.
 - `c71ff97d0280d93cad8ab16a44877898876d5cf9` — tightened Founder Cards page with Disclaimer and Webmasters LLC footer.
-- `d778900e24971a551037bee7611048c6fe74e334` — updated changelog after founder-card wiring.
+- `ea053f30a769afcdaee51c14663f8059428cd6b7` — added Restaurant Owner Intake page.
+- `1e24c5a20794c9c56f982c48c557a59f3f0ac663` — linked Owner Intake from Founder Cards page.
 
 ## Owner/operator
 
 RestaurantAIBot is owned and operated by **Webmasters LLC**.
 
-Use this language consistently in footers, disclaimer, owner pages, and future legal/policy pages.
+Use this language consistently in footers, disclaimer, owner pages, intake pages, and future legal/policy pages.
 
 ## Current stable systems
 
@@ -47,8 +48,9 @@ Use this language consistently in footers, disclaimer, owner pages, and future l
 - Restaurant owner sales page.
 - Founder Complimentary Promo Cards public page.
 - Founder Cards wired into owner page navigation, hero, package grid, inquiry area, and footer.
+- Static Restaurant Owner Intake page.
 - Site-wide disclaimer page.
-- Webmasters LLC footer language on owner/founder pages.
+- Webmasters LLC footer language on owner/founder/intake pages.
 - Restaurant Website Starter sales/template page.
 - AI Restaurant Finder SEO page.
 - Popular Searches hub.
@@ -77,9 +79,10 @@ Use this language consistently in footers, disclaimer, owner pages, and future l
 - `functions/api/config.js` returns browser-safe Google Maps readiness fields.
 - `functions/api/health.js` returns boolean-only readiness values.
 - `public/disclaimer.html` contains the site-wide disclaimer.
-- `public/founder-complimentary-promo-cards.html` supports founder-card owner inquiries.
+- `public/founder-complimentary-promo-cards.html` supports founder-card owner inquiries and links to Owner Intake.
+- `public/restaurant-owner-intake.html` is a static email/copy-paste intake page only.
 - `public/owner-advertise.html` is the main owner sales page.
-- `public/sitemap.xml` includes core SEO pages and city/cuisine pages through the last successful sitemap commit. Note: adding Disclaimer/Founder Cards to sitemap was blocked twice by connector and should be retried later as a small focused commit.
+- `public/sitemap.xml` includes core SEO pages and city/cuisine pages through the last successful sitemap commit. Note: adding Disclaimer/Founder Cards/Owner Intake to sitemap should be retried later as a small focused commit.
 
 ## Operational status
 
@@ -93,6 +96,7 @@ Operational in repo:
 - Bites helper avatar.
 - First-layer language selection.
 - Founder Cards page and owner inquiry path.
+- Static owner intake page.
 - Disclaimer page.
 - Webmasters LLC owner/operator language.
 - Owner packages and Website Starter sales pages.
@@ -103,11 +107,12 @@ Live-deployment items to verify after Cloudflare deploys latest GitHub commits:
 1. `https://restaurantaibot.com/`
 2. `https://restaurantaibot.com/owner-advertise.html`
 3. `https://restaurantaibot.com/founder-complimentary-promo-cards.html`
-4. `https://restaurantaibot.com/disclaimer.html`
-5. `https://restaurantaibot.com/ai-restaurant-finder.html`
-6. `https://restaurantaibot.com/tacos-in-dallas.html`
-7. `https://restaurantaibot.com/seafood-in-miami.html`
-8. `https://restaurantaibot.com/breakfast-in-new-york.html`
+4. `https://restaurantaibot.com/restaurant-owner-intake.html`
+5. `https://restaurantaibot.com/disclaimer.html`
+6. `https://restaurantaibot.com/ai-restaurant-finder.html`
+7. `https://restaurantaibot.com/tacos-in-dallas.html`
+8. `https://restaurantaibot.com/seafood-in-miami.html`
+9. `https://restaurantaibot.com/breakfast-in-new-york.html`
 
 Cloudflare variables still needed for full live map/search:
 
@@ -133,21 +138,20 @@ Do not present these as live:
 
 ## Current safe queue after lock
 
-1. Add a simple owner intake form page for Founder Cards and Website Starter inquiries.
-2. Add more city + cuisine SEO pages:
+1. Add more city + cuisine SEO pages:
    - pizza in Chicago
    - sushi in Tokyo
    - romantic dinner in Paris
    - coffee in London
    - cheap eats in Las Vegas
-3. Build traveler-intent SEO pages:
+2. Build traveler-intent SEO pages:
    - food near hotel
    - restaurants near airport
    - restaurants near convention center
-4. Retry sitemap update for `disclaimer.html` and `founder-complimentary-promo-cards.html` as a tiny focused commit.
-5. Add Disclaimer footer links to more static pages over time.
-6. Browser-test live pages after Cloudflare deploys latest commit.
-7. Keep live paid ads, payments, tracking, dashboards, uploads, and accounts inactive until direct approval.
+3. Retry sitemap update for `disclaimer.html`, `founder-complimentary-promo-cards.html`, and `restaurant-owner-intake.html` as a tiny focused commit.
+4. Add Owner Intake and Disclaimer links to more static owner pages over time.
+5. Browser-test live pages after Cloudflare deploys latest commit.
+6. Keep live paid ads, payments, tracking, dashboards, uploads, and accounts inactive until direct approval.
 
 ## Safety lock
 
