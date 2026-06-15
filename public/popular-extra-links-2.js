@@ -5,9 +5,14 @@
   const section = document.createElement('section');
   section.setAttribute('data-extra-place-links-2', 'true');
   section.innerHTML = `
-    <h2>More airport, station, arena, mall, and convention searches</h2>
+    <h2>More airport, station, terminal, arena, mall, and convention searches</h2>
     <p>Use these when you need simple food searches near travel and event places.</p>
     <div class="grid">
+      <div class="card"><h3>Food near cruise terminal</h3><p>Lunch, coffee, seafood, quick food, dinner, and cruise-terminal restaurants.</p><a href="/food-near-cruise-terminal.html">Open cruise terminal food</a></div>
+      <div class="card"><h3>Coffee near ferry terminal</h3><p>Cafes, quick coffee, breakfast coffee, pastries, and ferry-terminal coffee.</p><a href="/coffee-near-ferry-terminal.html">Open ferry terminal coffee</a></div>
+      <div class="card"><h3>Breakfast near bus station</h3><p>Coffee, quick breakfast, pastries, diners, and bus-station-area breakfast.</p><a href="/breakfast-near-bus-station.html">Open bus station breakfast</a></div>
+      <div class="card"><h3>Lunch near bus station</h3><p>Quick lunch, coffee, healthy lunch, sandwiches, and bus-station-area restaurants.</p><a href="/lunch-near-bus-station.html">Open bus station lunch</a></div>
+      <div class="card"><h3>Restaurants near college football stadium</h3><p>Lunch, dinner, coffee, group food, family food, and stadium-area restaurants.</p><a href="/restaurants-near-college-football-stadium.html">Open college stadium food</a></div>
       <div class="card"><h3>Coffee near airport</h3><p>Quick coffee, breakfast coffee, cafes, pastries, and airport-area coffee.</p><a href="/coffee-near-airport.html">Open airport coffee</a></div>
       <div class="card"><h3>Dessert near airport</h3><p>Dessert shops, coffee and dessert, pastries, and airport-area dessert.</p><a href="/dessert-near-airport.html">Open airport dessert</a></div>
       <div class="card"><h3>Food near bus station</h3><p>Lunch, coffee, breakfast, quick food, dinner, and bus-station-area food.</p><a href="/food-near-bus-station.html">Open bus station food</a></div>
