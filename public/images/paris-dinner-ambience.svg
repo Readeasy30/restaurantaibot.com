@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Paris dinner ambience</title>
+  <desc id="desc">Stylized romantic dinner ambience image for mood only, not a verified restaurant photo.</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#3b0764"/><stop offset=".55" stop-color="#be185d"/><stop offset="1" stop-color="#f9a8d4"/></linearGradient><filter id="soft"><feGaussianBlur stdDeviation="16"/></filter></defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <circle cx="230" cy="125" r="72" fill="#fce7f3" opacity=".4" filter="url(#soft)"/><circle cx="960" cy="135" r="88" fill="#fde68a" opacity=".36" filter="url(#soft)"/>
+  <path d="M555 170h90l-20 275h80v48H495v-48h80z" fill="#111827" opacity=".55"/><path d="M565 242h70M558 315h84M552 388h96" stroke="#fce7f3" stroke-width="10" opacity=".5"/>
+  <ellipse cx="600" cy="525" rx="360" ry="78" fill="#3b1120" opacity=".82"/>
+  <circle cx="455" cy="488" r="78" fill="#fff7ed"/><circle cx="455" cy="488" r="58" fill="#fecdd3"/><rect x="580" y="374" width="40" height="136" rx="18" fill="#fff7ed" opacity=".88"/><ellipse cx="600" cy="370" rx="40" ry="12" fill="#fdf2f8"/><path d="M745 420c-22-48 64-48 42 0-10 22-42 52-42 52s-32-30-42-52c-22-48 64-48 42 0z" fill="#f472b6"/>
+  <rect x="690" y="502" width="140" height="18" rx="9" fill="#fef3c7" opacity=".8"/><rect x="380" y="565" width="440" height="8" rx="4" fill="#f9a8d4" opacity=".55"/>
+  <text x="600" y="664" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" fill="#fff7ed">Paris dinner ambience only · confirm details directly</text>
+</svg>
