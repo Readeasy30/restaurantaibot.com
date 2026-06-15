@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Restaurant Finder for Locals and Travelers | RestaurantAIBot</title>
-  <meta name="description" content="Use RestaurantAIBot as an AI restaurant finder for locals and travelers. Search by food, city, mood, budget, nearby location, hotel area, language, or dining occasion." />
+  <meta name="description" content="Use RestaurantAIBot as an AI restaurant finder for locals and travelers. Search by food, city, mood, budget, nearby location, hotel area, airport, convention center, language, or dining occasion." />
   <link rel="canonical" href="https://restaurantaibot.com/ai-restaurant-finder.html" />
   <meta property="og:title" content="AI Restaurant Finder for Locals and Travelers" />
-  <meta property="og:description" content="Find restaurant ideas by craving, city, mood, budget, traveler need, and language with RestaurantAIBot." />
+  <meta property="og:description" content="Find restaurant ideas by craving, city, mood, budget, traveler need, hotel area, airport, convention center, and language with RestaurantAIBot." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://restaurantaibot.com/ai-restaurant-finder.html" />
   <meta name="twitter:card" content="summary" />
@@ -47,6 +47,7 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px,1fr)); gap: 18px; }
     .card { background: #fff; border: 1px solid #ececec; border-radius: 20px; padding: 20px; box-shadow: 0 8px 22px rgba(0,0,0,.045); }
     .card.featured { border-color: #ffb088; background: #fff8f3; }
+    .card a { color: #d94c1f; font-weight: 900; text-decoration: none; }
     .tag { display: inline-block; background: #fff3ed; color: #d94c1f; padding: 6px 10px; border-radius: 999px; font-size: .78rem; font-weight: 900; margin: 0 6px 8px 0; }
     header .tag { background: rgba(255,255,255,.17); color: #fff; border: 1px solid rgba(255,255,255,.34); }
     ul { padding-left: 22px; }
@@ -57,6 +58,7 @@
     .trust { background: #eef7f1; border-left: 7px solid #16833a; }
     .warning { background: #fffbea; border-left: 7px solid #c98500; }
     footer { color: #666; padding: 0 0 38px; }
+    footer a { color: #d94c1f; font-weight: 800; }
     @media (max-width: 760px) { nav a, .button { width: 100%; text-align: center; } section { border-radius: 18px; } }
   </style>
 </head>
@@ -68,7 +70,9 @@
         <a href="/ai-restaurant-finder.html">AI Finder</a>
         <a href="/popular-searches.html">Popular Searches</a>
         <a href="/restaurant-cities.html">Cities</a>
+        <a href="/food-near-hotel.html">Food Near Hotel</a>
         <a href="/owner-advertise.html">Restaurants</a>
+        <a href="/disclaimer.html">Disclaimer</a>
         <a href="/contact.html">Contact</a>
       </nav>
       <span class="tag">AI restaurant search</span>
@@ -108,6 +112,16 @@
     </section>
 
     <section>
+      <h2>Traveler food pages</h2>
+      <p>Travelers often need food around a place, not just a city. These pages help visitors start faster when they are tired, rushed, or unfamiliar with the area.</p>
+      <div class="grid">
+        <div class="card"><h3>Food near hotel</h3><p>Breakfast, coffee, dinner, cheap eats, late-night food, and local food near a hotel.</p><a href="/food-near-hotel.html">Open food near hotel</a></div>
+        <div class="card"><h3>Restaurants near airport</h3><p>Quick food, coffee, breakfast, dinner, cheap eats, and family food before or after flights.</p><a href="/restaurants-near-airport.html">Open airport food page</a></div>
+        <div class="card"><h3>Restaurants near convention center</h3><p>Lunch, coffee, client dinner, group meals, and quick food near events and meetings.</p><a href="/restaurants-near-convention-center.html">Open convention center food page</a></div>
+      </div>
+    </section>
+
+    <section>
       <h2>Built for locals</h2>
       <p>Locals usually want quick decisions: lunch near work, dinner tonight, coffee nearby, a family-friendly place, a cheap meal, outdoor dining, or a hidden gem that is not just another chain. RestaurantAIBot should help people move from “I’m hungry” to “this place fits” fast.</p>
       <ul>
@@ -139,14 +153,15 @@
       <p>Restaurant owners can review future options for Smart Promo Cards, slow-night promotions, traveler visibility, and fast restaurant websites. Paid features are inquiry-only until payment, review, disclosure, and privacy rules are complete.</p>
       <div class="actions">
         <a class="button" href="/owner-advertise.html">See owner packages</a>
+        <a class="button" href="/restaurant-owner-intake.html">Open owner intake</a>
         <a class="button" href="/restaurant-website-starter.html">See Website Starter</a>
       </div>
     </section>
   </main>
 
   <footer class="wrap">
-    <p>© 2026 RestaurantAIBot. Ask AI. Find Food. Anywhere on Earth.</p>
-    <p>Useful links: <a href="/popular-searches.html">Popular Searches</a> · <a href="/restaurant-cities.html">Cities</a> · <a href="/restaurant-owner-resources.html">Owner Resources</a></p>
+    <p>© 2026 Webmasters LLC. RestaurantAIBot is owned and operated by Webmasters LLC.</p>
+    <p>Useful links: <a href="/popular-searches.html">Popular Searches</a> · <a href="/restaurant-cities.html">Cities</a> · <a href="/restaurant-owner-resources.html">Owner Resources</a> · <a href="/disclaimer.html">Disclaimer</a></p>
   </footer>
   <script src="/responsive-avatar.js"></script>
 </body>
