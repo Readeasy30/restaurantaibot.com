@@ -27,6 +27,8 @@ Current locked direction:
 - New food-intent SEO pages added and linked:
   - Food near train station
   - Restaurants near stadium
+  - Restaurants near shopping mall
+  - Restaurants near park
   - Lunch near me
   - Brunch near me
   - Family dinner near me
@@ -56,8 +58,8 @@ Possible next pages:
 - local food in major cities
 - food near tourist attraction
 - group dinner near me
-- restaurants near shopping mall
-- restaurants near park
+- restaurants near museum
+- restaurants near beach
 
 ## Connector notes
 
@@ -72,13 +74,15 @@ Check these URLs:
 1. `https://restaurantaibot.com/`
 2. `https://restaurantaibot.com/sitemap.xml`
 3. `https://restaurantaibot.com/popular-searches.html`
-4. `https://restaurantaibot.com/lunch-near-me.html`
-5. `https://restaurantaibot.com/brunch-near-me.html`
-6. `https://restaurantaibot.com/food-near-train-station.html`
-7. `https://restaurantaibot.com/restaurants-near-stadium.html`
-8. `https://restaurantaibot.com/family-dinner-near-me.html`
-9. `https://restaurantaibot.com/evening-food-near-me.html`
-10. `https://restaurantaibot.com/special-dinner-near-me.html`
+4. `https://restaurantaibot.com/restaurants-near-shopping-mall.html`
+5. `https://restaurantaibot.com/restaurants-near-park.html`
+6. `https://restaurantaibot.com/lunch-near-me.html`
+7. `https://restaurantaibot.com/brunch-near-me.html`
+8. `https://restaurantaibot.com/food-near-train-station.html`
+9. `https://restaurantaibot.com/restaurants-near-stadium.html`
+10. `https://restaurantaibot.com/family-dinner-near-me.html`
+11. `https://restaurantaibot.com/evening-food-near-me.html`
+12. `https://restaurantaibot.com/special-dinner-near-me.html`
 
 ## Safety rule
 
