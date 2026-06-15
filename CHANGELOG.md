@@ -21,6 +21,7 @@
 - Added the first city + cuisine SEO page batch: `public/tacos-in-dallas.html`, `public/seafood-in-miami.html`, and `public/breakfast-in-new-york.html`.
 - Added the second city + cuisine SEO page batch: `public/pizza-in-chicago.html`, `public/sushi-in-tokyo.html`, `public/romantic-dinner-in-paris.html`, `public/coffee-in-london.html`, and `public/cheap-eats-in-las-vegas.html`.
 - Added the traveler-intent SEO page batch: `public/food-near-hotel.html`, `public/restaurants-near-airport.html`, and `public/restaurants-near-convention-center.html`.
+- Added local ambience image assets for homepage, promo cards, city/cuisine pages, and owner website pages, including `public/images/owner-website-ambience.svg`.
 - Added `FOUNDER-COMPLIMENTARY-PROMO-CARD-PLAN.md` to define the temporary manual-review founder promo-card bridge.
 - Added `public/founder-complimentary-promo-cards.html` as the public restaurant-owner page for limited complimentary founder promo-card inquiries.
 - Added `public/disclaimer.html` as the site-wide disclaimer naming Webmasters LLC as the owner/operator of RestaurantAIBot.
@@ -32,10 +33,13 @@
 - Updated `public/quick-searches.js` so injected homepage/footer navigation includes AI Finder and Website Starter links.
 - Updated `public/quick-searches.js` so choosing Local or Traveler mode creates a helpful search card, preloads a suggested query, and keeps search behavior demo-safe.
 - Updated `public/quick-searches.js` so injected navigation includes Founder Cards and Disclaimer links.
+- Updated `public/quick-searches.js` to add a local photo ambience card, promo-card image, enhanced map fallback, remote image replacement, and polished restaurant-style orange background.
 - Updated `public/owner-advertise.html` so restaurant owners see Founder Complimentary Promo Cards in the main navigation, hero CTA, intro cards, dedicated launch-offer section, package grid, inquiry area, and footer.
 - Updated `public/founder-complimentary-promo-cards.html` with a direct Owner Intake link, direct Disclaimer link, and Webmasters LLC owner/operator footer language.
 - Updated `public/ai-restaurant-finder.html` with traveler-intent page links, a Food Near Hotel navigation link, Owner Intake CTA, and Webmasters LLC footer language.
 - Updated `public/restaurant-owner-resources.html` with Owner Intake, Founder Cards, Website Starter, Disclaimer, and Webmasters LLC footer language.
+- Updated city/cuisine SEO pages with local ambience images and clear ambience-only wording.
+- Updated `public/restaurant-website-starter.html` with owner website ambience image, Owner Intake links, Webmasters LLC footer language, and clear ambience-only wording.
 - Updated `public/sitemap.xml` to include `ai-restaurant-finder.html`.
 - Updated `public/sitemap.xml` to include the first city + cuisine SEO pages.
 - Updated `public/sitemap.xml` to include the second city + cuisine SEO pages.
@@ -47,6 +51,7 @@
 - Updated `PROJECT-STATUS.md` and `CURRENT-TASK.md` after the second city + cuisine SEO batch so the next queue is traveler-intent pages.
 - Updated `CURRENT-TASK.md` after traveler-intent SEO pages so the next queue is internal linking and sitemap cleanup.
 - Updated `CURRENT-TASK.md` after internal linking cleanup started so the next queue is remaining owner-page links, homepage helper links, and sitemap cleanup.
+- Updated `CURRENT-TASK.md` after Website Starter ambience wiring so the next queue is owner-page linking, sitemap cleanup, and SEO expansion.
 - Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started, mark the first city + cuisine page batch as complete, and list the next SEO pages.
 
 ### Safety notes
@@ -60,6 +65,7 @@
 - Language choices are a first-layer guide translation feature only; they do not claim certified full-page translation yet.
 - SEO updates add honest crawler-friendly content and structured data only; they do not add fake reviews, fake listings, keyword stuffing, or fake restaurant availability.
 - City + cuisine and traveler-intent pages are search-help pages only; they do not claim live rankings, verified availability, open status, or allergy safety.
+- Ambience images are local mood visuals only and do not claim verified restaurant photos, owner-provided photos, paid placement, live menu items, or real restaurant availability.
 - Founder Complimentary Promo Cards are temporary manual-review launch features only; they do not guarantee traffic, clicks, reservations, sales, rankings, or customer results.
 - The disclaimer page records that restaurant details, AI output, language help, promo cards, outside links, and owner services require direct confirmation and do not create guarantees.
 - Local / Traveler mode only changes helper prompts and suggested searches; it does not track users or create profiles.
