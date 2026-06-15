@@ -1,45 +1,107 @@
 # CODEX-CURRENT-TASK.md
 
-Last updated: 2026-06-03
+Last updated: 2026-06-14
 
 ## Repository
 
-`Wholelychit/restaurantaibot.com`
+`Readeasy30/restaurantaibot.com`
 
-## Current task: Safe repository review
+## Current task: Continue safe RestaurantAIBot build
 
-Find bugs, SEO problems, broken links, accessibility issues, bad mobile layout, performance problems, and practical improvement ideas.
+Continue from the June 14 locked checkpoint.
+
+RestaurantAIBot is now positioned as:
+
+> AI restaurant finder for locals and travelers, with restaurant-owner promo and website services.
+
+## Completed state to preserve
+
+Do not redo or remove these:
+
+- Homepage AI restaurant search.
+- Homepage SEO upgrade and structured data.
+- AI Restaurant Finder landing page.
+- Local / Traveler mode.
+- Bites responsive helper avatar.
+- First-layer language choices.
+- Today’s feature demo Smart Promo Card.
+- Founder Complimentary Promo Card plan and public page.
+- Founder Cards wired into owner page.
+- Site-wide Disclaimer naming Webmasters LLC.
+- Webmasters LLC footer language on owner/founder pages.
+- Restaurant Website Starter page.
+- Owner sales page.
+- First city + cuisine SEO pages:
+  - `public/tacos-in-dallas.html`
+  - `public/seafood-in-miami.html`
+  - `public/breakfast-in-new-york.html`
+- Popular Searches and Restaurant Cities hub links.
+- SEO roadmap in `SEO-STANDOUT-GROWTH-PLAN.md`.
+- Changelog and project status files.
+
+## Best next task
+
+Create a simple static owner intake page.
+
+Suggested file:
+
+- `public/restaurant-owner-intake.html`
+
+Purpose:
+
+- Let restaurant owners send details for Founder Cards, Smart Promo Cards, or Website Starter inquiries.
+- Use mailto links and copy/paste checklists only.
+- No backend form processing yet.
+
+The page should include:
+
+- Founder Card intake section.
+- Website Starter intake section.
+- Smart Promo Card future interest section.
+- Webmasters LLC footer.
+- Disclaimer / Privacy / Terms links.
+- Clear language that there is no live paid placement or checkout yet.
+
+## Next SEO pages after intake
+
+Create city + cuisine pages:
+
+- `public/pizza-in-chicago.html`
+- `public/sushi-in-tokyo.html`
+- `public/romantic-dinner-in-paris.html`
+- `public/coffee-in-london.html`
+- `public/cheap-eats-in-las-vegas.html`
+
+Create traveler-intent pages:
+
+- `public/food-near-hotel.html`
+- `public/restaurants-near-airport.html`
+- `public/restaurants-near-convention-center.html`
 
 ## Rules
 
 - Do not redesign the site.
-- Do not convert to React, Vite, Next.js, TypeScript, Tailwind, or any build tools.
-- Keep the current plain HTML/CSS/JS structure where this repo uses plain HTML/CSS/JS.
+- Do not convert to React, Vite, Next.js, TypeScript, Tailwind, or build tools.
+- Keep plain HTML/CSS/JS.
 - Do not delete major working code.
-- Do not add API keys, tracking scripts, ads, payment systems, affiliate links, or user accounts.
-- Do not make risky production changes.
-- Fix small safe issues directly when possible.
-- For larger or risky issues, list them clearly before changing anything.
-- Work in safe batches and do not stop after one small fix.
-- If this repo contains non-website, backend, template, or planning files, review only what applies and do not force a framework or structure change.
+- Do not add API keys, tracking scripts, live ads, payment systems, affiliate links, owner dashboards, user accounts, uploads, or ordering integrations.
+- Do not claim live sponsored placement is active.
+- Do not claim restaurant rankings, live open status, verified availability, allergy safety, traffic guarantees, sales guarantees, or revenue guarantees.
+- Keep Founder Cards labeled as temporary complimentary manual-review launch features.
+- Keep Webmasters LLC as site owner/operator language where appropriate.
 
-## Check these areas
+## Known connector note
 
-1. HTML errors and missing tags
-2. Broken links and bad navigation
-3. SEO title tags, meta descriptions, canonical links, headings, and alt text
-4. Mobile layout problems
-5. Accessibility problems
-6. CSS conflicts or layout bugs
-7. JavaScript errors
-8. Page speed and image size issues
-9. Missing `robots.txt` or `sitemap.xml`
-10. Missing privacy, disclaimer, contact, or footer links if needed
+Sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice by the connector. Retry later as a tiny sitemap-only commit. Do not ask Gerry to edit manually.
 
 ## Deliverables
 
-Report: summary reviewed, bugs found, SEO problems, broken links, mobile/layout problems, accessibility issues, performance problems, safe fixes completed, suggested next improvements, and commit messages used.
+For each safe batch, update:
+
+- `CHANGELOG.md`
+- `PROJECT-STATUS.md` if the stable checkpoint changes
+- `CURRENT-TASK.md` if the next queue changes
 
 ## Stop points
 
-Stop before private keys, API keys, live tracking, live ads, payment setup, user accounts, upload systems, affiliate links, framework migration, major code deletion, or anything that risks breaking production.
+Stop before private keys, API keys, live tracking, live ads, payment setup, user accounts, upload systems, affiliate links, framework migration, major code deletion, automated ordering, or anything that risks breaking production.
