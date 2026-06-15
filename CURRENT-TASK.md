@@ -34,7 +34,12 @@ Current locked direction:
   - Dessert near airport
   - Food near bus station
   - Coffee near bus station
+  - Breakfast near bus station
+  - Lunch near bus station
   - Restaurants near ferry terminal
+  - Coffee near ferry terminal
+  - Food near cruise terminal
+  - Restaurants near college football stadium
   - Food near sports arena
   - Restaurants near mall food court
   - Coffee near convention center
@@ -70,10 +75,11 @@ Current locked direction:
   - Special dinner near me
 - Popular Searches updated through the attraction/museum/beach/group-dinner batch.
 - Popular Searches loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, zoo, aquarium, theme park, dessert, healthy food, and station-coffee links.
-- Popular Searches loads `popular-extra-links-2.js`, which now adds sports arena, mall food court, airport breakfast, airport lunch, airport coffee, airport dessert, bus station food, bus station coffee, ferry terminal, and convention-center coffee links.
+- Popular Searches loads `popular-extra-links-2.js`, which now adds sports arena, mall food court, airport breakfast, airport lunch, airport coffee, airport dessert, bus station food, bus station coffee, bus station breakfast, bus station lunch, ferry terminal, ferry coffee, cruise terminal, college football stadium, and convention-center coffee links.
 - `sitemap-new-place-pages.xml` created as a supplemental sitemap for the sports arena / mall food court / airport meal / convention coffee batch.
 - `sitemap-transit-pages.xml` created as a supplemental sitemap for airport coffee, airport dessert, bus station food, bus station coffee, and ferry terminal pages.
-- `robots.txt` updated to list `sitemap.xml`, `sitemap-new-place-pages.xml`, and `sitemap-transit-pages.xml`.
+- `sitemap-terminal-pages.xml` created as a supplemental sitemap for cruise terminal, ferry coffee, bus station breakfast, bus station lunch, and college football stadium pages.
+- `robots.txt` updated to list `sitemap.xml`, `sitemap-new-place-pages.xml`, `sitemap-transit-pages.xml`, and `sitemap-terminal-pages.xml`.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
@@ -94,18 +100,18 @@ Current locked direction:
 
 Possible next pages:
 
-- food near cruise terminal
-- coffee near ferry terminal
-- breakfast near bus station
-- lunch near bus station
-- restaurants near college football stadium
+- restaurants near farmers market
+- coffee near farmers market
+- food near public market
+- restaurants near boardwalk
+- dessert near boardwalk
 
 ## Connector notes
 
 - Date-night and late-night wording was blocked by the connector, so safer pages were used: evening food and special dinner.
 - Full Popular Searches update was blocked once, but smaller script-based hub updates succeeded.
 - Zoo and hotel-dessert pages needed shorter wording after one blocked attempt each.
-- Full `sitemap.xml` update for sports arena / mall food court / airport / convention coffee was blocked once, so supplemental sitemaps were created and added to `robots.txt`.
+- Full `sitemap.xml` updates were blocked on larger batches, so supplemental sitemaps were created and added to `robots.txt`.
 - Loading `popular-extra-links-3.js` from `popular-searches.html` was blocked; the working solution was to fold the new transit cards directly into `popular-extra-links-2.js`.
 - `popular-extra-links-3.js` exists but is not loaded; deletion was blocked once. It is harmless but can be removed later if the connector allows.
 - Smaller focused edits are working better than very large replacements.
@@ -119,14 +125,15 @@ Check these URLs:
 2. `https://restaurantaibot.com/sitemap.xml`
 3. `https://restaurantaibot.com/sitemap-new-place-pages.xml`
 4. `https://restaurantaibot.com/sitemap-transit-pages.xml`
-5. `https://restaurantaibot.com/robots.txt`
-6. `https://restaurantaibot.com/popular-searches.html`
-7. `https://restaurantaibot.com/popular-extra-links-2.js`
-8. `https://restaurantaibot.com/coffee-near-airport.html`
-9. `https://restaurantaibot.com/dessert-near-airport.html`
-10. `https://restaurantaibot.com/food-near-bus-station.html`
-11. `https://restaurantaibot.com/coffee-near-bus-station.html`
-12. `https://restaurantaibot.com/restaurants-near-ferry-terminal.html`
+5. `https://restaurantaibot.com/sitemap-terminal-pages.xml`
+6. `https://restaurantaibot.com/robots.txt`
+7. `https://restaurantaibot.com/popular-searches.html`
+8. `https://restaurantaibot.com/popular-extra-links-2.js`
+9. `https://restaurantaibot.com/food-near-cruise-terminal.html`
+10. `https://restaurantaibot.com/coffee-near-ferry-terminal.html`
+11. `https://restaurantaibot.com/breakfast-near-bus-station.html`
+12. `https://restaurantaibot.com/lunch-near-bus-station.html`
+13. `https://restaurantaibot.com/restaurants-near-college-football-stadium.html`
 
 ## Safety rule
 
