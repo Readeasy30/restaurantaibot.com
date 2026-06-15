@@ -46,6 +46,7 @@ Current locked direction:
   - `public/images/promo-card-food.svg`
   - `PHOTO-AMBIENCE-RULES.md`
 - Homepage helper now adds an ambience card, promo-card image, enhanced map fallback, and replaces remote result-card images with local ambience assets.
+- Homepage orange background polished with a deeper restaurant-style gradient, warm glow, subtle texture, clearer button contrast, and softer shadows.
 - Sitemap updated with the second city + cuisine SEO batch.
 - Project status updated to the June 14 locked checkpoint.
 - Codex current task updated to the June 14 locked checkpoint.
