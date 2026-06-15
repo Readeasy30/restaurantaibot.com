@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://restaurantaibot.com/sitemap.xml
+Sitemap: https://restaurantaibot.com/sitemap-new-place-pages.xml
