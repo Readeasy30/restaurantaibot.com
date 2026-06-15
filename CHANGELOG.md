@@ -35,6 +35,7 @@
 - Updated `public/quick-searches.js` so injected navigation includes Founder Cards and Disclaimer links.
 - Updated `public/quick-searches.js` to add a local photo ambience card, promo-card image, enhanced map fallback, remote image replacement, and polished restaurant-style orange background.
 - Updated `public/owner-advertise.html` so restaurant owners see Founder Complimentary Promo Cards in the main navigation, hero CTA, intro cards, dedicated launch-offer section, package grid, inquiry area, and footer.
+- Updated `public/owner-advertise.html` with stronger Owner Intake links in the navigation, hero, trust section, founder section, package cards, website section, inquiry section, and footer.
 - Updated `public/founder-complimentary-promo-cards.html` with a direct Owner Intake link, direct Disclaimer link, and Webmasters LLC owner/operator footer language.
 - Updated `public/ai-restaurant-finder.html` with traveler-intent page links, a Food Near Hotel navigation link, Owner Intake CTA, and Webmasters LLC footer language.
 - Updated `public/restaurant-owner-resources.html` with Owner Intake, Founder Cards, Website Starter, Disclaimer, and Webmasters LLC footer language.
@@ -52,13 +53,14 @@
 - Updated `CURRENT-TASK.md` after traveler-intent SEO pages so the next queue is internal linking and sitemap cleanup.
 - Updated `CURRENT-TASK.md` after internal linking cleanup started so the next queue is remaining owner-page links, homepage helper links, and sitemap cleanup.
 - Updated `CURRENT-TASK.md` after Website Starter ambience wiring so the next queue is owner-page linking, sitemap cleanup, and SEO expansion.
+- Updated `CURRENT-TASK.md` after Owner Advertise intake linking so the next queue is traveler links, sitemap cleanup, and SEO expansion.
 - Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started, mark the first city + cuisine page batch as complete, and list the next SEO pages.
 
 ### Safety notes
 
 - No live paid ads, payment checkout, tracking scripts, user accounts, owner uploads, dashboards, private keys, automated ordering, or framework changes were added.
 - Today's promo card is a demo-only example and does not activate real paid placement.
-- The owner sales page uses inquiry-only email CTAs and does not activate payment checkout or live sponsored placement.
+- The owner sales page uses inquiry-only email CTAs and Owner Intake links; it does not activate payment checkout or live sponsored placement.
 - The Restaurant Website Starter page is inquiry-only and does not collect payments, upload files, or create owner accounts.
 - The owner intake page is static and email-based only; it does not process forms, collect payments, upload files, create accounts, activate campaigns, or store submissions.
 - The Bites avatar is text-only, collapsible, and does not use voice, video, user accounts, or behavioral tracking.
