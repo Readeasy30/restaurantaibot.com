@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Tokyo sushi ambience</title>
+  <desc id="desc">Stylized sushi and Tokyo night ambience image for mood only, not a verified restaurant photo.</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#020617"/><stop offset=".52" stop-color="#7f1d1d"/><stop offset="1" stop-color="#fca5a5"/></linearGradient><filter id="soft"><feGaussianBlur stdDeviation="14"/></filter></defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <circle cx="260" cy="130" r="58" fill="#fecaca" opacity=".5" filter="url(#soft)"/><circle cx="940" cy="130" r="84" fill="#fff1f2" opacity=".35" filter="url(#soft)"/>
+  <path d="M120 510h960v210H120z" fill="#111827" opacity=".75"/><path d="M180 520h86V310h42v210h75V246h50v274h78V345h46v175h65V270h44v250h80V330h47v190h227v200H180z" fill="#030712" opacity=".7"/>
+  <rect x="260" y="350" width="680" height="190" rx="48" fill="#fff7ed" opacity=".96"/>
+  <ellipse cx="435" cy="445" rx="92" ry="54" fill="#111827"/><ellipse cx="435" cy="445" rx="66" ry="34" fill="#f8fafc"/><rect x="390" y="424" width="90" height="42" rx="21" fill="#ef4444"/>
+  <ellipse cx="610" cy="445" rx="92" ry="54" fill="#111827"/><ellipse cx="610" cy="445" rx="66" ry="34" fill="#f8fafc"/><rect x="565" y="424" width="90" height="42" rx="21" fill="#f97316"/>
+  <ellipse cx="785" cy="445" rx="92" ry="54" fill="#111827"/><ellipse cx="785" cy="445" rx="66" ry="34" fill="#f8fafc"/><rect x="740" y="424" width="90" height="42" rx="21" fill="#16a34a"/>
+  <text x="600" y="664" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" fill="#fff7ed">Tokyo sushi ambience only · confirm details directly</text>
+</svg>
