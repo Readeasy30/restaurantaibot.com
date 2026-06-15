@@ -34,6 +34,8 @@
 - Updated `public/quick-searches.js` so injected navigation includes Founder Cards and Disclaimer links.
 - Updated `public/owner-advertise.html` so restaurant owners see Founder Complimentary Promo Cards in the main navigation, hero CTA, intro cards, dedicated launch-offer section, package grid, inquiry area, and footer.
 - Updated `public/founder-complimentary-promo-cards.html` with a direct Owner Intake link, direct Disclaimer link, and Webmasters LLC owner/operator footer language.
+- Updated `public/ai-restaurant-finder.html` with traveler-intent page links, a Food Near Hotel navigation link, Owner Intake CTA, and Webmasters LLC footer language.
+- Updated `public/restaurant-owner-resources.html` with Owner Intake, Founder Cards, Website Starter, Disclaimer, and Webmasters LLC footer language.
 - Updated `public/sitemap.xml` to include `ai-restaurant-finder.html`.
 - Updated `public/sitemap.xml` to include the first city + cuisine SEO pages.
 - Updated `public/sitemap.xml` to include the second city + cuisine SEO pages.
@@ -44,6 +46,7 @@
 - Updated `PROJECT-STATUS.md`, `CURRENT-TASK.md`, and `CODEX-CURRENT-TASK.md` to lock the June 14 build state and next queue.
 - Updated `PROJECT-STATUS.md` and `CURRENT-TASK.md` after the second city + cuisine SEO batch so the next queue is traveler-intent pages.
 - Updated `CURRENT-TASK.md` after traveler-intent SEO pages so the next queue is internal linking and sitemap cleanup.
+- Updated `CURRENT-TASK.md` after internal linking cleanup started so the next queue is remaining owner-page links, homepage helper links, and sitemap cleanup.
 - Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started, mark the first city + cuisine page batch as complete, and list the next SEO pages.
 
 ### Safety notes
