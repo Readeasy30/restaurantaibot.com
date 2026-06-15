@@ -20,6 +20,7 @@
 - Added homepage Local / Traveler mode buttons through `public/quick-searches.js` with mode-specific search ideas for locals and visitors.
 - Added the first city + cuisine SEO page batch: `public/tacos-in-dallas.html`, `public/seafood-in-miami.html`, and `public/breakfast-in-new-york.html`.
 - Added the second city + cuisine SEO page batch: `public/pizza-in-chicago.html`, `public/sushi-in-tokyo.html`, `public/romantic-dinner-in-paris.html`, `public/coffee-in-london.html`, and `public/cheap-eats-in-las-vegas.html`.
+- Added the traveler-intent SEO page batch: `public/food-near-hotel.html`, `public/restaurants-near-airport.html`, and `public/restaurants-near-convention-center.html`.
 - Added `FOUNDER-COMPLIMENTARY-PROMO-CARD-PLAN.md` to define the temporary manual-review founder promo-card bridge.
 - Added `public/founder-complimentary-promo-cards.html` as the public restaurant-owner page for limited complimentary founder promo-card inquiries.
 - Added `public/disclaimer.html` as the site-wide disclaimer naming Webmasters LLC as the owner/operator of RestaurantAIBot.
@@ -36,10 +37,13 @@
 - Updated `public/sitemap.xml` to include `ai-restaurant-finder.html`.
 - Updated `public/sitemap.xml` to include the first city + cuisine SEO pages.
 - Updated `public/sitemap.xml` to include the second city + cuisine SEO pages.
+- Tried to update `public/sitemap.xml` with the traveler-intent SEO pages, but the connector blocked the update; retry later as a smaller focused commit.
 - Updated `public/popular-searches.html` to link to the new city + cuisine SEO pages.
+- Updated `public/popular-searches.html` to add a traveler food searches section linking to food near hotel, restaurants near airport, and restaurants near convention center.
 - Updated `public/restaurant-cities.html` to link to the new city + cuisine SEO pages from the city hub and related city cards.
 - Updated `PROJECT-STATUS.md`, `CURRENT-TASK.md`, and `CODEX-CURRENT-TASK.md` to lock the June 14 build state and next queue.
 - Updated `PROJECT-STATUS.md` and `CURRENT-TASK.md` after the second city + cuisine SEO batch so the next queue is traveler-intent pages.
+- Updated `CURRENT-TASK.md` after traveler-intent SEO pages so the next queue is internal linking and sitemap cleanup.
 - Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started, mark the first city + cuisine page batch as complete, and list the next SEO pages.
 
 ### Safety notes
@@ -52,7 +56,7 @@
 - The Bites avatar is text-only, collapsible, and does not use voice, video, user accounts, or behavioral tracking.
 - Language choices are a first-layer guide translation feature only; they do not claim certified full-page translation yet.
 - SEO updates add honest crawler-friendly content and structured data only; they do not add fake reviews, fake listings, keyword stuffing, or fake restaurant availability.
-- City + cuisine pages are search-help pages only; they do not claim live rankings, verified availability, open status, or allergy safety.
+- City + cuisine and traveler-intent pages are search-help pages only; they do not claim live rankings, verified availability, open status, or allergy safety.
 - Founder Complimentary Promo Cards are temporary manual-review launch features only; they do not guarantee traffic, clicks, reservations, sales, rankings, or customer results.
 - The disclaimer page records that restaurant details, AI output, language help, promo cards, outside links, and owner services require direct confirmation and do not create guarantees.
 - Local / Traveler mode only changes helper prompts and suggested searches; it does not track users or create profiles.
