@@ -29,7 +29,7 @@ Do not redo or remove these:
 - Founder Cards wired into owner page.
 - Static Restaurant Owner Intake page.
 - Site-wide Disclaimer naming Webmasters LLC.
-- Webmasters LLC footer language on owner/founder/intake pages.
+- Webmasters LLC footer language on owner/founder/intake/resources/AI Finder pages.
 - Restaurant Website Starter page.
 - Owner sales page.
 - City + cuisine SEO pages:
@@ -47,16 +47,19 @@ Do not redo or remove these:
   - `public/restaurants-near-convention-center.html`
 - Popular Searches and Restaurant Cities hub links.
 - Popular Searches traveler-intent links.
+- AI Finder traveler-intent links and Owner Intake CTA.
+- Restaurant Owner Resources intake/action links.
 - Sitemap coverage for the city + cuisine SEO batch.
 - SEO roadmap in `SEO-STANDOUT-GROWTH-PLAN.md`.
 - Changelog and project status files.
 
 ## Best next task
 
-Internal linking cleanup:
+Remaining internal linking cleanup:
 
-- Add Owner Intake links to more owner pages.
-- Add traveler-intent links to AI Finder, homepage helper, and related pages where useful.
+- Add Owner Intake links to Website Starter and owner sales page when connector allows small safe edits.
+- Add traveler-intent links to homepage helper / injected navigation if useful.
+- Add traveler-intent links to Restaurant Cities page if useful.
 - Retry sitemap cleanup later as a small focused commit.
 
 ## Rules
