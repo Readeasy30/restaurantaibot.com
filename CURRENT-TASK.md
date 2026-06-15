@@ -58,6 +58,8 @@ Current locked direction:
   - `public/coffee-in-london.html`
   - `public/romantic-dinner-in-paris.html`
   - `public/cheap-eats-in-las-vegas.html`
+  - `public/restaurant-website-starter.html`
+- `public/restaurant-website-starter.html` now includes Owner Intake links, Webmasters LLC footer language, owner-website ambience image, and clear ambience-only wording.
 - Homepage helper now adds an ambience card, promo-card image, enhanced map fallback, and replaces remote result-card images with local ambience assets.
 - Homepage orange background polished with a deeper restaurant-style gradient, warm glow, subtle texture, clearer button contrast, and softer shadows.
 - Sitemap updated with the second city + cuisine SEO batch.
@@ -67,29 +69,18 @@ Current locked direction:
 
 ## Continue from here
 
-### Next build batch 1 — remaining photo ambience wiring
-
-Wire `public/images/owner-website-ambience.svg` into:
-
-- `public/restaurant-website-starter.html`
-
-Keep the wording clear:
-
-> Ambience image only. Not a verified restaurant photo.
-
-### Next build batch 2 — remaining internal linking cleanup
+### Next build batch 1 — remaining internal linking cleanup
 
 Add links to `restaurant-owner-intake.html` from:
 
 - `public/owner-advertise.html` if a smaller safe connector edit allows it later.
-- `public/restaurant-website-starter.html`.
 
 Add links to traveler-intent pages from:
 
 - Restaurant Cities page if useful
 - related city pages over time
 
-### Next build batch 3 — sitemap cleanup
+### Next build batch 2 — sitemap cleanup
 
 Retry adding these pages to sitemap as a tiny focused commit:
 
@@ -100,7 +91,7 @@ Retry adding these pages to sitemap as a tiny focused commit:
 - `public/restaurants-near-airport.html`
 - `public/restaurants-near-convention-center.html`
 
-### Next build batch 4 — more SEO expansion
+### Next build batch 3 — more SEO expansion
 
 Possible next pages:
 
@@ -117,7 +108,7 @@ Possible next pages:
 - Sitemap update for traveler-intent pages was blocked once.
 - A full owner-page replacement was blocked once before a smaller owner-page update succeeded.
 - The second city + cuisine sitemap update succeeded.
-- Restaurant Website Starter is a longer file; image wiring should be done carefully as a focused edit.
+- Restaurant Website Starter ambience wiring succeeded as a focused edit.
 - Do not ask Gerry to edit files manually.
 - Retry smaller safe edits, record blockers, and continue.
 
@@ -138,7 +129,8 @@ Check these URLs:
 11. `https://restaurantaibot.com/romantic-dinner-in-paris.html`
 12. `https://restaurantaibot.com/cheap-eats-in-las-vegas.html`
 13. `https://restaurantaibot.com/restaurant-website-starter.html`
-14. `https://restaurantaibot.com/disclaimer.html`
+14. `https://restaurantaibot.com/restaurant-owner-intake.html`
+15. `https://restaurantaibot.com/disclaimer.html`
 
 ## Safety rule
 
