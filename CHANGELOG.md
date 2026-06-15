@@ -48,12 +48,14 @@
 - Updated `public/popular-searches.html` to link to the new city + cuisine SEO pages.
 - Updated `public/popular-searches.html` to add a traveler food searches section linking to food near hotel, restaurants near airport, and restaurants near convention center.
 - Updated `public/restaurant-cities.html` to link to the new city + cuisine SEO pages from the city hub and related city cards.
+- Updated `public/restaurant-cities.html` with a Traveler Place Searches section linking to food near hotel, restaurants near airport, and restaurants near convention center.
 - Updated `PROJECT-STATUS.md`, `CURRENT-TASK.md`, and `CODEX-CURRENT-TASK.md` to lock the June 14 build state and next queue.
 - Updated `PROJECT-STATUS.md` and `CURRENT-TASK.md` after the second city + cuisine SEO batch so the next queue is traveler-intent pages.
 - Updated `CURRENT-TASK.md` after traveler-intent SEO pages so the next queue is internal linking and sitemap cleanup.
 - Updated `CURRENT-TASK.md` after internal linking cleanup started so the next queue is remaining owner-page links, homepage helper links, and sitemap cleanup.
 - Updated `CURRENT-TASK.md` after Website Starter ambience wiring so the next queue is owner-page linking, sitemap cleanup, and SEO expansion.
 - Updated `CURRENT-TASK.md` after Owner Advertise intake linking so the next queue is traveler links, sitemap cleanup, and SEO expansion.
+- Updated `CURRENT-TASK.md` after Restaurant Cities traveler links so the next queue is sitemap cleanup and SEO expansion.
 - Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started, mark the first city + cuisine page batch as complete, and list the next SEO pages.
 
 ### Safety notes
