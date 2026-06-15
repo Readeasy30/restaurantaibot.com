@@ -28,6 +28,11 @@ Current locked direction:
   - Local food in major cities
   - Breakfast near hotel
   - Lunch near hotel
+  - Breakfast near airport
+  - Lunch near airport
+  - Food near sports arena
+  - Restaurants near mall food court
+  - Coffee near convention center
   - Restaurants near theater
   - Restaurants near movie theater
   - Restaurants near concert venue
@@ -59,19 +64,22 @@ Current locked direction:
   - Evening food near me
   - Special dinner near me
 - Popular Searches updated through the attraction/museum/beach/group-dinner batch.
-- Popular Searches now loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, zoo, aquarium, theme park, dessert, healthy food, and station-coffee links without another blocked full-page rewrite.
+- Popular Searches now loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, zoo, aquarium, theme park, dessert, healthy food, and station-coffee links.
+- Popular Searches now also loads `popular-extra-links-2.js`, which adds sports arena, mall food court, airport breakfast, airport lunch, and convention-center coffee links.
+- `sitemap-new-place-pages.xml` created as a supplemental sitemap for the newest batch because the full `sitemap.xml` replacement was blocked once.
+- `robots.txt` updated to list both `sitemap.xml` and `sitemap-new-place-pages.xml`.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
 - Homepage orange background polished.
-- Sitemap updated with legal, intake, traveler, place, food-intent, and event-intent pages, including zoo, aquarium, theme park, downtown coffee, and hotel dessert pages.
 
 ## Continue from here
 
 ### Next build batch 1 — live-readiness check
 
 - Check homepage after Cloudflare deploys.
-- Check sitemap live.
+- Check main sitemap live.
+- Check supplemental sitemap live.
 - Check new SEO pages live.
 - Confirm offer pages stay clearly labeled as demo, founder, inquiry, or informational.
 - Confirm ambience images are not presented as verified restaurant photos.
@@ -80,17 +88,18 @@ Current locked direction:
 
 Possible next pages:
 
-- food near sports arena
-- restaurants near mall food court
-- coffee near convention center
-- breakfast near airport
-- lunch near airport
+- coffee near airport
+- dessert near airport
+- food near bus station
+- coffee near bus station
+- restaurants near ferry terminal
 
 ## Connector notes
 
 - Date-night and late-night wording was blocked by the connector, so safer pages were used: evening food and special dinner.
 - Full Popular Searches update was blocked once, but smaller script-based hub updates succeeded.
 - Zoo and hotel-dessert pages needed shorter wording after one blocked attempt each.
+- Full `sitemap.xml` update for sports arena / mall food court / airport / convention coffee was blocked once, so `sitemap-new-place-pages.xml` was created and added to `robots.txt`.
 - Smaller focused edits are working better than very large replacements.
 - Do not ask Gerry to edit files manually.
 
@@ -100,13 +109,15 @@ Check these URLs:
 
 1. `https://restaurantaibot.com/`
 2. `https://restaurantaibot.com/sitemap.xml`
-3. `https://restaurantaibot.com/popular-searches.html`
-4. `https://restaurantaibot.com/popular-extra-links.js`
-5. `https://restaurantaibot.com/restaurants-near-zoo.html`
-6. `https://restaurantaibot.com/restaurants-near-aquarium.html`
-7. `https://restaurantaibot.com/food-near-theme-park.html`
-8. `https://restaurantaibot.com/coffee-near-downtown.html`
-9. `https://restaurantaibot.com/dessert-near-hotel.html`
+3. `https://restaurantaibot.com/sitemap-new-place-pages.xml`
+4. `https://restaurantaibot.com/robots.txt`
+5. `https://restaurantaibot.com/popular-searches.html`
+6. `https://restaurantaibot.com/popular-extra-links-2.js`
+7. `https://restaurantaibot.com/food-near-sports-arena.html`
+8. `https://restaurantaibot.com/restaurants-near-mall-food-court.html`
+9. `https://restaurantaibot.com/coffee-near-convention-center.html`
+10. `https://restaurantaibot.com/breakfast-near-airport.html`
+11. `https://restaurantaibot.com/lunch-near-airport.html`
 
 ## Safety rule
 
