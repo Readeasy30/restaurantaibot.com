@@ -24,12 +24,17 @@ Current locked direction:
   - Food near hotel
   - Restaurants near airport
   - Restaurants near convention center
-- Food/place/event-intent SEO pages added:
+- Food/place/event/transit-intent SEO pages added:
   - Local food in major cities
   - Breakfast near hotel
   - Lunch near hotel
   - Breakfast near airport
   - Lunch near airport
+  - Coffee near airport
+  - Dessert near airport
+  - Food near bus station
+  - Coffee near bus station
+  - Restaurants near ferry terminal
   - Food near sports arena
   - Restaurants near mall food court
   - Coffee near convention center
@@ -64,10 +69,11 @@ Current locked direction:
   - Evening food near me
   - Special dinner near me
 - Popular Searches updated through the attraction/museum/beach/group-dinner batch.
-- Popular Searches now loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, zoo, aquarium, theme park, dessert, healthy food, and station-coffee links.
-- Popular Searches now also loads `popular-extra-links-2.js`, which adds sports arena, mall food court, airport breakfast, airport lunch, and convention-center coffee links.
-- `sitemap-new-place-pages.xml` created as a supplemental sitemap for the newest batch because the full `sitemap.xml` replacement was blocked once.
-- `robots.txt` updated to list both `sitemap.xml` and `sitemap-new-place-pages.xml`.
+- Popular Searches loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, zoo, aquarium, theme park, dessert, healthy food, and station-coffee links.
+- Popular Searches loads `popular-extra-links-2.js`, which now adds sports arena, mall food court, airport breakfast, airport lunch, airport coffee, airport dessert, bus station food, bus station coffee, ferry terminal, and convention-center coffee links.
+- `sitemap-new-place-pages.xml` created as a supplemental sitemap for the sports arena / mall food court / airport meal / convention coffee batch.
+- `sitemap-transit-pages.xml` created as a supplemental sitemap for airport coffee, airport dessert, bus station food, bus station coffee, and ferry terminal pages.
+- `robots.txt` updated to list `sitemap.xml`, `sitemap-new-place-pages.xml`, and `sitemap-transit-pages.xml`.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
@@ -79,7 +85,7 @@ Current locked direction:
 
 - Check homepage after Cloudflare deploys.
 - Check main sitemap live.
-- Check supplemental sitemap live.
+- Check supplemental sitemaps live.
 - Check new SEO pages live.
 - Confirm offer pages stay clearly labeled as demo, founder, inquiry, or informational.
 - Confirm ambience images are not presented as verified restaurant photos.
@@ -88,18 +94,20 @@ Current locked direction:
 
 Possible next pages:
 
-- coffee near airport
-- dessert near airport
-- food near bus station
-- coffee near bus station
-- restaurants near ferry terminal
+- food near cruise terminal
+- coffee near ferry terminal
+- breakfast near bus station
+- lunch near bus station
+- restaurants near college football stadium
 
 ## Connector notes
 
 - Date-night and late-night wording was blocked by the connector, so safer pages were used: evening food and special dinner.
 - Full Popular Searches update was blocked once, but smaller script-based hub updates succeeded.
 - Zoo and hotel-dessert pages needed shorter wording after one blocked attempt each.
-- Full `sitemap.xml` update for sports arena / mall food court / airport / convention coffee was blocked once, so `sitemap-new-place-pages.xml` was created and added to `robots.txt`.
+- Full `sitemap.xml` update for sports arena / mall food court / airport / convention coffee was blocked once, so supplemental sitemaps were created and added to `robots.txt`.
+- Loading `popular-extra-links-3.js` from `popular-searches.html` was blocked; the working solution was to fold the new transit cards directly into `popular-extra-links-2.js`.
+- `popular-extra-links-3.js` exists but is not loaded; deletion was blocked once. It is harmless but can be removed later if the connector allows.
 - Smaller focused edits are working better than very large replacements.
 - Do not ask Gerry to edit files manually.
 
@@ -110,14 +118,15 @@ Check these URLs:
 1. `https://restaurantaibot.com/`
 2. `https://restaurantaibot.com/sitemap.xml`
 3. `https://restaurantaibot.com/sitemap-new-place-pages.xml`
-4. `https://restaurantaibot.com/robots.txt`
-5. `https://restaurantaibot.com/popular-searches.html`
-6. `https://restaurantaibot.com/popular-extra-links-2.js`
-7. `https://restaurantaibot.com/food-near-sports-arena.html`
-8. `https://restaurantaibot.com/restaurants-near-mall-food-court.html`
-9. `https://restaurantaibot.com/coffee-near-convention-center.html`
-10. `https://restaurantaibot.com/breakfast-near-airport.html`
-11. `https://restaurantaibot.com/lunch-near-airport.html`
+4. `https://restaurantaibot.com/sitemap-transit-pages.xml`
+5. `https://restaurantaibot.com/robots.txt`
+6. `https://restaurantaibot.com/popular-searches.html`
+7. `https://restaurantaibot.com/popular-extra-links-2.js`
+8. `https://restaurantaibot.com/coffee-near-airport.html`
+9. `https://restaurantaibot.com/dessert-near-airport.html`
+10. `https://restaurantaibot.com/food-near-bus-station.html`
+11. `https://restaurantaibot.com/coffee-near-bus-station.html`
+12. `https://restaurantaibot.com/restaurants-near-ferry-terminal.html`
 
 ## Safety rule
 
