@@ -7,6 +7,11 @@
   <url><loc>https://restaurantaibot.com/food-near-hotel.html</loc><priority>0.86</priority></url>
   <url><loc>https://restaurantaibot.com/restaurants-near-airport.html</loc><priority>0.86</priority></url>
   <url><loc>https://restaurantaibot.com/restaurants-near-convention-center.html</loc><priority>0.86</priority></url>
+  <url><loc>https://restaurantaibot.com/food-near-train-station.html</loc><priority>0.84</priority></url>
+  <url><loc>https://restaurantaibot.com/restaurants-near-stadium.html</loc><priority>0.84</priority></url>
+  <url><loc>https://restaurantaibot.com/family-dinner-near-me.html</loc><priority>0.82</priority></url>
+  <url><loc>https://restaurantaibot.com/evening-food-near-me.html</loc><priority>0.82</priority></url>
+  <url><loc>https://restaurantaibot.com/special-dinner-near-me.html</loc><priority>0.82</priority></url>
   <url><loc>https://restaurantaibot.com/pizza-in-chicago.html</loc><priority>0.85</priority></url>
   <url><loc>https://restaurantaibot.com/tacos-in-dallas.html</loc><priority>0.85</priority></url>
   <url><loc>https://restaurantaibot.com/seafood-in-miami.html</loc><priority>0.85</priority></url>
