@@ -8,6 +8,10 @@
   <url><loc>https://restaurantaibot.com/breakfast-near-hotel.html</loc><priority>0.85</priority></url>
   <url><loc>https://restaurantaibot.com/lunch-near-hotel.html</loc><priority>0.85</priority></url>
   <url><loc>https://restaurantaibot.com/coffee-near-hotel.html</loc><priority>0.85</priority></url>
+  <url><loc>https://restaurantaibot.com/coffee-near-train-station.html</loc><priority>0.85</priority></url>
+  <url><loc>https://restaurantaibot.com/restaurants-near-theater.html</loc><priority>0.84</priority></url>
+  <url><loc>https://restaurantaibot.com/restaurants-near-movie-theater.html</loc><priority>0.84</priority></url>
+  <url><loc>https://restaurantaibot.com/restaurants-near-concert-venue.html</loc><priority>0.84</priority></url>
   <url><loc>https://restaurantaibot.com/restaurants-near-downtown.html</loc><priority>0.84</priority></url>
   <url><loc>https://restaurantaibot.com/restaurants-near-old-town.html</loc><priority>0.84</priority></url>
   <url><loc>https://restaurantaibot.com/local-food-in-major-cities.html</loc><priority>0.84</priority></url>
@@ -26,6 +30,7 @@
   <url><loc>https://restaurantaibot.com/lunch-near-me.html</loc><priority>0.83</priority></url>
   <url><loc>https://restaurantaibot.com/brunch-near-me.html</loc><priority>0.83</priority></url>
   <url><loc>https://restaurantaibot.com/healthy-food-near-me.html</loc><priority>0.83</priority></url>
+  <url><loc>https://restaurantaibot.com/dessert-near-me.html</loc><priority>0.83</priority></url>
   <url><loc>https://restaurantaibot.com/group-dinner-near-me.html</loc><priority>0.82</priority></url>
   <url><loc>https://restaurantaibot.com/family-dinner-near-me.html</loc><priority>0.82</priority></url>
   <url><loc>https://restaurantaibot.com/evening-food-near-me.html</loc><priority>0.82</priority></url>
