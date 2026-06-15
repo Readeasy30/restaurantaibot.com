@@ -39,26 +39,26 @@ Current locked direction:
   - Restaurants near convention center
 - Popular Searches updated with traveler-intent links.
 - Popular Searches and Restaurant Cities hubs updated with city + cuisine links.
+- AI Finder updated with traveler-intent page links and Owner Intake link.
+- Restaurant Owner Resources updated with Owner Intake, Founder Cards, Website Starter, Disclaimer, and Webmasters LLC language.
 - Sitemap updated with the second city + cuisine SEO batch.
 - Project status updated to the June 14 locked checkpoint.
 - Codex current task updated to the June 14 locked checkpoint.
-- Changelog updated through latest SEO work.
+- Changelog updated through latest internal linking cleanup.
 
 ## Continue from here
 
-### Next build batch 1 — internal linking cleanup
+### Next build batch 1 — remaining internal linking cleanup
 
 Add links to `restaurant-owner-intake.html` from:
 
 - `public/owner-advertise.html` if a smaller safe connector edit allows it later.
 - `public/restaurant-website-starter.html`.
-- `public/restaurant-owner-resources.html`.
 - `public/quick-searches.js` injected navigation if useful.
 
 Add links to traveler-intent pages from:
 
 - homepage helper / injected links if useful
-- AI Finder page
 - Restaurant Cities page if useful
 - related city pages over time
 
@@ -98,15 +98,16 @@ Possible next pages:
 Check these URLs:
 
 1. `https://restaurantaibot.com/`
-2. `https://restaurantaibot.com/food-near-hotel.html`
-3. `https://restaurantaibot.com/restaurants-near-airport.html`
-4. `https://restaurantaibot.com/restaurants-near-convention-center.html`
-5. `https://restaurantaibot.com/popular-searches.html`
-6. `https://restaurantaibot.com/owner-advertise.html`
-7. `https://restaurantaibot.com/founder-complimentary-promo-cards.html`
-8. `https://restaurantaibot.com/restaurant-owner-intake.html`
-9. `https://restaurantaibot.com/disclaimer.html`
-10. `https://restaurantaibot.com/ai-restaurant-finder.html`
+2. `https://restaurantaibot.com/ai-restaurant-finder.html`
+3. `https://restaurantaibot.com/restaurant-owner-resources.html`
+4. `https://restaurantaibot.com/food-near-hotel.html`
+5. `https://restaurantaibot.com/restaurants-near-airport.html`
+6. `https://restaurantaibot.com/restaurants-near-convention-center.html`
+7. `https://restaurantaibot.com/popular-searches.html`
+8. `https://restaurantaibot.com/owner-advertise.html`
+9. `https://restaurantaibot.com/founder-complimentary-promo-cards.html`
+10. `https://restaurantaibot.com/restaurant-owner-intake.html`
+11. `https://restaurantaibot.com/disclaimer.html`
 
 ## Safety rule
 
