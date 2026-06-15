@@ -38,6 +38,7 @@ Current locked direction:
   - Restaurants near airport
   - Restaurants near convention center
 - Popular Searches updated with traveler-intent links.
+- Restaurant Cities updated with a Traveler Place Searches section and nav links for hotel/airport/convention-center food.
 - Popular Searches and Restaurant Cities hubs updated with city + cuisine links.
 - AI Finder updated with traveler-intent page links and Owner Intake link.
 - Restaurant Owner Resources updated with Owner Intake, Founder Cards, Website Starter, Disclaimer, and Webmasters LLC language.
@@ -70,14 +71,7 @@ Current locked direction:
 
 ## Continue from here
 
-### Next build batch 1 — remaining internal linking cleanup
-
-Add links to traveler-intent pages from:
-
-- Restaurant Cities page if useful
-- related city pages over time
-
-### Next build batch 2 — sitemap cleanup
+### Next build batch 1 — sitemap cleanup
 
 Retry adding these pages to sitemap as a tiny focused commit:
 
@@ -88,7 +82,7 @@ Retry adding these pages to sitemap as a tiny focused commit:
 - `public/restaurants-near-airport.html`
 - `public/restaurants-near-convention-center.html`
 
-### Next build batch 3 — more SEO expansion
+### Next build batch 2 — more SEO expansion
 
 Possible next pages:
 
@@ -107,6 +101,7 @@ Possible next pages:
 - The second city + cuisine sitemap update succeeded.
 - Restaurant Website Starter ambience wiring succeeded as a focused edit.
 - Owner Advertise stronger Owner Intake linking succeeded as a focused edit.
+- Restaurant Cities traveler-place linking succeeded as a focused edit.
 - Do not ask Gerry to edit files manually.
 - Retry smaller safe edits, record blockers, and continue.
 
@@ -115,21 +110,20 @@ Possible next pages:
 Check these URLs:
 
 1. `https://restaurantaibot.com/`
-2. `https://restaurantaibot.com/owner-advertise.html`
-3. `https://restaurantaibot.com/restaurant-owner-intake.html`
-4. `https://restaurantaibot.com/restaurant-website-starter.html`
-5. `https://restaurantaibot.com/images/pizza-chicago-ambience.svg`
-6. `https://restaurantaibot.com/images/sushi-tokyo-ambience.svg`
-7. `https://restaurantaibot.com/images/coffee-london-ambience.svg`
-8. `https://restaurantaibot.com/images/paris-dinner-ambience.svg`
-9. `https://restaurantaibot.com/images/vegas-cheap-eats-ambience.svg`
-10. `https://restaurantaibot.com/images/owner-website-ambience.svg`
-11. `https://restaurantaibot.com/pizza-in-chicago.html`
-12. `https://restaurantaibot.com/sushi-in-tokyo.html`
-13. `https://restaurantaibot.com/coffee-in-london.html`
-14. `https://restaurantaibot.com/romantic-dinner-in-paris.html`
-15. `https://restaurantaibot.com/cheap-eats-in-las-vegas.html`
-16. `https://restaurantaibot.com/disclaimer.html`
+2. `https://restaurantaibot.com/restaurant-cities.html`
+3. `https://restaurantaibot.com/food-near-hotel.html`
+4. `https://restaurantaibot.com/restaurants-near-airport.html`
+5. `https://restaurantaibot.com/restaurants-near-convention-center.html`
+6. `https://restaurantaibot.com/owner-advertise.html`
+7. `https://restaurantaibot.com/restaurant-owner-intake.html`
+8. `https://restaurantaibot.com/restaurant-website-starter.html`
+9. `https://restaurantaibot.com/images/pizza-chicago-ambience.svg`
+10. `https://restaurantaibot.com/images/sushi-tokyo-ambience.svg`
+11. `https://restaurantaibot.com/images/coffee-london-ambience.svg`
+12. `https://restaurantaibot.com/images/paris-dinner-ambience.svg`
+13. `https://restaurantaibot.com/images/vegas-cheap-eats-ambience.svg`
+14. `https://restaurantaibot.com/images/owner-website-ambience.svg`
+15. `https://restaurantaibot.com/disclaimer.html`
 
 ## Safety rule
 
