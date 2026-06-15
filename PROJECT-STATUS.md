@@ -17,9 +17,6 @@ Major June 14 completed commits include:
 - `7cb12a2df53fa7e40033ccecbfc0d120a6744f27` — added AI Restaurant Finder SEO page.
 - `5a041b2143a299409e6dacfb0260d9774c079bc9` — improved homepage SEO and structured data.
 - `40b63b3fe283ace275aae608956681793e0054b6` — added Local / Traveler mode.
-- `c14473c8152f46157c2297785ed801af211741d0` — added Tacos in Dallas SEO page.
-- `9fcccb3052977a242dbf3a2ea247405b711f4888` — added Seafood in Miami SEO page.
-- `f94011bcc290868ca44860c72b4642d826023e4a` — added Breakfast in New York SEO page.
 - `b303fb7a0e471522df55e51a34e6d73277f088f3` — added Pizza in Chicago SEO page.
 - `6397caa195896c06a430a90574c8a33145e18892` — added Sushi in Tokyo SEO page.
 - `5f9e2bcd1ab5f7906860d2431a5fe5b7dc7dc0d2` — added Romantic Dinner in Paris SEO page.
@@ -28,17 +25,18 @@ Major June 14 completed commits include:
 - `85071f26ba5974a66db214c682d8b7c9a65b1f6d` — added Food Near Hotel SEO page.
 - `d655f3a06fb717ff4afd2f29d1b6b83f735b626d` — added Restaurants Near Airport SEO page.
 - `08173925e4b305937e1cbcb6c7437c7ffa3ba600` — added Restaurants Near Convention Center SEO page.
-- `a19b3160f473935a76e08642094150fa0e51ba56` — added site-wide Disclaimer page naming Webmasters LLC.
-- `bc22b81080b3710a8125f87873f29f43e090c349` — wired Founder Cards into owner page.
-- `c71ff97d0280d93cad8ab16a44877898876d5cf9` — tightened Founder Cards page with Disclaimer and Webmasters LLC footer.
 - `ea053f30a769afcdaee51c14663f8059428cd6b7` — added Restaurant Owner Intake page.
 - `1e24c5a20794c9c56f982c48c557a59f3f0ac663` — linked Owner Intake from Founder Cards page.
-- `9e2e05e607c4c4afe0d294cb1a440c1485e6f9fa` — linked new SEO pages from Popular Searches.
-- `82f23ae2b094109e9c8434f63e55a00bd179d478` — linked new SEO pages from Restaurant Cities.
-- `68a35571eadd0789af324b21693cd17c5f641795` — added new city/cuisine SEO pages to sitemap.
-- `bf639d94db3d0f4d9f5b8809f634a131fc0c1581` — linked traveler-intent pages from Popular Searches.
 - `0c4aad4a79ba8926c13dff481ec502e28070c7f8` — linked traveler-intent pages and Owner Intake from AI Finder.
 - `3700390284cf63548c29d05464c3f77f05cf0067` — added Owner Intake, Founder Cards, Website Starter, and Disclaimer paths to Owner Resources.
+- `52594cd420ad90bdb3e5f5988244a6ad9bde9fb8` — added homepage ambience layer and local image replacement.
+- `bc880e05ccc2da74f73262b616aa5d060019ca22` — polished orange restaurant background.
+- `1916cfed62b489c1b5c2bb7f8cfdd99e7673b62b` — wired Chicago pizza ambience image.
+- `68a4ee5f5214efccdb070a1166a80e19d1a68ab3` — wired Tokyo sushi ambience image.
+- `561cc5688cc3fb7bece35a47c2877e5f10880920` — wired London coffee ambience image.
+- `31fe0c0f76d08a0b4530c16ddf849675dffa723a` — wired Paris dinner ambience image.
+- `78bd8afd6228a18a1e589e6b45f6a0d0ca2b8fda` — wired Las Vegas cheap eats ambience image.
+- `cb810be1dfcd12b8788f22151c8a461dec313809` — wired Owner Website ambience image into Website Starter and added Owner Intake links.
 
 ## Owner/operator
 
@@ -50,9 +48,6 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
 
 - AI restaurant finder homepage.
 - Homepage SEO title, description, canonical, Open Graph, Twitter card, and structured data.
-- WebSite/SearchAction structured data on homepage.
-- WebApplication structured data on homepage.
-- Crawlable homepage explanation card with internal links.
 - Local / Traveler mode buttons on homepage.
 - Bites responsive text avatar.
 - First-layer language choices for Bites helper text.
@@ -61,18 +56,14 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
 - Clear demo/sponsored/complimentary labels where needed.
 - Restaurant owner sales page.
 - Founder Complimentary Promo Cards public page.
-- Founder Cards wired into owner page navigation, hero, package grid, inquiry area, and footer.
 - Static Restaurant Owner Intake page.
 - Site-wide disclaimer page.
-- Webmasters LLC footer language on owner/founder/intake/resources/AI Finder pages.
-- Restaurant Website Starter sales/template page.
+- Webmasters LLC footer language on owner/founder/intake/resources/AI Finder/Website Starter pages.
+- Restaurant Website Starter sales/template page with owner ambience image and Owner Intake CTAs.
 - AI Restaurant Finder SEO page with traveler-intent links and Owner Intake CTA.
 - Popular Searches hub.
 - Restaurant Cities hub.
-- City + cuisine SEO pages:
-  - `public/tacos-in-dallas.html`
-  - `public/seafood-in-miami.html`
-  - `public/breakfast-in-new-york.html`
+- City + cuisine SEO pages with local ambience images:
   - `public/pizza-in-chicago.html`
   - `public/sushi-in-tokyo.html`
   - `public/romantic-dinner-in-paris.html`
@@ -83,11 +74,7 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
   - `public/restaurants-near-airport.html`
   - `public/restaurants-near-convention-center.html`
 - Owner resource pages with direct Owner Intake / Founder Cards / Website Starter paths.
-- Existing city pages.
-- Existing food SEO pages.
-- `CHANGELOG.md` records June 14 work.
-- `SEO-STANDOUT-GROWTH-PLAN.md` records SEO and feature roadmap.
-- `FOUNDER-COMPLIMENTARY-PROMO-CARD-PLAN.md` records temporary founder-card rules.
+- Local ambience image assets and `PHOTO-AMBIENCE-RULES.md`.
 
 ## Current stable architecture
 
@@ -95,7 +82,7 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
 - Preferred Cloudflare Pages output directory remains `public`.
 - No React, Vite, Next.js, Node build tooling, Tailwind, TypeScript, or framework migration.
 - `public/index.html` is the main website/search page.
-- `public/quick-searches.js` injects quick links, Local / Traveler mode, Today’s feature demo promo card, Founder Cards link, Disclaimer link, and homepage search helpers.
+- `public/quick-searches.js` injects quick links, Local / Traveler mode, Today’s feature demo promo card, Founder Cards link, Disclaimer link, homepage search helpers, local ambience visuals, and polished homepage background.
 - `public/responsive-avatar.js` loads Bites and auto-loads the language helper.
 - `public/language-choices.js` controls first-layer guide language choices.
 - `functions/api/search.js` handles restaurant search and demo fallback.
@@ -105,8 +92,7 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
 - `public/founder-complimentary-promo-cards.html` supports founder-card owner inquiries and links to Owner Intake.
 - `public/restaurant-owner-intake.html` is a static email/copy-paste intake page only.
 - `public/owner-advertise.html` is the main owner sales page.
-- `public/ai-restaurant-finder.html` links to traveler-intent pages and owner intake.
-- `public/restaurant-owner-resources.html` links to Owner Intake, Founder Cards, and Website Starter.
+- `public/restaurant-website-starter.html` links to Owner Intake and uses owner ambience art.
 - `public/popular-searches.html` links food pages, city + cuisine pages, and traveler-intent pages.
 - `public/sitemap.xml` includes core SEO pages, food pages, city pages, and city/cuisine SEO pages through the second SEO batch. Note: traveler-intent sitemap update was blocked once and should be retried later.
 
@@ -126,24 +112,24 @@ Operational in repo:
 - Disclaimer page.
 - Webmasters LLC owner/operator language.
 - Owner packages and Website Starter sales pages.
-- City + cuisine SEO page system with eight focused pages.
+- City + cuisine SEO page system with ambience art.
 - Traveler-intent SEO page system with three focused pages.
 - AI Finder internal links to traveler pages.
 - Owner Resources internal links to intake and service pages.
+- Website Starter internal links to intake and service pages.
 
 Live-deployment items to verify after Cloudflare deploys latest GitHub commits:
 
 1. `https://restaurantaibot.com/`
-2. `https://restaurantaibot.com/ai-restaurant-finder.html`
-3. `https://restaurantaibot.com/restaurant-owner-resources.html`
-4. `https://restaurantaibot.com/food-near-hotel.html`
-5. `https://restaurantaibot.com/restaurants-near-airport.html`
-6. `https://restaurantaibot.com/restaurants-near-convention-center.html`
-7. `https://restaurantaibot.com/popular-searches.html`
-8. `https://restaurantaibot.com/owner-advertise.html`
-9. `https://restaurantaibot.com/founder-complimentary-promo-cards.html`
-10. `https://restaurantaibot.com/restaurant-owner-intake.html`
-11. `https://restaurantaibot.com/disclaimer.html`
+2. `https://restaurantaibot.com/restaurant-website-starter.html`
+3. `https://restaurantaibot.com/images/owner-website-ambience.svg`
+4. `https://restaurantaibot.com/pizza-in-chicago.html`
+5. `https://restaurantaibot.com/sushi-in-tokyo.html`
+6. `https://restaurantaibot.com/coffee-in-london.html`
+7. `https://restaurantaibot.com/romantic-dinner-in-paris.html`
+8. `https://restaurantaibot.com/cheap-eats-in-las-vegas.html`
+9. `https://restaurantaibot.com/restaurant-owner-intake.html`
+10. `https://restaurantaibot.com/disclaimer.html`
 
 Cloudflare variables still needed for full live map/search:
 
@@ -170,8 +156,7 @@ Do not present these as live:
 ## Current safe queue after lock
 
 1. Remaining internal linking cleanup:
-   - Add Owner Intake links to Website Starter and owner sales page when connector allows small safe edits.
-   - Add traveler-intent links to homepage helper / injected navigation if useful.
+   - Add Owner Intake links to owner sales page when connector allows small safe edits.
    - Add traveler-intent links to Restaurant Cities page if useful.
 2. Retry sitemap update for `disclaimer.html`, `founder-complimentary-promo-cards.html`, `restaurant-owner-intake.html`, and traveler-intent pages as a tiny focused commit.
 3. Browser-test live pages after Cloudflare deploys latest commit.
@@ -181,4 +166,4 @@ Do not present these as live:
 
 No private keys, API keys, live ads, live tracking, payment setup, affiliate links, accounts, upload systems, public owner dashboards, automated ordering integrations, scraping systems, framework rebuilds, or major code deletion should be added without direct approval.
 
-All restaurant data, AI results, language help, promo cards, owner services, and outside links require direct confirmation and do not create guarantees.
+All restaurant data, AI results, language help, promo cards, owner services, photos, ambience images, and outside links require direct confirmation and do not create guarantees.
