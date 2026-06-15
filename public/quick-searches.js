@@ -60,10 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
       addLinkIfMissing(nav, '/popular-searches.html', 'Popular Searches');
       addLinkIfMissing(nav, '/restaurant-cities.html', 'Cities');
       addLinkIfMissing(nav, '/owner-advertise.html', 'Restaurants');
+      addLinkIfMissing(nav, '/founder-complimentary-promo-cards.html', 'Founder Cards');
       addLinkIfMissing(nav, '/restaurant-website-starter.html', 'Website Starter');
       addLinkIfMissing(nav, '/restaurant-owner-resources.html', 'Owner Resources');
       addLinkIfMissing(nav, '/restaurant-marketing-tools.html', 'Marketing Tools');
       addLinkIfMissing(nav, '/system-status.html', 'System Status');
+      addLinkIfMissing(nav, '/disclaimer.html', 'Disclaimer');
     });
   }
 
@@ -176,29 +178,15 @@ document.addEventListener('DOMContentLoaded', () => {
     modeGrid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
     modeGrid.style.gap = '8px';
 
-    const localButton = createModeButton({
-      label: 'I live here',
-      detail: 'nearby, value, family, hidden gems',
-      emoji: '🏠',
-      mode: 'local'
-    });
-
-    const travelerButton = createModeButton({
-      label: 'I am visiting',
-      detail: 'hotel, airport, attractions, language help',
-      emoji: '🧳',
-      mode: 'traveler'
-    });
+    const localButton = createModeButton({ label: 'I live here', detail: 'nearby, value, family, hidden gems', emoji: '🏠', mode: 'local' });
+    const travelerButton = createModeButton({ label: 'I am visiting', detail: 'hotel, airport, attractions, language help', emoji: '🧳', mode: 'traveler' });
 
     modeGrid.append(localButton, travelerButton);
     section.append(title, intro, modeGrid);
 
     const nearMeBtn = document.getElementById('nearMeBtn');
-    if (nearMeBtn && nearMeBtn.nextSibling) {
-      sidebar.insertBefore(section, nearMeBtn.nextSibling);
-    } else {
-      sidebar.appendChild(section);
-    }
+    if (nearMeBtn && nearMeBtn.nextSibling) sidebar.insertBefore(section, nearMeBtn.nextSibling);
+    else sidebar.appendChild(section);
   }
 
   function createModeButton({ label, detail, emoji, mode }) {
@@ -236,15 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
     detailSpan.style.marginTop = '4px';
 
     button.append(emojiSpan, labelSpan, detailSpan);
-    button.addEventListener('focus', () => {
-      button.style.outline = '3px solid rgba(255,255,255,.65)';
-      button.style.outlineOffset = '2px';
-    });
-    button.addEventListener('blur', () => {
-      button.style.outline = 'none';
-    });
+    button.addEventListener('focus', () => { button.style.outline = '3px solid rgba(255,255,255,.65)'; button.style.outlineOffset = '2px'; });
+    button.addEventListener('blur', () => { button.style.outline = 'none'; });
     button.addEventListener('click', () => activateAudienceMode(mode));
-
     return button;
   }
 
@@ -253,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = mode === 'traveler'
       ? 'Traveler mode ready. Try food near your hotel, airport, station, landmark, or city.'
       : 'Local mode ready. Try nearby food, cheap eats, family dinner, coffee, or date night.';
-
     addModeMessage(mode, message, searches);
     input.value = searches[0];
     input.focus();
@@ -261,31 +242,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function addModeMessage(mode, message, searches) {
     if (!chatHistory) return;
-
     const existing = document.getElementById('audienceModeResult');
     if (existing) existing.remove();
-
     const card = document.createElement('section');
     card.id = 'audienceModeResult';
     card.className = 'restaurant-card demo-card';
     card.setAttribute('aria-label', `${mode} restaurant search ideas`);
-
     const content = document.createElement('div');
     content.className = 'restaurant-content';
-
     const label = document.createElement('span');
     label.className = 'tag demo-tag';
     label.textContent = mode === 'traveler' ? 'Traveler mode' : 'Local mode';
-
     const title = document.createElement('h3');
     title.textContent = mode === 'traveler' ? 'Search like a traveler' : 'Search like a local';
-
     const copy = document.createElement('p');
     copy.textContent = message;
-
     const actions = document.createElement('div');
     actions.className = 'card-actions';
-
     searches.forEach(search => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -294,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
       button.addEventListener('click', () => runSearch(search));
       actions.appendChild(button);
     });
-
     content.append(label, title, copy, actions);
     card.appendChild(content);
     chatHistory.prepend(card);
@@ -307,13 +279,11 @@ document.addEventListener('DOMContentLoaded', () => {
     intro.style.marginTop = '14px';
     intro.style.fontWeight = '800';
     intro.style.fontSize = '0.9rem';
-
     const wrap = document.createElement('div');
     wrap.style.marginTop = '8px';
     wrap.style.display = 'flex';
     wrap.style.flexWrap = 'wrap';
     wrap.style.gap = '8px';
-
     quickSearches.forEach(search => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -327,85 +297,59 @@ document.addEventListener('DOMContentLoaded', () => {
       button.style.cursor = 'pointer';
       button.style.fontSize = '0.8rem';
       button.style.minHeight = '36px';
-
-      button.addEventListener('focus', () => {
-        button.style.outline = '3px solid rgba(255,255,255,.65)';
-        button.style.outlineOffset = '2px';
-      });
-
-      button.addEventListener('blur', () => {
-        button.style.outline = 'none';
-      });
-
+      button.addEventListener('focus', () => { button.style.outline = '3px solid rgba(255,255,255,.65)'; button.style.outlineOffset = '2px'; });
+      button.addEventListener('blur', () => { button.style.outline = 'none'; });
       button.addEventListener('click', () => runSearch(search));
-
       wrap.appendChild(button);
     });
-
     sidebar.append(intro, wrap);
   }
 
   async function addTodaysFeaturePromoCard() {
     if (!chatHistory || document.getElementById('todaysFeaturePromoCard')) return;
-
     try {
       const response = await fetch('/demo-promotions.json', { cache: 'no-store' });
       if (!response.ok) return;
-
       const data = await response.json();
       const promotions = Array.isArray(data.promotions) ? data.promotions : [];
       const promo = promotions.find(item => item.todaysFeature) || promotions[0];
       if (!promo) return;
-
       const card = document.createElement('section');
       card.id = 'todaysFeaturePromoCard';
       card.className = 'restaurant-card demo-card';
       card.setAttribute('aria-label', 'Today demo smart promo card');
-
       const content = document.createElement('div');
       content.className = 'restaurant-content';
-
       const label = document.createElement('span');
       label.className = 'tag demo-tag';
       label.textContent = promo.label || 'Demo sponsored example';
-
       const title = document.createElement('h3');
       title.textContent = `Today’s feature: ${promo.restaurantName || 'Sample restaurant offer'}`;
-
       const headline = document.createElement('p');
       headline.innerHTML = `<strong>${escapeHtml(promo.headline || 'Smart Promo Card example')}</strong>`;
-
       const offer = document.createElement('p');
       offer.textContent = promo.offerText || 'This demo shows how a restaurant offer could appear when it matches a visitor search.';
-
       const match = document.createElement('p');
       match.textContent = promo.reason || 'Shown when the city, cuisine, time, and visitor intent match.';
-
       const note = document.createElement('p');
       note.className = 'source-note';
       note.textContent = promo.disclosure || 'Demo only. Not a paid placement.';
-
       const actions = document.createElement('div');
       actions.className = 'card-actions';
-
       const trySearch = document.createElement('button');
       trySearch.type = 'button';
       trySearch.textContent = `Try ${promo.category || 'food'} in ${promo.city || 'this city'}`;
       stylePromoButton(trySearch);
       trySearch.addEventListener('click', () => runSearch(`${promo.category || 'food'} in ${promo.city || ''}`.trim()));
-
       const sampleLink = document.createElement('a');
       sampleLink.href = promo.url || '/sample-restaurant-profile.html';
       sampleLink.textContent = promo.ctaText || 'View sample profile';
-
       actions.append(trySearch, sampleLink);
       content.append(label, title, headline, offer, match, note, actions);
       card.appendChild(content);
       chatHistory.appendChild(card);
       chatHistory.scrollTop = chatHistory.scrollHeight;
-    } catch (error) {
-      // Keep homepage search working if demo promotion data cannot be loaded.
-    }
+    } catch (error) {}
   }
 
   function stylePromoButton(button) {
@@ -419,37 +363,25 @@ document.addEventListener('DOMContentLoaded', () => {
     button.style.cursor = 'pointer';
   }
 
-  function escapeHtml(value) {
-    const div = document.createElement('div');
-    div.textContent = value;
-    return div.innerHTML;
-  }
+  function escapeHtml(value) { const div = document.createElement('div'); div.textContent = value; return div.innerHTML; }
 
   async function checkLiveDataStatus() {
     try {
       const response = await fetch('/api/config', { cache: 'no-store' });
       if (!response.ok) return;
-
       const config = await response.json();
       if (!config.googleMapsApiKey) return;
-
       const notice = document.getElementById('liveDataSetupNotice');
       if (!notice) return;
-
       notice.innerHTML = '<strong>Live map connected</strong><span>Search food plus city, or use your location for nearby restaurant results.</span>';
       notice.style.background = 'rgba(255,255,255,.25)';
-    } catch (error) {
-      // Keep the default setup notice when config cannot be checked.
-    }
+    } catch (error) {}
   }
 
   function runSearchFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const query = params.get('q');
-
-    if (query && query.trim()) {
-      runSearch(query.trim());
-    }
+    if (query && query.trim()) runSearch(query.trim());
   }
 
   function runSearch(search) {
