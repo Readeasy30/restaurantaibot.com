@@ -24,10 +24,15 @@ Current locked direction:
   - Food near hotel
   - Restaurants near airport
   - Restaurants near convention center
-- Food/place-intent SEO pages added:
+- Food/place/event-intent SEO pages added:
   - Local food in major cities
   - Breakfast near hotel
   - Lunch near hotel
+  - Restaurants near theater
+  - Restaurants near movie theater
+  - Restaurants near concert venue
+  - Coffee near train station
+  - Dessert near me
   - Food near tourist attraction
   - Restaurants near museum
   - Restaurants near beach
@@ -49,12 +54,12 @@ Current locked direction:
   - Evening food near me
   - Special dinner near me
 - Popular Searches updated through the attraction/museum/beach/group-dinner batch.
-- Popular Searches now loads `popular-extra-links.js`, which adds campus, hospital, office, hotel coffee, healthy food, hotel breakfast, hotel lunch, downtown, old town, and local food links without another blocked full-page rewrite.
+- Popular Searches now loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, dessert, healthy food, and station-coffee links without another blocked full-page rewrite.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
 - Homepage orange background polished.
-- Sitemap updated with legal, intake, traveler, place, and food-intent pages, including the latest hotel, downtown, old town, and local-food pages.
+- Sitemap updated with legal, intake, traveler, place, food-intent, and event-intent pages, including theater, movie theater, concert venue, dessert, and station-coffee pages.
 
 ## Continue from here
 
@@ -70,11 +75,11 @@ Current locked direction:
 
 Possible next pages:
 
-- restaurants near theater
-- restaurants near movie theater
-- restaurants near concert venue
-- coffee near train station
-- dessert near me
+- restaurants near zoo
+- restaurants near aquarium
+- food near theme park
+- coffee near downtown
+- dessert near hotel
 
 ## Connector notes
 
@@ -91,11 +96,11 @@ Check these URLs:
 2. `https://restaurantaibot.com/sitemap.xml`
 3. `https://restaurantaibot.com/popular-searches.html`
 4. `https://restaurantaibot.com/popular-extra-links.js`
-5. `https://restaurantaibot.com/breakfast-near-hotel.html`
-6. `https://restaurantaibot.com/lunch-near-hotel.html`
-7. `https://restaurantaibot.com/restaurants-near-downtown.html`
-8. `https://restaurantaibot.com/restaurants-near-old-town.html`
-9. `https://restaurantaibot.com/local-food-in-major-cities.html`
+5. `https://restaurantaibot.com/restaurants-near-theater.html`
+6. `https://restaurantaibot.com/restaurants-near-movie-theater.html`
+7. `https://restaurantaibot.com/restaurants-near-concert-venue.html`
+8. `https://restaurantaibot.com/coffee-near-train-station.html`
+9. `https://restaurantaibot.com/dessert-near-me.html`
 
 ## Safety rule
 
