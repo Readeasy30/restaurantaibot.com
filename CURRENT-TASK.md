@@ -45,6 +45,19 @@ Current locked direction:
   - `public/images/restaurant-ambience-hero.svg`
   - `public/images/promo-card-food.svg`
   - `PHOTO-AMBIENCE-RULES.md`
+- Page-specific local ambience images added:
+  - `public/images/pizza-chicago-ambience.svg`
+  - `public/images/sushi-tokyo-ambience.svg`
+  - `public/images/coffee-london-ambience.svg`
+  - `public/images/paris-dinner-ambience.svg`
+  - `public/images/vegas-cheap-eats-ambience.svg`
+  - `public/images/owner-website-ambience.svg`
+- Page-specific ambience images wired into:
+  - `public/pizza-in-chicago.html`
+  - `public/sushi-in-tokyo.html`
+  - `public/coffee-in-london.html`
+  - `public/romantic-dinner-in-paris.html`
+  - `public/cheap-eats-in-las-vegas.html`
 - Homepage helper now adds an ambience card, promo-card image, enhanced map fallback, and replaces remote result-card images with local ambience assets.
 - Homepage orange background polished with a deeper restaurant-style gradient, warm glow, subtle texture, clearer button contrast, and softer shadows.
 - Sitemap updated with the second city + cuisine SEO batch.
@@ -54,18 +67,13 @@ Current locked direction:
 
 ## Continue from here
 
-### Next build batch 1 — photo ambience expansion
+### Next build batch 1 — remaining photo ambience wiring
 
-Add page-specific local ambience images over time:
+Wire `public/images/owner-website-ambience.svg` into:
 
-- `public/images/pizza-chicago-ambience.svg`
-- `public/images/sushi-tokyo-ambience.svg`
-- `public/images/coffee-london-ambience.svg`
-- `public/images/paris-dinner-ambience.svg`
-- `public/images/vegas-cheap-eats-ambience.svg`
-- `public/images/owner-website-ambience.svg`
+- `public/restaurant-website-starter.html`
 
-Then add them to high-value pages only after the image rule stays clear:
+Keep the wording clear:
 
 > Ambience image only. Not a verified restaurant photo.
 
@@ -109,6 +117,7 @@ Possible next pages:
 - Sitemap update for traveler-intent pages was blocked once.
 - A full owner-page replacement was blocked once before a smaller owner-page update succeeded.
 - The second city + cuisine sitemap update succeeded.
+- Restaurant Website Starter is a longer file; image wiring should be done carefully as a focused edit.
 - Do not ask Gerry to edit files manually.
 - Retry smaller safe edits, record blockers, and continue.
 
@@ -117,18 +126,19 @@ Possible next pages:
 Check these URLs:
 
 1. `https://restaurantaibot.com/`
-2. `https://restaurantaibot.com/images/restaurant-ambience-hero.svg`
-3. `https://restaurantaibot.com/images/promo-card-food.svg`
-4. `https://restaurantaibot.com/ai-restaurant-finder.html`
-5. `https://restaurantaibot.com/restaurant-owner-resources.html`
-6. `https://restaurantaibot.com/food-near-hotel.html`
-7. `https://restaurantaibot.com/restaurants-near-airport.html`
-8. `https://restaurantaibot.com/restaurants-near-convention-center.html`
-9. `https://restaurantaibot.com/popular-searches.html`
-10. `https://restaurantaibot.com/owner-advertise.html`
-11. `https://restaurantaibot.com/founder-complimentary-promo-cards.html`
-12. `https://restaurantaibot.com/restaurant-owner-intake.html`
-13. `https://restaurantaibot.com/disclaimer.html`
+2. `https://restaurantaibot.com/images/pizza-chicago-ambience.svg`
+3. `https://restaurantaibot.com/images/sushi-tokyo-ambience.svg`
+4. `https://restaurantaibot.com/images/coffee-london-ambience.svg`
+5. `https://restaurantaibot.com/images/paris-dinner-ambience.svg`
+6. `https://restaurantaibot.com/images/vegas-cheap-eats-ambience.svg`
+7. `https://restaurantaibot.com/images/owner-website-ambience.svg`
+8. `https://restaurantaibot.com/pizza-in-chicago.html`
+9. `https://restaurantaibot.com/sushi-in-tokyo.html`
+10. `https://restaurantaibot.com/coffee-in-london.html`
+11. `https://restaurantaibot.com/romantic-dinner-in-paris.html`
+12. `https://restaurantaibot.com/cheap-eats-in-las-vegas.html`
+13. `https://restaurantaibot.com/restaurant-website-starter.html`
+14. `https://restaurantaibot.com/disclaimer.html`
 
 ## Safety rule
 
