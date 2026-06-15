@@ -4,6 +4,9 @@
   <url><loc>https://restaurantaibot.com/ai-restaurant-finder.html</loc><priority>0.95</priority></url>
   <url><loc>https://restaurantaibot.com/popular-searches.html</loc><priority>0.9</priority></url>
   <url><loc>https://restaurantaibot.com/restaurant-cities.html</loc><priority>0.9</priority></url>
+  <url><loc>https://restaurantaibot.com/food-near-hotel.html</loc><priority>0.86</priority></url>
+  <url><loc>https://restaurantaibot.com/restaurants-near-airport.html</loc><priority>0.86</priority></url>
+  <url><loc>https://restaurantaibot.com/restaurants-near-convention-center.html</loc><priority>0.86</priority></url>
   <url><loc>https://restaurantaibot.com/pizza-in-chicago.html</loc><priority>0.85</priority></url>
   <url><loc>https://restaurantaibot.com/tacos-in-dallas.html</loc><priority>0.85</priority></url>
   <url><loc>https://restaurantaibot.com/seafood-in-miami.html</loc><priority>0.85</priority></url>
@@ -16,8 +19,11 @@
   <url><loc>https://restaurantaibot.com/contact.html</loc><priority>0.6</priority></url>
   <url><loc>https://restaurantaibot.com/privacy.html</loc><priority>0.4</priority></url>
   <url><loc>https://restaurantaibot.com/terms.html</loc><priority>0.4</priority></url>
+  <url><loc>https://restaurantaibot.com/disclaimer.html</loc><priority>0.4</priority></url>
   <url><loc>https://restaurantaibot.com/system-status.html</loc><priority>0.3</priority></url>
   <url><loc>https://restaurantaibot.com/owner-advertise.html</loc><priority>0.7</priority></url>
+  <url><loc>https://restaurantaibot.com/founder-complimentary-promo-cards.html</loc><priority>0.7</priority></url>
+  <url><loc>https://restaurantaibot.com/restaurant-owner-intake.html</loc><priority>0.7</priority></url>
   <url><loc>https://restaurantaibot.com/restaurant-website-starter.html</loc><priority>0.7</priority></url>
   <url><loc>https://restaurantaibot.com/restaurant-owner-resources.html</loc><priority>0.7</priority></url>
   <url><loc>https://restaurantaibot.com/restaurant-growth-checklist.html</loc><priority>0.65</priority></url>
