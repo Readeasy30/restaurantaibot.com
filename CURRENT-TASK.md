@@ -31,7 +31,12 @@ Current locked direction:
   - Restaurants near theater
   - Restaurants near movie theater
   - Restaurants near concert venue
+  - Restaurants near zoo
+  - Restaurants near aquarium
+  - Food near theme park
   - Coffee near train station
+  - Coffee near downtown
+  - Dessert near hotel
   - Dessert near me
   - Food near tourist attraction
   - Restaurants near museum
@@ -54,12 +59,12 @@ Current locked direction:
   - Evening food near me
   - Special dinner near me
 - Popular Searches updated through the attraction/museum/beach/group-dinner batch.
-- Popular Searches now loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, dessert, healthy food, and station-coffee links without another blocked full-page rewrite.
+- Popular Searches now loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, zoo, aquarium, theme park, dessert, healthy food, and station-coffee links without another blocked full-page rewrite.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
 - Homepage orange background polished.
-- Sitemap updated with legal, intake, traveler, place, food-intent, and event-intent pages, including theater, movie theater, concert venue, dessert, and station-coffee pages.
+- Sitemap updated with legal, intake, traveler, place, food-intent, and event-intent pages, including zoo, aquarium, theme park, downtown coffee, and hotel dessert pages.
 
 ## Continue from here
 
@@ -75,16 +80,17 @@ Current locked direction:
 
 Possible next pages:
 
-- restaurants near zoo
-- restaurants near aquarium
-- food near theme park
-- coffee near downtown
-- dessert near hotel
+- food near sports arena
+- restaurants near mall food court
+- coffee near convention center
+- breakfast near airport
+- lunch near airport
 
 ## Connector notes
 
 - Date-night and late-night wording was blocked by the connector, so safer pages were used: evening food and special dinner.
 - Full Popular Searches update was blocked once, but smaller script-based hub updates succeeded.
+- Zoo and hotel-dessert pages needed shorter wording after one blocked attempt each.
 - Smaller focused edits are working better than very large replacements.
 - Do not ask Gerry to edit files manually.
 
@@ -96,11 +102,11 @@ Check these URLs:
 2. `https://restaurantaibot.com/sitemap.xml`
 3. `https://restaurantaibot.com/popular-searches.html`
 4. `https://restaurantaibot.com/popular-extra-links.js`
-5. `https://restaurantaibot.com/restaurants-near-theater.html`
-6. `https://restaurantaibot.com/restaurants-near-movie-theater.html`
-7. `https://restaurantaibot.com/restaurants-near-concert-venue.html`
-8. `https://restaurantaibot.com/coffee-near-train-station.html`
-9. `https://restaurantaibot.com/dessert-near-me.html`
+5. `https://restaurantaibot.com/restaurants-near-zoo.html`
+6. `https://restaurantaibot.com/restaurants-near-aquarium.html`
+7. `https://restaurantaibot.com/food-near-theme-park.html`
+8. `https://restaurantaibot.com/coffee-near-downtown.html`
+9. `https://restaurantaibot.com/dessert-near-hotel.html`
 
 ## Safety rule
 
