@@ -25,9 +25,14 @@ Current locked direction:
   - Restaurants near airport
   - Restaurants near convention center
 - Food/place-intent SEO pages added:
+  - Local food in major cities
+  - Breakfast near hotel
+  - Lunch near hotel
   - Food near tourist attraction
   - Restaurants near museum
   - Restaurants near beach
+  - Restaurants near downtown
+  - Restaurants near old town
   - Restaurants near college campus
   - Restaurants near hospital
   - Restaurants near office building
@@ -44,12 +49,12 @@ Current locked direction:
   - Evening food near me
   - Special dinner near me
 - Popular Searches updated through the attraction/museum/beach/group-dinner batch.
-- Popular Searches now loads `popular-extra-links.js`, which adds the campus, hospital, office, hotel coffee, and healthy food links without another blocked full-page rewrite.
+- Popular Searches now loads `popular-extra-links.js`, which adds campus, hospital, office, hotel coffee, healthy food, hotel breakfast, hotel lunch, downtown, old town, and local food links without another blocked full-page rewrite.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
 - Homepage orange background polished.
-- Sitemap updated with legal, intake, traveler, place, and food-intent pages, including campus, hospital, office, hotel coffee, and healthy food pages.
+- Sitemap updated with legal, intake, traveler, place, and food-intent pages, including the latest hotel, downtown, old town, and local-food pages.
 
 ## Continue from here
 
@@ -65,17 +70,17 @@ Current locked direction:
 
 Possible next pages:
 
-- local food in major cities
-- breakfast near hotel
-- lunch near hotel
-- restaurants near downtown
-- restaurants near old town
+- restaurants near theater
+- restaurants near movie theater
+- restaurants near concert venue
+- coffee near train station
+- dessert near me
 
 ## Connector notes
 
 - Date-night and late-night wording was blocked by the connector, so safer pages were used: evening food and special dinner.
-- Full Popular Searches update for campus/hospital/office/hotel coffee/healthy food was blocked once, but sitemap update succeeded.
-- Smaller focused edit succeeded by adding `popular-extra-links.js` and loading it from `public/popular-searches.html`.
+- Full Popular Searches update was blocked once, but smaller script-based hub updates succeeded.
+- Smaller focused edits are working better than very large replacements.
 - Do not ask Gerry to edit files manually.
 
 ## Manual live checks after Cloudflare deploys
@@ -86,11 +91,11 @@ Check these URLs:
 2. `https://restaurantaibot.com/sitemap.xml`
 3. `https://restaurantaibot.com/popular-searches.html`
 4. `https://restaurantaibot.com/popular-extra-links.js`
-5. `https://restaurantaibot.com/restaurants-near-college-campus.html`
-6. `https://restaurantaibot.com/restaurants-near-hospital.html`
-7. `https://restaurantaibot.com/restaurants-near-office-building.html`
-8. `https://restaurantaibot.com/coffee-near-hotel.html`
-9. `https://restaurantaibot.com/healthy-food-near-me.html`
+5. `https://restaurantaibot.com/breakfast-near-hotel.html`
+6. `https://restaurantaibot.com/lunch-near-hotel.html`
+7. `https://restaurantaibot.com/restaurants-near-downtown.html`
+8. `https://restaurantaibot.com/restaurants-near-old-town.html`
+9. `https://restaurantaibot.com/local-food-in-major-cities.html`
 
 ## Safety rule
 
