@@ -24,10 +24,15 @@ Current locked direction:
   - Food near hotel
   - Restaurants near airport
   - Restaurants near convention center
-- Food/place-intent SEO pages added and linked:
+- Food/place-intent SEO pages added:
   - Food near tourist attraction
   - Restaurants near museum
   - Restaurants near beach
+  - Restaurants near college campus
+  - Restaurants near hospital
+  - Restaurants near office building
+  - Coffee near hotel
+  - Healthy food near me
   - Food near train station
   - Restaurants near stadium
   - Restaurants near shopping mall
@@ -38,16 +43,28 @@ Current locked direction:
   - Family dinner near me
   - Evening food near me
   - Special dinner near me
-- Popular Searches updated to link the new food and place pages.
+- Popular Searches updated through the attraction/museum/beach/group-dinner batch.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
 - Homepage orange background polished.
-- Sitemap updated with legal, intake, traveler, place, and food-intent pages.
+- Sitemap updated with legal, intake, traveler, place, and food-intent pages, including campus, hospital, office, hotel coffee, and healthy food pages.
 
 ## Continue from here
 
-### Next build batch 1 — live-readiness check
+### Next build batch 1 — smaller Popular Searches retry
+
+Retry a smaller focused update to `public/popular-searches.html` to link:
+
+- Restaurants near college campus
+- Restaurants near hospital
+- Restaurants near office building
+- Coffee near hotel
+- Healthy food near me
+
+The large full-page hub update was blocked once. Try smaller safe edits or another hub page.
+
+### Next build batch 2 — live-readiness check
 
 - Check homepage after Cloudflare deploys.
 - Check sitemap live.
@@ -55,19 +72,20 @@ Current locked direction:
 - Confirm offer pages stay clearly labeled as demo, founder, inquiry, or informational.
 - Confirm ambience images are not presented as verified restaurant photos.
 
-### Next build batch 2 — next SEO expansion
+### Next build batch 3 — next SEO expansion
 
 Possible next pages:
 
 - local food in major cities
-- restaurants near college campus
-- restaurants near hospital
-- restaurants near office building
-- coffee near hotel
+- breakfast near hotel
+- lunch near hotel
+- restaurants near downtown
+- restaurants near old town
 
 ## Connector notes
 
 - Date-night and late-night wording was blocked by the connector, so safer pages were used: evening food and special dinner.
+- Full Popular Searches update for campus/hospital/office/hotel coffee/healthy food was blocked once, but sitemap update succeeded.
 - Smaller focused edits are working better than very large replacements.
 - Do not ask Gerry to edit files manually.
 
@@ -77,15 +95,12 @@ Check these URLs:
 
 1. `https://restaurantaibot.com/`
 2. `https://restaurantaibot.com/sitemap.xml`
-3. `https://restaurantaibot.com/popular-searches.html`
-4. `https://restaurantaibot.com/food-near-tourist-attraction.html`
-5. `https://restaurantaibot.com/restaurants-near-museum.html`
-6. `https://restaurantaibot.com/restaurants-near-beach.html`
-7. `https://restaurantaibot.com/group-dinner-near-me.html`
-8. `https://restaurantaibot.com/restaurants-near-shopping-mall.html`
-9. `https://restaurantaibot.com/restaurants-near-park.html`
-10. `https://restaurantaibot.com/lunch-near-me.html`
-11. `https://restaurantaibot.com/brunch-near-me.html`
+3. `https://restaurantaibot.com/restaurants-near-college-campus.html`
+4. `https://restaurantaibot.com/restaurants-near-hospital.html`
+5. `https://restaurantaibot.com/restaurants-near-office-building.html`
+6. `https://restaurantaibot.com/coffee-near-hotel.html`
+7. `https://restaurantaibot.com/healthy-food-near-me.html`
+8. `https://restaurantaibot.com/popular-searches.html`
 
 ## Safety rule
 
