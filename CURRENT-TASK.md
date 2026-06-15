@@ -27,33 +27,21 @@ Current locked direction:
   - Tacos in Dallas
   - Seafood in Miami
   - Breakfast in New York
+- Second city + cuisine SEO pages:
+  - Pizza in Chicago
+  - Sushi in Tokyo
+  - Romantic dinner in Paris
+  - Coffee in London
+  - Cheap eats in Las Vegas
 - Popular Searches and Restaurant Cities hubs updated with city + cuisine links.
+- Sitemap updated with the second city + cuisine SEO batch.
 - Project status updated to the June 14 locked checkpoint.
 - Codex current task updated to the June 14 locked checkpoint.
 - Changelog updated through latest owner-intake work.
 
 ## Continue from here
 
-### Next build batch 1 — more city + cuisine SEO pages
-
-Create:
-
-- `public/pizza-in-chicago.html`
-- `public/sushi-in-tokyo.html`
-- `public/romantic-dinner-in-paris.html`
-- `public/coffee-in-london.html`
-- `public/cheap-eats-in-las-vegas.html`
-
-Rules:
-
-- Do not fake restaurant rankings.
-- Do not claim live open status.
-- Do not claim verified availability.
-- Do not claim allergy safety.
-- Include search examples and related links.
-- Include confirmation warning.
-
-### Next build batch 2 — traveler-intent SEO pages
+### Next build batch 1 — traveler-intent SEO pages
 
 Create:
 
@@ -65,7 +53,17 @@ Reason:
 
 Travelers have urgent search intent. These pages can stand out quickly.
 
-### Next build batch 3 — internal linking cleanup
+Rules:
+
+- Do not fake restaurant rankings.
+- Do not claim live open status.
+- Do not claim verified availability.
+- Do not claim allergy safety.
+- Include search examples and related links.
+- Include confirmation warning.
+- Keep Webmasters LLC footer and Disclaimer links.
+
+### Next build batch 2 — internal linking cleanup
 
 Add links to `restaurant-owner-intake.html` from:
 
@@ -74,11 +72,19 @@ Add links to `restaurant-owner-intake.html` from:
 - `public/restaurant-owner-resources.html`.
 - `public/quick-searches.js` injected navigation if useful.
 
+### Next build batch 3 — sitemap cleanup
+
+Retry adding these pages to sitemap as a tiny focused commit:
+
+- `public/disclaimer.html`
+- `public/founder-complimentary-promo-cards.html`
+- `public/restaurant-owner-intake.html`
+
 ## Connector notes
 
-- Sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice by the connector.
+- Sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice earlier.
 - A full owner-page replacement was blocked once before a smaller owner-page update succeeded.
-- Retry later as tiny focused commits.
+- The second city + cuisine sitemap update succeeded.
 - Do not ask Gerry to edit files manually.
 - Retry smaller safe edits, record blockers, and continue.
 
@@ -92,9 +98,11 @@ Check these URLs:
 4. `https://restaurantaibot.com/restaurant-owner-intake.html`
 5. `https://restaurantaibot.com/disclaimer.html`
 6. `https://restaurantaibot.com/ai-restaurant-finder.html`
-7. `https://restaurantaibot.com/tacos-in-dallas.html`
-8. `https://restaurantaibot.com/seafood-in-miami.html`
-9. `https://restaurantaibot.com/breakfast-in-new-york.html`
+7. `https://restaurantaibot.com/pizza-in-chicago.html`
+8. `https://restaurantaibot.com/sushi-in-tokyo.html`
+9. `https://restaurantaibot.com/romantic-dinner-in-paris.html`
+10. `https://restaurantaibot.com/coffee-in-london.html`
+11. `https://restaurantaibot.com/cheap-eats-in-las-vegas.html`
 
 ## Safety rule
 
