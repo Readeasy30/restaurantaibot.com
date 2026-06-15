@@ -20,11 +20,19 @@ Major June 14 completed commits include:
 - `c14473c8152f46157c2297785ed801af211741d0` — added Tacos in Dallas SEO page.
 - `9fcccb3052977a242dbf3a2ea247405b711f4888` — added Seafood in Miami SEO page.
 - `f94011bcc290868ca44860c72b4642d826023e4a` — added Breakfast in New York SEO page.
+- `b303fb7a0e471522df55e51a34e6d73277f088f3` — added Pizza in Chicago SEO page.
+- `6397caa195896c06a430a90574c8a33145e18892` — added Sushi in Tokyo SEO page.
+- `5f9e2bcd1ab5f7906860d2431a5fe5b7dc7dc0d2` — added Romantic Dinner in Paris SEO page.
+- `428b8a9ae316b985819fdd030f341b551a5a04c4` — added Coffee in London SEO page.
+- `c0ee7389f5782aea7e3e3df5fd5f57fb34399e07` — added Cheap Eats in Las Vegas SEO page.
 - `a19b3160f473935a76e08642094150fa0e51ba56` — added site-wide Disclaimer page naming Webmasters LLC.
 - `bc22b81080b3710a8125f87873f29f43e090c349` — wired Founder Cards into owner page.
 - `c71ff97d0280d93cad8ab16a44877898876d5cf9` — tightened Founder Cards page with Disclaimer and Webmasters LLC footer.
 - `ea053f30a769afcdaee51c14663f8059428cd6b7` — added Restaurant Owner Intake page.
 - `1e24c5a20794c9c56f982c48c557a59f3f0ac663` — linked Owner Intake from Founder Cards page.
+- `9e2e05e607c4c4afe0d294cb1a440c1485e6f9fa` — linked new SEO pages from Popular Searches.
+- `82f23ae2b094109e9c8434f63e55a00bd179d478` — linked new SEO pages from Restaurant Cities.
+- `68a35571eadd0789af324b21693cd17c5f641795` — added new SEO pages to sitemap.
 
 ## Owner/operator
 
@@ -59,6 +67,11 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
   - `public/tacos-in-dallas.html`
   - `public/seafood-in-miami.html`
   - `public/breakfast-in-new-york.html`
+  - `public/pizza-in-chicago.html`
+  - `public/sushi-in-tokyo.html`
+  - `public/romantic-dinner-in-paris.html`
+  - `public/coffee-in-london.html`
+  - `public/cheap-eats-in-las-vegas.html`
 - Owner resource pages.
 - Existing city pages.
 - Existing food SEO pages.
@@ -82,7 +95,7 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
 - `public/founder-complimentary-promo-cards.html` supports founder-card owner inquiries and links to Owner Intake.
 - `public/restaurant-owner-intake.html` is a static email/copy-paste intake page only.
 - `public/owner-advertise.html` is the main owner sales page.
-- `public/sitemap.xml` includes core SEO pages and city/cuisine pages through the last successful sitemap commit. Note: adding Disclaimer/Founder Cards/Owner Intake to sitemap should be retried later as a small focused commit.
+- `public/sitemap.xml` includes core SEO pages, food pages, city pages, and city/cuisine SEO pages through the second SEO batch.
 
 ## Operational status
 
@@ -100,7 +113,7 @@ Operational in repo:
 - Disclaimer page.
 - Webmasters LLC owner/operator language.
 - Owner packages and Website Starter sales pages.
-- City + cuisine SEO page system started.
+- City + cuisine SEO page system with eight focused pages.
 
 Live-deployment items to verify after Cloudflare deploys latest GitHub commits:
 
@@ -110,9 +123,11 @@ Live-deployment items to verify after Cloudflare deploys latest GitHub commits:
 4. `https://restaurantaibot.com/restaurant-owner-intake.html`
 5. `https://restaurantaibot.com/disclaimer.html`
 6. `https://restaurantaibot.com/ai-restaurant-finder.html`
-7. `https://restaurantaibot.com/tacos-in-dallas.html`
-8. `https://restaurantaibot.com/seafood-in-miami.html`
-9. `https://restaurantaibot.com/breakfast-in-new-york.html`
+7. `https://restaurantaibot.com/pizza-in-chicago.html`
+8. `https://restaurantaibot.com/sushi-in-tokyo.html`
+9. `https://restaurantaibot.com/romantic-dinner-in-paris.html`
+10. `https://restaurantaibot.com/coffee-in-london.html`
+11. `https://restaurantaibot.com/cheap-eats-in-las-vegas.html`
 
 Cloudflare variables still needed for full live map/search:
 
@@ -138,20 +153,14 @@ Do not present these as live:
 
 ## Current safe queue after lock
 
-1. Add more city + cuisine SEO pages:
-   - pizza in Chicago
-   - sushi in Tokyo
-   - romantic dinner in Paris
-   - coffee in London
-   - cheap eats in Las Vegas
-2. Build traveler-intent SEO pages:
+1. Build traveler-intent SEO pages:
    - food near hotel
    - restaurants near airport
    - restaurants near convention center
-3. Retry sitemap update for `disclaimer.html`, `founder-complimentary-promo-cards.html`, and `restaurant-owner-intake.html` as a tiny focused commit.
-4. Add Owner Intake and Disclaimer links to more static owner pages over time.
-5. Browser-test live pages after Cloudflare deploys latest commit.
-6. Keep live paid ads, payments, tracking, dashboards, uploads, and accounts inactive until direct approval.
+2. Retry sitemap update for `disclaimer.html`, `founder-complimentary-promo-cards.html`, and `restaurant-owner-intake.html` as a tiny focused commit.
+3. Add Owner Intake and Disclaimer links to more static owner pages over time.
+4. Browser-test live pages after Cloudflare deploys latest commit.
+5. Keep live paid ads, payments, tracking, dashboards, uploads, and accounts inactive until direct approval.
 
 ## Safety lock
 
