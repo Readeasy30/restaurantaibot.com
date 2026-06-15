@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!input || !form || !sidebar) return;
 
   addSiteLinks();
+  enhanceOrangeBackground();
   addSetupNotice();
   addSearchTips();
   addAudienceModeButtons();
@@ -89,6 +90,70 @@ document.addEventListener('DOMContentLoaded', () => {
     link.href = href;
     link.textContent = text;
     nav.appendChild(link);
+  }
+
+  function enhanceOrangeBackground() {
+    if (document.getElementById('restaurantVisualTheme')) return;
+
+    const style = document.createElement('style');
+    style.id = 'restaurantVisualTheme';
+    style.textContent = `
+      .brand-header {
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 18% 7%, rgba(255, 247, 237, .32), transparent 27%),
+          radial-gradient(circle at 92% 0%, rgba(251, 191, 36, .34), transparent 29%),
+          radial-gradient(circle at 72% 84%, rgba(127, 29, 29, .28), transparent 32%),
+          linear-gradient(145deg, #2b1208 0%, #7c2d12 34%, #d94c1f 68%, #ff9559 100%) !important;
+        box-shadow: inset 0 -26px 48px rgba(43, 18, 8, .18);
+      }
+      .brand-header::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255,255,255,.055) 1px, transparent 1px);
+        background-size: 44px 44px;
+        opacity: .18;
+        pointer-events: none;
+      }
+      .brand-header::after {
+        content: '';
+        position: absolute;
+        inset: auto -20% -52px -20%;
+        height: 112px;
+        background: radial-gradient(ellipse at center, rgba(255,255,255,.28), transparent 65%);
+        pointer-events: none;
+      }
+      .brand-header > * {
+        position: relative;
+        z-index: 1;
+      }
+      .brand-header h1,
+      .brand-header h2,
+      .brand-header p {
+        text-shadow: 0 2px 18px rgba(43, 18, 8, .35);
+      }
+      .site-nav a {
+        background: rgba(255,255,255,.16) !important;
+        border-color: rgba(255,255,255,.34) !important;
+        box-shadow: 0 8px 18px rgba(43, 18, 8, .08);
+        backdrop-filter: blur(8px);
+      }
+      .near-me-btn {
+        box-shadow: 0 14px 32px rgba(43, 18, 8, .18);
+      }
+      #liveDataSetupNotice,
+      #searchTips,
+      #audienceModePicker {
+        backdrop-filter: blur(10px);
+        box-shadow: 0 12px 28px rgba(43, 18, 8, .12);
+      }
+    `;
+
+    document.head.appendChild(style);
   }
 
   function addSetupNotice() {
