@@ -19,46 +19,22 @@ Current locked direction:
 - Founder Complimentary Promo Card plan.
 - Founder Complimentary Promo Cards public page.
 - Founder Cards wired into owner sales page.
+- Static Restaurant Owner Intake page.
+- Founder Cards page linked to Owner Intake.
 - Site-wide Disclaimer page naming Webmasters LLC.
-- Webmasters LLC footer language on owner/founder pages.
+- Webmasters LLC footer language on owner/founder/intake pages.
 - First city + cuisine SEO pages:
   - Tacos in Dallas
   - Seafood in Miami
   - Breakfast in New York
 - Popular Searches and Restaurant Cities hubs updated with city + cuisine links.
-- Changelog updated through latest founder-card wiring.
 - Project status updated to the June 14 locked checkpoint.
+- Codex current task updated to the June 14 locked checkpoint.
+- Changelog updated through latest owner-intake work.
 
 ## Continue from here
 
-### Next build batch 1 — owner intake page
-
-Create a simple static intake page for restaurant owners.
-
-Suggested file:
-
-- `public/restaurant-owner-intake.html`
-
-Purpose:
-
-- Collect Founder Card / Website Starter inquiry details by email link or copy/paste form style.
-- No backend form submission yet.
-- No payments.
-- No file uploads.
-- No owner accounts.
-- No tracking.
-
-Should include:
-
-- Webmasters LLC owner/operator footer.
-- Disclaimer link.
-- Founder Card inquiry section.
-- Website Starter inquiry section.
-- Copy/paste checklist.
-- Mailto buttons.
-- Clear no-guarantee wording.
-
-### Next build batch 2 — more city + cuisine SEO pages
+### Next build batch 1 — more city + cuisine SEO pages
 
 Create:
 
@@ -77,7 +53,7 @@ Rules:
 - Include search examples and related links.
 - Include confirmation warning.
 
-### Next build batch 3 — traveler-intent SEO pages
+### Next build batch 2 — traveler-intent SEO pages
 
 Create:
 
@@ -89,10 +65,20 @@ Reason:
 
 Travelers have urgent search intent. These pages can stand out quickly.
 
+### Next build batch 3 — internal linking cleanup
+
+Add links to `restaurant-owner-intake.html` from:
+
+- `public/owner-advertise.html` if a smaller safe connector edit allows it later.
+- `public/restaurant-website-starter.html`.
+- `public/restaurant-owner-resources.html`.
+- `public/quick-searches.js` injected navigation if useful.
+
 ## Connector notes
 
 - Sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice by the connector.
-- Retry later as a tiny focused sitemap-only commit.
+- A full owner-page replacement was blocked once before a smaller owner-page update succeeded.
+- Retry later as tiny focused commits.
 - Do not ask Gerry to edit files manually.
 - Retry smaller safe edits, record blockers, and continue.
 
@@ -103,11 +89,12 @@ Check these URLs:
 1. `https://restaurantaibot.com/`
 2. `https://restaurantaibot.com/owner-advertise.html`
 3. `https://restaurantaibot.com/founder-complimentary-promo-cards.html`
-4. `https://restaurantaibot.com/disclaimer.html`
-5. `https://restaurantaibot.com/ai-restaurant-finder.html`
-6. `https://restaurantaibot.com/tacos-in-dallas.html`
-7. `https://restaurantaibot.com/seafood-in-miami.html`
-8. `https://restaurantaibot.com/breakfast-in-new-york.html`
+4. `https://restaurantaibot.com/restaurant-owner-intake.html`
+5. `https://restaurantaibot.com/disclaimer.html`
+6. `https://restaurantaibot.com/ai-restaurant-finder.html`
+7. `https://restaurantaibot.com/tacos-in-dallas.html`
+8. `https://restaurantaibot.com/seafood-in-miami.html`
+9. `https://restaurantaibot.com/breakfast-in-new-york.html`
 
 ## Safety rule
 
