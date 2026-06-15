@@ -6,8 +6,13 @@
   section.setAttribute('data-extra-place-links', 'true');
   section.innerHTML = `
     <h2>More helpful place searches</h2>
-    <p>Use these when you are near a campus, medical area, office area, or hotel and need a simple food search.</p>
+    <p>Use these when you are near a hotel, campus, medical area, office area, downtown, or old-town district and need a simple food search.</p>
     <div class="grid">
+      <div class="card"><h3>Breakfast near hotel</h3><p>Coffee, diners, pastries, quick breakfast, cheap breakfast, brunch, and family breakfast near hotels.</p><a href="/breakfast-near-hotel.html">Open breakfast near hotel</a></div>
+      <div class="card"><h3>Lunch near hotel</h3><p>Quick lunch, cheap lunch, healthy lunch, tacos, pizza, and family lunch near hotels.</p><a href="/lunch-near-hotel.html">Open lunch near hotel</a></div>
+      <div class="card"><h3>Restaurants near downtown</h3><p>Lunch, coffee, dinner, business meals, group meals, family food, and cheap eats downtown.</p><a href="/restaurants-near-downtown.html">Open downtown restaurants</a></div>
+      <div class="card"><h3>Restaurants near Old Town</h3><p>Local food, lunch, coffee, dinner, family meals, dessert, and historic-district food searches.</p><a href="/restaurants-near-old-town.html">Open Old Town restaurants</a></div>
+      <div class="card"><h3>Local food in major cities</h3><p>Local restaurants, lunch, dinner, coffee, cheap eats, city food, traveler food, and neighborhood favorites.</p><a href="/local-food-in-major-cities.html">Open local food cities</a></div>
       <div class="card"><h3>Restaurants near college campus</h3><p>Lunch, coffee, cheap eats, pizza, tacos, and group food near campus areas.</p><a href="/restaurants-near-college-campus.html">Open campus restaurants</a></div>
       <div class="card"><h3>Restaurants near hospital</h3><p>Coffee, lunch, family meals, quick food, and nearby restaurant searches.</p><a href="/restaurants-near-hospital.html">Open hospital-area restaurants</a></div>
       <div class="card"><h3>Restaurants near office building</h3><p>Lunch, coffee, business lunch, quick food, and group meals near office areas.</p><a href="/restaurants-near-office-building.html">Open office-area restaurants</a></div>
