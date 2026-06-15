@@ -41,24 +41,23 @@ Do not redo or remove these:
   - `public/romantic-dinner-in-paris.html`
   - `public/coffee-in-london.html`
   - `public/cheap-eats-in-las-vegas.html`
+- Traveler-intent SEO pages:
+  - `public/food-near-hotel.html`
+  - `public/restaurants-near-airport.html`
+  - `public/restaurants-near-convention-center.html`
 - Popular Searches and Restaurant Cities hub links.
+- Popular Searches traveler-intent links.
 - Sitemap coverage for the city + cuisine SEO batch.
 - SEO roadmap in `SEO-STANDOUT-GROWTH-PLAN.md`.
 - Changelog and project status files.
 
 ## Best next task
 
-Create traveler-intent SEO pages:
+Internal linking cleanup:
 
-- `public/food-near-hotel.html`
-- `public/restaurants-near-airport.html`
-- `public/restaurants-near-convention-center.html`
-
-Purpose:
-
-- Help travelers search urgent food situations.
-- Build pages around high-intent searches.
-- Link back to homepage search, Popular Searches, Restaurant Cities, Disclaimer, and relevant food/city pages.
+- Add Owner Intake links to more owner pages.
+- Add traveler-intent links to AI Finder, homepage helper, and related pages where useful.
+- Retry sitemap cleanup later as a small focused commit.
 
 ## Rules
 
@@ -74,7 +73,7 @@ Purpose:
 
 ## Known connector note
 
-Earlier sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice by the connector. The second city + cuisine sitemap update succeeded. Retry remaining sitemap cleanup later as a tiny focused commit. Do not ask Gerry to edit manually.
+Earlier sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice by the connector. The second city + cuisine sitemap update succeeded. The traveler-intent sitemap update was blocked once. Retry remaining sitemap cleanup later as a tiny focused commit. Do not ask Gerry to edit manually.
 
 ## Deliverables
 
