@@ -5,9 +5,14 @@
   const section = document.createElement('section');
   section.setAttribute('data-extra-place-links-2', 'true');
   section.innerHTML = `
-    <h2>More airport, station, terminal, arena, mall, and convention searches</h2>
-    <p>Use these when you need simple food searches near travel and event places.</p>
+    <h2>More market, boardwalk, airport, station, terminal, arena, mall, and convention searches</h2>
+    <p>Use these when you need simple food searches near travel, market, and event places.</p>
     <div class="grid">
+      <div class="card"><h3>Restaurants near farmers market</h3><p>Lunch, coffee, breakfast, local food, dessert, and market-area restaurants.</p><a href="/restaurants-near-farmers-market.html">Open farmers market restaurants</a></div>
+      <div class="card"><h3>Coffee near farmers market</h3><p>Cafes, quick coffee, breakfast coffee, pastries, local coffee, and market-area coffee.</p><a href="/coffee-near-farmers-market.html">Open farmers market coffee</a></div>
+      <div class="card"><h3>Food near public market</h3><p>Lunch, coffee, breakfast, local food, dessert, and public-market-area restaurants.</p><a href="/food-near-public-market.html">Open public market food</a></div>
+      <div class="card"><h3>Restaurants near boardwalk</h3><p>Lunch, coffee, seafood, dessert, family food, and boardwalk-area restaurants.</p><a href="/restaurants-near-boardwalk.html">Open boardwalk restaurants</a></div>
+      <div class="card"><h3>Dessert near boardwalk</h3><p>Dessert shops, coffee and dessert, pastries, family dessert, and boardwalk-area dessert.</p><a href="/dessert-near-boardwalk.html">Open boardwalk dessert</a></div>
       <div class="card"><h3>Food near cruise terminal</h3><p>Lunch, coffee, seafood, quick food, dinner, and cruise-terminal restaurants.</p><a href="/food-near-cruise-terminal.html">Open cruise terminal food</a></div>
       <div class="card"><h3>Coffee near ferry terminal</h3><p>Cafes, quick coffee, breakfast coffee, pastries, and ferry-terminal coffee.</p><a href="/coffee-near-ferry-terminal.html">Open ferry terminal coffee</a></div>
       <div class="card"><h3>Breakfast near bus station</h3><p>Coffee, quick breakfast, pastries, diners, and bus-station-area breakfast.</p><a href="/breakfast-near-bus-station.html">Open bus station breakfast</a></div>
