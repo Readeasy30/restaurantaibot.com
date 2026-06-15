@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Restaurant Cities | RestaurantAIBot</title>
-  <meta name="description" content="Search restaurants by city with RestaurantAIBot. Find restaurants in major U.S. and international cities by craving, budget, mood, dining style, traveler need, or city cuisine page." />
+  <meta name="description" content="Search restaurants by city with RestaurantAIBot. Find restaurants in major U.S. and international cities by craving, budget, mood, dining style, traveler need, hotel area, airport, convention center, or city cuisine page." />
   <link rel="canonical" href="https://restaurantaibot.com/restaurant-cities.html" />
   <style>
-    *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;line-height:1.7;background:#f5f7fb;color:#222}.wrap{width:min(1040px,92%);margin:auto}header{background:linear-gradient(135deg,#ff6b35,#ff9559);color:white;padding:34px 0}nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}nav a{color:inherit;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,.45);padding:8px 12px;border-radius:999px}main{padding:42px 0}section,.card{background:white;border:1px solid #e8e8e8;border-radius:22px;padding:26px;box-shadow:0 10px 30px rgba(0,0,0,.06);margin-bottom:22px}h1,h2,h3{line-height:1.2;margin-top:0}h1{font-size:clamp(2rem,5vw,3.3rem)}h2{color:#d94c1f}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.button{display:inline-block;background:#ff6b35;color:white;text-decoration:none;font-weight:800;padding:12px 16px;border-radius:999px}.muted{color:#555}footer{color:#666;padding:0 0 38px}footer a{color:#d94c1f;font-weight:800}ul{padding-left:1.2rem}li{margin:.35rem 0}.card a{color:#d94c1f;font-weight:800;text-decoration:none}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;line-height:1.7;background:#f5f7fb;color:#222}.wrap{width:min(1040px,92%);margin:auto}header{background:linear-gradient(135deg,#ff6b35,#ff9559);color:white;padding:34px 0}nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}nav a{color:inherit;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,.45);padding:8px 12px;border-radius:999px}main{padding:42px 0}section,.card{background:white;border:1px solid #e8e8e8;border-radius:22px;padding:26px;box-shadow:0 10px 30px rgba(0,0,0,.06);margin-bottom:22px}h1,h2,h3{line-height:1.2;margin-top:0}h1{font-size:clamp(2rem,5vw,3.3rem)}h2{color:#d94c1f}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.button{display:inline-block;background:#ff6b35;color:white;text-decoration:none;font-weight:800;padding:12px 16px;border-radius:999px}.muted{color:#555}.traveler{background:#fff8f3;border-left:7px solid #ff6b35}footer{color:#666;padding:0 0 38px}footer a{color:#d94c1f;font-weight:800}ul{padding-left:1.2rem}li{margin:.35rem 0}.card a{color:#d94c1f;font-weight:800;text-decoration:none}
   </style>
 </head>
 <body>
@@ -18,20 +18,32 @@
         <a href="/ai-restaurant-finder.html">AI Finder</a>
         <a href="/popular-searches.html">Popular Searches</a>
         <a href="/restaurant-cities.html">Cities</a>
+        <a href="/food-near-hotel.html">Food Near Hotel</a>
+        <a href="/restaurants-near-airport.html">Airport Food</a>
         <a href="/owner-advertise.html">For Restaurants</a>
         <a href="/disclaimer.html">Disclaimer</a>
         <a href="/contact.html">Contact</a>
       </nav>
       <h1>Find restaurants by city</h1>
-      <p>Search restaurants in major U.S. and international cities by craving, budget, mood, dining style, or travel plan.</p>
+      <p>Search restaurants in major U.S. and international cities by craving, budget, mood, dining style, hotel area, airport, event area, or travel plan.</p>
     </div>
   </header>
 
   <main class="wrap">
     <section>
       <h2>Start with a city</h2>
-      <p class="muted">Pick a city page below, open a city + cuisine page, or use the main RestaurantAIBot search to ask for exactly what you want.</p>
+      <p class="muted">Pick a city page below, open a city + cuisine page, use a traveler place search, or use the main RestaurantAIBot search to ask for exactly what you want.</p>
       <a class="button" href="/?q=restaurants%20near%20me">Search restaurants near me</a>
+    </section>
+
+    <section class="traveler">
+      <h2>Traveler place searches</h2>
+      <p>Use these when you know the place you are near, but not the local neighborhood yet. They are helpful for visitors, conferences, delayed flights, hotel check-ins, and quick meals between plans.</p>
+      <div class="grid">
+        <div class="card"><h3>Food near hotel</h3><p>Breakfast, coffee, cheap eats, family dinner, late-night food, and local food near a hotel.</p><p><a href="/food-near-hotel.html">Open food near hotel</a></p></div>
+        <div class="card"><h3>Restaurants near airport</h3><p>Quick meals, coffee, breakfast, dinner, cheap eats, and family food before or after flights.</p><p><a href="/restaurants-near-airport.html">Open airport food</a></p></div>
+        <div class="card"><h3>Restaurants near convention center</h3><p>Lunch, coffee, client dinner, group meals, and quick food near events or meetings.</p><p><a href="/restaurants-near-convention-center.html">Open convention center food</a></p></div>
+      </div>
     </section>
 
     <section>
@@ -88,7 +100,7 @@
 
     <section>
       <h2>Confirm before you go</h2>
-      <p>Restaurant details can change. Confirm hours, menus, prices, reservation rules, and availability directly with the restaurant before you travel or order.</p>
+      <p>Restaurant details can change. Confirm hours, menus, prices, reservation rules, transportation, distance, and availability directly with the restaurant before you travel or order.</p>
     </section>
   </main>
 
