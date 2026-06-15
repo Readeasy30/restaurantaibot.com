@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">London coffee ambience</title>
+  <desc id="desc">Stylized coffee and city ambience image for mood only, not a verified cafe photo.</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#1c1917"/><stop offset=".5" stop-color="#78350f"/><stop offset="1" stop-color="#fbbf24"/></linearGradient><radialGradient id="g" cx="52%" cy="35%" r="58%"><stop offset="0" stop-color="#fff7ed" stop-opacity=".75"/><stop offset=".5" stop-color="#f59e0b" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="720" fill="url(#bg)"/><rect width="1200" height="720" fill="url(#g)"/>
+  <path d="M140 520h920v200H140z" fill="#111827" opacity=".72"/><rect x="230" y="300" width="88" height="220" fill="#27272a"/><rect x="350" y="250" width="78" height="270" fill="#1f2937"/><rect x="460" y="335" width="72" height="185" fill="#292524"/><rect x="780" y="285" width="82" height="235" fill="#27272a"/><rect x="900" y="335" width="70" height="185" fill="#292524"/>
+  <ellipse cx="585" cy="500" rx="245" ry="62" fill="#3b2418"/><rect x="435" y="320" width="260" height="155" rx="34" fill="#fff7ed"/><path d="M694 360h58c42 0 42 74 0 74h-58" fill="none" stroke="#fff7ed" stroke-width="28" stroke-linecap="round"/><ellipse cx="565" cy="323" rx="112" ry="28" fill="#fef3c7"/><ellipse cx="565" cy="326" rx="84" ry="18" fill="#7c2d12"/>
+  <path d="M512 260c-20-38 34-48 10-92M585 260c-20-38 34-48 10-92M650 260c-20-38 34-48 10-92" fill="none" stroke="#fff7ed" stroke-width="12" stroke-linecap="round" opacity=".65"/>
+  <text x="600" y="664" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" fill="#fff7ed">London coffee ambience only · confirm details directly</text>
+</svg>
