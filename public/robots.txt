@@ -5,3 +5,4 @@ Sitemap: https://restaurantaibot.com/sitemap.xml
 Sitemap: https://restaurantaibot.com/sitemap-new-place-pages.xml
 Sitemap: https://restaurantaibot.com/sitemap-transit-pages.xml
 Sitemap: https://restaurantaibot.com/sitemap-terminal-pages.xml
+Sitemap: https://restaurantaibot.com/sitemap-market-boardwalk-pages.xml
