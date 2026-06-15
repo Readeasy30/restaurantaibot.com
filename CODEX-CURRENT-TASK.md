@@ -27,56 +27,38 @@ Do not redo or remove these:
 - Today’s feature demo Smart Promo Card.
 - Founder Complimentary Promo Card plan and public page.
 - Founder Cards wired into owner page.
+- Static Restaurant Owner Intake page.
 - Site-wide Disclaimer naming Webmasters LLC.
-- Webmasters LLC footer language on owner/founder pages.
+- Webmasters LLC footer language on owner/founder/intake pages.
 - Restaurant Website Starter page.
 - Owner sales page.
-- First city + cuisine SEO pages:
+- City + cuisine SEO pages:
   - `public/tacos-in-dallas.html`
   - `public/seafood-in-miami.html`
   - `public/breakfast-in-new-york.html`
+  - `public/pizza-in-chicago.html`
+  - `public/sushi-in-tokyo.html`
+  - `public/romantic-dinner-in-paris.html`
+  - `public/coffee-in-london.html`
+  - `public/cheap-eats-in-las-vegas.html`
 - Popular Searches and Restaurant Cities hub links.
+- Sitemap coverage for the city + cuisine SEO batch.
 - SEO roadmap in `SEO-STANDOUT-GROWTH-PLAN.md`.
 - Changelog and project status files.
 
 ## Best next task
 
-Create a simple static owner intake page.
-
-Suggested file:
-
-- `public/restaurant-owner-intake.html`
-
-Purpose:
-
-- Let restaurant owners send details for Founder Cards, Smart Promo Cards, or Website Starter inquiries.
-- Use mailto links and copy/paste checklists only.
-- No backend form processing yet.
-
-The page should include:
-
-- Founder Card intake section.
-- Website Starter intake section.
-- Smart Promo Card future interest section.
-- Webmasters LLC footer.
-- Disclaimer / Privacy / Terms links.
-- Clear language that there is no live paid placement or checkout yet.
-
-## Next SEO pages after intake
-
-Create city + cuisine pages:
-
-- `public/pizza-in-chicago.html`
-- `public/sushi-in-tokyo.html`
-- `public/romantic-dinner-in-paris.html`
-- `public/coffee-in-london.html`
-- `public/cheap-eats-in-las-vegas.html`
-
-Create traveler-intent pages:
+Create traveler-intent SEO pages:
 
 - `public/food-near-hotel.html`
 - `public/restaurants-near-airport.html`
 - `public/restaurants-near-convention-center.html`
+
+Purpose:
+
+- Help travelers search urgent food situations.
+- Build pages around high-intent searches.
+- Link back to homepage search, Popular Searches, Restaurant Cities, Disclaimer, and relevant food/city pages.
 
 ## Rules
 
@@ -92,7 +74,7 @@ Create traveler-intent pages:
 
 ## Known connector note
 
-Sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice by the connector. Retry later as a tiny sitemap-only commit. Do not ask Gerry to edit manually.
+Earlier sitemap updates for `disclaimer.html` and `founder-complimentary-promo-cards.html` were blocked twice by the connector. The second city + cuisine sitemap update succeeded. Retry remaining sitemap cleanup later as a tiny focused commit. Do not ask Gerry to edit manually.
 
 ## Deliverables
 
