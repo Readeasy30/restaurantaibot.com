@@ -19,12 +19,16 @@
 - Added `SEO-STANDOUT-GROWTH-PLAN.md` to define the SEO positioning, page families, standout feature roadmap, content rules, and 30-day build order.
 - Added homepage Local / Traveler mode buttons through `public/quick-searches.js` with mode-specific search ideas for locals and visitors.
 - Added the first city + cuisine SEO page batch: `public/tacos-in-dallas.html`, `public/seafood-in-miami.html`, and `public/breakfast-in-new-york.html`.
+- Added `FOUNDER-COMPLIMENTARY-PROMO-CARD-PLAN.md` to define the temporary manual-review founder promo-card bridge.
+- Added `public/founder-complimentary-promo-cards.html` as the public restaurant-owner page for limited complimentary founder promo-card inquiries.
+- Added `public/disclaimer.html` as the site-wide disclaimer naming Webmasters LLC as the owner/operator of RestaurantAIBot.
 
 ### Changed
 
 - Improved `public/index.html` homepage SEO with stronger title/description, canonical/robots tags, Open Graph metadata, Twitter card metadata, WebSite/SearchAction structured data, Organization structured data, WebApplication structured data, and a crawlable explanation card with internal links.
 - Updated `public/quick-searches.js` so injected homepage/footer navigation includes AI Finder and Website Starter links.
 - Updated `public/quick-searches.js` so choosing Local or Traveler mode creates a helpful search card, preloads a suggested query, and keeps search behavior demo-safe.
+- Updated `public/quick-searches.js` so injected navigation includes Founder Cards and Disclaimer links.
 - Updated `public/sitemap.xml` to include `ai-restaurant-finder.html`.
 - Updated `public/sitemap.xml` to include the first city + cuisine SEO pages.
 - Updated `public/popular-searches.html` to link to the new city + cuisine SEO pages.
@@ -41,8 +45,10 @@
 - Language choices are a first-layer guide translation feature only; they do not claim certified full-page translation yet.
 - SEO updates add honest crawler-friendly content and structured data only; they do not add fake reviews, fake listings, keyword stuffing, or fake restaurant availability.
 - City + cuisine pages are search-help pages only; they do not claim live rankings, verified availability, open status, or allergy safety.
+- Founder Complimentary Promo Cards are temporary manual-review launch features only; they do not guarantee traffic, clicks, reservations, sales, rankings, or customer results.
+- The disclaimer page records that restaurant details, AI output, language help, promo cards, outside links, and owner services require direct confirmation and do not create guarantees.
 - Local / Traveler mode only changes helper prompts and suggested searches; it does not track users or create profiles.
-- Future paid placements still require business rules, disclosures, legal/privacy updates, payment setup, and manual review.
+- Future paid placements still require business rules, disclosures, privacy updates, payment setup, and manual review.
 
 ## 2026-06-03
 
@@ -78,73 +84,3 @@
 - Added `public/restaurant-owner-resources.html` as a restaurant owner resource hub.
 - Added `public/restaurant-growth-checklist.html` for website, menu, Google profile, review, social, promotion, and repeat-customer basics.
 - Added `public/google-business-profile-checklist-restaurants.html` for restaurant profile basics, photos, services, and review rhythm.
-- Added `public/restaurant-website-checklist.html` for mobile-first restaurant website clarity.
-- Added `public/restaurant-review-response-templates.html` for safe, human restaurant review response examples.
-- Added `public/slow-night-restaurant-promotion-ideas.html` for simple restaurant promotion planning.
-- Added safe demo fallback restaurant search in `functions/api/search.js` so the site can show sample results when Google Maps is not configured or live search temporarily fails.
-
-### Changed
-
-- Updated `public/sitemap.xml` to include the new restaurant owner resource pages.
-- Updated `public/quick-searches.js` so homepage navigation includes Owner Resources.
-- Updated `README.md` to document the owner resource pages and their use of the marketing-system direction.
-- Updated `functions/api/search.js` so OpenAI parsing is optional and local parsing can handle common city/cuisine searches before API keys are connected.
-- Updated `public/index.html` to clearly label demo search results and avoid making sample results look like verified live restaurant listings.
-- Updated homepage map fallback language so visitors know they can still preview food and city searches before live Google Maps setup is complete.
-
-### Safety notes
-
-- No private keys, API keys, live ads, tracking scripts, payment setup, user accounts, upload systems, ordering integrations, framework rebuilds, or major code deletion were added.
-- New pages are static educational/lead-support content only.
-- Demo fallback results are clearly labeled as sample matches and tell visitors to confirm real details before visiting a restaurant.
-
-## 2026-05-29
-
-### Added
-
-- Added `CODEX-CURRENT-TASK.md` to define the current safe work queue.
-- Added this changelog to track safe production changes.
-- Added `CONNECTOR-RECOVERY.md` to document what to do when the ChatGPT GitHub connector blocks, filters, or behaves inconsistently.
-- Added `BROWSER-SMOKE-TEST.md` to record live smoke-test attempts and honest verification limits.
-- Added `REPO-AUDIT.md` to record repo-level checks for broken paths, brittle JavaScript patterns, obvious secret patterns, and leftover TODO/FIXME markers.
-- Added expanded support, food SEO, city, restaurant owner, and demo-planning pages across the current static site.
-- Added demo-only planning data files for future promotions and restaurant profiles.
-- Added `public/404.html` so broken or outdated links guide visitors back to Search, Popular Searches, City Guides, and For Restaurants.
-- Added `public/_headers` with conservative Cloudflare security headers and `no-store` caching for `/api/*`.
-- Added `public/_redirects` with safe 301 redirects for likely old paths such as `/cities.html`, `/search.html`, `/owner.html`, and `/advertise.html`.
-
-### Changed
-
-- Fixed Codex access documentation by confirming `Wholelychit/restaurantaibot.com` as the GitHub connector target and clarifying that local file access, terminal Git access, and connector commit access are separate.
-- Updated `AGENTS.md`, `CODEX-WORKFLOW.md`, and `CODEX-CURRENT-TASK.md` so future Codex runs do not ask Gerry to use terminal Git, VS Code, manual file copying, manual paste updates, or manual GitHub edits to resolve routine access friction.
-- Standardized `AGENTS.md` with the no-local-Git workflow.
-- Standardized `CODEX-WORKFLOW.md` with the ChatGPT 5.5 + Codex + GitHub + Cloudflare production workflow.
-- Linked `CONNECTOR-RECOVERY.md` from `CODEX-WORKFLOW.md`.
-- Updated `PROJECT-STATUS.md` to include required repo-local workflow files and current safe queue.
-- Updated `README.md` to match the current site structure, production hardening files, audit notes, safe workflow, SEO pages, city pages, Cloudflare setup, and known connector false positives.
-- Updated `CURRENT-TASK.md` and `CODEX-CURRENT-TASK.md` with the current safe queue.
-- Expanded `public/sitemap.xml` to include support pages, food pages, city pages, and restaurant owner pages.
-- Verified `public/robots.txt` allows crawling and points to the sitemap.
-- Updated `MANUAL-TEST-CHECKLIST.md` for current homepage, redirects, 404 page, security headers, food page, city page, query-link, near-me, local-city, demo-file, and safety checks.
-- Improved `public/index.html` map fallback behavior when Google Maps config or script loading fails.
-- Improved `functions/api/search.js` so `near me` searches without browser location ask the visitor to enable location or type a city instead of searching `in near me`.
-- Refined `functions/api/search.js` so city searches using the word `local`, such as `local tacos in Dallas`, remain city searches and do not require browser location.
-- Improved `public/quick-searches.js` so quick search buttons and `/?q=` links submit through the search form event instead of a brittle button-click shortcut.
-- Improved internal links across food SEO pages, city pages, and the Popular Searches hub where connector writes allowed it.
-- Updated `CONNECTOR-RECOVERY.md` after smaller Dallas/Tokyo retries succeeded.
-
-### Fixed
-
-- Fixed the injected homepage Cities link to point to `/restaurant-cities.html` instead of the wrong `/cities.html` path.
-- Fixed homepage map area staying stuck on a stale loading message when map setup fails.
-- Fixed bad near-me search behavior when the visitor has not enabled location.
-- Fixed local city search behavior so `local + city` queries are not treated as location-required near-me searches.
-- Fixed quick-search submission reliability by dispatching the actual form submit event.
-- Added the missing Cities navigation link to `public/dallas-restaurants.html`.
-- Added the missing Cities navigation link to `public/tokyo-restaurants.html`.
-
-### Known connector false positives
-
-- Larger full-page city-to-food cross-link rewrites for `public/dallas-restaurants.html` and `public/tokyo-restaurants.html` were blocked twice by the connector.
-- Smaller retries later succeeded for both files by adding the missing `restaurant-cities.html` navigation link.
-- Full city-to-food cross-link expansion can still be retried later through Codex or smaller commits if useful.
