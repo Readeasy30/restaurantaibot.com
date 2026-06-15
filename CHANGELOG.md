@@ -22,6 +22,7 @@
 - Added `FOUNDER-COMPLIMENTARY-PROMO-CARD-PLAN.md` to define the temporary manual-review founder promo-card bridge.
 - Added `public/founder-complimentary-promo-cards.html` as the public restaurant-owner page for limited complimentary founder promo-card inquiries.
 - Added `public/disclaimer.html` as the site-wide disclaimer naming Webmasters LLC as the owner/operator of RestaurantAIBot.
+- Added `public/restaurant-owner-intake.html` as a static owner intake page for Founder Cards, Website Starter, and future Smart Promo Card interest.
 
 ### Changed
 
@@ -30,11 +31,12 @@
 - Updated `public/quick-searches.js` so choosing Local or Traveler mode creates a helpful search card, preloads a suggested query, and keeps search behavior demo-safe.
 - Updated `public/quick-searches.js` so injected navigation includes Founder Cards and Disclaimer links.
 - Updated `public/owner-advertise.html` so restaurant owners see Founder Complimentary Promo Cards in the main navigation, hero CTA, intro cards, dedicated launch-offer section, package grid, inquiry area, and footer.
-- Updated `public/founder-complimentary-promo-cards.html` with a direct Disclaimer link and Webmasters LLC owner/operator footer language.
+- Updated `public/founder-complimentary-promo-cards.html` with a direct Owner Intake link, direct Disclaimer link, and Webmasters LLC owner/operator footer language.
 - Updated `public/sitemap.xml` to include `ai-restaurant-finder.html`.
 - Updated `public/sitemap.xml` to include the first city + cuisine SEO pages.
 - Updated `public/popular-searches.html` to link to the new city + cuisine SEO pages.
 - Updated `public/restaurant-cities.html` to link to the new city + cuisine SEO pages from the city hub and related city cards.
+- Updated `PROJECT-STATUS.md`, `CURRENT-TASK.md`, and `CODEX-CURRENT-TASK.md` to lock the June 14 build state and next queue.
 - Updated `SEO-STANDOUT-GROWTH-PLAN.md` to mark Local / Traveler mode as started, mark the first city + cuisine page batch as complete, and list the next SEO pages.
 
 ### Safety notes
@@ -43,6 +45,7 @@
 - Today's promo card is a demo-only example and does not activate real paid placement.
 - The owner sales page uses inquiry-only email CTAs and does not activate payment checkout or live sponsored placement.
 - The Restaurant Website Starter page is inquiry-only and does not collect payments, upload files, or create owner accounts.
+- The owner intake page is static and email-based only; it does not process forms, collect payments, upload files, create accounts, activate campaigns, or store submissions.
 - The Bites avatar is text-only, collapsible, and does not use voice, video, user accounts, or behavioral tracking.
 - Language choices are a first-layer guide translation feature only; they do not claim certified full-page translation yet.
 - SEO updates add honest crawler-friendly content and structured data only; they do not add fake reviews, fake listings, keyword stuffing, or fake restaurant availability.
