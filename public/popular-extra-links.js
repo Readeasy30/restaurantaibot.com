@@ -6,8 +6,13 @@
   section.setAttribute('data-extra-place-links', 'true');
   section.innerHTML = `
     <h2>More helpful place searches</h2>
-    <p>Use these when you are near a hotel, campus, medical area, office area, downtown, theater, concert venue, station, or old-town district and need a simple food search.</p>
+    <p>Use these when you are near a hotel, campus, medical area, office area, downtown, theater, concert venue, station, zoo, aquarium, theme park, or old-town district and need a simple food search.</p>
     <div class="grid">
+      <div class="card"><h3>Restaurants near zoo</h3><p>Lunch, coffee, family food, quick food, dessert, and nearby restaurant searches.</p><a href="/restaurants-near-zoo.html">Open zoo-area restaurants</a></div>
+      <div class="card"><h3>Restaurants near aquarium</h3><p>Seafood, lunch, coffee, family meals, dessert, quick food, and aquarium-area restaurants.</p><a href="/restaurants-near-aquarium.html">Open aquarium restaurants</a></div>
+      <div class="card"><h3>Food near theme park</h3><p>Lunch, coffee, family meals, cheap eats, dessert, quick food, and theme-park-area searches.</p><a href="/food-near-theme-park.html">Open theme park food</a></div>
+      <div class="card"><h3>Coffee near downtown</h3><p>Cafes, breakfast coffee, quick coffee, quiet coffee, pastries, and downtown coffee.</p><a href="/coffee-near-downtown.html">Open downtown coffee</a></div>
+      <div class="card"><h3>Dessert near hotel</h3><p>Dessert shops, coffee and dessert, pastries, family dessert, affordable dessert, and hotel-area dessert.</p><a href="/dessert-near-hotel.html">Open hotel dessert</a></div>
       <div class="card"><h3>Restaurants near theater</h3><p>Dinner before shows, coffee, dessert, quick food, group meals, and theater-area restaurants.</p><a href="/restaurants-near-theater.html">Open theater restaurants</a></div>
       <div class="card"><h3>Restaurants near movie theater</h3><p>Dinner before movies, coffee, dessert, quick food, cheap eats, and family meals near movie theaters.</p><a href="/restaurants-near-movie-theater.html">Open movie-area restaurants</a></div>
       <div class="card"><h3>Restaurants near concert venue</h3><p>Dinner before concerts, coffee, dessert, quick food, group meals, and venue-area restaurants.</p><a href="/restaurants-near-concert-venue.html">Open concert venue restaurants</a></div>
