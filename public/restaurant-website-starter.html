@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Restaurant Website Starter Template | RestaurantAIBot</title>
-  <meta name="description" content="See the RestaurantAIBot Website Starter package: a fast mobile-first restaurant website with menu highlights, call buttons, map links, hours, offers, and simple SEO." />
+  <meta name="description" content="See the RestaurantAIBot Website Starter package: a fast mobile-first restaurant website with menu highlights, call buttons, map links, hours, offers, owner intake, and simple SEO." />
   <link rel="canonical" href="https://restaurantaibot.com/restaurant-website-starter.html" />
   <style>
     * { box-sizing: border-box; }
@@ -12,7 +12,7 @@
     body { margin: 0; font-family: Arial, sans-serif; line-height: 1.65; background: #f5f7fb; color: #222; }
     a { color: inherit; }
     .wrap { width: min(1120px, 92%); margin: auto; }
-    header { background: linear-gradient(135deg,#1f2937,#374151); color: white; padding: 28px 0 42px; }
+    header { background: linear-gradient(135deg,#1f2937,#7c2d12); color: white; padding: 28px 0 42px; }
     nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
     nav a { color: inherit; text-decoration: none; font-weight: 800; border: 1px solid rgba(255,255,255,.42); padding: 8px 12px; border-radius: 999px; }
     h1, h2, h3 { line-height: 1.18; margin-top: 0; }
@@ -28,6 +28,9 @@
     .button.dark { background: #111827; color: white; }
     main { padding: 42px 0; }
     section { background: white; border: 1px solid #e8e8e8; border-radius: 24px; padding: clamp(22px, 4vw, 34px); box-shadow: 0 10px 30px rgba(0,0,0,.06); margin-bottom: 24px; }
+    .hero-art { margin: 24px auto 0; padding: 0; background: transparent; border: 0; box-shadow: none; }
+    .hero-art img { width: 100%; display: block; border-radius: 28px; box-shadow: 0 18px 46px rgba(0,0,0,.16); }
+    .caption { color: #666; font-size: .92rem; margin-top: 9px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 18px; }
     .split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
     .card { background: #fff; border: 1px solid #ececec; border-radius: 20px; padding: 20px; box-shadow: 0 8px 22px rgba(0,0,0,.045); }
@@ -54,12 +57,14 @@
     .intake { background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 18px; padding: 18px; }
     .intake code { white-space: pre-wrap; font-family: Arial, sans-serif; color: #333; }
     footer { color: #666; padding: 0 0 38px; }
+    footer a { color: #d94c1f; font-weight: 800; }
     @media (max-width: 780px) {
       nav a { width: 100%; text-align: center; }
       .split { grid-template-columns: 1fr; }
       .hero-actions .button, .actions .button { width: 100%; text-align: center; }
       section { border-radius: 18px; }
       .menu-item { display: block; }
+      .hero-art img { border-radius: 18px; }
     }
   </style>
 </head>
@@ -69,19 +74,27 @@
       <nav aria-label="Site navigation">
         <a href="/">Search</a>
         <a href="/owner-advertise.html">Restaurant Owners</a>
+        <a href="/restaurant-owner-intake.html">Owner Intake</a>
         <a href="/restaurant-owner-resources.html">Owner Resources</a>
         <a href="/restaurant-website-checklist.html">Website Checklist</a>
+        <a href="/disclaimer.html">Disclaimer</a>
         <a href="/contact.html">Contact</a>
       </nav>
       <p class="tag">Website package preview</p>
       <h1>Restaurant Website Starter</h1>
       <p class="hero-text">A fast, mobile-first restaurant website built for calls, directions, menu highlights, local search, and customer confidence.</p>
       <div class="hero-actions">
-        <a class="button light" href="#owner-inquiry">Ask about this website</a>
+        <a class="button light" href="/restaurant-owner-intake.html#website-intake">Start Owner Intake</a>
+        <a class="button" href="#owner-inquiry">Ask about this website</a>
         <a class="button" href="/owner-advertise.html">See promo packages</a>
       </div>
     </div>
   </header>
+
+  <section class="hero-art wrap">
+    <img src="/images/owner-website-ambience.svg" alt="Restaurant website ambience image only, not a verified restaurant photo" loading="lazy" />
+    <p class="caption">Ambience image only. Not a verified restaurant photo or live customer website. Real restaurant details are supplied by the owner and reviewed before publishing.</p>
+  </section>
 
   <main class="wrap">
     <section class="banner">
@@ -113,6 +126,7 @@
               <li>Cloudflare/GitHub static build approach</li>
             </ul>
             <p class="small">Prices are test offers and may change before formal paid launch.</p>
+            <p><a class="button" href="/restaurant-owner-intake.html#website-intake">Send website details</a></p>
           </div>
         </div>
         <div class="mock-site" aria-label="Sample restaurant website preview">
@@ -182,6 +196,7 @@
             <li>Current offer or catering/private event note</li>
             <li>Photos or permission to use placeholders</li>
           </ul>
+          <p><a class="button" href="/restaurant-owner-intake.html#website-intake">Open Owner Intake</a></p>
         </div>
         <div class="intake">
           <p><strong>Copy/paste intake</strong></p>
@@ -210,8 +225,9 @@ Notes:</code>
 
     <section id="owner-inquiry">
       <h2>Ask about a Restaurant Website Starter</h2>
-      <p>Email RestaurantAIBot with the restaurant details. We can use the intake checklist above to draft the first website quickly.</p>
+      <p>Email RestaurantAIBot with the restaurant details, or use the Owner Intake checklist to draft the first website quickly.</p>
       <div class="actions">
+        <a class="button" href="/restaurant-owner-intake.html#website-intake">Open Owner Intake</a>
         <a class="button" href="mailto:wholelychit@gmail.com?subject=Restaurant%20Website%20Starter%20Inquiry&body=Restaurant%20name%3A%0ACity%2Fneighborhood%3A%0ACuisine%3A%0APhone%3A%0AAddress%3A%0AHours%3A%0ACurrent%20website%2Fsocial%20link%3A%0AOrdering%2Freservation%20link%3A%0AMenu%20highlights%3A%0ACurrent%20offer%3A%0ACatering%2Fprivate%20events%3A%0APhotos%20available%3A%0ABest%20customer%3A%0ANotes%3A">Email website inquiry</a>
         <a class="button dark" href="/owner-advertise.html">Back to owner packages</a>
       </div>
@@ -219,8 +235,9 @@ Notes:</code>
   </main>
 
   <footer class="wrap">
-    <p>© 2026 RestaurantAIBot. Ask AI. Find Food. Anywhere on Earth.</p>
-    <p class="small">Restaurant details, hours, menus, prices, offers, allergy information, and availability can change. Visitors should confirm details directly with the restaurant before visiting, ordering, booking, or paying.</p>
+    <p>© 2026 Webmasters LLC. RestaurantAIBot is owned and operated by Webmasters LLC.</p>
+    <p class="small">Restaurant details, hours, menus, prices, offers, allergy information, availability, website service terms, and launch pricing can change. Visitors and owners should confirm details before visiting, ordering, booking, paying, or starting work.</p>
+    <p class="small"><a href="/disclaimer.html">Disclaimer</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/restaurant-owner-intake.html">Owner Intake</a></p>
   </footer>
   <script src="/responsive-avatar.js"></script>
 </body>
