@@ -8,6 +8,11 @@
     <h2>More market, boardwalk, airport, station, terminal, arena, mall, and convention searches</h2>
     <p>Use these when you need simple food searches near travel, market, and event places.</p>
     <div class="grid">
+      <div class="card"><h3>Breakfast near public market</h3><p>Coffee, quick breakfast, pastries, local breakfast, and public-market breakfast.</p><a href="/breakfast-near-public-market.html">Open public market breakfast</a></div>
+      <div class="card"><h3>Coffee near public market</h3><p>Cafes, quick coffee, breakfast coffee, pastries, local coffee, and public-market coffee.</p><a href="/coffee-near-public-market.html">Open public market coffee</a></div>
+      <div class="card"><h3>Lunch near public market</h3><p>Quick lunch, local lunch, coffee, healthy lunch, sandwiches, and public-market restaurants.</p><a href="/lunch-near-public-market.html">Open public market lunch</a></div>
+      <div class="card"><h3>Seafood near boardwalk</h3><p>Lunch, dinner, fish, casual seafood, family seafood, and boardwalk seafood.</p><a href="/seafood-near-boardwalk.html">Open boardwalk seafood</a></div>
+      <div class="card"><h3>Coffee near boardwalk</h3><p>Cafes, quick coffee, breakfast coffee, pastries, local coffee, and boardwalk coffee.</p><a href="/coffee-near-boardwalk.html">Open boardwalk coffee</a></div>
       <div class="card"><h3>Restaurants near farmers market</h3><p>Lunch, coffee, breakfast, local food, dessert, and market-area restaurants.</p><a href="/restaurants-near-farmers-market.html">Open farmers market restaurants</a></div>
       <div class="card"><h3>Coffee near farmers market</h3><p>Cafes, quick coffee, breakfast coffee, pastries, local coffee, and market-area coffee.</p><a href="/coffee-near-farmers-market.html">Open farmers market coffee</a></div>
       <div class="card"><h3>Food near public market</h3><p>Lunch, coffee, breakfast, local food, dessert, and public-market-area restaurants.</p><a href="/food-near-public-market.html">Open public market food</a></div>
