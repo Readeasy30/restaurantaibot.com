@@ -2,9 +2,15 @@
 
 Last updated: 2026-06-14
 
-## RestaurantAIBot active build queue
+## LOCKED BUILD STATE
 
-Current locked direction:
+RestaurantAIBot current build is locked as of this checkpoint.
+
+Do not rework, rename, remove, or redesign the completed SEO pages, Popular Searches injectors, sitemaps, disclaimer wording, owner pages, Bites avatar, language choices, or local photo ambience system unless Gerry directly asks for that change.
+
+GitHub is the source of truth. Cloudflare Pages should publish committed changes automatically from this repository.
+
+## RestaurantAIBot active build direction
 
 > Build RestaurantAIBot into a world-class AI restaurant finder for locals and travelers, with safe restaurant-owner promo and website services.
 
@@ -96,18 +102,25 @@ Current locked direction:
 - Local photo ambience system added and wired into high-value pages.
 - Homepage orange background polished.
 
-## Continue from here
+## Locked live check URLs
 
-### Next build batch 1 — live-readiness check
+Check these URLs after Cloudflare deploys:
 
-- Check homepage after Cloudflare deploys.
-- Check main sitemap live.
-- Check supplemental sitemaps live.
-- Check new SEO pages live.
-- Confirm offer pages stay clearly labeled as demo, founder, inquiry, or informational.
-- Confirm ambience images are not presented as verified restaurant photos.
+1. `https://restaurantaibot.com/`
+2. `https://restaurantaibot.com/sitemap.xml`
+3. `https://restaurantaibot.com/sitemap-new-place-pages.xml`
+4. `https://restaurantaibot.com/sitemap-transit-pages.xml`
+5. `https://restaurantaibot.com/sitemap-terminal-pages.xml`
+6. `https://restaurantaibot.com/sitemap-market-boardwalk-pages.xml`
+7. `https://restaurantaibot.com/sitemap-market-more.xml`
+8. `https://restaurantaibot.com/robots.txt`
+9. `https://restaurantaibot.com/popular-searches.html`
+10. `https://restaurantaibot.com/popular-extra-links.js`
+11. `https://restaurantaibot.com/popular-extra-links-2.js`
 
-### Next build batch 2 — next SEO expansion
+## Future expansion queue
+
+Only continue after Gerry asks for new work.
 
 Possible next pages:
 
@@ -128,26 +141,6 @@ Possible next pages:
 - `popular-extra-links-3.js` exists but is not loaded; deletion was blocked once. It is harmless but can be removed later if the connector allows.
 - Smaller focused edits are working better than very large replacements.
 - Do not ask Gerry to edit files manually.
-
-## Manual live checks after Cloudflare deploys
-
-Check these URLs:
-
-1. `https://restaurantaibot.com/`
-2. `https://restaurantaibot.com/sitemap.xml`
-3. `https://restaurantaibot.com/sitemap-new-place-pages.xml`
-4. `https://restaurantaibot.com/sitemap-transit-pages.xml`
-5. `https://restaurantaibot.com/sitemap-terminal-pages.xml`
-6. `https://restaurantaibot.com/sitemap-market-boardwalk-pages.xml`
-7. `https://restaurantaibot.com/sitemap-market-more.xml`
-8. `https://restaurantaibot.com/robots.txt`
-9. `https://restaurantaibot.com/popular-searches.html`
-10. `https://restaurantaibot.com/popular-extra-links-2.js`
-11. `https://restaurantaibot.com/breakfast-near-public-market.html`
-12. `https://restaurantaibot.com/coffee-near-public-market.html`
-13. `https://restaurantaibot.com/lunch-near-public-market.html`
-14. `https://restaurantaibot.com/seafood-near-boardwalk.html`
-15. `https://restaurantaibot.com/coffee-near-boardwalk.html`
 
 ## Safety rule
 
