@@ -44,6 +44,7 @@ Current locked direction:
   - Evening food near me
   - Special dinner near me
 - Popular Searches updated through the attraction/museum/beach/group-dinner batch.
+- Popular Searches now loads `popular-extra-links.js`, which adds the campus, hospital, office, hotel coffee, and healthy food links without another blocked full-page rewrite.
 - Restaurant Cities updated with Traveler Place Searches.
 - AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
 - Local photo ambience system added and wired into high-value pages.
@@ -52,19 +53,7 @@ Current locked direction:
 
 ## Continue from here
 
-### Next build batch 1 — smaller Popular Searches retry
-
-Retry a smaller focused update to `public/popular-searches.html` to link:
-
-- Restaurants near college campus
-- Restaurants near hospital
-- Restaurants near office building
-- Coffee near hotel
-- Healthy food near me
-
-The large full-page hub update was blocked once. Try smaller safe edits or another hub page.
-
-### Next build batch 2 — live-readiness check
+### Next build batch 1 — live-readiness check
 
 - Check homepage after Cloudflare deploys.
 - Check sitemap live.
@@ -72,7 +61,7 @@ The large full-page hub update was blocked once. Try smaller safe edits or anoth
 - Confirm offer pages stay clearly labeled as demo, founder, inquiry, or informational.
 - Confirm ambience images are not presented as verified restaurant photos.
 
-### Next build batch 3 — next SEO expansion
+### Next build batch 2 — next SEO expansion
 
 Possible next pages:
 
@@ -86,7 +75,7 @@ Possible next pages:
 
 - Date-night and late-night wording was blocked by the connector, so safer pages were used: evening food and special dinner.
 - Full Popular Searches update for campus/hospital/office/hotel coffee/healthy food was blocked once, but sitemap update succeeded.
-- Smaller focused edits are working better than very large replacements.
+- Smaller focused edit succeeded by adding `popular-extra-links.js` and loading it from `public/popular-searches.html`.
 - Do not ask Gerry to edit files manually.
 
 ## Manual live checks after Cloudflare deploys
@@ -95,12 +84,13 @@ Check these URLs:
 
 1. `https://restaurantaibot.com/`
 2. `https://restaurantaibot.com/sitemap.xml`
-3. `https://restaurantaibot.com/restaurants-near-college-campus.html`
-4. `https://restaurantaibot.com/restaurants-near-hospital.html`
-5. `https://restaurantaibot.com/restaurants-near-office-building.html`
-6. `https://restaurantaibot.com/coffee-near-hotel.html`
-7. `https://restaurantaibot.com/healthy-food-near-me.html`
-8. `https://restaurantaibot.com/popular-searches.html`
+3. `https://restaurantaibot.com/popular-searches.html`
+4. `https://restaurantaibot.com/popular-extra-links.js`
+5. `https://restaurantaibot.com/restaurants-near-college-campus.html`
+6. `https://restaurantaibot.com/restaurants-near-hospital.html`
+7. `https://restaurantaibot.com/restaurants-near-office-building.html`
+8. `https://restaurantaibot.com/coffee-near-hotel.html`
+9. `https://restaurantaibot.com/healthy-food-near-me.html`
 
 ## Safety rule
 
