@@ -1,6 +1,20 @@
 # RestaurantAIBot
 
-- /
-- /popular-searches.html
-- /restaurant-cities.html
-- /disclaimer.html
+RestaurantAIBot helps locals and travelers find restaurants by location, meal, place, and occasion.
+
+## Core Pages
+
+- / — Homepage
+- /ai-restaurant-finder.html — AI restaurant finder guide
+- /popular-searches.html — Popular restaurant searches
+- /restaurant-cities.html — City and cuisine guides
+- /owner-advertise.html — Restaurant owner advertising information
+- /restaurant-owner-intake.html — Restaurant owner intake page
+- /restaurant-website-starter.html — Restaurant website starter page
+- /disclaimer.html — Site disclaimer
+
+## Search Pages
+
+- /food-near-hotel.html — Food near hotel
+- /restaurants-near-airport.html — Restaurants near airport
+- /restaurants-near-convention-center.html — Restaurants near convention center
