@@ -22,7 +22,7 @@ Current active build direction remains locked around:
 ## Prior major June 14 commits
 
 - `7cb12a2df53fa7e40033ccecbfc0d120a6744f27` — added AI Restaurant Finder SEO page.
-- `5a041b2143a299409e6dacfb0260d120a6744f27` — note: verify exact hash before reuse if needed.
+- `5a041b2143a299409e6dacfb0260d9774c079bc9` — improved homepage SEO and structured data.
 - `40b63b3fe283ace275aae608956681793e0054b6` — added Local / Traveler mode.
 - `b303fb7a0e471522df55e51a34e6d73277f088f3` — added Pizza in Chicago SEO page.
 - `6397caa195896c06a430a90574c8a33145e18892` — added Sushi in Tokyo SEO page.
