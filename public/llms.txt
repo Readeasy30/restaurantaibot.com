@@ -1,0 +1,6 @@
+# RestaurantAIBot
+
+- /
+- /popular-searches.html
+- /restaurant-cities.html
+- /disclaimer.html
