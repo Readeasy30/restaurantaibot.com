@@ -1,77 +1,18 @@
 # AGENTS.md
 
-## Work mode
+Work in `Readeasy30/restaurantaibot.com`.
 
-Operate as a no-local-Git website production assistant.
+Read repo status files before editing:
 
-Use ChatGPT 5.5, Codex, GitHub, and Cloudflare Pages. Do not require local Git, terminal Git, VS Code, or manual file editing.
+- CLAUDE.md
+- PROJECT-STATUS.md
+- CURRENT-TASK.md
+- SEO-GEO-STANDARD.md
 
-## Main rule
+Use this formula on important pages:
 
-Codex should handle repository file work directly. Use Codex/GitHub access or the ChatGPT GitHub connector to create, update, replace, and commit safe files in this repository.
+SEO foundation + GEO answer structure + AEO question formatting.
 
-Do not ask Gerry to paste, create, replace, or manually update repo files. Work in useful batches. Report only after several useful commits or a real blocker.
+Keep the site simple, fast, mobile-friendly, and built with the current plain HTML, CSS, JavaScript, Cloudflare Pages, and functions setup unless Gerry asks for a change.
 
-## Codex access
-
-The confirmed GitHub repository target is `Wholelychit/restaurantaibot.com` on `main`.
-
-Local file access and commit access are separate. If local `git` is unavailable or a local `.git` folder is not visible, continue safe file work in Codex and use the GitHub connector or other Codex/GitHub repository access for safe commits when available.
-
-Do not ask Gerry to fix access by using terminal Git, VS Code, manual file copying, manual pasting, or manual repository edits.
-
-## Safe work allowed
-
-- README updates
-- AGENTS.md updates
-- CODEX-WORKFLOW.md updates
-- CODEX-CURRENT-TASK.md updates
-- PROJECT-STATUS.md updates
-- CHANGELOG.md updates
-- HTML/CSS/JS fixes
-- navigation/footer fixes
-- sitemap.xml
-- robots.txt
-- titles/meta/canonical URLs
-- accessibility/mobile improvements
-- safe content pages
-- documentation cleanup
-- restaurant discovery pages
-- restaurant owner pages
-- lead capture planning docs
-- manual test checklists
-
-## Do not add without direct approval
-
-- private keys
-- API keys
-- live ads
-- live tracking
-- payment setup
-- affiliate links
-- ordering integrations
-- public AI tools
-- upload systems
-- user accounts
-- framework rebuilds
-- major code deletion
-- automated restaurant ordering
-- scraping systems that violate site terms
-
-## Cloudflare rule
-
-Cloudflare only connects to GitHub and publishes.
-
-Recommended setup:
-
-- Production branch: main
-- Build command: blank
-- Output directory: .
-- No manual Cloudflare file uploads
-
-## Repository notes
-
-- Repo: Wholelychit/restaurantaibot.com
-- Purpose: finding restaurants and building restaurant discovery/marketing tools.
-- Keep the site simple, fast, mobile-friendly, and useful for restaurant visitors and owners.
-- Preserve the current stack unless Gerry directly approves a rebuild.
+Report files changed, commits made, blockers, and next queue.
