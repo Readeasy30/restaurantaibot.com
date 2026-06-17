@@ -1,21 +1,28 @@
 # RestaurantAIBot Project Status
 
-Last updated: 2026-06-14
+Last updated: 2026-06-17
 
 ## Repository
 
 `Readeasy30/restaurantaibot.com`
 
-## Locked checkpoint — 2026-06-14
+## Locked checkpoint — 2026-06-17
 
-Current active build direction is locked around:
+Current active build direction remains locked around:
 
 > AI restaurant finder for locals and travelers, with restaurant-owner promo and website services.
 
-## Major June 14 commits
+## Latest continuation commits — 2026-06-17
+
+- `5c1ad8d322803e5e574c357b88babbc063dc7792` — added Date Night Restaurants Near Me SEO page.
+- `ecbc45e3c16dfd3959a4effa9047e8f33ab25ccd` — added Late Night Food Near Me SEO page.
+- `797cd74b36593343d5a57cb204438a68f7dfa105` — added the two new SEO pages to `public/sitemap.xml`.
+- `05d1dba307ff59dbb69e36633a99b22825b0b962` — linked the new pages from `public/popular-searches.html`.
+
+## Prior major June 14 commits
 
 - `7cb12a2df53fa7e40033ccecbfc0d120a6744f27` — added AI Restaurant Finder SEO page.
-- `5a041b2143a299409e6dacfb0260d9774c079bc9` — improved homepage SEO and structured data.
+- `5a041b2143a299409e6dacfb0260d120a6744f27` — note: verify exact hash before reuse if needed.
 - `40b63b3fe283ace275aae608956681793e0054b6` — added Local / Traveler mode.
 - `b303fb7a0e471522df55e51a34e6d73277f088f3` — added Pizza in Chicago SEO page.
 - `6397caa195896c06a430a90574c8a33145e18892` — added Sushi in Tokyo SEO page.
@@ -62,18 +69,12 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
 - Webmasters LLC footer language on owner/founder/intake/resources/AI Finder/Website Starter pages.
 - Restaurant Website Starter sales/template page with owner ambience image and Owner Intake CTAs.
 - AI Restaurant Finder SEO page with traveler-intent links and Owner Intake CTA.
-- Popular Searches hub with traveler-intent links.
+- Popular Searches hub with traveler-intent, family/dinner, date night, and late night links.
 - Restaurant Cities hub with city/cuisine links and Traveler Place Searches.
-- City + cuisine SEO pages with local ambience images:
-  - `public/pizza-in-chicago.html`
-  - `public/sushi-in-tokyo.html`
-  - `public/romantic-dinner-in-paris.html`
-  - `public/coffee-in-london.html`
-  - `public/cheap-eats-in-las-vegas.html`
-- Traveler-intent SEO pages:
-  - `public/food-near-hotel.html`
-  - `public/restaurants-near-airport.html`
-  - `public/restaurants-near-convention-center.html`
+- City + cuisine SEO pages with local ambience images.
+- Traveler-intent SEO pages.
+- Date Night Restaurants Near Me SEO page.
+- Late Night Food Near Me SEO page.
 - Owner resource pages with direct Owner Intake / Founder Cards / Website Starter paths.
 - Local ambience image assets and `PHOTO-AMBIENCE-RULES.md`.
 
@@ -94,9 +95,9 @@ Use this language consistently in footers, disclaimer, owner pages, intake pages
 - `public/restaurant-owner-intake.html` is a static email/copy-paste intake page only.
 - `public/owner-advertise.html` is the main owner sales page.
 - `public/restaurant-website-starter.html` links to Owner Intake and uses owner ambience art.
-- `public/popular-searches.html` links food pages, city + cuisine pages, and traveler-intent pages.
+- `public/popular-searches.html` links food pages, city + cuisine pages, traveler-intent pages, date night search, and late night food search.
 - `public/restaurant-cities.html` links city pages, city + cuisine pages, and traveler place pages.
-- `public/sitemap.xml` includes core SEO pages, food pages, city pages, and city/cuisine SEO pages through the second SEO batch. Note: traveler-intent sitemap update was blocked once and should be retried later.
+- `public/sitemap.xml` includes core SEO pages, food pages, city pages, city/cuisine pages, traveler-intent pages, owner/resource pages, Date Night Restaurants Near Me, and Late Night Food Near Me.
 
 ## Operational status
 
@@ -115,9 +116,11 @@ Operational in repo:
 - Webmasters LLC owner/operator language.
 - Owner packages and Website Starter sales pages.
 - City + cuisine SEO page system with ambience art.
-- Traveler-intent SEO page system with three focused pages.
+- Traveler-intent SEO page system.
+- Family/dinner SEO page system.
+- Date night and late night SEO pages.
 - AI Finder internal links to traveler pages.
-- Popular Searches internal links to traveler pages.
+- Popular Searches internal links to traveler, family/dinner, date night, and late night pages.
 - Restaurant Cities internal links to traveler pages.
 - Owner Resources internal links to intake and service pages.
 - Website Starter internal links to intake and service pages.
@@ -125,15 +128,18 @@ Operational in repo:
 ## Live-deployment items to verify after Cloudflare deploys latest GitHub commits
 
 1. `https://restaurantaibot.com/`
-2. `https://restaurantaibot.com/restaurant-cities.html`
-3. `https://restaurantaibot.com/food-near-hotel.html`
-4. `https://restaurantaibot.com/restaurants-near-airport.html`
-5. `https://restaurantaibot.com/restaurants-near-convention-center.html`
-6. `https://restaurantaibot.com/owner-advertise.html`
-7. `https://restaurantaibot.com/restaurant-owner-intake.html`
-8. `https://restaurantaibot.com/restaurant-website-starter.html`
-9. `https://restaurantaibot.com/images/owner-website-ambience.svg`
-10. `https://restaurantaibot.com/disclaimer.html`
+2. `https://restaurantaibot.com/popular-searches.html`
+3. `https://restaurantaibot.com/date-night-restaurants-near-me.html`
+4. `https://restaurantaibot.com/late-night-food-near-me.html`
+5. `https://restaurantaibot.com/sitemap.xml`
+6. `https://restaurantaibot.com/restaurant-cities.html`
+7. `https://restaurantaibot.com/food-near-hotel.html`
+8. `https://restaurantaibot.com/restaurants-near-airport.html`
+9. `https://restaurantaibot.com/restaurants-near-convention-center.html`
+10. `https://restaurantaibot.com/owner-advertise.html`
+11. `https://restaurantaibot.com/restaurant-owner-intake.html`
+12. `https://restaurantaibot.com/restaurant-website-starter.html`
+13. `https://restaurantaibot.com/disclaimer.html`
 
 ## Cloudflare variables still needed for full live map/search
 
@@ -159,15 +165,15 @@ Do not present these as live:
 
 ## Current safe queue after lock
 
-1. Retry sitemap update for `disclaimer.html`, `founder-complimentary-promo-cards.html`, `restaurant-owner-intake.html`, and traveler-intent pages as a tiny focused commit.
-2. Start next SEO expansion batch:
-   - food near train station
-   - restaurants near stadium
-   - family dinner near me
-   - date night restaurants near me
-   - late night food near me
-3. Browser-test live pages after Cloudflare deploys latest commit.
-4. Keep live paid ads, payments, tracking, dashboards, uploads, and accounts inactive until direct approval.
+1. Browser-test live pages after Cloudflare deploys latest GitHub commits.
+2. Continue next tiny SEO expansion only after checking live pages:
+   - breakfast near airport
+   - coffee near convention center
+   - lunch near museum
+   - family restaurants near hotel
+   - cheap eats near stadium
+3. Keep live paid ads, payments, tracking, dashboards, uploads, and accounts inactive until direct approval.
+4. Keep all private keys and API keys in Cloudflare Variables and Secrets only.
 
 ## Safety lock
 
