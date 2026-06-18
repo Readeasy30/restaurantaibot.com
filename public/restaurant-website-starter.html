@@ -3,69 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Restaurant Website Starter Template | RestaurantAIBot</title>
-  <meta name="description" content="See the RestaurantAIBot Website Starter package: a fast mobile-first restaurant website with menu highlights, call buttons, map links, hours, offers, owner intake, and simple SEO." />
+  <title>Restaurant Website Starter | RestaurantAIBot</title>
+  <meta name="description" content="RestaurantAIBot Website Starter is a simple mobile-first restaurant website package with menu highlights, call buttons, map links, hours, owner intake, and local SEO basics." />
   <link rel="canonical" href="https://restaurantaibot.com/restaurant-website-starter.html" />
   <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; font-family: Arial, sans-serif; line-height: 1.65; background: #f5f7fb; color: #222; }
-    a { color: inherit; }
-    .wrap { width: min(1120px, 92%); margin: auto; }
-    header { background: linear-gradient(135deg,#1f2937,#7c2d12); color: white; padding: 28px 0 42px; }
-    nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
-    nav a { color: inherit; text-decoration: none; font-weight: 800; border: 1px solid rgba(255,255,255,.42); padding: 8px 12px; border-radius: 999px; }
-    h1, h2, h3 { line-height: 1.18; margin-top: 0; }
-    h1 { font-size: clamp(2.1rem, 6vw, 4rem); margin-bottom: 14px; max-width: 920px; }
-    h2 { color: #d94c1f; font-size: clamp(1.55rem, 3vw, 2.25rem); }
-    h3 { font-size: 1.18rem; }
-    .hero-text { max-width: 800px; font-size: 1.13rem; }
-    .tag { display: inline-block; background: #fff3ed; color: #d94c1f; padding: 6px 10px; border-radius: 999px; font-size: .78rem; font-weight: 900; margin: 0 6px 8px 0; }
-    header .tag { background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.3); }
-    .hero-actions, .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-    .button { display: inline-block; background: #ff6b35; color: white; text-decoration: none; font-weight: 900; padding: 13px 18px; border-radius: 999px; border: 0; }
-    .button.light { background: white; color: #d94c1f; }
-    .button.dark { background: #111827; color: white; }
-    main { padding: 42px 0; }
-    section { background: white; border: 1px solid #e8e8e8; border-radius: 24px; padding: clamp(22px, 4vw, 34px); box-shadow: 0 10px 30px rgba(0,0,0,.06); margin-bottom: 24px; }
-    .hero-art { margin: 24px auto 0; padding: 0; background: transparent; border: 0; box-shadow: none; }
-    .hero-art img { width: 100%; display: block; border-radius: 28px; box-shadow: 0 18px 46px rgba(0,0,0,.16); }
-    .caption { color: #666; font-size: .92rem; margin-top: 9px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 18px; }
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
-    .card { background: #fff; border: 1px solid #ececec; border-radius: 20px; padding: 20px; box-shadow: 0 8px 22px rgba(0,0,0,.045); }
-    .featured { border-color: #ffb088; background: #fff8f3; }
-    .price { font-size: 1.85rem; font-weight: 900; color: #d94c1f; margin: 8px 0; }
-    .small { color: #666; font-size: .92rem; }
-    ul, ol { padding-left: 22px; }
-    li { margin-bottom: 9px; }
-    .mock-site { background: #fff; border-radius: 28px; overflow: hidden; border: 1px solid #ddd; box-shadow: 0 18px 46px rgba(0,0,0,.12); }
-    .mock-hero { background: linear-gradient(135deg,#ff6b35,#ff9559); color: white; padding: 28px; }
-    .mock-hero h3 { font-size: 1.8rem; margin-bottom: 8px; }
-    .mock-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .mock-actions span { background: white; color: #d94c1f; border-radius: 999px; padding: 8px 12px; font-weight: 900; font-size: .88rem; }
-    .mock-body { padding: 22px; }
-    .menu-list { display: grid; gap: 10px; }
-    .menu-item { display: flex; justify-content: space-between; gap: 14px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-    .menu-item strong { display: block; }
-    .banner { background: #fff3ed; border-left: 7px solid #ff6b35; }
-    .trust { background: #eef7f1; border-left: 7px solid #16833a; }
-    .warning { background: #fffbea; border-left: 7px solid #c98500; }
-    .check { list-style: none; padding-left: 0; }
-    .check li { padding-left: 30px; position: relative; }
-    .check li::before { content: '✓'; position: absolute; left: 0; top: 0; color: #16833a; font-weight: 900; }
-    .intake { background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 18px; padding: 18px; }
-    .intake code { white-space: pre-wrap; font-family: Arial, sans-serif; color: #333; }
-    footer { color: #666; padding: 0 0 38px; }
-    footer a { color: #d94c1f; font-weight: 800; }
-    @media (max-width: 780px) {
-      nav a { width: 100%; text-align: center; }
-      .split { grid-template-columns: 1fr; }
-      .hero-actions .button, .actions .button { width: 100%; text-align: center; }
-      section { border-radius: 18px; }
-      .menu-item { display: block; }
-      .hero-art img { border-radius: 18px; }
-    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;line-height:1.65;background:#f5f7fb;color:#222}.wrap{width:min(1120px,92%);margin:auto}header{background:linear-gradient(135deg,#1f2937,#7c2d12);color:white;padding:30px 0 44px}nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}nav a{color:inherit;text-decoration:none;font-weight:800;border:1px solid rgba(255,255,255,.42);padding:8px 12px;border-radius:999px}h1,h2,h3{line-height:1.2;margin-top:0}h1{font-size:clamp(2.1rem,6vw,4rem);max-width:920px}h2{color:#d94c1f}.hero-text{max-width:820px;font-size:1.12rem}.tag{display:inline-block;background:#fff3ed;color:#d94c1f;padding:6px 10px;border-radius:999px;font-size:.78rem;font-weight:900;margin:0 6px 8px 0}header .tag{background:rgba(255,255,255,.16);color:white;border:1px solid rgba(255,255,255,.3)}main{padding:42px 0}section,.card{background:white;border:1px solid #e8e8e8;border-radius:22px;padding:26px;box-shadow:0 10px 30px rgba(0,0,0,.06);margin-bottom:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px}.split{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.button{display:inline-block;background:#ff6b35;color:white;text-decoration:none;font-weight:900;padding:13px 18px;border-radius:999px}.button.light{background:white;color:#d94c1f}.button.dark{background:#111827;color:white}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.price{font-size:1.85rem;font-weight:900;color:#d94c1f;margin:8px 0}.small{color:#666;font-size:.92rem}.banner{background:#fff3ed;border-left:7px solid #ff6b35}.trust{background:#eef7f1;border-left:7px solid #16833a}.warning{background:#fffbea;border-left:7px solid #c98500}.check{list-style:none;padding-left:0}.check li{padding-left:30px;position:relative;margin-bottom:9px}.check li::before{content:'✓';position:absolute;left:0;top:0;color:#16833a;font-weight:900}.mock-site{background:white;border-radius:24px;overflow:hidden;border:1px solid #ddd;box-shadow:0 14px 36px rgba(0,0,0,.12)}.mock-hero{background:linear-gradient(135deg,#ff6b35,#ff9559);color:white;padding:26px}.mock-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.mock-actions span{background:white;color:#d94c1f;border-radius:999px;padding:8px 12px;font-weight:900;font-size:.88rem}.mock-body{padding:22px}.menu-item{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid #eee;padding:10px 0}.intake{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:18px;padding:18px}.intake code{white-space:pre-wrap;font-family:Arial,sans-serif;color:#333}footer{color:#666;padding:0 0 38px}footer a{color:#d94c1f;font-weight:800}@media(max-width:780px){nav a,.button{width:100%;text-align:center}.split{grid-template-columns:1fr}section,.card{border-radius:18px}.menu-item{display:block}}
   </style>
 </head>
 <body>
@@ -75,80 +17,60 @@
         <a href="/">Search</a>
         <a href="/owner-advertise.html">Restaurant Owners</a>
         <a href="/restaurant-owner-intake.html">Owner Intake</a>
+        <a href="/sample-restaurant-profile.html">Sample Demo</a>
         <a href="/restaurant-owner-resources.html">Owner Resources</a>
         <a href="/restaurant-website-checklist.html">Website Checklist</a>
-        <a href="/disclaimer.html">Disclaimer</a>
         <a href="/contact.html">Contact</a>
       </nav>
       <p class="tag">Website package preview</p>
       <h1>Restaurant Website Starter</h1>
       <p class="hero-text">A fast, mobile-first restaurant website built for calls, directions, menu highlights, local search, and customer confidence.</p>
-      <div class="hero-actions">
+      <div class="actions">
         <a class="button light" href="/restaurant-owner-intake.html#website-intake">Start Owner Intake</a>
-        <a class="button" href="#owner-inquiry">Ask about this website</a>
-        <a class="button" href="/owner-advertise.html">See promo packages</a>
+        <a class="button light" href="/sample-restaurant-profile.html">View Sample Demo</a>
+        <a class="button light" href="/owner-advertise.html#website-packages">See Packages</a>
       </div>
     </div>
   </header>
 
-  <section class="hero-art wrap">
-    <img src="/images/owner-website-ambience.svg" alt="Restaurant website ambience image only, not a verified restaurant photo" loading="lazy" />
-    <p class="caption">Ambience image only. Not a verified restaurant photo or live customer website. Real restaurant details are supplied by the owner and reviewed before publishing.</p>
-  </section>
-
   <main class="wrap">
     <section class="banner">
-      <h2>What the owner gets</h2>
-      <p>This package is for restaurants that need a simple, clean website quickly. It is not a complicated app. It is a sales-ready restaurant web page that helps people call, find directions, check menu highlights, and trust the restaurant.</p>
-      <div class="grid">
-        <div class="card"><h3>Mobile-first homepage</h3><p>Designed for phone visitors who want quick food decisions.</p></div>
-        <div class="card"><h3>Call + directions buttons</h3><p>Easy action buttons for hungry customers.</p></div>
-        <div class="card"><h3>Menu highlights</h3><p>Feature best sellers, specials, catering, or popular dishes.</p></div>
-        <div class="card"><h3>Local SEO basics</h3><p>Helpful page title, description, city, cuisine, and neighborhood wording.</p></div>
-      </div>
+      <h2>Direct answer</h2>
+      <p>The Restaurant Website Starter is a simple customer-ready website package for restaurants that need a better mobile page, clearer menu highlights, stronger calls and directions, and basic local search text.</p>
     </section>
 
     <section>
       <div class="split">
-        <div>
-          <h2>Package price</h2>
-          <div class="card featured">
-            <span class="tag">Starter package</span>
-            <h3>Restaurant Website Starter</h3>
-            <p class="price">$299 setup + $39/mo</p>
-            <ul class="check">
-              <li>One-page mobile website</li>
-              <li>Restaurant name, cuisine, and city positioning</li>
-              <li>Menu highlights section</li>
-              <li>Hours and contact section</li>
-              <li>Call, map, website, and reservation/order link buttons</li>
-              <li>Basic SEO title and meta description</li>
-              <li>Cloudflare/GitHub static build approach</li>
-            </ul>
-            <p class="small">Prices are test offers and may change before formal paid launch.</p>
-            <p><a class="button" href="/restaurant-owner-intake.html#website-intake">Send website details</a></p>
-          </div>
+        <div class="card">
+          <span class="tag">Starter package</span>
+          <h2>Restaurant Website Starter</h2>
+          <p class="price">$299 setup + $49/mo</p>
+          <ul class="check">
+            <li>One-page mobile website</li>
+            <li>Restaurant name, cuisine, city, and neighborhood positioning</li>
+            <li>Menu highlights section</li>
+            <li>Hours and contact section</li>
+            <li>Call, map, website, ordering, or reservation buttons when supplied</li>
+            <li>Basic SEO title and meta description</li>
+            <li>Cloudflare and GitHub static build approach</li>
+            <li>Small monthly text or link update support</li>
+          </ul>
+          <p class="small">Prices are starting service offers and may change before formal paid launch.</p>
+          <div class="actions"><a class="button" href="/restaurant-owner-intake.html#website-intake">Send website details</a></div>
         </div>
         <div class="mock-site" aria-label="Sample restaurant website preview">
           <div class="mock-hero">
             <p class="tag">Sample layout</p>
-            <h3>River Street Tacos</h3>
-            <p>Fresh tacos, quick lunch, family dinner, and catering in downtown Dallas.</p>
-            <div class="mock-actions">
-              <span>Call</span>
-              <span>Directions</span>
-              <span>Menu</span>
-              <span>Order Link</span>
-            </div>
+            <h3>Sample Taco House</h3>
+            <p>Quick lunch, family dinner, downtown visitors, and small catering.</p>
+            <div class="mock-actions"><span>Call</span><span>Directions</span><span>Menu</span><span>Order Link</span></div>
           </div>
           <div class="mock-body">
             <h3>Menu highlights</h3>
-            <div class="menu-list">
-              <div class="menu-item"><span><strong>Street Taco Trio</strong>Chicken, steak, or veggie</span><span>$12</span></div>
-              <div class="menu-item"><span><strong>Family Taco Box</strong>Easy dinner for four</span><span>$38</span></div>
-              <div class="menu-item"><span><strong>Catering Tray</strong>Office lunch or parties</span><span>Ask</span></div>
-            </div>
-            <p class="small">Sample only. Real restaurant details are supplied by the owner and should be confirmed before publishing.</p>
+            <div class="menu-item"><span><strong>Street Taco Trio</strong><br />Chicken, steak, or veggie sample</span><span>$</span></div>
+            <div class="menu-item"><span><strong>Family Taco Box</strong><br />Easy dinner idea</span><span>$</span></div>
+            <div class="menu-item"><span><strong>Catering Tray</strong><br />Office lunch or parties</span><span>Ask</span></div>
+            <p class="small">Sample only. Real restaurant details are supplied by the owner and confirmed before publishing.</p>
           </div>
         </div>
       </div>
@@ -157,26 +79,23 @@
     <section>
       <h2>Page sections included</h2>
       <div class="grid">
-        <div class="card"><h3>Hero section</h3><p>Restaurant name, short promise, cuisine, city, and main action buttons.</p></div>
-        <div class="card"><h3>Menu highlights</h3><p>Best dishes, special offers, lunch/dinner features, or catering items.</p></div>
-        <div class="card"><h3>About / why visit</h3><p>Simple story, best-for tags, local neighborhood language, and trust copy.</p></div>
-        <div class="card"><h3>Hours + contact</h3><p>Phone, address, directions link, website link, and ordering/reservation link when available.</p></div>
-        <div class="card"><h3>Offer section</h3><p>One current offer or seasonal note, written clearly without fake urgency.</p></div>
-        <div class="card"><h3>SEO basics</h3><p>Title, description, city, cuisine, neighborhood, and practical restaurant search wording.</p></div>
+        <div class="card"><h3>Hero section</h3><p>Restaurant name, food type, city, short summary, and main action buttons.</p></div>
+        <div class="card"><h3>Menu highlights</h3><p>Best dishes, specials, lunch or dinner items, and catering notes when supplied.</p></div>
+        <div class="card"><h3>Hours and contact</h3><p>Phone, address, directions link, website link, and ordering or reservation link when available.</p></div>
+        <div class="card"><h3>Local SEO basics</h3><p>Title, description, city, cuisine, neighborhood, and helpful question-answer text.</p></div>
       </div>
     </section>
 
     <section class="trust">
-      <h2>What we do not build first</h2>
-      <p>To keep this affordable and quick, the starter website links to tools the restaurant already uses instead of replacing them.</p>
-      <ul>
-        <li>No custom online ordering system built from scratch.</li>
-        <li>No custom reservation system built from scratch.</li>
-        <li>No owner login dashboard yet.</li>
-        <li>No payment checkout inside RestaurantAIBot yet.</li>
-        <li>No hidden tracking scripts.</li>
-      </ul>
-      <p>We can link to Toast, Square, DoorDash, Chowly, OpenTable, Resy, or the restaurant’s existing ordering/reservation page when the owner provides the link.</p>
+      <h2>Built to reduce back-and-forth</h2>
+      <ol>
+        <li>The owner sends all restaurant facts through Owner Intake.</li>
+        <li>Missing details are handled in one short list.</li>
+        <li>The site is built from the standard RestaurantAIBot customer template.</li>
+        <li>The owner reviews one live preview link and sends one combined correction list.</li>
+        <li>The approved first version is locked before monthly updates.</li>
+      </ol>
+      <div class="actions"><a class="button" href="/restaurant-owner-intake.html#website-intake">Open Owner Intake</a></div>
     </section>
 
     <section>
@@ -185,34 +104,31 @@
         <div>
           <ul class="check">
             <li>Restaurant name</li>
-            <li>City and neighborhood</li>
-            <li>Cuisine type</li>
-            <li>Phone number</li>
-            <li>Address</li>
-            <li>Hours</li>
-            <li>Website or social link if any</li>
-            <li>Ordering or reservation link if any</li>
+            <li>City, neighborhood, and address</li>
+            <li>Cuisine type and service style</li>
+            <li>Phone number and hours</li>
+            <li>Ordering or reservation link if available</li>
             <li>5 to 10 menu highlights</li>
             <li>Current offer or catering/private event note</li>
-            <li>Photos or permission to use placeholders</li>
+            <li>Photos, logo, or permission to use placeholders</li>
           </ul>
-          <p><a class="button" href="/restaurant-owner-intake.html#website-intake">Open Owner Intake</a></p>
         </div>
         <div class="intake">
           <p><strong>Copy/paste intake</strong></p>
           <code>Restaurant name:
-City/neighborhood:
-Cuisine:
+Owner/contact name:
 Phone:
 Address:
+City/neighborhood:
+Cuisine:
 Hours:
 Current website/social link:
 Ordering/reservation link:
 Menu highlights:
 Current offer:
 Catering/private events:
-Photos available? yes/no
-Best customer: locals / travelers / families / lunch / dinner / events
+Photos available: yes/no
+Style wanted:
 Notes:</code>
         </div>
       </div>
@@ -228,7 +144,7 @@ Notes:</code>
       <p>Email RestaurantAIBot with the restaurant details, or use the Owner Intake checklist to draft the first website quickly.</p>
       <div class="actions">
         <a class="button" href="/restaurant-owner-intake.html#website-intake">Open Owner Intake</a>
-        <a class="button" href="mailto:wholelychit@gmail.com?subject=Restaurant%20Website%20Starter%20Inquiry&body=Restaurant%20name%3A%0ACity%2Fneighborhood%3A%0ACuisine%3A%0APhone%3A%0AAddress%3A%0AHours%3A%0ACurrent%20website%2Fsocial%20link%3A%0AOrdering%2Freservation%20link%3A%0AMenu%20highlights%3A%0ACurrent%20offer%3A%0ACatering%2Fprivate%20events%3A%0APhotos%20available%3A%0ABest%20customer%3A%0ANotes%3A">Email website inquiry</a>
+        <a class="button" href="/sample-restaurant-profile.html">View Sample Demo</a>
         <a class="button dark" href="/owner-advertise.html">Back to owner packages</a>
       </div>
     </section>
@@ -237,7 +153,7 @@ Notes:</code>
   <footer class="wrap">
     <p>© 2026 Webmasters LLC. RestaurantAIBot is owned and operated by Webmasters LLC.</p>
     <p class="small">Restaurant details, hours, menus, prices, offers, allergy information, availability, website service terms, and launch pricing can change. Visitors and owners should confirm details before visiting, ordering, booking, paying, or starting work.</p>
-    <p class="small"><a href="/disclaimer.html">Disclaimer</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/restaurant-owner-intake.html">Owner Intake</a></p>
+    <p class="small"><a href="/owner-advertise.html">Restaurant Owners</a> · <a href="/restaurant-owner-intake.html">Owner Intake</a> · <a href="/sample-restaurant-profile.html">Sample Demo</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a></p>
   </footer>
   <script src="/responsive-avatar.js"></script>
 </body>
