@@ -1,0 +1,47 @@
+name: Create Stripe Payment Links
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_create:
+        description: 'Type CREATE to create Stripe products, prices, and payment links.'
+        required: true
+        default: 'NO'
+
+permissions:
+  contents: read
+
+jobs:
+  create-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm manual run
+        run: |
+          if [ "${{ github.event.inputs.confirm_create }}" != "CREATE" ]; then
+            echo "Stopped. Re-run and type CREATE to continue."
+            exit 1
+          fi
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Create Stripe Payment Links without printing URLs
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+        run: |
+          if [ -z "$STRIPE_SECRET_KEY" ]; then
+            echo "Missing GitHub Actions secret: STRIPE_SECRET_KEY"
+            echo "Add it under Settings > Secrets and variables > Actions > New repository secret."
+            exit 1
+          fi
+          python tools/create_stripe_payment_links.py > stripe-private-run-output.txt
+          rm -f stripe-payment-links-output.txt
+          rm -f stripe-private-run-output.txt
+          echo "Stripe products, prices, and payment links were created."
+          echo "For privacy, links were not printed in the public workflow log."
+          echo "Open Stripe Dashboard > Payments > Payment Links to view and copy them."
