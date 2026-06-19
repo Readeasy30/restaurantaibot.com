@@ -1,57 +1,36 @@
 # CLAUDE.md
 
-GitHub is the source of truth.
+Read `DIRECTIVES.md` first.
+
+`DIRECTIVES.md` is the main instruction file for this repo.
+
+Repo: `Readeasy30/restaurantaibot.com`
+Last updated: 2026-06-19
 
 ## Startup
 
-1. Read CLAUDE.md.
-2. Read STATUS.md if present.
-3. Inspect the repository files.
-4. Trust the live repo over old notes.
+1. Read `DIRECTIVES.md`.
+2. Read `STATUS.md` if present.
+3. Inspect the actual GitHub repo files.
+4. Compare verified repo reality against `STATUS.md`.
 5. Report mismatches before editing.
+6. Then do Gerry's requested task.
 
-## Rules
+## Source of truth
 
-- Work from the repo files.
-- Keep replies short.
-- Avoid repeated questions.
-- Do not redesign unless Gerry asks.
-- Preserve current stack unless Gerry asks for a change.
-- Keep pages mobile-first, fast, and simple.
+The live GitHub repo is the source of truth.
 
-## Report
+Old notes, memory, summaries, and `STATUS.md` are hints only.
 
-After work, report the repo, files changed, commit, next check, and blockers.
+## Repo notes verified 2026-06-19
 
----
+- `DIRECTIVES.md` exists.
+- `STATUS.md` exists.
+- Older Node/Express files are present, including `package.json` and `server.js`.
+- Do not delete or convert existing app files unless Gerry clearly asks.
+- Do not redesign unless Gerry clearly asks.
+- Keep the site mobile-first.
 
-# RestaurantAIBot — Project Context for Claude
+## End of session
 
-## Project Overview
-- Site: RestaurantAIBot.com — AI-powered chatbot platform for restaurants
-- Tech Stack: Node.js (`server.js`) + HTML/CSS + Cloudflare Pages Functions (`functions/`)
-- Deployment: Cloudflare Pages with Functions, connected to this GitHub repo (`main` auto-deploys)
-- Domain: restaurantaibot.com (Cloudflare managed)
-
-## Project Structure
-- `index.html` — homepage / landing page
-- `server.js` — Node.js server (local dev)
-- `package.json` — dependencies
-- `.env.example` — environment variable template
-- `css/` — stylesheets
-- `public/` — static assets
-- `functions/` — Cloudflare Pages Functions (serverless)
-- `tools/` — utility/dev tools
-- `_headers` — Cloudflare Pages security headers
-- `_redirects` — Cloudflare Pages URL redirects
-- `robots.txt` — SEO crawler rules
-
-## Commands
-- Local dev: `node server.js` or `npm start`
-- Install: `npm install`
-- Deploy: push to `main`; Cloudflare Pages auto-deploys
-
-## Important Rules
-- Cloudflare Pages Functions live in `functions/`.
-- Never commit real API keys or secrets.
-- Review `_redirects` before modifying.
+Update `STATUS.md` with verified reality and report changed files, deleted files, commit message, blockers, and next step.
