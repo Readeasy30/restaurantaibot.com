@@ -28,9 +28,9 @@ Then Claude edits files, commits changes, updates `STATUS.md`, and gives a short
 - Repo exists under `Readeasy30/restaurantaibot.com`.
 - GitHub account verified as `Readeasy30`.
 - Write/admin access verified.
-- `STATUS.md` exists.
-- `CLAUDE.md` exists.
-- `DIRECTIVES.md` added 2026-06-19.
+- `DIRECTIVES.md` exists and is the main standing instruction file.
+- `STATUS.md` exists and was updated 2026-06-19.
+- `CLAUDE.md` exists and now points Claude to `DIRECTIVES.md` first.
 - `package.json` exists and shows Node/Express dependencies.
 - `server.js` exists and contains an Express server using OpenAI and Google Maps API keys from environment variables.
 
@@ -38,8 +38,7 @@ Then Claude edits files, commits changes, updates `STATUS.md`, and gives a short
 
 - Old `STATUS.md` startup routine referenced `CLAUDE.md` first.
 - New standing workflow says `DIRECTIVES.md` should be read first.
-- Corrected in this file.
-- `CLAUDE.md` still exists and may be read by Claude Code, but `DIRECTIVES.md` is now the main instruction file.
+- Corrected in `STATUS.md` and `CLAUDE.md`.
 - This repo currently contains older Node/Express files.
 - Gerry's standing website rule prefers plain HTML/CSS/JS and no new Node/npm/build tools unless clearly requested.
 - Do not delete or convert Node/Express files unless Gerry clearly asks after repo verification.
