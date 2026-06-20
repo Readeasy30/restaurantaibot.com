@@ -1,0 +1,36 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant API Test</title>
+</head>
+<body>
+  <h2>Restaurant API Test</h2>
+  <button onclick="runTest()">Run Test</button>
+  <pre id="output">Waiting...</pre>
+
+  <script>
+    async function runTest() {
+      const output = document.getElementById("output");
+      output.textContent = "Loading...";
+
+      try {
+        const response = await fetch("https://restaurant-ai-api.wholelychit.workers.dev", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            query: "pizza",
+            location: "NYC"
+          })
+        });
+
+        const text = await response.text();
+        output.textContent = text;
+      } catch (error) {
+        output.textContent = "ERROR: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
