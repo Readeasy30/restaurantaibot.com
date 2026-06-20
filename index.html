@@ -3,38 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Restaurant AI Bot | Find the Best Local Restaurants Fast</title>
+  <title>Restaurant AI Bot | Find the Best Restaurants Near You</title>
   <meta
     name="description"
-    content="Find the best local restaurants fast with Restaurant AI Bot. Search by craving, mood, and location, save favorites, and discover top food ideas near you."
+    content="Restaurant AI Bot helps you find the best local restaurants fast. Search by craving, mood, city, or ZIP. Save favorites, browse food ideas, and discover top places to eat near you."
   />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <main class="app-shell">
+  <main class="site-shell">
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Restaurant AI Bot</p>
-        <h1>Find a good place to eat without wasting half the night deciding.</h1>
-        <p class="subtext">
-          Search by craving, mood, and location — save favorites, get top picks, and build a go-to local restaurant list.
-        </p>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Restaurant AI Bot</p>
+          <h1>Find a good place to eat fast.</h1>
+          <p class="hero-text">
+            Search by craving, mood, city, or ZIP. Save your favorites. Stop wasting time bouncing between restaurant apps.
+          </p>
 
-        <div class="hero-badges">
-          <span>🍕 Fast food search</span>
-          <span>📍 Local restaurant ideas</span>
-          <span>🤖 AI top picks</span>
-          <span>❤️ Save favorites</span>
+          <div class="hero-pills">
+            <span>🍕 Find food fast</span>
+            <span>📍 Local restaurant ideas</span>
+            <span>🤖 AI top picks</span>
+            <span>❤️ Save favorites</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- SEARCH APP -->
-    <section class="search-panel">
+    <section class="panel search-panel">
       <div class="panel-head">
-        <h2>Find food fast</h2>
+        <h2>Find restaurants</h2>
         <p>Type what you want, choose a mood, and get ranked restaurant picks.</p>
       </div>
 
@@ -58,116 +60,75 @@
         </div>
       </div>
 
-      <div class="section-label">Quick picks</div>
-      <div id="quickChips" class="chips">
-        <button type="button" onclick="quickSearch('pizza')">🍕 Pizza</button>
-        <button type="button" onclick="quickSearch('burger')">🍔 Burgers</button>
-        <button type="button" onclick="quickSearch('sushi')">🍣 Sushi</button>
-        <button type="button" onclick="quickSearch('tacos')">🌮 Tacos</button>
-        <button type="button" onclick="quickSearch('bbq')">🔥 BBQ</button>
-        <button type="button" onclick="quickSearch('breakfast')">🥞 Breakfast</button>
-        <button type="button" onclick="quickSearch('seafood')">🦐 Seafood</button>
-        <button type="button" onclick="quickSearch('steak')">🥩 Steak</button>
-      </div>
+      <div class="search-sections">
+        <div class="search-block">
+          <div class="section-label">Quick picks</div>
+          <div class="chips">
+            <button type="button" onclick="quickSearch('pizza')">🍕 Pizza</button>
+            <button type="button" onclick="quickSearch('burger')">🍔 Burgers</button>
+            <button type="button" onclick="quickSearch('sushi')">🍣 Sushi</button>
+            <button type="button" onclick="quickSearch('tacos')">🌮 Tacos</button>
+            <button type="button" onclick="quickSearch('bbq')">🔥 BBQ</button>
+            <button type="button" onclick="quickSearch('breakfast')">🥞 Breakfast</button>
+            <button type="button" onclick="quickSearch('seafood')">🦐 Seafood</button>
+            <button type="button" onclick="quickSearch('steak')">🥩 Steak</button>
+          </div>
+        </div>
 
-      <div class="section-label">Mood</div>
-      <div id="moods" class="moods">
-        <button type="button" onclick="setMood('cheap')">💰 Cheap</button>
-        <button type="button" onclick="setMood('date')">❤️ Date Night</button>
-        <button type="button" onclick="setMood('fast')">⚡ Fast</button>
-        <button type="button" onclick="setMood('healthy')">🥗 Healthy</button>
+        <div class="search-block">
+          <div class="section-label">Mood</div>
+          <div id="moods" class="chips mood-row">
+            <button type="button" data-mood="cheap" onclick="setMood('cheap')">💰 Cheap</button>
+            <button type="button" data-mood="date" onclick="setMood('date')">❤️ Date Night</button>
+            <button type="button" data-mood="fast" onclick="setMood('fast')">⚡ Fast</button>
+            <button type="button" data-mood="healthy" onclick="setMood('healthy')">🥗 Healthy</button>
+          </div>
+        </div>
       </div>
 
       <div class="action-row">
         <button class="primary-btn" type="button" onclick="findFood()">Find Food</button>
-        <button class="secondary-btn" type="button" onclick="whatShouldIEat()">🤖 What should I eat tonight?</button>
+        <button class="secondary-btn" type="button" onclick="whatShouldIEat()">🤖 What Should I Eat Tonight?</button>
       </div>
 
       <div id="statusBar" class="status-bar">Ready</div>
     </section>
 
     <!-- RESULTS -->
-    <section class="results-panel">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Results</h2>
+        <p>Top restaurant matches for your search.</p>
+      </div>
+
       <div id="results">
         <div class="empty-state">
-          <h2>Start with a craving</h2>
-          <p>Type a food, choose a mood, or let the bot decide tonight’s best options.</p>
+          <h3>Start with a craving</h3>
+          <p>Search for pizza, sushi, tacos, breakfast, or let the bot decide.</p>
         </div>
       </div>
     </section>
 
     <!-- FAVORITES -->
-    <section class="favorites-panel">
-      <div class="panel-head">
-        <h2>Saved favorites</h2>
-        <p>Save restaurants you want to remember and build your own short list.</p>
+    <section class="panel">
+      <div class="panel-head panel-head-row">
+        <div>
+          <h2>Saved favorites</h2>
+          <p>Keep a short list of places worth revisiting.</p>
+        </div>
+        <button class="secondary-btn small-btn" type="button" onclick="clearFavorites()">Clear Favorites</button>
       </div>
 
       <div id="favoritesList" class="favorites-list">
         <div class="empty-mini">No favorites saved yet.</div>
       </div>
-
-      <div class="action-row favorites-actions">
-        <button class="secondary-btn" type="button" onclick="clearFavorites()">Clear Favorites</button>
-      </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="info-panel">
-      <div class="panel-head">
-        <h2>How it works</h2>
-        <p>Restaurant AI Bot helps you decide faster without bouncing between ten tabs.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature-card">
-          <div class="feature-icon">1</div>
-          <h3>Tell it what you want</h3>
-          <p>Search by craving, food type, or restaurant mood like cheap, fast, healthy, or date night.</p>
-        </article>
-
-        <article class="feature-card">
-          <div class="feature-icon">2</div>
-          <h3>Get ranked restaurant ideas</h3>
-          <p>The app sorts options by rating, time of day, and your mood so the best pick rises to the top.</p>
-        </article>
-
-        <article class="feature-card">
-          <div class="feature-icon">3</div>
-          <h3>Save the good ones</h3>
-          <p>Keep a favorites list so you can come back later instead of starting over every time.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- WHY USE IT -->
-    <section class="info-panel">
-      <div class="panel-head">
-        <h2>Why use Restaurant AI Bot?</h2>
-        <p>It’s built to help people make a food decision fast, not get buried in endless restaurant lists.</p>
-      </div>
-
-      <div class="benefit-list">
-        <div class="benefit-item">
-          <strong>Faster decisions</strong>
-          <span>Less scrolling. More eating.</span>
-        </div>
-        <div class="benefit-item">
-          <strong>Better top picks</strong>
-          <span>Results are ranked for time of day and mood, not just dumped on the page.</span>
-        </div>
-        <div class="benefit-item">
-          <strong>Save your own shortlist</strong>
-          <span>Build a personal list of restaurants worth revisiting.</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- POPULAR SEARCHES / LOCAL SEO FOUNDATION -->
-    <section class="info-panel">
+    <!-- POPULAR SEARCHES -->
+    <section class="panel">
       <div class="panel-head">
         <h2>Popular restaurant searches</h2>
-        <p>This section doubles as homepage content and future local SEO expansion.</p>
+        <p>These are good homepage search paths and future local traffic pages.</p>
       </div>
 
       <div class="popular-grid">
@@ -178,85 +139,185 @@
 
         <button class="popular-card" type="button" onclick="quickSearch('cheap eats')">
           <strong>Cheap Eats Near Me</strong>
-          <span>Budget-friendly picks for tonight.</span>
+          <span>Budget-friendly food picks.</span>
         </button>
 
         <button class="popular-card" type="button" onclick="quickSearch('date night restaurant')">
           <strong>Date Night Restaurants</strong>
-          <span>Places that feel a little more special.</span>
+          <span>Better picks for going out.</span>
         </button>
 
         <button class="popular-card" type="button" onclick="quickSearch('breakfast')">
           <strong>Best Breakfast Near Me</strong>
-          <span>Morning food, coffee, and easy starts.</span>
+          <span>Morning food and coffee ideas.</span>
         </button>
 
         <button class="popular-card" type="button" onclick="quickSearch('late night food')">
           <strong>Late Night Food</strong>
-          <span>For when dinner turns into a 9 PM decision.</span>
+          <span>Find something good after hours.</span>
         </button>
 
         <button class="popular-card" type="button" onclick="quickSearch('healthy lunch')">
           <strong>Healthy Lunch Spots</strong>
-          <span>Fresh, lighter options for lunch.</span>
+          <span>Lighter lunch and fresh options.</span>
         </button>
       </div>
     </section>
 
-    <!-- CITY PAGE / LOCAL LANDING IDEAS -->
-    <section class="info-panel">
+    <!-- BROWSE BY CATEGORY -->
+    <section class="panel">
       <div class="panel-head">
-        <h2>Future city restaurant guides</h2>
-        <p>These are starter categories for future location pages and traffic pages.</p>
+        <h2>Browse by category</h2>
+        <p>Use these as search shortcuts now and future landing pages later.</p>
+      </div>
+
+      <div class="category-grid">
+        <button class="category-card" type="button" onclick="quickSearch('pizza')">🍕 Pizza</button>
+        <button class="category-card" type="button" onclick="quickSearch('mexican food')">🌮 Mexican</button>
+        <button class="category-card" type="button" onclick="quickSearch('italian food')">🍝 Italian</button>
+        <button class="category-card" type="button" onclick="quickSearch('seafood')">🦐 Seafood</button>
+        <button class="category-card" type="button" onclick="quickSearch('chinese food')">🥡 Chinese</button>
+        <button class="category-card" type="button" onclick="quickSearch('barbecue')">🔥 BBQ</button>
+        <button class="category-card" type="button" onclick="quickSearch('breakfast')">🥞 Breakfast</button>
+        <button class="category-card" type="button" onclick="quickSearch('steakhouse')">🥩 Steakhouse</button>
+      </div>
+    </section>
+
+    <!-- LOCAL CITY / ZIP STRUCTURE -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Future city and ZIP pages</h2>
+        <p>This section gives the site a better local-business structure for later expansion.</p>
       </div>
 
       <div class="city-grid">
-        <div class="city-card">
+        <article class="city-card">
           <h3>Best Pizza in [City]</h3>
-          <p>Build a city page around pizza, neighborhoods, and top picks.</p>
-        </div>
-        <div class="city-card">
+          <p>Great future page for local pizza searches and neighborhood traffic.</p>
+        </article>
+
+        <article class="city-card">
           <h3>Cheap Eats in [City]</h3>
-          <p>Great for value-focused searches and budget dining content.</p>
-        </div>
-        <div class="city-card">
-          <h3>Date Night Restaurants in [City]</h3>
-          <p>Higher-value local intent and strong monetization potential.</p>
-        </div>
-        <div class="city-card">
+          <p>Good for budget search traffic and local dining guides.</p>
+        </article>
+
+        <article class="city-card">
           <h3>Best Breakfast in [City]</h3>
-          <p>Morning traffic, weekend traffic, and local guide content.</p>
-        </div>
+          <p>Useful for weekend and coffee-shop restaurant traffic.</p>
+        </article>
+
+        <article class="city-card">
+          <h3>Date Night Restaurants in [City]</h3>
+          <p>Higher-value local intent and good future monetization potential.</p>
+        </article>
       </div>
     </section>
 
-    <!-- SPONSORED / PARTNER SLOT -->
-    <section class="sponsor-panel">
+    <!-- ABOUT -->
+    <section class="panel">
       <div class="panel-head">
-        <h2>Featured local spot</h2>
-        <p>This block is ready for future restaurant sponsorships, featured listings, or affiliate partnerships.</p>
+        <h2>About Restaurant AI Bot</h2>
       </div>
 
-      <div class="sponsor-card">
-        <div class="sponsor-badge">Featured Placement</div>
-        <h3>Your Restaurant Here</h3>
-        <p>
-          Later, this can be sold to local restaurants as a premium placement or “featured local favorite” spot.
-        </p>
-        <div class="card-actions">
-          <a href="#" class="card-action primary" onclick="return false;">Feature Demo</a>
-          <a href="#" class="card-action" onclick="return false;">Learn More</a>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>What it does</h3>
+          <p>
+            Restaurant AI Bot helps people decide where to eat faster by combining food cravings, mood, and location into a short list of restaurant ideas.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <h3>Why it matters</h3>
+          <p>
+            Most restaurant searches turn into endless scrolling. This tool is built to shorten that process and surface better options faster.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <h3>Who it helps</h3>
+          <p>
+            Hungry families, couples trying to pick a dinner spot, travelers, locals, and restaurant owners who want better visibility.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- EMAIL / RETENTION CTA -->
-    <section class="cta-panel">
-      <div class="cta-copy">
-        <h2>Get local food ideas later</h2>
-        <p>
-          This is the spot for future email signup, local restaurant alerts, city guides, “best pizza this week,” or saved picks.
-        </p>
+    <!-- RESTAURANT OWNER CTA -->
+    <section class="panel owner-panel">
+      <div class="panel-head">
+        <h2>For restaurant owners</h2>
+        <p>Future revenue section for featured listings, local sponsorships, and promoted restaurant placements.</p>
+      </div>
+
+      <div class="owner-grid">
+        <div class="owner-card">
+          <h3>Get your restaurant featured</h3>
+          <p>
+            This is the future place for restaurant owners to request a featured listing, promoted placement, or local city-page inclusion.
+          </p>
+
+          <form class="owner-form" onsubmit="event.preventDefault(); fakeOwnerLead();">
+            <input id="ownerName" type="text" placeholder="Restaurant name" />
+            <input id="ownerEmail" type="email" placeholder="Email address" />
+            <button class="primary-btn" type="submit">Get Featured</button>
+          </form>
+
+          <p class="small-note" id="ownerLeadMessage">
+            Placeholder for future restaurant-owner lead capture.
+          </p>
+        </div>
+
+        <div class="owner-card featured-owner-card">
+          <div class="featured-badge">Featured Placement</div>
+          <h3>Your restaurant here</h3>
+          <p>
+            Future sponsor block for premium placement, “top local pick,” or paid visibility in search results and city pages.
+          </p>
+          <div class="mini-list">
+            <span>✔ Featured card</span>
+            <span>✔ Homepage visibility</span>
+            <span>✔ City-page placement</span>
+            <span>✔ Local search exposure</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>FAQ</h2>
+      </div>
+
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>How does Restaurant AI Bot work?</h3>
+          <p>You type what you want, add a location, and the app returns a ranked list of restaurant ideas.</p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Can I save restaurants?</h3>
+          <p>Yes. Use the save button on a result card and the restaurant will appear in your favorites list on this device.</p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Does it only work for one city?</h3>
+          <p>No. You can search by city or ZIP and use it anywhere your API returns restaurant results.</p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Can restaurants advertise here later?</h3>
+          <p>Yes. The layout is being built so featured listings, city pages, and local sponsorships can be added later.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- EMAIL / RETENTION -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Get restaurant ideas later</h2>
+        <p>Future spot for local restaurant alerts, weekly picks, and saved favorites by email.</p>
       </div>
 
       <form class="lead-form" onsubmit="event.preventDefault(); fakeLeadCapture();">
@@ -265,9 +326,39 @@
       </form>
 
       <p class="small-note" id="leadMessage">
-        Placeholder for future email capture, favorites sync, or weekly local restaurant picks.
+        Placeholder for future email signup, saved favorites sync, or local restaurant alerts.
       </p>
     </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <h3>Restaurant AI Bot</h3>
+          <p>Find restaurants faster. Save favorites. Build local restaurant pages that can grow into a business.</p>
+        </div>
+
+        <div>
+          <h4>Site ideas</h4>
+          <ul>
+            <li>Best Pizza Near Me</li>
+            <li>Cheap Eats in [City]</li>
+            <li>Best Breakfast in [City]</li>
+            <li>Date Night Restaurants</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Future pages</h4>
+          <ul>
+            <li>About</li>
+            <li>For Restaurant Owners</li>
+            <li>Featured Listings</li>
+            <li>Local Food Guides</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 
   </main>
 
