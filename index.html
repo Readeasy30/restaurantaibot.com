@@ -1,80 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<h1 id="pageTitle">Best Food Near You</h1>
 
-  <title id="seoTitle">Best Food Near You | AI Restaurant Finder</title>
+<p id="pageDesc">Discover top-rated restaurants ranked by AI.</p>
 
-  <meta name="description" id="seoDesc" content="Find the best restaurants near you ranked by AI." />
-  <meta name="robots" content="index, follow" />
+<div class="search-box">
+  <input id="food" placeholder="food" />
+  <input id="location" placeholder="location" />
+  <button onclick="findFood()">Search</button>
+</div>
 
-  <link rel="stylesheet" href="/css/style.css"/>
-</head>
+<div id="results">Loading...</div>
 
-<body>
+<hr/>
 
-  <div class="app">
+<h3>Explore More Pages</h3>
 
-    <h1 id="pageTitle">Best Food Near You</h1>
+<div class="links">
+  <a href="/seo-engine.html?city=st-louis&food=pizza">St. Louis Pizza</a>
+  <a href="/seo-engine.html?city=chicago&food=pizza">Chicago Pizza</a>
+  <a href="/seo-engine.html?city=new-york&food=sushi">New York Sushi</a>
+  <a href="/seo-engine.html?city=miami&food=burger">Miami Burgers</a>
+  <a href="/seo-engine.html?city=austin&food=tacos">Austin Tacos</a>
+</div>
 
-    <p id="pageDesc">Discover top-rated restaurants ranked by AI.</p>
+<script>
+function getParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    city: params.get("city") || "",
+    food: params.get("food") || ""
+  };
+}
 
-    <div class="search-box">
-      <input id="food" placeholder="food" />
-      <input id="location" placeholder="location" />
-      <button onclick="findFood()">Search</button>
+function buildSEOQuery(food, city) {
+  return `${food || "food"} restaurants in ${city || "near me"} best rated reviews open now`;
+}
+
+async function autoSearch() {
+  const { city, food } = getParams();
+
+  document.getElementById("food").value = food;
+  document.getElementById("location").value = city;
+
+  if (!food && !city) return;
+
+  await findFood();
+}
+
+async function findFood() {
+  const food = document.getElementById("food").value;
+  const location = document.getElementById("location").value;
+
+  const res = await fetch("https://restaurant-ai-api.wholelychit.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: buildSEOQuery(food, location),
+      location: location || "near me"
+    })
+  });
+
+  const data = await res.json();
+
+  const el = document.getElementById("results");
+
+  if (!data?.restaurants?.length) {
+    el.innerHTML = "No results found";
+    return;
+  }
+
+  el.innerHTML = data.restaurants.slice(0, 6).map(r => `
+    <div class="card">
+      <h3>${r.name}</h3>
+      <p>${r.type || ""}</p>
+      <p>⭐ ${r.rating || ""}</p>
+      <p>${r.why || ""}</p>
     </div>
+  `).join("");
+}
 
-    <div id="results"></div>
-
-    <hr/>
-
-    <h3>Explore More Pages</h3>
-
-    <div class="links">
-      <a href="/seo-engine.html?city=st-louis&food=pizza">St. Louis Pizza</a>
-      <a href="/seo-engine.html?city=chicago&food=pizza">Chicago Pizza</a>
-      <a href="/seo-engine.html?city=new-york&food=sushi">New York Sushi</a>
-      <a href="/seo-engine.html?city=miami&food=burger">Miami Burgers</a>
-      <a href="/seo-engine.html?city=austin&food=tacos">Austin Tacos</a>
-    </div>
-
-  </div>
-
-  <script src="/js/app.js"></script>
-
-  <script>
-    function getParams() {
-      const params = new URLSearchParams(window.location.search);
-      return {
-        city: params.get("city"),
-        food: params.get("food")
-      };
-    }
-
-    function loadSEO() {
-      const { city, food } = getParams();
-
-      if (!city || !food) return;
-
-      const title = `Best ${food} in ${city.replace("-", " ")}`;
-      const desc = `Find the best ${food} in ${city.replace("-", " ")} ranked by AI.`;
-
-      document.getElementById("pageTitle").innerText = title;
-      document.getElementById("pageDesc").innerText = desc;
-
-      document.getElementById("food").value = food;
-      document.getElementById("location").value = city.replace("-", " ");
-
-      document.title = title;
-      document.getElementById("seoDesc").content = desc;
-
-      findFood();
-    }
-
-    window.onload = loadSEO;
-  </script>
-
-</body>
-</html>
+autoSearch();
+</script>
