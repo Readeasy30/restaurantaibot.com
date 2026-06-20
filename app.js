@@ -1,13 +1,18 @@
 const API_URL = "https://restaurant-ai-api.wholelychit.workers.dev";
+
 const FAVORITES_KEY = "restaurantAiFavorites";
 const HISTORY_KEY = "restaurantAiHistory";
 const SHORTLIST_KEY = "restaurantAiShortlist";
 
+// ------------------------------
+// STATE
+// ------------------------------
 const state = {
   mood: "",
   favorites: [],
   shortlist: [],
   lastResults: [],
+  featuredBoosts: {}, // simulated paid placements
   lastSearch: { food: "", location: "", mode: "search" }
 };
 
@@ -17,8 +22,7 @@ const state = {
 document.addEventListener("DOMContentLoaded", () => {
   state.favorites = loadLocal(FAVORITES_KEY);
   state.shortlist = loadLocal(SHORTLIST_KEY);
-  renderFavorites?.();
-  renderHistory?.();
+
   setStatus("Ready");
 });
 
@@ -33,8 +37,8 @@ function loadLocal(key) {
   }
 }
 
-function saveLocal(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+function saveLocal(key, val) {
+  localStorage.setItem(key, JSON.stringify(val));
 }
 
 // ------------------------------
@@ -46,64 +50,80 @@ function setStatus(msg) {
 }
 
 // ------------------------------
-// INTENT ENGINE (PHASE 2 CORE)
+// INTENT DETECTION (kept from Phase 2)
 // ------------------------------
 function detectIntent(food = "", location = "") {
-  const text = `${food} ${location}`.toLowerCase();
+  const t = `${food} ${location}`.toLowerCase();
 
   return {
-    isNearMe: text.includes("near me") || text.includes("nearby"),
-    isCheap: text.includes("cheap") || text.includes("budget") || text.includes("$"),
-    isFast: text.includes("fast") || text.includes("quick"),
-    isDate: text.includes("date") || text.includes("romantic"),
-    isBreakfast: text.includes("breakfast") || text.includes("morning"),
-    isLate: text.includes("late") || text.includes("night")
+    cheap: t.includes("cheap") || t.includes("$"),
+    date: t.includes("date") || t.includes("romantic"),
+    fast: t.includes("fast") || t.includes("quick"),
+    breakfast: t.includes("breakfast"),
+    late: t.includes("late") || t.includes("night"),
+    near: t.includes("near me") || t.includes("nearby")
   };
 }
 
 // ------------------------------
-// SMART SCORING (PHASE 2 UPGRADE)
+// MONETIZATION BOOST ENGINE (NEW)
+// ------------------------------
+function getBoostScore(r) {
+  // simulated monetization layer
+  const name = (r.name || "").toLowerCase();
+
+  // pretend these are paid or featured partners
+  if (name.includes("pizza") || name.includes("burger")) return 2;
+  if (name.includes("grill") || name.includes("steak")) return 3;
+
+  return 0;
+}
+
+// ------------------------------
+// SMART SCORING (UPGRADED)
 // ------------------------------
 function scoreRestaurant(r, intent) {
-  let score = 0;
+  let s = 0;
 
   const text = `${r.name} ${r.type} ${r.why}`.toLowerCase();
   const rating = parseFloat(r.rating);
 
-  if (!isNaN(rating)) score += rating * 2;
+  if (!isNaN(rating)) s += rating * 2;
 
-  if (intent.isCheap && (text.includes("cheap") || text.includes("$") || text.includes("value"))) score += 5;
-  if (intent.isFast && (text.includes("fast") || text.includes("quick") || text.includes("grab"))) score += 5;
-  if (intent.isDate && (text.includes("romantic") || text.includes("steak") || text.includes("italian"))) score += 5;
-  if (intent.isBreakfast && (text.includes("breakfast") || text.includes("coffee"))) score += 5;
-  if (intent.isLate && (text.includes("late") || text.includes("pizza") || text.includes("burger"))) score += 4;
+  if (intent.cheap && (text.includes("cheap") || text.includes("$"))) s += 5;
+  if (intent.date && (text.includes("romantic") || text.includes("steak") || text.includes("italian"))) s += 5;
+  if (intent.fast && (text.includes("fast") || text.includes("quick"))) s += 4;
+  if (intent.breakfast && text.includes("breakfast")) s += 4;
+  if (intent.late && (text.includes("pizza") || text.includes("burger"))) s += 3;
 
-  if (text.includes("popular") || text.includes("top rated")) score += 2;
+  // 🔥 MONETIZATION BOOST LAYER
+  s += getBoostScore(r);
 
-  return score;
+  return s;
 }
 
 // ------------------------------
-// BUILD PROMPT (PHASE 2)
+// PROMPT BUILDER
 // ------------------------------
 function buildPrompt(food, location) {
   const intent = detectIntent(food, location);
 
-  let prompt = `Find best restaurants.`;
+  let p = `Find best local restaurants.`;
 
-  if (food) prompt += ` Food: ${food}.`;
-  if (location) prompt += ` Location: ${location}.`;
+  if (food) p += ` Food: ${food}.`;
+  if (location) p += ` Location: ${location}.`;
 
-  if (intent.isNearMe) prompt += " Focus on nearby high-quality options.";
-  if (intent.isCheap) prompt += " Prioritize affordable options.";
-  if (intent.isDate) prompt += " Prioritize romantic/date-night places.";
-  if (intent.isFast) prompt += " Prioritize fast service.";
-  if (intent.isBreakfast) prompt += " Prioritize breakfast/brunch.";
-  if (intent.isLate) prompt += " Prioritize late-night food.";
+  if (intent.cheap) p += " Prioritize affordable places.";
+  if (intent.date) p += " Prioritize romantic/date-night spots.";
+  if (intent.fast) p += " Prioritize fast service.";
+  if (intent.breakfast) p += " Prioritize breakfast.";
+  if (intent.late) p += " Prioritize late-night food.";
+  if (intent.near) p += " Focus on nearby results.";
 
-  prompt += " Return top 6 strong local matches.";
+  // monetization-aware instruction (future proofing)
+  p += " Include top-quality options suitable for featured placement.";
 
-  return prompt;
+  return p;
 }
 
 // ------------------------------
@@ -114,16 +134,15 @@ async function findFood() {
   const location = document.getElementById("location")?.value || "";
 
   if (!food && !location) {
-    setStatus("Enter something to search");
+    setStatus("Enter a search term");
     return;
   }
 
-  state.lastSearch = { food, location, mode: "search" };
-
   showLoading();
+  setStatus("Searching...");
 
   try {
-    const response = await fetch(API_URL, {
+    const res = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -132,13 +151,11 @@ async function findFood() {
       })
     });
 
-    const data = await response.json();
+    const data = await res.json();
 
-    saveHistory?.({ food, location });
+    renderResults(data, food || "Search results");
 
-    renderResults(data, `Results for ${food || "your search"}`, location);
-
-    setStatus("Results loaded");
+    setStatus("Results ready");
 
   } catch (e) {
     console.error(e);
@@ -147,20 +164,20 @@ async function findFood() {
 }
 
 // ------------------------------
-// RESULTS
+// RESULTS RENDER (MONETIZATION LAYER ADDED)
 // ------------------------------
-function renderResults(data, title, location = "") {
+function renderResults(data, title) {
   const el = document.getElementById("results");
   if (!el) return;
 
   if (!data?.restaurants?.length) {
-    el.innerHTML = "<p>No results found.</p>";
+    el.innerHTML = "<p>No results found</p>";
     return;
   }
 
   const intent = detectIntent(
-    state.lastSearch.food,
-    state.lastSearch.location
+    state.lastSearch?.food,
+    state.lastSearch?.location
   );
 
   const list = data.restaurants
@@ -176,51 +193,77 @@ function renderResults(data, title, location = "") {
   el.innerHTML = `
     <div class="results-header">
       <h2>${title}</h2>
-      <p>Smart-ranked local results</p>
+      <p>Top local picks (AI ranked + boosted placements)</p>
     </div>
 
-    ${list.map((r, i) => `
-      <div class="card ${i === 0 ? "top" : ""}">
-        <h3>${i === 0 ? "🔥 " : ""}${r.name}</h3>
-        <p>🍴 ${r.type || "Restaurant"}</p>
-        <p>⭐ ${r.rating || "No rating"}</p>
+    <!-- 💰 FEATURED SLOT (MONETIZATION READY) -->
+    <div style="
+      border: 1px solid #f97316;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      background: rgba(249,115,22,0.08);
+    ">
+      ⭐ Featured Listing Slot (reserved for paid placement)
+    </div>
 
-        <button onclick="addToShortlist(${i})">
-          Add to shortlist
-        </button>
-      </div>
-    `).join("")}
+    ${list.map((r, i) => {
+      const isFeatured = i === 0;
+
+      return `
+        <div class="card" style="
+          border: ${isFeatured ? "2px solid #f97316" : "1px solid #334155"};
+          margin-bottom: 12px;
+          padding: 12px;
+          border-radius: 12px;
+        ">
+          <h3>${isFeatured ? "🔥 Featured Pick • " : ""}${r.name}</h3>
+
+          <p>🍴 ${r.type || "Restaurant"}</p>
+          <p>⭐ ${r.rating || "No rating"}</p>
+
+          <p style="opacity:0.8;">
+            ${r.why || ""}
+          </p>
+
+          <div style="margin-top:10px;">
+            <button onclick="addToShortlist(${i})">Shortlist</button>
+            <button onclick="boostPlaceholder('${r.name}')">Boost</button>
+          </div>
+        </div>
+      `;
+    }).join("")}
   `;
 }
 
 // ------------------------------
-// SHORTLIST (LIGHTWEIGHT)
+// SHORTLIST
 // ------------------------------
 function addToShortlist(index) {
   const item = state.lastResults[index];
   if (!item) return;
 
-  const exists = state.shortlist.find(r => r.name === item.name);
-
-  if (!exists) state.shortlist.push(item);
-
+  state.shortlist.push(item);
   saveLocal(SHORTLIST_KEY, state.shortlist);
 
   alert("Added to shortlist");
 }
 
 // ------------------------------
-// HISTORY (MINIMAL SUPPORT)
+// MONETIZATION ACTION (PLACEHOLDER)
 // ------------------------------
-function saveHistory(entry) {
-  const history = loadLocal(HISTORY_KEY);
+function boostPlaceholder(name) {
+  alert(
+    `Boost request for "${name}" saved.\n\nThis is where paid promotion / featured listing would connect later.`
+  );
+}
 
-  history.unshift({
-    ...entry,
-    time: Date.now()
-  });
-
-  saveLocal(HISTORY_KEY, history.slice(0, 8));
+// ------------------------------
+// LOADING
+// ------------------------------
+function showLoading() {
+  const el = document.getElementById("results");
+  if (el) el.innerHTML = "<p>Loading...</p>";
 }
 
 // ------------------------------
@@ -229,12 +272,4 @@ function saveHistory(entry) {
 function quickSearch(v) {
   document.getElementById("food").value = v;
   findFood();
-}
-
-// ------------------------------
-// STATUS LOADING
-// ------------------------------
-function showLoading() {
-  const el = document.getElementById("results");
-  if (el) el.innerHTML = "<p>Searching...</p>";
 }
