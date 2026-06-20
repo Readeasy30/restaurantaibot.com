@@ -128,3 +128,72 @@ function quickSearch(food) {
   document.getElementById("food").value = food;
   findFood();
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
+  const searchBtn = document.getElementById("searchBtn");
+  const resultsDiv = document.getElementById("results");
+
+  searchBtn.addEventListener("click", () => {
+    runSearch();
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      runSearch();
+    }
+  });
+
+  async function runSearch() {
+    const query = searchInput.value.trim();
+
+    if (!query) {
+      resultsDiv.innerHTML = `<p>Please type something like "pizza near me".</p>`;
+      return;
+    }
+
+    resultsDiv.innerHTML = `<p>Searching...</p>`;
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          mode: state.mode,
+          query: query
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("API error");
+      }
+
+      const data = await response.json();
+
+      state.lastResults = data.results || [];
+      renderResults(state.lastResults);
+
+    } catch (err) {
+      console.error(err);
+      resultsDiv.innerHTML = `<p>Something went wrong. Try again.</p>`;
+    }
+  }
+
+  function renderResults(results) {
+    if (!results || results.length === 0) {
+      resultsDiv.innerHTML = `<p>No results found.</p>`;
+      return;
+    }
+
+    resultsDiv.innerHTML = results.map((r) => {
+      return `
+        <div class="card">
+          <h3>${r.name || "Unknown"}</h3>
+          <p>${r.description || "No description available."}</p>
+          <p><strong>Rating:</strong> ${r.rating || "N/A"}</p>
+        </div>
+      `;
+    }).join("");
+  }
+});
