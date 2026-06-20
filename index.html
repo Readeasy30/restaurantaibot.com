@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Restaurant AI Bot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<h1>🍽️ Restaurant AI Bot</h1>
+<p>Tell us what you want. We’ll find the best place to eat.</p>
 
-  <link rel="stylesheet" href="styles.css">
-</head>
+<input id="food" placeholder="What are you craving? (pizza, sushi, cheap food...)" />
+<input id="location" placeholder="Location (city or ZIP)" />
 
-<body>
+<!-- 🧠 MOOD LAYER (ADD THIS HERE) -->
+<div id="moods">
+  <button onclick="setMood('cheap')">💰 Cheap</button>
+  <button onclick="setMood('date')">❤️ Date Night</button>
+  <button onclick="setMood('fast')">⚡ Fast</button>
+  <button onclick="setMood('healthy')">🥗 Healthy</button>
+</div>
 
-  <div class="container">
+<button onclick="findFood()">Find Food</button>
 
-    <h1>🍽️ Restaurant AI Bot</h1>
-    <p>Tell us what you want. We’ll find the best place to eat.</p>
-
-    <input id="food" placeholder="What are you craving? (pizza, sushi, cheap food...)" />
-    <input id="location" placeholder="Location (city or ZIP)" />
-
-    <button onclick="findFood()">Find Food</button>
-
-    <div id="results"></div>
-
-  </div>
-
-  <script src="app.js"></script>
-
-</body>
-</html>
-food: pizza
-location: NYC
+<div id="results"></div>
