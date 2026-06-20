@@ -13,6 +13,21 @@ function setStatus(message) {
   if (statusBar) statusBar.textContent = message;
 }
 
+function labelMood(mood) {
+  switch (mood) {
+    case "cheap":
+      return "Cheap";
+    case "date":
+      return "Date Night";
+    case "fast":
+      return "Fast";
+    case "healthy":
+      return "Healthy";
+    default:
+      return "None";
+  }
+}
+
 function setMood(selected) {
   state.mood = state.mood === selected ? "" : selected;
 
@@ -27,23 +42,15 @@ function setMood(selected) {
   setStatus(state.mood ? `Mood set: ${labelMood(state.mood)}` : "Mood cleared");
 }
 
-function labelMood(mood) {
-  switch (mood) {
-    case "cheap": return "Cheap";
-    case "date": return "Date Night";
-    case "fast": return "Fast";
-    case "healthy": return "Healthy";
-    default: return "None";
-  }
-}
-
 function setMode(mode) {
   state.mode = mode;
 }
 
 function quickSearch(value) {
   const foodInput = document.getElementById("food");
-  if (foodInput) foodInput.value = value;
+  if (foodInput) {
+    foodInput.value = value;
+  }
   findFood();
 }
 
@@ -52,7 +59,7 @@ function showLoading(message = "Loading your options...") {
   results.innerHTML = `
     <div class="loading-box">
       <div class="big">⏳ ${message}</div>
-      <div class="small">Finding good options near you</div>
+      <div class="small">Finding good restaurant options near you</div>
     </div>
   `;
 }
@@ -62,6 +69,24 @@ function showError(message) {
   results.innerHTML = `<div class="error-box">${message}</div>`;
 }
 
+function fakeLeadCapture() {
+  const email = document.getElementById("leadEmail");
+  const leadMessage = document.getElementById("leadMessage");
+
+  if (!email || !leadMessage) return;
+
+  if (!email.value.trim()) {
+    leadMessage.textContent = "Please enter an email address.";
+    return;
+  }
+
+  leadMessage.textContent = `Saved placeholder signup for ${email.value.trim()}. Connect this to your real email system later.`;
+  email.value = "";
+}
+
+// -------------------------
+// Time helpers
+// -------------------------
 function getTimeContext() {
   const hour = new Date().getHours();
 
@@ -91,24 +116,35 @@ function scoreRestaurant(r) {
   const why = (r.why || "").toLowerCase();
   const text = `${name} ${type} ${why}`;
 
-  // Base quality
   const rating = parseFloat(r.rating);
   if (!isNaN(rating)) score += rating * 2;
 
   // Mood boosts
-  if (state.mood === "cheap" && (text.includes("cheap") || text.includes("value") || text.includes("budget"))) {
+  if (
+    state.mood === "cheap" &&
+    (text.includes("cheap") || text.includes("value") || text.includes("budget"))
+  ) {
     score += 4;
   }
 
-  if (state.mood === "date" && (text.includes("romantic") || text.includes("cozy") || text.includes("fine") || text.includes("date"))) {
+  if (
+    state.mood === "date" &&
+    (text.includes("romantic") || text.includes("cozy") || text.includes("fine") || text.includes("date"))
+  ) {
     score += 4;
   }
 
-  if (state.mood === "fast" && (text.includes("fast") || text.includes("quick") || text.includes("grab"))) {
+  if (
+    state.mood === "fast" &&
+    (text.includes("fast") || text.includes("quick") || text.includes("grab"))
+  ) {
     score += 4;
   }
 
-  if (state.mood === "healthy" && (text.includes("healthy") || text.includes("fresh") || text.includes("salad"))) {
+  if (
+    state.mood === "healthy" &&
+    (text.includes("healthy") || text.includes("fresh") || text.includes("salad"))
+  ) {
     score += 4;
   }
 
@@ -131,10 +167,38 @@ function scoreRestaurant(r) {
     score += 2;
   }
 
-  // Mild fallback if rating missing
   if (isNaN(rating)) score += 0.5;
 
   return score;
+}
+
+// -------------------------
+// Result action helpers
+// -------------------------
+function buildGoogleSearchUrl(name, location) {
+  const q = [name, location].filter(Boolean).join(" ");
+  return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+}
+
+function buildGoogleMapsUrl(name, location) {
+  const q = [name, location].filter(Boolean).join(" ");
+  return `https://www.google.com/maps/search/${encodeURIComponent(q)}`;
+}
+
+function normalizeRestaurant(r, location) {
+  const restaurant = {
+    name: r.name || "Restaurant",
+    type: r.type || "Restaurant",
+    rating: r.rating || "No rating",
+    why: r.why || "A strong option based on your search.",
+    website: r.website || "",
+    phone: r.phone || "",
+    address: r.address || "",
+    mapsUrl: r.mapsUrl || buildGoogleMapsUrl(r.name || "restaurant", location),
+    detailsUrl: r.detailsUrl || buildGoogleSearchUrl(r.name || "restaurant", location)
+  };
+
+  return restaurant;
 }
 
 // -------------------------
@@ -172,7 +236,7 @@ async function findFood() {
     }
 
     const data = await response.json();
-    renderResults(data, food ? `Best matches for "${food}"` : "Best matches");
+    renderResults(data, food ? `Best matches for "${food}"` : "Best matches", location);
     setStatus(`Done${state.mood ? " • Mood: " + labelMood(state.mood) : ""}`);
   } catch (err) {
     console.error(err);
@@ -188,7 +252,7 @@ async function whatShouldIEat() {
   const food = document.getElementById("food").value.trim();
 
   setStatus("Thinking...");
-  showLoading("Deciding what you should eat tonight");
+  showLoading("Deciding what you should eat right now");
 
   try {
     const response = await fetch(API_URL, {
@@ -207,7 +271,7 @@ async function whatShouldIEat() {
     }
 
     const data = await response.json();
-    renderResults(data, "Top picks right now");
+    renderResults(data, "Top picks right now", location);
     setStatus(`Decision ready${state.mood ? " • Mood: " + labelMood(state.mood) : ""}`);
   } catch (err) {
     console.error(err);
@@ -219,7 +283,7 @@ async function whatShouldIEat() {
 // -------------------------
 // Rendering
 // -------------------------
-function renderResults(data, title) {
+function renderResults(data, title, location = "") {
   const results = document.getElementById("results");
 
   if (!data || !data.restaurants || data.restaurants.length === 0) {
@@ -235,27 +299,40 @@ function renderResults(data, title) {
   const list = data.restaurants
     .slice()
     .sort((a, b) => scoreRestaurant(b) - scoreRestaurant(a))
-    .slice(0, 5);
+    .slice(0, 5)
+    .map(r => normalizeRestaurant(r, location));
 
   results.innerHTML = `
     <div class="results-header">
       <h2>${title}</h2>
       <p>${getTimeLabel()}${state.mood ? ` • Mood: ${labelMood(state.mood)}` : ""}</p>
     </div>
+
     <div class="results-list">
       ${list.map((r, i) => {
         const isTop = i === 0;
+
         return `
           <article class="card ${isTop ? "top-pick" : ""}">
             <div class="card-rank">
               ${isTop ? "🔥 Top Pick" : `#${i + 1}`}
             </div>
-            <h3 class="card-name">${r.name || "Restaurant"}</h3>
+
+            <h3 class="card-name">${r.name}</h3>
+
             <div class="card-meta">
-              <span>🍴 ${r.type || "Restaurant"}</span>
-              <span>⭐ ${r.rating || "No rating"}</span>
+              <span>🍴 ${r.type}</span>
+              <span>⭐ ${r.rating}</span>
             </div>
-            <p class="card-why">${r.why || "A strong option based on your search."}</p>
+
+            <p class="card-why">${r.why}</p>
+
+            <div class="card-actions">
+              <a class="card-action primary" href="${r.detailsUrl}" target="_blank" rel="noopener noreferrer">View details</a>
+              <a class="card-action" href="${r.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
+              ${r.website ? `<a class="card-action" href="${r.website}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
+              ${r.phone ? `<a class="card-action" href="tel:${r.phone}">Call</a>` : ""}
+            </div>
           </article>
         `;
       }).join("")}
