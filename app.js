@@ -1,43 +1,45 @@
 const API_URL = "https://restaurant-ai-api.wholelychit.workers.dev";
 
-const FAVORITES_KEY = "restaurantAiFavorites";
-const HISTORY_KEY = "restaurantAiHistory";
-const SHORTLIST_KEY = "restaurantAiShortlist";
+const KEYS = {
+  favorites: "ra_favorites",
+  history: "ra_history",
+  shortlist: "ra_shortlist",
+  profile: "ra_profile"
+};
 
 // ------------------------------
-// STATE
+// STATE (PHASE 5 UPGRADE)
 // ------------------------------
 const state = {
-  mood: "",
-  favorites: [],
-  shortlist: [],
+  mode: "search", // search | explore | trending
   lastResults: [],
-  featuredBoosts: {}, // simulated paid placements
-  lastSearch: { food: "", location: "", mode: "search" }
+  profile: {
+    favoriteFoods: [],
+    lastLocation: ""
+  }
 };
 
 // ------------------------------
 // INIT
 // ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  state.favorites = loadLocal(FAVORITES_KEY);
-  state.shortlist = loadLocal(SHORTLIST_KEY);
-
-  setStatus("Ready");
+  state.profile = load(KEYS.profile) || state.profile;
+  setStatus("Ready • Phase 5 Active");
+  renderModeUI();
 });
 
 // ------------------------------
 // STORAGE
 // ------------------------------
-function loadLocal(key) {
+function load(key) {
   try {
-    return JSON.parse(localStorage.getItem(key)) || [];
+    return JSON.parse(localStorage.getItem(key));
   } catch {
-    return [];
+    return null;
   }
 }
 
-function saveLocal(key, val) {
+function save(key, val) {
   localStorage.setItem(key, JSON.stringify(val));
 }
 
@@ -50,9 +52,29 @@ function setStatus(msg) {
 }
 
 // ------------------------------
-// INTENT DETECTION (kept from Phase 2)
+// MODE SYSTEM (PHASE 5 CORE)
 // ------------------------------
-function detectIntent(food = "", location = "") {
+function setMode(mode) {
+  state.mode = mode;
+  renderModeUI();
+  setStatus(`Mode: ${mode}`);
+}
+
+function renderModeUI() {
+  const el = document.getElementById("modeBar");
+  if (!el) return;
+
+  el.innerHTML = `
+    <button onclick="setMode('search')">🔎 Search</button>
+    <button onclick="setMode('explore')">🌎 Explore</button>
+    <button onclick="setMode('trending')">🔥 Trending</button>
+  `;
+}
+
+// ------------------------------
+// INTENT ENGINE (PHASE 4 FIXED)
+// ------------------------------
+function analyzeIntent(food = "", location = "") {
   const t = `${food} ${location}`.toLowerCase();
 
   return {
@@ -61,101 +83,77 @@ function detectIntent(food = "", location = "") {
     fast: t.includes("fast") || t.includes("quick"),
     breakfast: t.includes("breakfast"),
     late: t.includes("late") || t.includes("night"),
-    near: t.includes("near me") || t.includes("nearby")
+    near: t.includes("near me") || t.includes("nearby"),
+    best: t.includes("best")
   };
 }
 
 // ------------------------------
-// MONETIZATION BOOST ENGINE (NEW)
+// CLEAN QUERY BUILDER (PHASE 4.1 FIX)
 // ------------------------------
-function getBoostScore(r) {
-  // simulated monetization layer
-  const name = (r.name || "").toLowerCase();
-
-  // pretend these are paid or featured partners
-  if (name.includes("pizza") || name.includes("burger")) return 2;
-  if (name.includes("grill") || name.includes("steak")) return 3;
-
-  return 0;
+function buildQuery(food, location) {
+  return [
+    food || "",
+    location ? `in ${location}` : "",
+    "best rated",
+    "top local food"
+  ].join(" ").trim();
 }
 
 // ------------------------------
-// SMART SCORING (UPGRADED)
+// SEO SCORE ENGINE (FINAL VERSION)
 // ------------------------------
-function scoreRestaurant(r, intent) {
+function score(r, intent) {
   let s = 0;
 
   const text = `${r.name} ${r.type} ${r.why}`.toLowerCase();
   const rating = parseFloat(r.rating);
 
-  if (!isNaN(rating)) s += rating * 2;
+  if (!isNaN(rating)) s += rating * 3;
 
-  if (intent.cheap && (text.includes("cheap") || text.includes("$"))) s += 5;
-  if (intent.date && (text.includes("romantic") || text.includes("steak") || text.includes("italian"))) s += 5;
-  if (intent.fast && (text.includes("fast") || text.includes("quick"))) s += 4;
+  if (intent.cheap && text.includes("cheap")) s += 5;
+  if (intent.date && text.includes("romantic")) s += 6;
+  if (intent.fast && text.includes("fast")) s += 4;
   if (intent.breakfast && text.includes("breakfast")) s += 4;
-  if (intent.late && (text.includes("pizza") || text.includes("burger"))) s += 3;
+  if (intent.late && (text.includes("late") || text.includes("pizza"))) s += 4;
 
-  // 🔥 MONETIZATION BOOST LAYER
-  s += getBoostScore(r);
+  if (intent.best && (text.includes("best") || text.includes("top"))) s += 3;
 
   return s;
 }
 
 // ------------------------------
-// PROMPT BUILDER
-// ------------------------------
-function buildPrompt(food, location) {
-  const intent = detectIntent(food, location);
-
-  let p = `Find best local restaurants.`;
-
-  if (food) p += ` Food: ${food}.`;
-  if (location) p += ` Location: ${location}.`;
-
-  if (intent.cheap) p += " Prioritize affordable places.";
-  if (intent.date) p += " Prioritize romantic/date-night spots.";
-  if (intent.fast) p += " Prioritize fast service.";
-  if (intent.breakfast) p += " Prioritize breakfast.";
-  if (intent.late) p += " Prioritize late-night food.";
-  if (intent.near) p += " Focus on nearby results.";
-
-  // monetization-aware instruction (future proofing)
-  p += " Include top-quality options suitable for featured placement.";
-
-  return p;
-}
-
-// ------------------------------
-// SEARCH
+// MAIN SEARCH
 // ------------------------------
 async function findFood() {
   const food = document.getElementById("food")?.value || "";
   const location = document.getElementById("location")?.value || "";
 
   if (!food && !location) {
-    setStatus("Enter a search term");
+    setStatus("Enter search term");
     return;
   }
 
+  state.profile.lastLocation = location;
+  save(KEYS.profile, state.profile);
+
   showLoading();
-  setStatus("Searching...");
 
   try {
     const res = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        query: buildPrompt(food, location),
+        query: buildQuery(food, location),
         location: location || "near me"
       })
     });
 
     const data = await res.json();
 
-    renderResults(data, food || "Search results");
+    renderResults(data, food, location);
 
-    setStatus("Results ready");
+    setStatus("Results loaded");
 
   } catch (e) {
     console.error(e);
@@ -164,98 +162,82 @@ async function findFood() {
 }
 
 // ------------------------------
-// RESULTS RENDER (MONETIZATION LAYER ADDED)
+// RESULTS RENDER (FINAL PLATFORM VERSION)
 // ------------------------------
-function renderResults(data, title) {
+function renderResults(data, food, location) {
   const el = document.getElementById("results");
-  if (!el) return;
 
   if (!data?.restaurants?.length) {
     el.innerHTML = "<p>No results found</p>";
     return;
   }
 
-  const intent = detectIntent(
-    state.lastSearch?.food,
-    state.lastSearch?.location
-  );
+  const intent = analyzeIntent(food, location);
 
   const list = data.restaurants
-    .map(r => ({
-      ...r,
-      score: scoreRestaurant(r, intent)
-    }))
+    .map(r => ({ ...r, score: score(r, intent) }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 6);
 
   state.lastResults = list;
 
+  // track profile (light personalization)
+  if (food && !state.profile.favoriteFoods.includes(food)) {
+    state.profile.favoriteFoods.push(food);
+    save(KEYS.profile, state.profile);
+  }
+
   el.innerHTML = `
     <div class="results-header">
-      <h2>${title}</h2>
-      <p>Top local picks (AI ranked + boosted placements)</p>
+      <h2>Best ${food || "Food"} in ${location || "Your Area"}</h2>
+      <p>AI-ranked • Personalized • Phase 5 Platform</p>
     </div>
 
-    <!-- 💰 FEATURED SLOT (MONETIZATION READY) -->
-    <div style="
-      border: 1px solid #f97316;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 12px;
-      background: rgba(249,115,22,0.08);
-    ">
-      ⭐ Featured Listing Slot (reserved for paid placement)
-    </div>
+    ${getModeBanner()}
 
-    ${list.map((r, i) => {
-      const isFeatured = i === 0;
-
-      return `
-        <div class="card" style="
-          border: ${isFeatured ? "2px solid #f97316" : "1px solid #334155"};
-          margin-bottom: 12px;
-          padding: 12px;
-          border-radius: 12px;
-        ">
-          <h3>${isFeatured ? "🔥 Featured Pick • " : ""}${r.name}</h3>
-
-          <p>🍴 ${r.type || "Restaurant"}</p>
-          <p>⭐ ${r.rating || "No rating"}</p>
-
-          <p style="opacity:0.8;">
-            ${r.why || ""}
-          </p>
-
-          <div style="margin-top:10px;">
-            <button onclick="addToShortlist(${i})">Shortlist</button>
-            <button onclick="boostPlaceholder('${r.name}')">Boost</button>
-          </div>
-        </div>
-      `;
-    }).join("")}
+    ${list.map((r, i) => `
+      <div class="card" style="
+        border:${i === 0 ? "2px solid #f97316" : "1px solid #334155"};
+        margin-bottom:12px;
+        padding:12px;
+        border-radius:12px;
+      ">
+        <h3>${i === 0 ? "🔥 Top Pick • " : ""}${r.name}</h3>
+        <p>🍴 ${r.type || "Restaurant"}</p>
+        <p>⭐ ${r.rating || "No rating"}</p>
+        <p>${r.why || ""}</p>
+      </div>
+    `).join("")}
   `;
 }
 
 // ------------------------------
-// SHORTLIST
+// PHASE 5 MODE CONTENT
 // ------------------------------
-function addToShortlist(index) {
-  const item = state.lastResults[index];
-  if (!item) return;
+function getModeBanner() {
+  if (state.mode === "search") {
+    return `<div class="card">🔎 Search Mode: Personalized results</div>`;
+  }
 
-  state.shortlist.push(item);
-  saveLocal(SHORTLIST_KEY, state.shortlist);
+  if (state.mode === "explore") {
+    return `
+      <div class="card">
+        🌎 Explore Mode:
+        Try: pizza, sushi, burgers, breakfast, tacos
+      </div>
+    `;
+  }
 
-  alert("Added to shortlist");
-}
+  if (state.mode === "trending") {
+    return `
+      <div class="card">
+        🔥 Trending Mode:
+        Popular foods people search for today
+      </div>
+    `;
+  }
 
-// ------------------------------
-// MONETIZATION ACTION (PLACEHOLDER)
-// ------------------------------
-function boostPlaceholder(name) {
-  alert(
-    `Boost request for "${name}" saved.\n\nThis is where paid promotion / featured listing would connect later.`
-  );
+  return "";
 }
 
 // ------------------------------
@@ -263,7 +245,7 @@ function boostPlaceholder(name) {
 // ------------------------------
 function showLoading() {
   const el = document.getElementById("results");
-  if (el) el.innerHTML = "<p>Loading...</p>";
+  if (el) el.innerHTML = "<p>Loading best local results...</p>";
 }
 
 // ------------------------------
