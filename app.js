@@ -82,7 +82,17 @@ function buildInternalLinks() {
     ["austin", "tacos"],
     ["new-york", "sushi"]
   ];
+const CITY_CONTEXT = {
+  chicago: ["deep dish tradition", "classic pizza culture", "local favorites"],
+  miami: ["Latin fusion flavors", "beachside dining", "tourist hotspots"],
+  austin: ["food truck culture", "smoky BBQ influence", "late-night eats"],
+  "new-york": ["fast-paced dining", "iconic slices", "diverse food scene"]
+};
 
+function getVariation(city) {
+  const list = CITY_CONTEXT[city] || ["local dining scene"];
+  return list[Math.floor(Math.random() * list.length)];
+}
   return combos.map(([city, food]) => `
     <a href="/seo-engine.html?city=${city}&food=${food}">
       Best ${food} in ${city.replace("-", " ")}
