@@ -1,10 +1,13 @@
 const API_URL = "https://restaurant-ai-api.wholelychit.workers.dev";
 const FAVORITES_KEY = "restaurantAiFavorites";
+const HISTORY_KEY = "restaurantAiHistory";
+const SHORTLIST_KEY = "restaurantAiShortlist";
 
 const state = {
   mood: "",
   favorites: [],
   lastResults: [],
+  shortlist: [],
   lastSearch: {
     food: "",
     location: "",
@@ -13,549 +16,264 @@ const state = {
 };
 
 // ------------------------------
-// STARTUP
+// INIT
 // ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  state.favorites = loadFavorites();
+  state.favorites = loadLocal(FAVORITES_KEY);
+  state.shortlist = loadLocal(SHORTLIST_KEY);
   renderFavorites();
+  renderHistory();
   setStatus("Ready");
 });
 
 // ------------------------------
-// STORAGE
+// STORAGE HELPERS
 // ------------------------------
-function loadFavorites() {
+function loadLocal(key) {
   try {
-    const raw = localStorage.getItem(FAVORITES_KEY);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (err) {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
     return [];
   }
 }
 
-function saveFavorites() {
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(state.favorites));
-}
-
-function clearFavorites() {
-  state.favorites = [];
-  saveFavorites();
-  renderFavorites();
-  refreshVisibleFavoriteButtons();
-  setStatus("Favorites cleared");
-}
-
-function favoriteKey(restaurant) {
-  const name = (restaurant.name || "").trim().toLowerCase();
-  const location = (restaurant.location || restaurant.address || "").trim().toLowerCase();
-  return `${name}|${location}`;
-}
-
-function isFavorite(restaurant) {
-  const key = favoriteKey(restaurant);
-  return state.favorites.some(item => favoriteKey(item) === key);
-}
-
-function addFavorite(restaurant) {
-  if (isFavorite(restaurant)) return;
-  state.favorites.unshift(restaurant);
-  saveFavorites();
-  renderFavorites();
-  refreshVisibleFavoriteButtons();
-  setStatus(`Saved favorite: ${restaurant.name || "Restaurant"}`);
-}
-
-function removeFavoriteByKey(key) {
-  state.favorites = state.favorites.filter(item => favoriteKey(item) !== key);
-  saveFavorites();
-  renderFavorites();
-  refreshVisibleFavoriteButtons();
-  setStatus("Favorite removed");
-}
-
-function toggleFavoriteByIndex(index) {
-  const restaurant = state.lastResults[index];
-  if (!restaurant) return;
-
-  const key = favoriteKey(restaurant);
-
-  if (isFavorite(restaurant)) {
-    removeFavoriteByKey(key);
-  } else {
-    addFavorite(restaurant);
-  }
+function saveLocal(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
 // ------------------------------
-// STATUS / UI HELPERS
+// HISTORY
 // ------------------------------
-function setStatus(message) {
-  const el = document.getElementById("statusBar");
-  if (el) el.textContent = message;
+function saveHistory(item) {
+  const history = loadLocal(HISTORY_KEY);
+
+  const entry = {
+    food: item.food,
+    location: item.location,
+    time: Date.now()
+  };
+
+  history.unshift(entry);
+
+  const trimmed = history.slice(0, 8);
+  saveLocal(HISTORY_KEY, trimmed);
 }
 
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function labelMood(mood) {
-  switch (mood) {
-    case "cheap":
-      return "Cheap";
-    case "date":
-      return "Date Night";
-    case "fast":
-      return "Fast";
-    case "healthy":
-      return "Healthy";
-    default:
-      return "";
+function renderHistory() {
+  let container = document.getElementById("historyBox");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "historyBox";
+    container.className = "panel";
+    document.querySelector(".site-shell").prepend(container);
   }
+
+  const history = loadLocal(HISTORY_KEY);
+
+  container.innerHTML = `
+    <div class="panel-head">
+      <h2>Recent searches</h2>
+      <p>Click to rerun a previous search</p>
+    </div>
+
+    <div class="chips">
+      ${history.map(h => `
+        <button onclick="rerunSearch('${h.food}', '${h.location}')">
+          ${h.food || "Search"} • ${h.location || "near me"}
+        </button>
+      `).join("")}
+    </div>
+  `;
 }
 
-function setMood(mood) {
-  state.mood = state.mood === mood ? "" : mood;
-
-  document.querySelectorAll("#moods button").forEach(btn => {
-    const btnMood = btn.dataset.mood || "";
-    btn.classList.toggle("active", btnMood === state.mood);
-  });
-
-  setStatus(state.mood ? `Mood set: ${labelMood(state.mood)}` : "Mood cleared");
-}
-
-function quickSearch(foodValue) {
+function rerunSearch(food, location) {
   const foodInput = document.getElementById("food");
-  if (foodInput) foodInput.value = foodValue;
+  const locInput = document.getElementById("location");
+
+  if (foodInput) foodInput.value = food;
+  if (locInput) locInput.value = location;
+
   findFood();
 }
 
-function showLoading(message = "Loading your options...") {
-  const results = document.getElementById("results");
-  if (!results) return;
+// ------------------------------
+// SHORTLIST
+// ------------------------------
+function toggleShortlist(index) {
+  const item = state.lastResults[index];
+  if (!item) return;
 
-  results.innerHTML = `
-    <div class="loading-box">
-      <div class="big">⏳ ${escapeHtml(message)}</div>
-      <div class="small">Finding restaurant options for you...</div>
-    </div>
-  `;
+  const key = item.name.toLowerCase();
+
+  const exists = state.shortlist.find(r => r.name.toLowerCase() === key);
+
+  if (exists) {
+    state.shortlist = state.shortlist.filter(r => r.name.toLowerCase() !== key);
+  } else {
+    state.shortlist.push(item);
+  }
+
+  saveLocal(SHORTLIST_KEY, state.shortlist);
+  renderShortlist();
+  setStatus("Shortlist updated");
 }
 
-function showError(message) {
-  const results = document.getElementById("results");
-  if (!results) return;
-  results.innerHTML = `<div class="error-box">${escapeHtml(message)}</div>`;
-}
+function renderShortlist() {
+  let container = document.getElementById("shortlistBox");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "shortlistBox";
+    container.className = "panel";
+    document.querySelector(".site-shell").appendChild(container);
+  }
 
-// ------------------------------
-// LEAD PLACEHOLDERS
-// ------------------------------
-function fakeLeadCapture() {
-  const emailInput = document.getElementById("leadEmail");
-  const msg = document.getElementById("leadMessage");
-
-  if (!emailInput || !msg) return;
-
-  const email = emailInput.value.trim();
-  if (!email) {
-    msg.textContent = "Please enter an email address.";
+  if (!state.shortlist.length) {
+    container.innerHTML = "";
     return;
   }
 
-  msg.textContent = `Saved placeholder signup for ${email}. Connect this to your real email system later.`;
-  emailInput.value = "";
-}
-
-function fakeOwnerLead() {
-  const ownerName = document.getElementById("ownerName");
-  const ownerEmail = document.getElementById("ownerEmail");
-  const msg = document.getElementById("ownerLeadMessage");
-
-  if (!ownerName || !ownerEmail || !msg) return;
-
-  const name = ownerName.value.trim();
-  const email = ownerEmail.value.trim();
-
-  if (!name || !email) {
-    msg.textContent = "Please enter restaurant name and email.";
-    return;
-  }
-
-  msg.textContent = `Saved placeholder lead for ${name}. Connect this form to your real lead system later.`;
-  ownerName.value = "";
-  ownerEmail.value = "";
-}
-
-// ------------------------------
-// TIME HELPERS
-// ------------------------------
-function getTimeContext() {
-  const hour = new Date().getHours();
-
-  if (hour < 11) return "morning";
-  if (hour < 15) return "lunch";
-  if (hour < 19) return "evening";
-  return "late night";
-}
-
-function getTimeLabel() {
-  const time = getTimeContext();
-
-  if (time === "morning") return "🌅 Morning suggestions";
-  if (time === "lunch") return "🌞 Lunch suggestions";
-  if (time === "evening") return "🌆 Evening suggestions";
-  return "🌙 Late-night suggestions";
-}
-
-// ------------------------------
-// URL HELPERS
-// ------------------------------
-function buildGoogleSearchUrl(name, location) {
-  const q = [name, location].filter(Boolean).join(" ");
-  return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
-}
-
-function buildGoogleMapsUrl(name, location) {
-  const q = [name, location].filter(Boolean).join(" ");
-  return `https://www.google.com/maps/search/${encodeURIComponent(q)}`;
-}
-
-// ------------------------------
-// NORMALIZE RESTAURANT DATA
-// ------------------------------
-function normalizeRestaurant(raw, fallbackLocation = "") {
-  const restaurant = {
-    name: raw?.name || "Restaurant",
-    type: raw?.type || raw?.cuisine || "Restaurant",
-    rating: raw?.rating || "No rating",
-    why: raw?.why || "A strong option based on your search.",
-    address: raw?.address || "",
-    phone: raw?.phone || "",
-    website: raw?.website || "",
-    price: raw?.price || "",
-    location: fallbackLocation || raw?.location || "",
-    detailsUrl: raw?.detailsUrl || "",
-    mapsUrl: raw?.mapsUrl || ""
-  };
-
-  if (!restaurant.detailsUrl) {
-    restaurant.detailsUrl = buildGoogleSearchUrl(
-      restaurant.name,
-      restaurant.location || restaurant.address
-    );
-  }
-
-  if (!restaurant.mapsUrl) {
-    restaurant.mapsUrl = buildGoogleMapsUrl(
-      restaurant.name,
-      restaurant.location || restaurant.address
-    );
-  }
-
-  return restaurant;
-}
-
-// ------------------------------
-// SCORING
-// ------------------------------
-function scoreRestaurant(r) {
-  let score = 0;
-
-  const rating = parseFloat(String(r.rating).replace(/[^\d.]/g, ""));
-  if (!Number.isNaN(rating)) score += rating * 2;
-
-  const text = [
-    r.name,
-    r.type,
-    r.why,
-    r.address,
-    r.price
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  if (state.mood === "cheap" && (text.includes("cheap") || text.includes("budget") || text.includes("value") || text.includes("$"))) {
-    score += 4;
-  }
-
-  if (state.mood === "date" && (text.includes("date") || text.includes("romantic") || text.includes("cozy") || text.includes("steak") || text.includes("italian"))) {
-    score += 4;
-  }
-
-  if (state.mood === "fast" && (text.includes("fast") || text.includes("quick") || text.includes("grab") || text.includes("takeout"))) {
-    score += 4;
-  }
-
-  if (state.mood === "healthy" && (text.includes("healthy") || text.includes("fresh") || text.includes("salad") || text.includes("grill"))) {
-    score += 4;
-  }
-
-  const time = getTimeContext();
-
-  if (time === "morning" && (text.includes("breakfast") || text.includes("coffee") || text.includes("bagel"))) {
-    score += 2;
-  }
-
-  if (time === "lunch" && (text.includes("lunch") || text.includes("sandwich") || text.includes("quick"))) {
-    score += 2;
-  }
-
-  if (time === "evening" && (text.includes("dinner") || text.includes("steak") || text.includes("italian") || text.includes("restaurant"))) {
-    score += 2;
-  }
-
-  if (time === "late night" && (text.includes("late") || text.includes("burger") || text.includes("taco") || text.includes("pizza"))) {
-    score += 2;
-  }
-
-  return score;
-}
-
-// ------------------------------
-// SEARCH ACTIONS
-// ------------------------------
-async function findFood() {
-  const food = (document.getElementById("food")?.value || "").trim();
-  const location = (document.getElementById("location")?.value || "").trim();
-
-  if (!food && !location) {
-    showError("Please enter a food or a location.");
-    setStatus("Waiting for input");
-    return;
-  }
-
-  state.lastSearch = {
-    food,
-    location,
-    mode: "search"
-  };
-
-  showLoading("Searching for restaurants");
-  setStatus("Searching...");
-
-  try {
-    const query = buildSearchPrompt(food, false);
-
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        query,
-        location: location || "near me"
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`API error ${response.status}`);
-    }
-
-    const data = await response.json();
-    renderResults(data, food ? `Best matches for "${food}"` : "Top restaurant matches", location);
-    setStatus("Results ready");
-  } catch (err) {
-    console.error(err);
-    showError("Error getting results. Try again.");
-    setStatus("Search failed");
-  }
-}
-
-async function whatShouldIEat() {
-  const food = (document.getElementById("food")?.value || "").trim();
-  const location = (document.getElementById("location")?.value || "").trim();
-
-  state.lastSearch = {
-    food,
-    location,
-    mode: "decision"
-  };
-
-  showLoading("Deciding what you should eat tonight");
-  setStatus("Thinking...");
-
-  try {
-    const query = buildSearchPrompt(food, true);
-
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        query,
-        location: location || "near me"
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`API error ${response.status}`);
-    }
-
-    const data = await response.json();
-    renderResults(data, "Top picks right now", location);
-    setStatus("Top picks ready");
-  } catch (err) {
-    console.error(err);
-    showError("Could not generate food suggestions. Try again.");
-    setStatus("Suggestion failed");
-  }
-}
-
-function buildSearchPrompt(food, decisionMode = false) {
-  const time = getTimeContext();
-  const moodPart = state.mood ? `${labelMood(state.mood)} mood. ` : "";
-  const foodPart = food ? `Food request: ${food}. ` : "";
-  const decisionPart = decisionMode
-    ? "Pick the best restaurant choices right now. Focus on strong local options."
-    : "Find strong restaurant matches.";
-
-  return `Time of day: ${time}. ${moodPart}${foodPart}${decisionPart}`;
-}
-
-// ------------------------------
-// RESULTS RENDERING
-// ------------------------------
-function renderResults(data, title, location = "") {
-  const results = document.getElementById("results");
-  if (!results) return;
-
-  if (!data || !Array.isArray(data.restaurants) || data.restaurants.length === 0) {
-    state.lastResults = [];
-    results.innerHTML = `
-      <div class="empty-state">
-        <h3>No results found</h3>
-        <p>Try another food, mood, or location.</p>
-      </div>
-    `;
-    return;
-  }
-
-  const normalized = data.restaurants
-    .map(item => normalizeRestaurant(item, location))
-    .sort((a, b) => scoreRestaurant(b) - scoreRestaurant(a))
-    .slice(0, 8);
-
-  state.lastResults = normalized;
-
-  results.innerHTML = `
-    <div class="results-header">
-      <h3>${escapeHtml(title)}</h3>
-      <p>${escapeHtml(getTimeLabel())}${state.mood ? ` • Mood: ${escapeHtml(labelMood(state.mood))}` : ""}</p>
+  container.innerHTML = `
+    <div class="panel-head">
+      <h2>Shortlist compare</h2>
+      <p>Your selected restaurants</p>
     </div>
 
     <div class="results-list">
-      ${normalized.map((restaurant, index) => renderRestaurantCard(restaurant, index)).join("")}
+      ${state.shortlist.map(r => `
+        <div class="card">
+          <h3>${r.name}</h3>
+          <p>🍴 ${r.type}</p>
+          <p>⭐ ${r.rating}</p>
+        </div>
+      `).join("")}
     </div>
   `;
 }
 
-function renderRestaurantCard(restaurant, index) {
-  const topPick = index === 0;
-  const saved = isFavorite(restaurant);
+// ------------------------------
+// STATUS
+// ------------------------------
+function setStatus(msg) {
+  const el = document.getElementById("statusBar");
+  if (el) el.textContent = msg;
+}
 
-  const extraBits = [
-    restaurant.price ? `<div>💵 ${escapeHtml(restaurant.price)}</div>` : "",
-    restaurant.address ? `<div>📍 ${escapeHtml(restaurant.address)}</div>` : "",
-    restaurant.phone ? `<div>📞 ${escapeHtml(restaurant.phone)}</div>` : ""
-  ].filter(Boolean).join("");
+// ------------------------------
+// SEARCH
+// ------------------------------
+async function findFood() {
+  const food = document.getElementById("food")?.value || "";
+  const location = document.getElementById("location")?.value || "";
 
-  return `
-    <article class="card ${topPick ? "top-pick" : ""}">
-      <div class="card-rank">${topPick ? "🔥 Top Pick" : `#${index + 1}`}</div>
+  if (!food && !location) {
+    setStatus("Enter something first");
+    return;
+  }
 
-      <h3 class="card-name">${escapeHtml(restaurant.name)}</h3>
+  state.lastSearch = { food, location, mode: "search" };
 
-      <div class="card-meta">
-        <span>🍴 ${escapeHtml(restaurant.type || "Restaurant")}</span>
-        <span>⭐ ${escapeHtml(String(restaurant.rating || "No rating"))}</span>
-      </div>
+  showLoading();
 
-      <p class="card-why">${escapeHtml(restaurant.why || "")}</p>
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: buildPrompt(food),
+        location: location || "near me"
+      })
+    });
 
-      ${extraBits ? `<div class="card-extra">${extraBits}</div>` : ""}
+    const data = await response.json();
 
-      <div class="card-actions">
-        <a class="card-action primary" href="${restaurant.detailsUrl}" target="_blank" rel="noopener noreferrer">View Details</a>
-        <a class="card-action" href="${restaurant.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
-        ${restaurant.website ? `<a class="card-action" href="${escapeHtml(restaurant.website)}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
-        <button
-          class="favorite-btn ${saved ? "saved" : ""}"
-          type="button"
-          data-favorite-index="${index}"
-          onclick="toggleFavoriteByIndex(${index})"
-        >
-          ${saved ? "Saved ❤️" : "Save ❤️"}
+    saveHistory({ food, location });
+    renderHistory();
+
+    renderResults(data, `Results for ${food || "your search"}`);
+    renderShortlist();
+    setStatus("Done");
+
+  } catch (e) {
+    console.error(e);
+    setStatus("Error loading results");
+  }
+}
+
+// ------------------------------
+// SMARTER RANKING
+// ------------------------------
+function score(r) {
+  let s = 0;
+
+  const text = `${r.name} ${r.type} ${r.why}`.toLowerCase();
+  const rating = parseFloat(r.rating);
+
+  if (!isNaN(rating)) s += rating * 2;
+
+  if (text.includes("pizza") || text.includes("burger") || text.includes("taco")) s += 2;
+  if (text.includes(state.mood)) s += 3;
+
+  if (text.includes("cheap") || text.includes("$")) s += 2;
+
+  return s;
+}
+
+// ------------------------------
+// RENDER
+// ------------------------------
+function renderResults(data, title) {
+  const el = document.getElementById("results");
+
+  if (!data?.restaurants?.length) {
+    el.innerHTML = "No results found";
+    return;
+  }
+
+  const list = data.restaurants
+    .sort((a, b) => score(b) - score(a))
+    .slice(0, 6);
+
+  state.lastResults = list;
+
+  el.innerHTML = `
+    <h2>${title}</h2>
+    ${list.map((r, i) => `
+      <div class="card">
+        <h3>${i === 0 ? "🔥 " : ""}${r.name}</h3>
+        <p>${r.type}</p>
+        <p>${r.rating}</p>
+
+        <button onclick="toggleShortlist(${i})">
+          Add to shortlist
         </button>
       </div>
-    </article>
+    `).join("")}
   `;
 }
 
 // ------------------------------
-// FAVORITES RENDERING
+// HELPERS
 // ------------------------------
-function renderFavorites() {
-  const wrap = document.getElementById("favoritesList");
-  if (!wrap) return;
+function buildPrompt(food) {
+  return `Find good restaurants for: ${food}`;
+}
 
-  if (!state.favorites.length) {
-    wrap.innerHTML = `<div class="empty-mini">No favorites saved yet.</div>`;
-    return;
-  }
-
-  wrap.innerHTML = state.favorites.map(item => {
-    const key = favoriteKey(item);
-
-    const extraBits = [
-      item.price ? `<div>💵 ${escapeHtml(item.price)}</div>` : "",
-      item.address ? `<div>📍 ${escapeHtml(item.address)}</div>` : "",
-      item.phone ? `<div>📞 ${escapeHtml(item.phone)}</div>` : ""
-    ].filter(Boolean).join("");
-
-    return `
-      <article class="favorite-card">
-        <h3 class="favorite-name">${escapeHtml(item.name || "Restaurant")}</h3>
-
-        <div class="favorite-meta">
-          <span>🍴 ${escapeHtml(item.type || "Restaurant")}</span>
-          <span>⭐ ${escapeHtml(String(item.rating || "No rating"))}</span>
-        </div>
-
-        <p class="favorite-why">${escapeHtml(item.why || "")}</p>
-
-        ${extraBits ? `<div class="favorite-extra">${extraBits}</div>` : ""}
-
-        <div class="card-actions">
-          <a class="card-action primary" href="${item.detailsUrl}" target="_blank" rel="noopener noreferrer">View Details</a>
-          <a class="card-action" href="${item.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
-          ${item.website ? `<a class="card-action" href="${escapeHtml(item.website)}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
-          <button class="favorite-btn" type="button" onclick="removeFavoriteByKey('${escapeHtml(key)}')">Remove</button>
-        </div>
-      </article>
-    `;
-  }).join("");
+function showLoading() {
+  document.getElementById("results").innerHTML = "Loading...";
 }
 
 // ------------------------------
-// FAVORITE BUTTON REFRESH
+// QUICK SEARCH
 // ------------------------------
-function refreshVisibleFavoriteButtons() {
-  document.querySelectorAll("[data-favorite-index]").forEach(btn => {
-    const index = Number(btn.getAttribute("data-favorite-index"));
-    const restaurant = state.lastResults[index];
-    if (!restaurant) return;
+function quickSearch(v) {
+  document.getElementById("food").value = v;
+  findFood();
+}
 
-    const saved = isFavorite(restaurant);
-    btn.classList.toggle("saved", saved);
-    btn.textContent = saved ? "Saved ❤️" : "Save ❤️";
-  });
+// ------------------------------
+// MOOD
+// ------------------------------
+function setMood(m) {
+  state.mood = m;
 }
