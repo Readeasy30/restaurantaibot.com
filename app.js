@@ -5,9 +5,14 @@ const state = {
   lastResults: []
 };
 
+// --------------------
+// INIT
+// --------------------
 document.addEventListener("DOMContentLoaded", () => {
   renderModeBar();
   setStatus("Ready");
+
+  autoSEOPageLoad();
 });
 
 // --------------------
@@ -15,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // --------------------
 function renderModeBar() {
   const el = document.getElementById("modeBar");
+
+  if (!el) return;
 
   el.innerHTML = `
     <button onclick="setMode('search')">Search</button>
@@ -41,18 +48,79 @@ function setStatus(msg) {
 }
 
 // --------------------
-// SEO QUERY ENGINE
+// SEO ENGINE
 // --------------------
 function buildSEOQuery(food, location) {
-  return `${food || "food"} restaurants ${location || "near me"} ratings reviews open now`;
+  const f = food || "food";
+  const l = location || "near me";
+
+  return [
+    `${f} restaurants ${l}`,
+    `best ${f} near ${l}`,
+    `top rated ${f} restaurants`,
+    `${f} places open now ${l}`
+  ].join(" ");
+}
+
+function buildPageIntro(food, location) {
+  const f = food || "food";
+  const l = location || "your area";
+
+  return `
+    <h2>Best ${f} in ${l}</h2>
+    <p>
+      Discover top-rated ${f} restaurants in ${l}. Rankings are based on reviews, popularity, and AI analysis.
+    </p>
+  `;
+}
+
+function buildInternalLinks() {
+  const combos = [
+    ["st-louis", "pizza"],
+    ["chicago", "burger"],
+    ["miami", "seafood"],
+    ["austin", "tacos"],
+    ["new-york", "sushi"]
+  ];
+
+  return combos.map(([city, food]) => `
+    <a href="/seo-engine.html?city=${city}&food=${food}">
+      Best ${food} in ${city.replace("-", " ")}
+    </a>
+  `).join("");
+}
+
+// --------------------
+// AUTO SEO PAGE LOAD
+// --------------------
+function getParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    city: params.get("city") || "",
+    food: params.get("food") || ""
+  };
+}
+
+function autoSEOPageLoad() {
+  const { city, food } = getParams();
+
+  const foodInput = document.getElementById("food");
+  const locInput = document.getElementById("location");
+
+  if (foodInput) foodInput.value = food;
+  if (locInput) locInput.value = city;
+
+  if (food || city) {
+    findFood();
+  }
 }
 
 // --------------------
 // MAIN SEARCH
 // --------------------
 async function findFood() {
-  const food = document.getElementById("food").value || "";
-  const location = document.getElementById("location").value || "";
+  const food = document.getElementById("food")?.value || "";
+  const location = document.getElementById("location")?.value || "";
 
   if (!food && !location) {
     setStatus("Enter search term");
@@ -86,12 +154,12 @@ async function findFood() {
 }
 
 // --------------------
-// RENDER RESULTS
+// RENDER
 // --------------------
 function render(data, food, location) {
   const el = document.getElementById("results");
 
-  if (!data || !data.restaurants || data.restaurants.length === 0) {
+  if (!data?.restaurants?.length) {
     el.innerHTML = "No results found";
     return;
   }
@@ -100,21 +168,30 @@ function render(data, food, location) {
   state.lastResults = list;
 
   el.innerHTML = `
-    <h2>Best ${food || "Food"} in ${location || "Your Area"}</h2>
+    ${buildPageIntro(food, location)}
 
-    ${list.map((r, i) => `
-      <div class="card ${i === 0 ? "top" : ""}">
-        <h3>${i === 0 ? "🔥 " : ""}${r.name || "Unknown"}</h3>
-        <p>🍴 ${r.type || "Restaurant"}</p>
-        <p>⭐ ${r.rating || "N/A"}</p>
-        <p>${r.why || ""}</p>
-      </div>
-    `).join("")}
+    <div class="results">
+      ${list.map((r, i) => `
+        <div class="card ${i === 0 ? "top" : ""}">
+          <h3>${i === 0 ? "🔥 " : ""}${r.name}</h3>
+          <p>${r.type || "Restaurant"}</p>
+          <p>⭐ ${r.rating || "N/A"}</p>
+          <p>${r.why || ""}</p>
+        </div>
+      `).join("")}
+    </div>
+
+    <hr/>
+
+    <h3>Explore More</h3>
+    <div class="links">
+      ${buildInternalLinks()}
+    </div>
   `;
 }
 
 // --------------------
-// TRAFFIC LOOP
+// QUICK ACTIONS
 // --------------------
 function trendingSearch() {
   const foods = ["pizza", "burger", "sushi", "tacos", "chicken"];
@@ -130,4 +207,3 @@ function quickSearch(food) {
   document.getElementById("food").value = food;
   findFood();
 }
-
