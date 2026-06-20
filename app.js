@@ -1,72 +1,107 @@
+const API_URL = "https://restaurant-ai-api.wholelychit.workers.dev";
+const FAVORITES_KEY = "restaurantAiFavorites";
+
 const state = {
   mood: "",
-  mode: "search",
-  favorites: loadFavorites()
+  favorites: [],
+  lastResults: [],
+  lastSearch: {
+    food: "",
+    location: "",
+    mode: "search"
+  }
 };
 
-const API_URL = "https://restaurant-ai-api.wholelychit.workers.dev";
-
-// -------------------------
-// Startup
-// -------------------------
+// ------------------------------
+// STARTUP
+// ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+  state.favorites = loadFavorites();
   renderFavorites();
+  setStatus("Ready");
 });
 
-// -------------------------
-// Storage
-// -------------------------
+// ------------------------------
+// STORAGE
+// ------------------------------
 function loadFavorites() {
   try {
-    const raw = localStorage.getItem("restaurantAiFavorites");
-    return raw ? JSON.parse(raw) : [];
+    const raw = localStorage.getItem(FAVORITES_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
   } catch (err) {
     return [];
   }
 }
 
 function saveFavorites() {
-  localStorage.setItem("restaurantAiFavorites", JSON.stringify(state.favorites));
-}
-
-function getFavoriteKey(r) {
-  return `${(r.name || "").trim().toLowerCase()}|${(r.location || "").trim().toLowerCase()}`;
-}
-
-function isFavorite(r) {
-  const key = getFavoriteKey(r);
-  return state.favorites.some(item => getFavoriteKey(item) === key);
-}
-
-function addFavorite(r) {
-  if (isFavorite(r)) return;
-
-  state.favorites.unshift(r);
-  saveFavorites();
-  renderFavorites();
-  setStatus(`Saved favorite: ${r.name}`);
-}
-
-function removeFavoriteByKey(key) {
-  state.favorites = state.favorites.filter(item => getFavoriteKey(item) !== key);
-  saveFavorites();
-  renderFavorites();
-  setStatus("Favorite removed");
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(state.favorites));
 }
 
 function clearFavorites() {
   state.favorites = [];
   saveFavorites();
   renderFavorites();
+  refreshVisibleFavoriteButtons();
   setStatus("Favorites cleared");
 }
 
-// -------------------------
-// UI helpers
-// -------------------------
+function favoriteKey(restaurant) {
+  const name = (restaurant.name || "").trim().toLowerCase();
+  const location = (restaurant.location || restaurant.address || "").trim().toLowerCase();
+  return `${name}|${location}`;
+}
+
+function isFavorite(restaurant) {
+  const key = favoriteKey(restaurant);
+  return state.favorites.some(item => favoriteKey(item) === key);
+}
+
+function addFavorite(restaurant) {
+  if (isFavorite(restaurant)) return;
+  state.favorites.unshift(restaurant);
+  saveFavorites();
+  renderFavorites();
+  refreshVisibleFavoriteButtons();
+  setStatus(`Saved favorite: ${restaurant.name || "Restaurant"}`);
+}
+
+function removeFavoriteByKey(key) {
+  state.favorites = state.favorites.filter(item => favoriteKey(item) !== key);
+  saveFavorites();
+  renderFavorites();
+  refreshVisibleFavoriteButtons();
+  setStatus("Favorite removed");
+}
+
+function toggleFavoriteByIndex(index) {
+  const restaurant = state.lastResults[index];
+  if (!restaurant) return;
+
+  const key = favoriteKey(restaurant);
+
+  if (isFavorite(restaurant)) {
+    removeFavoriteByKey(key);
+  } else {
+    addFavorite(restaurant);
+  }
+}
+
+// ------------------------------
+// STATUS / UI HELPERS
+// ------------------------------
 function setStatus(message) {
-  const statusBar = document.getElementById("statusBar");
-  if (statusBar) statusBar.textContent = message;
+  const el = document.getElementById("statusBar");
+  if (el) el.textContent = message;
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function labelMood(mood) {
@@ -80,69 +115,87 @@ function labelMood(mood) {
     case "healthy":
       return "Healthy";
     default:
-      return "None";
+      return "";
   }
 }
 
-function setMood(selected) {
-  state.mood = state.mood === selected ? "" : selected;
+function setMood(mood) {
+  state.mood = state.mood === mood ? "" : mood;
 
   document.querySelectorAll("#moods button").forEach(btn => {
-    btn.classList.remove("active");
-    const onclick = btn.getAttribute("onclick") || "";
-    if (state.mood && onclick.includes(`'${state.mood}'`)) {
-      btn.classList.add("active");
-    }
+    const btnMood = btn.dataset.mood || "";
+    btn.classList.toggle("active", btnMood === state.mood);
   });
 
   setStatus(state.mood ? `Mood set: ${labelMood(state.mood)}` : "Mood cleared");
 }
 
-function setMode(mode) {
-  state.mode = mode;
-}
-
-function quickSearch(value) {
+function quickSearch(foodValue) {
   const foodInput = document.getElementById("food");
-  if (foodInput) {
-    foodInput.value = value;
-  }
+  if (foodInput) foodInput.value = foodValue;
   findFood();
 }
 
 function showLoading(message = "Loading your options...") {
   const results = document.getElementById("results");
+  if (!results) return;
+
   results.innerHTML = `
     <div class="loading-box">
-      <div class="big">⏳ ${message}</div>
-      <div class="small">Finding good restaurant options near you</div>
+      <div class="big">⏳ ${escapeHtml(message)}</div>
+      <div class="small">Finding restaurant options for you...</div>
     </div>
   `;
 }
 
 function showError(message) {
   const results = document.getElementById("results");
-  results.innerHTML = `<div class="error-box">${message}</div>`;
+  if (!results) return;
+  results.innerHTML = `<div class="error-box">${escapeHtml(message)}</div>`;
 }
 
+// ------------------------------
+// LEAD PLACEHOLDERS
+// ------------------------------
 function fakeLeadCapture() {
-  const email = document.getElementById("leadEmail");
-  const leadMessage = document.getElementById("leadMessage");
+  const emailInput = document.getElementById("leadEmail");
+  const msg = document.getElementById("leadMessage");
 
-  if (!email || !leadMessage) return;
+  if (!emailInput || !msg) return;
 
-  if (!email.value.trim()) {
-    leadMessage.textContent = "Please enter an email address.";
+  const email = emailInput.value.trim();
+  if (!email) {
+    msg.textContent = "Please enter an email address.";
     return;
   }
 
-  leadMessage.textContent = `Saved placeholder signup for ${email.value.trim()}. Connect this to your real email system later.`;
-  email.value = "";
+  msg.textContent = `Saved placeholder signup for ${email}. Connect this to your real email system later.`;
+  emailInput.value = "";
 }
 
-// -------------------------
-// Time helpers
-// -------------------------
+function fakeOwnerLead() {
+  const ownerName = document.getElementById("ownerName");
+  const ownerEmail = document.getElementById("ownerEmail");
+  const msg = document.getElementById("ownerLeadMessage");
+
+  if (!ownerName || !ownerEmail || !msg) return;
+
+  const name = ownerName.value.trim();
+  const email = ownerEmail.value.trim();
+
+  if (!name || !email) {
+    msg.textContent = "Please enter restaurant name and email.";
+    return;
+  }
+
+  msg.textContent = `Saved placeholder lead for ${name}. Connect this form to your real lead system later.`;
+  ownerName.value = "";
+  ownerEmail.value = "";
+}
+
+// ------------------------------
+// TIME HELPERS
+// ------------------------------
 function getTimeContext() {
   const hour = new Date().getHours();
 
@@ -161,45 +214,87 @@ function getTimeLabel() {
   return "🌙 Late-night suggestions";
 }
 
-// -------------------------
-// Intelligence / scoring
-// -------------------------
+// ------------------------------
+// URL HELPERS
+// ------------------------------
+function buildGoogleSearchUrl(name, location) {
+  const q = [name, location].filter(Boolean).join(" ");
+  return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+}
+
+function buildGoogleMapsUrl(name, location) {
+  const q = [name, location].filter(Boolean).join(" ");
+  return `https://www.google.com/maps/search/${encodeURIComponent(q)}`;
+}
+
+// ------------------------------
+// NORMALIZE RESTAURANT DATA
+// ------------------------------
+function normalizeRestaurant(raw, fallbackLocation = "") {
+  const restaurant = {
+    name: raw?.name || "Restaurant",
+    type: raw?.type || raw?.cuisine || "Restaurant",
+    rating: raw?.rating || "No rating",
+    why: raw?.why || "A strong option based on your search.",
+    address: raw?.address || "",
+    phone: raw?.phone || "",
+    website: raw?.website || "",
+    price: raw?.price || "",
+    location: fallbackLocation || raw?.location || "",
+    detailsUrl: raw?.detailsUrl || "",
+    mapsUrl: raw?.mapsUrl || ""
+  };
+
+  if (!restaurant.detailsUrl) {
+    restaurant.detailsUrl = buildGoogleSearchUrl(
+      restaurant.name,
+      restaurant.location || restaurant.address
+    );
+  }
+
+  if (!restaurant.mapsUrl) {
+    restaurant.mapsUrl = buildGoogleMapsUrl(
+      restaurant.name,
+      restaurant.location || restaurant.address
+    );
+  }
+
+  return restaurant;
+}
+
+// ------------------------------
+// SCORING
+// ------------------------------
 function scoreRestaurant(r) {
   let score = 0;
 
-  const name = (r.name || "").toLowerCase();
-  const type = (r.type || "").toLowerCase();
-  const why = (r.why || "").toLowerCase();
-  const text = `${name} ${type} ${why}`;
+  const rating = parseFloat(String(r.rating).replace(/[^\d.]/g, ""));
+  if (!Number.isNaN(rating)) score += rating * 2;
 
-  const rating = parseFloat(r.rating);
-  if (!isNaN(rating)) score += rating * 2;
+  const text = [
+    r.name,
+    r.type,
+    r.why,
+    r.address,
+    r.price
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
 
-  if (
-    state.mood === "cheap" &&
-    (text.includes("cheap") || text.includes("value") || text.includes("budget"))
-  ) {
+  if (state.mood === "cheap" && (text.includes("cheap") || text.includes("budget") || text.includes("value") || text.includes("$"))) {
     score += 4;
   }
 
-  if (
-    state.mood === "date" &&
-    (text.includes("romantic") || text.includes("cozy") || text.includes("fine") || text.includes("date"))
-  ) {
+  if (state.mood === "date" && (text.includes("date") || text.includes("romantic") || text.includes("cozy") || text.includes("steak") || text.includes("italian"))) {
     score += 4;
   }
 
-  if (
-    state.mood === "fast" &&
-    (text.includes("fast") || text.includes("quick") || text.includes("grab"))
-  ) {
+  if (state.mood === "fast" && (text.includes("fast") || text.includes("quick") || text.includes("grab") || text.includes("takeout"))) {
     score += 4;
   }
 
-  if (
-    state.mood === "healthy" &&
-    (text.includes("healthy") || text.includes("fresh") || text.includes("salad"))
-  ) {
+  if (state.mood === "healthy" && (text.includes("healthy") || text.includes("fresh") || text.includes("salad") || text.includes("grill"))) {
     score += 4;
   }
 
@@ -213,92 +308,23 @@ function scoreRestaurant(r) {
     score += 2;
   }
 
-  if (time === "evening" && (text.includes("dinner") || text.includes("restaurant") || text.includes("steak") || text.includes("italian"))) {
+  if (time === "evening" && (text.includes("dinner") || text.includes("steak") || text.includes("italian") || text.includes("restaurant"))) {
     score += 2;
   }
 
-  if (time === "late night" && (text.includes("late") || text.includes("snack") || text.includes("burger") || text.includes("taco"))) {
+  if (time === "late night" && (text.includes("late") || text.includes("burger") || text.includes("taco") || text.includes("pizza"))) {
     score += 2;
   }
-
-  if (isNaN(rating)) score += 0.5;
 
   return score;
 }
 
-// -------------------------
-// Result action helpers
-// -------------------------
-function buildGoogleSearchUrl(name, location) {
-  const q = [name, location].filter(Boolean).join(" ");
-  return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
-}
-
-function buildGoogleMapsUrl(name, location) {
-  const q = [name, location].filter(Boolean).join(" ");
-  return `https://www.google.com/maps/search/${encodeURIComponent(q)}`;
-}
-
-function normalizeRestaurant(r, location) {
-  return {
-    name: r.name || "Restaurant",
-    type: r.type || "Restaurant",
-    rating: r.rating || "No rating",
-    why: r.why || "A strong option based on your search.",
-    website: r.website || "",
-    phone: r.phone || "",
-    address: r.address || "",
-    mapsUrl: r.mapsUrl || buildGoogleMapsUrl(r.name || "restaurant", location),
-    detailsUrl: r.detailsUrl || buildGoogleSearchUrl(r.name || "restaurant", location),
-    location: location || ""
-  };
-}
-
-// -------------------------
-// Favorites rendering
-// -------------------------
-function renderFavorites() {
-  const wrap = document.getElementById("favoritesList");
-  if (!wrap) return;
-
-  if (!state.favorites.length) {
-    wrap.innerHTML = `<div class="empty-mini">No favorites saved yet.</div>`;
-    return;
-  }
-
-  wrap.innerHTML = state.favorites.map(r => {
-    const key = getFavoriteKey(r);
-    return `
-      <article class="favorite-card">
-        <h3 class="favorite-name">${r.name}</h3>
-        <div class="favorite-meta">
-          <span>🍴 ${r.type || "Restaurant"}</span>
-          <span>⭐ ${r.rating || "No rating"}</span>
-        </div>
-        <p class="favorite-why">${r.why || ""}</p>
-        <div class="card-actions">
-          <a class="card-action primary" href="${r.detailsUrl}" target="_blank" rel="noopener noreferrer">View details</a>
-          <a class="card-action" href="${r.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
-          ${r.website ? `<a class="card-action" href="${r.website}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
-          <button class="favorite-btn" type="button" onclick="removeFavoriteByKey('${escapeForJs(key)}')">Remove</button>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
-
-function escapeForJs(value) {
-  return String(value).replace(/'/g, "\\'");
-}
-
-// -------------------------
-// API calls
-// -------------------------
+// ------------------------------
+// SEARCH ACTIONS
+// ------------------------------
 async function findFood() {
-  setMode("search");
-
-  const food = document.getElementById("food").value.trim();
-  const location = document.getElementById("location").value.trim();
+  const food = (document.getElementById("food")?.value || "").trim();
+  const location = (document.getElementById("location")?.value || "").trim();
 
   if (!food && !location) {
     showError("Please enter a food or a location.");
@@ -306,17 +332,25 @@ async function findFood() {
     return;
   }
 
+  state.lastSearch = {
+    food,
+    location,
+    mode: "search"
+  };
+
+  showLoading("Searching for restaurants");
   setStatus("Searching...");
-  showLoading("Searching for food");
 
   try {
+    const query = buildSearchPrompt(food, false);
+
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        query: `(${getTimeContext()}) ${state.mood ? state.mood + " style " : ""}food for: ${food || "something good"}`,
+        query,
         location: location || "near me"
       })
     });
@@ -326,32 +360,38 @@ async function findFood() {
     }
 
     const data = await response.json();
-    renderResults(data, food ? `Best matches for "${food}"` : "Best matches", location);
-    setStatus(`Done${state.mood ? " • Mood: " + labelMood(state.mood) : ""}`);
+    renderResults(data, food ? `Best matches for "${food}"` : "Top restaurant matches", location);
+    setStatus("Results ready");
   } catch (err) {
     console.error(err);
-    showError("Something went wrong getting restaurant results. Try again.");
+    showError("Error getting results. Try again.");
     setStatus("Search failed");
   }
 }
 
 async function whatShouldIEat() {
-  setMode("decision");
+  const food = (document.getElementById("food")?.value || "").trim();
+  const location = (document.getElementById("location")?.value || "").trim();
 
-  const location = document.getElementById("location").value.trim();
-  const food = document.getElementById("food").value.trim();
+  state.lastSearch = {
+    food,
+    location,
+    mode: "decision"
+  };
 
+  showLoading("Deciding what you should eat tonight");
   setStatus("Thinking...");
-  showLoading("Deciding what you should eat right now");
 
   try {
+    const query = buildSearchPrompt(food, true);
+
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        query: `(${getTimeContext()}) Pick the 5 best restaurant options right now. ${state.mood ? "Lean " + state.mood + ". " : ""}${food ? "The user may want " + food + ". " : ""}Focus on strong choices, value, and variety.`,
+        query,
         location: location || "near me"
       })
     });
@@ -362,96 +402,160 @@ async function whatShouldIEat() {
 
     const data = await response.json();
     renderResults(data, "Top picks right now", location);
-    setStatus(`Decision ready${state.mood ? " • Mood: " + labelMood(state.mood) : ""}`);
+    setStatus("Top picks ready");
   } catch (err) {
     console.error(err);
     showError("Could not generate food suggestions. Try again.");
-    setStatus("Decision failed");
+    setStatus("Suggestion failed");
   }
 }
 
-// -------------------------
-// Rendering
-// -------------------------
+function buildSearchPrompt(food, decisionMode = false) {
+  const time = getTimeContext();
+  const moodPart = state.mood ? `${labelMood(state.mood)} mood. ` : "";
+  const foodPart = food ? `Food request: ${food}. ` : "";
+  const decisionPart = decisionMode
+    ? "Pick the best restaurant choices right now. Focus on strong local options."
+    : "Find strong restaurant matches.";
+
+  return `Time of day: ${time}. ${moodPart}${foodPart}${decisionPart}`;
+}
+
+// ------------------------------
+// RESULTS RENDERING
+// ------------------------------
 function renderResults(data, title, location = "") {
   const results = document.getElementById("results");
+  if (!results) return;
 
-  if (!data || !data.restaurants || data.restaurants.length === 0) {
+  if (!data || !Array.isArray(data.restaurants) || data.restaurants.length === 0) {
+    state.lastResults = [];
     results.innerHTML = `
       <div class="empty-state">
-        <h2>No results found</h2>
+        <h3>No results found</h3>
         <p>Try another food, mood, or location.</p>
       </div>
     `;
     return;
   }
 
-  const list = data.restaurants
-    .slice()
+  const normalized = data.restaurants
+    .map(item => normalizeRestaurant(item, location))
     .sort((a, b) => scoreRestaurant(b) - scoreRestaurant(a))
-    .slice(0, 5)
-    .map(r => normalizeRestaurant(r, location));
+    .slice(0, 8);
+
+  state.lastResults = normalized;
 
   results.innerHTML = `
     <div class="results-header">
-      <h2>${title}</h2>
-      <p>${getTimeLabel()}${state.mood ? ` • Mood: ${labelMood(state.mood)}` : ""}</p>
+      <h3>${escapeHtml(title)}</h3>
+      <p>${escapeHtml(getTimeLabel())}${state.mood ? ` • Mood: ${escapeHtml(labelMood(state.mood))}` : ""}</p>
     </div>
 
     <div class="results-list">
-      ${list.map((r, i) => {
-        const isTop = i === 0;
-        const favorite = isFavorite(r);
-
-        return `
-          <article class="card ${isTop ? "top-pick" : ""}">
-            <div class="card-rank">
-              ${isTop ? "🔥 Top Pick" : `#${i + 1}`}
-            </div>
-
-            <h3 class="card-name">${r.name}</h3>
-
-            <div class="card-meta">
-              <span>🍴 ${r.type}</span>
-              <span>⭐ ${r.rating}</span>
-            </div>
-
-            <p class="card-why">${r.why}</p>
-
-            <div class="card-actions">
-              <a class="card-action primary" href="${r.detailsUrl}" target="_blank" rel="noopener noreferrer">View details</a>
-              <a class="card-action" href="${r.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
-              ${r.website ? `<a class="card-action" href="${r.website}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
-              ${r.phone ? `<a class="card-action" href="tel:${r.phone}">Call</a>` : ""}
-              <button
-                class="favorite-btn ${favorite ? "saved" : ""}"
-                type="button"
-                onclick='toggleFavorite(${JSON.stringify(r).replace(/'/g, "&apos;")})'
-              >
-                ${favorite ? "Saved ❤️" : "Save ❤️"}
-              </button>
-            </div>
-          </article>
-        `;
-      }).join("")}
+      ${normalized.map((restaurant, index) => renderRestaurantCard(restaurant, index)).join("")}
     </div>
   `;
 }
 
-function toggleFavorite(rawRestaurant) {
-  const restaurant = typeof rawRestaurant === "string"
-    ? JSON.parse(rawRestaurant)
-    : rawRestaurant;
+function renderRestaurantCard(restaurant, index) {
+  const topPick = index === 0;
+  const saved = isFavorite(restaurant);
 
-  if (isFavorite(restaurant)) {
-    removeFavoriteByKey(getFavoriteKey(restaurant));
-  } else {
-    addFavorite(restaurant);
+  const extraBits = [
+    restaurant.price ? `<div>💵 ${escapeHtml(restaurant.price)}</div>` : "",
+    restaurant.address ? `<div>📍 ${escapeHtml(restaurant.address)}</div>` : "",
+    restaurant.phone ? `<div>📞 ${escapeHtml(restaurant.phone)}</div>` : ""
+  ].filter(Boolean).join("");
+
+  return `
+    <article class="card ${topPick ? "top-pick" : ""}">
+      <div class="card-rank">${topPick ? "🔥 Top Pick" : `#${index + 1}`}</div>
+
+      <h3 class="card-name">${escapeHtml(restaurant.name)}</h3>
+
+      <div class="card-meta">
+        <span>🍴 ${escapeHtml(restaurant.type || "Restaurant")}</span>
+        <span>⭐ ${escapeHtml(String(restaurant.rating || "No rating"))}</span>
+      </div>
+
+      <p class="card-why">${escapeHtml(restaurant.why || "")}</p>
+
+      ${extraBits ? `<div class="card-extra">${extraBits}</div>` : ""}
+
+      <div class="card-actions">
+        <a class="card-action primary" href="${restaurant.detailsUrl}" target="_blank" rel="noopener noreferrer">View Details</a>
+        <a class="card-action" href="${restaurant.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
+        ${restaurant.website ? `<a class="card-action" href="${escapeHtml(restaurant.website)}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
+        <button
+          class="favorite-btn ${saved ? "saved" : ""}"
+          type="button"
+          data-favorite-index="${index}"
+          onclick="toggleFavoriteByIndex(${index})"
+        >
+          ${saved ? "Saved ❤️" : "Save ❤️"}
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+// ------------------------------
+// FAVORITES RENDERING
+// ------------------------------
+function renderFavorites() {
+  const wrap = document.getElementById("favoritesList");
+  if (!wrap) return;
+
+  if (!state.favorites.length) {
+    wrap.innerHTML = `<div class="empty-mini">No favorites saved yet.</div>`;
+    return;
   }
 
-  // refresh save buttons if current results are showing
-  const results = document.getElementById("results");
-  if (results && results.innerHTML.trim()) {
-    // no-op unless user searches again; favorites panel updates immediately
-  }
+  wrap.innerHTML = state.favorites.map(item => {
+    const key = favoriteKey(item);
+
+    const extraBits = [
+      item.price ? `<div>💵 ${escapeHtml(item.price)}</div>` : "",
+      item.address ? `<div>📍 ${escapeHtml(item.address)}</div>` : "",
+      item.phone ? `<div>📞 ${escapeHtml(item.phone)}</div>` : ""
+    ].filter(Boolean).join("");
+
+    return `
+      <article class="favorite-card">
+        <h3 class="favorite-name">${escapeHtml(item.name || "Restaurant")}</h3>
+
+        <div class="favorite-meta">
+          <span>🍴 ${escapeHtml(item.type || "Restaurant")}</span>
+          <span>⭐ ${escapeHtml(String(item.rating || "No rating"))}</span>
+        </div>
+
+        <p class="favorite-why">${escapeHtml(item.why || "")}</p>
+
+        ${extraBits ? `<div class="favorite-extra">${extraBits}</div>` : ""}
+
+        <div class="card-actions">
+          <a class="card-action primary" href="${item.detailsUrl}" target="_blank" rel="noopener noreferrer">View Details</a>
+          <a class="card-action" href="${item.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
+          ${item.website ? `<a class="card-action" href="${escapeHtml(item.website)}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
+          <button class="favorite-btn" type="button" onclick="removeFavoriteByKey('${escapeHtml(key)}')">Remove</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+// ------------------------------
+// FAVORITE BUTTON REFRESH
+// ------------------------------
+function refreshVisibleFavoriteButtons() {
+  document.querySelectorAll("[data-favorite-index]").forEach(btn => {
+    const index = Number(btn.getAttribute("data-favorite-index"));
+    const restaurant = state.lastResults[index];
+    if (!restaurant) return;
+
+    const saved = isFavorite(restaurant);
+    btn.classList.toggle("saved", saved);
+    btn.textContent = saved ? "Saved ❤️" : "Save ❤️";
+  });
 }
