@@ -44,7 +44,7 @@ function setStatus(msg) {
 // SEO QUERY ENGINE
 // --------------------
 function buildSEOQuery(food, location) {
-  return `best ${food || "food"} in ${location || "my area"} near me top rated restaurants open now`;
+  return `${food || "food"} restaurants ${location || "near me"} ratings reviews open now`;
 }
 
 // --------------------
@@ -67,11 +67,14 @@ async function findFood() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         query: buildSEOQuery(food, location),
-        location: location || "near me"
+        location: location || "near me",
+        mode: state.mode
       })
     });
 
     const data = await res.json();
+
+    console.log("API RESPONSE:", data);
 
     render(data, food, location);
     setStatus("Results loaded");
@@ -88,13 +91,12 @@ async function findFood() {
 function render(data, food, location) {
   const el = document.getElementById("results");
 
-  if (!data?.restaurants?.length) {
-    el.innerHTML = "<p>No results found</p>";
+  if (!data || !data.restaurants || data.restaurants.length === 0) {
+    el.innerHTML = "No results found";
     return;
   }
 
   const list = data.restaurants.slice(0, 6);
-
   state.lastResults = list;
 
   el.innerHTML = `
@@ -102,9 +104,9 @@ function render(data, food, location) {
 
     ${list.map((r, i) => `
       <div class="card ${i === 0 ? "top" : ""}">
-        <h3>${i === 0 ? "🔥 " : ""}${r.name}</h3>
-        <p>🍴 ${r.type || ""}</p>
-        <p>⭐ ${r.rating || ""}</p>
+        <h3>${i === 0 ? "🔥 " : ""}${r.name || "Unknown"}</h3>
+        <p>🍴 ${r.type || "Restaurant"}</p>
+        <p>⭐ ${r.rating || "N/A"}</p>
         <p>${r.why || ""}</p>
       </div>
     `).join("")}
@@ -128,72 +130,4 @@ function quickSearch(food) {
   document.getElementById("food").value = food;
   findFood();
 }
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("searchInput");
-  const searchBtn = document.getElementById("searchBtn");
-  const resultsDiv = document.getElementById("results");
 
-  searchBtn.addEventListener("click", () => {
-    runSearch();
-  });
-
-  searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      runSearch();
-    }
-  });
-
-  async function runSearch() {
-    const query = searchInput.value.trim();
-
-    if (!query) {
-      resultsDiv.innerHTML = `<p>Please type something like "pizza near me".</p>`;
-      return;
-    }
-
-    resultsDiv.innerHTML = `<p>Searching...</p>`;
-
-    try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          mode: state.mode,
-          query: query
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error("API error");
-      }
-
-      const data = await response.json();
-
-      state.lastResults = data.results || [];
-      renderResults(state.lastResults);
-
-    } catch (err) {
-      console.error(err);
-      resultsDiv.innerHTML = `<p>Something went wrong. Try again.</p>`;
-    }
-  }
-
-  function renderResults(results) {
-    if (!results || results.length === 0) {
-      resultsDiv.innerHTML = `<p>No results found.</p>`;
-      return;
-    }
-
-    resultsDiv.innerHTML = results.map((r) => {
-      return `
-        <div class="card">
-          <h3>${r.name || "Unknown"}</h3>
-          <p>${r.description || "No description available."}</p>
-          <p><strong>Rating:</strong> ${r.rating || "N/A"}</p>
-        </div>
-      `;
-    }).join("");
-  }
-});
