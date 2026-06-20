@@ -3,38 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Restaurant AI Bot</title>
+  <title>Restaurant AI Bot | Find the Best Place to Eat Fast</title>
+  <meta
+    name="description"
+    content="Find the best places to eat fast with Restaurant AI Bot. Search by craving, mood, and location or let the bot pick your best food options."
+  />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
   <main class="app-shell">
+
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">Restaurant AI Bot</p>
-        <h1>Find a good place to eat fast.</h1>
+        <h1>Find a good place to eat without wasting time.</h1>
         <p class="subtext">
-          Search by craving, mood, and location — or let the bot pick dinner for you.
+          Search by craving, mood, and location — or let the bot choose your best food options right now.
         </p>
+
+        <div class="hero-badges">
+          <span>🍕 Fast food search</span>
+          <span>📍 Local restaurant ideas</span>
+          <span>🤖 AI top picks</span>
+        </div>
       </div>
     </section>
 
+    <!-- SEARCH APP -->
     <section class="search-panel">
-      <div class="field-group">
-        <label for="food">What do you want?</label>
-        <input
-          id="food"
-          type="text"
-          placeholder="pizza, sushi, burgers, tacos..."
-        />
+      <div class="panel-head">
+        <h2>Find food fast</h2>
+        <p>Type what you want, choose a mood, and get ranked restaurant picks.</p>
       </div>
 
-      <div class="field-group">
-        <label for="location">Location</label>
-        <input
-          id="location"
-          type="text"
-          placeholder="city or ZIP"
-        />
+      <div class="field-grid">
+        <div class="field-group">
+          <label for="food">What are you craving?</label>
+          <input
+            id="food"
+            type="text"
+            placeholder="pizza, sushi, burgers, tacos..."
+          />
+        </div>
+
+        <div class="field-group">
+          <label for="location">Location</label>
+          <input
+            id="location"
+            type="text"
+            placeholder="city or ZIP"
+          />
+        </div>
       </div>
 
       <div class="section-label">Quick picks</div>
@@ -43,6 +63,8 @@
         <button type="button" onclick="quickSearch('burger')">🍔 Burgers</button>
         <button type="button" onclick="quickSearch('sushi')">🍣 Sushi</button>
         <button type="button" onclick="quickSearch('tacos')">🌮 Tacos</button>
+        <button type="button" onclick="quickSearch('bbq')">🔥 BBQ</button>
+        <button type="button" onclick="quickSearch('breakfast')">🥞 Breakfast</button>
       </div>
 
       <div class="section-label">Mood</div>
@@ -61,6 +83,7 @@
       <div id="statusBar" class="status-bar">Ready</div>
     </section>
 
+    <!-- RESULTS -->
     <section class="results-panel">
       <div id="results">
         <div class="empty-state">
@@ -69,6 +92,77 @@
         </div>
       </div>
     </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="info-panel">
+      <div class="panel-head">
+        <h2>How it works</h2>
+        <p>Restaurant AI Bot helps you decide faster without bouncing between ten tabs.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">1</div>
+          <h3>Tell it what you want</h3>
+          <p>Search by craving, food type, or restaurant mood like cheap, fast, healthy, or date night.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">2</div>
+          <h3>Get ranked restaurant ideas</h3>
+          <p>The app sorts options by rating, time of day, and your mood so the best pick rises to the top.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">3</div>
+          <h3>Take action fast</h3>
+          <p>Use quick buttons to call, get directions, or visit the restaurant website when those details are available.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHY USE IT -->
+    <section class="info-panel">
+      <div class="panel-head">
+        <h2>Why use Restaurant AI Bot?</h2>
+        <p>It’s built to help people make a food decision fast, not get lost in endless search results.</p>
+      </div>
+
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <strong>Faster decisions</strong>
+          <span>Less scrolling. More eating.</span>
+        </div>
+        <div class="benefit-item">
+          <strong>Better top picks</strong>
+          <span>Results are ranked for time of day and mood, not just dumped on the page.</span>
+        </div>
+        <div class="benefit-item">
+          <strong>Built for local expansion</strong>
+          <span>Ready for “best pizza near me,” city pages, and future sponsored listings.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD CAPTURE / FUTURE MONETIZATION -->
+    <section class="cta-panel">
+      <div class="cta-copy">
+        <h2>Get local food ideas later</h2>
+        <p>
+          This spot is ready for an email signup, “save my favorites,” weekly food ideas, or city-based restaurant guides.
+        </p>
+      </div>
+
+      <form class="lead-form" onsubmit="event.preventDefault(); fakeLeadCapture();">
+        <input id="leadEmail" type="email" placeholder="Email address" />
+        <button type="submit" class="primary-btn">Notify Me</button>
+      </form>
+
+      <p class="small-note" id="leadMessage">
+        Placeholder for future email capture or “save my restaurant picks” feature.
+      </p>
+    </section>
+
   </main>
 
   <script src="/js/app.js"></script>
