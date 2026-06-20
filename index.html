@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Restaurant AI Bot | Find the Best Place to Eat Fast</title>
+  <title>Restaurant AI Bot | Find the Best Local Restaurants Fast</title>
   <meta
     name="description"
-    content="Find the best places to eat fast with Restaurant AI Bot. Search by craving, mood, and location or let the bot pick your best food options."
+    content="Find the best local restaurants fast with Restaurant AI Bot. Search by craving, mood, and location, save favorites, and discover top food ideas near you."
   />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
@@ -17,15 +17,16 @@
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">Restaurant AI Bot</p>
-        <h1>Find a good place to eat without wasting time.</h1>
+        <h1>Find a good place to eat without wasting half the night deciding.</h1>
         <p class="subtext">
-          Search by craving, mood, and location — or let the bot choose your best food options right now.
+          Search by craving, mood, and location — save favorites, get top picks, and build a go-to local restaurant list.
         </p>
 
         <div class="hero-badges">
           <span>🍕 Fast food search</span>
           <span>📍 Local restaurant ideas</span>
           <span>🤖 AI top picks</span>
+          <span>❤️ Save favorites</span>
         </div>
       </div>
     </section>
@@ -65,6 +66,8 @@
         <button type="button" onclick="quickSearch('tacos')">🌮 Tacos</button>
         <button type="button" onclick="quickSearch('bbq')">🔥 BBQ</button>
         <button type="button" onclick="quickSearch('breakfast')">🥞 Breakfast</button>
+        <button type="button" onclick="quickSearch('seafood')">🦐 Seafood</button>
+        <button type="button" onclick="quickSearch('steak')">🥩 Steak</button>
       </div>
 
       <div class="section-label">Mood</div>
@@ -93,6 +96,22 @@
       </div>
     </section>
 
+    <!-- FAVORITES -->
+    <section class="favorites-panel">
+      <div class="panel-head">
+        <h2>Saved favorites</h2>
+        <p>Save restaurants you want to remember and build your own short list.</p>
+      </div>
+
+      <div id="favoritesList" class="favorites-list">
+        <div class="empty-mini">No favorites saved yet.</div>
+      </div>
+
+      <div class="action-row favorites-actions">
+        <button class="secondary-btn" type="button" onclick="clearFavorites()">Clear Favorites</button>
+      </div>
+    </section>
+
     <!-- HOW IT WORKS -->
     <section class="info-panel">
       <div class="panel-head">
@@ -115,8 +134,8 @@
 
         <article class="feature-card">
           <div class="feature-icon">3</div>
-          <h3>Take action fast</h3>
-          <p>Use quick buttons to call, get directions, or visit the restaurant website when those details are available.</p>
+          <h3>Save the good ones</h3>
+          <p>Keep a favorites list so you can come back later instead of starting over every time.</p>
         </article>
       </div>
     </section>
@@ -125,7 +144,7 @@
     <section class="info-panel">
       <div class="panel-head">
         <h2>Why use Restaurant AI Bot?</h2>
-        <p>It’s built to help people make a food decision fast, not get lost in endless search results.</p>
+        <p>It’s built to help people make a food decision fast, not get buried in endless restaurant lists.</p>
       </div>
 
       <div class="benefit-list">
@@ -138,18 +157,105 @@
           <span>Results are ranked for time of day and mood, not just dumped on the page.</span>
         </div>
         <div class="benefit-item">
-          <strong>Built for local expansion</strong>
-          <span>Ready for “best pizza near me,” city pages, and future sponsored listings.</span>
+          <strong>Save your own shortlist</strong>
+          <span>Build a personal list of restaurants worth revisiting.</span>
         </div>
       </div>
     </section>
 
-    <!-- LEAD CAPTURE / FUTURE MONETIZATION -->
+    <!-- POPULAR SEARCHES / LOCAL SEO FOUNDATION -->
+    <section class="info-panel">
+      <div class="panel-head">
+        <h2>Popular restaurant searches</h2>
+        <p>This section doubles as homepage content and future local SEO expansion.</p>
+      </div>
+
+      <div class="popular-grid">
+        <button class="popular-card" type="button" onclick="quickSearch('best pizza')">
+          <strong>Best Pizza Near Me</strong>
+          <span>Find top pizza spots fast.</span>
+        </button>
+
+        <button class="popular-card" type="button" onclick="quickSearch('cheap eats')">
+          <strong>Cheap Eats Near Me</strong>
+          <span>Budget-friendly picks for tonight.</span>
+        </button>
+
+        <button class="popular-card" type="button" onclick="quickSearch('date night restaurant')">
+          <strong>Date Night Restaurants</strong>
+          <span>Places that feel a little more special.</span>
+        </button>
+
+        <button class="popular-card" type="button" onclick="quickSearch('breakfast')">
+          <strong>Best Breakfast Near Me</strong>
+          <span>Morning food, coffee, and easy starts.</span>
+        </button>
+
+        <button class="popular-card" type="button" onclick="quickSearch('late night food')">
+          <strong>Late Night Food</strong>
+          <span>For when dinner turns into a 9 PM decision.</span>
+        </button>
+
+        <button class="popular-card" type="button" onclick="quickSearch('healthy lunch')">
+          <strong>Healthy Lunch Spots</strong>
+          <span>Fresh, lighter options for lunch.</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- CITY PAGE / LOCAL LANDING IDEAS -->
+    <section class="info-panel">
+      <div class="panel-head">
+        <h2>Future city restaurant guides</h2>
+        <p>These are starter categories for future location pages and traffic pages.</p>
+      </div>
+
+      <div class="city-grid">
+        <div class="city-card">
+          <h3>Best Pizza in [City]</h3>
+          <p>Build a city page around pizza, neighborhoods, and top picks.</p>
+        </div>
+        <div class="city-card">
+          <h3>Cheap Eats in [City]</h3>
+          <p>Great for value-focused searches and budget dining content.</p>
+        </div>
+        <div class="city-card">
+          <h3>Date Night Restaurants in [City]</h3>
+          <p>Higher-value local intent and strong monetization potential.</p>
+        </div>
+        <div class="city-card">
+          <h3>Best Breakfast in [City]</h3>
+          <p>Morning traffic, weekend traffic, and local guide content.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPONSORED / PARTNER SLOT -->
+    <section class="sponsor-panel">
+      <div class="panel-head">
+        <h2>Featured local spot</h2>
+        <p>This block is ready for future restaurant sponsorships, featured listings, or affiliate partnerships.</p>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="sponsor-badge">Featured Placement</div>
+        <h3>Your Restaurant Here</h3>
+        <p>
+          Later, this can be sold to local restaurants as a premium placement or “featured local favorite” spot.
+        </p>
+        <div class="card-actions">
+          <a href="#" class="card-action primary" onclick="return false;">Feature Demo</a>
+          <a href="#" class="card-action" onclick="return false;">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMAIL / RETENTION CTA -->
     <section class="cta-panel">
       <div class="cta-copy">
         <h2>Get local food ideas later</h2>
         <p>
-          This spot is ready for an email signup, “save my favorites,” weekly food ideas, or city-based restaurant guides.
+          This is the spot for future email signup, local restaurant alerts, city guides, “best pizza this week,” or saved picks.
         </p>
       </div>
 
@@ -159,7 +265,7 @@
       </form>
 
       <p class="small-note" id="leadMessage">
-        Placeholder for future email capture or “save my restaurant picks” feature.
+        Placeholder for future email capture, favorites sync, or weekly local restaurant picks.
       </p>
     </section>
 
