@@ -8,11 +8,18 @@ function renderResults(data, title) {
 
   const list = data.restaurants.slice(0, 5);
 
+  let timeLabel = "";
+  try {
+    timeLabel = getTimeLabel ? getTimeLabel() : "";
+  } catch (e) {
+    timeLabel = "";
+  }
+
   results.innerHTML = `
     <div style="margin-bottom:12px;">
       <h2 style="margin:0;">${title}</h2>
       <p style="opacity:0.7; font-size:13px;">
-        ${getTimeLabel()}
+        ${timeLabel}
       </p>
     </div>
   ` + list.map((r, i) => {
