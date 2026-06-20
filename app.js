@@ -7,7 +7,7 @@ async function findFood() {
 
   try {
     // 🔥 YOUR API GOES HERE (replace URL below)
-    const response = await fetch", {
+    const response = await fetch("https://restaurant-ai-api.wholelychit.workers.dev", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
