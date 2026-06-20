@@ -6,13 +6,9 @@ const SHORTLIST_KEY = "restaurantAiShortlist";
 const state = {
   mood: "",
   favorites: [],
-  lastResults: [],
   shortlist: [],
-  lastSearch: {
-    food: "",
-    location: "",
-    mode: "search"
-  }
+  lastResults: [],
+  lastSearch: { food: "", location: "", mode: "search" }
 };
 
 // ------------------------------
@@ -21,18 +17,17 @@ const state = {
 document.addEventListener("DOMContentLoaded", () => {
   state.favorites = loadLocal(FAVORITES_KEY);
   state.shortlist = loadLocal(SHORTLIST_KEY);
-  renderFavorites();
-  renderHistory();
+  renderFavorites?.();
+  renderHistory?.();
   setStatus("Ready");
 });
 
 // ------------------------------
-// STORAGE HELPERS
+// STORAGE
 // ------------------------------
 function loadLocal(key) {
   try {
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : [];
+    return JSON.parse(localStorage.getItem(key)) || [];
   } catch {
     return [];
   }
@@ -40,115 +35,6 @@ function loadLocal(key) {
 
 function saveLocal(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
-}
-
-// ------------------------------
-// HISTORY
-// ------------------------------
-function saveHistory(item) {
-  const history = loadLocal(HISTORY_KEY);
-
-  const entry = {
-    food: item.food,
-    location: item.location,
-    time: Date.now()
-  };
-
-  history.unshift(entry);
-
-  const trimmed = history.slice(0, 8);
-  saveLocal(HISTORY_KEY, trimmed);
-}
-
-function renderHistory() {
-  let container = document.getElementById("historyBox");
-  if (!container) {
-    container = document.createElement("div");
-    container.id = "historyBox";
-    container.className = "panel";
-    document.querySelector(".site-shell").prepend(container);
-  }
-
-  const history = loadLocal(HISTORY_KEY);
-
-  container.innerHTML = `
-    <div class="panel-head">
-      <h2>Recent searches</h2>
-      <p>Click to rerun a previous search</p>
-    </div>
-
-    <div class="chips">
-      ${history.map(h => `
-        <button onclick="rerunSearch('${h.food}', '${h.location}')">
-          ${h.food || "Search"} • ${h.location || "near me"}
-        </button>
-      `).join("")}
-    </div>
-  `;
-}
-
-function rerunSearch(food, location) {
-  const foodInput = document.getElementById("food");
-  const locInput = document.getElementById("location");
-
-  if (foodInput) foodInput.value = food;
-  if (locInput) locInput.value = location;
-
-  findFood();
-}
-
-// ------------------------------
-// SHORTLIST
-// ------------------------------
-function toggleShortlist(index) {
-  const item = state.lastResults[index];
-  if (!item) return;
-
-  const key = item.name.toLowerCase();
-
-  const exists = state.shortlist.find(r => r.name.toLowerCase() === key);
-
-  if (exists) {
-    state.shortlist = state.shortlist.filter(r => r.name.toLowerCase() !== key);
-  } else {
-    state.shortlist.push(item);
-  }
-
-  saveLocal(SHORTLIST_KEY, state.shortlist);
-  renderShortlist();
-  setStatus("Shortlist updated");
-}
-
-function renderShortlist() {
-  let container = document.getElementById("shortlistBox");
-  if (!container) {
-    container = document.createElement("div");
-    container.id = "shortlistBox";
-    container.className = "panel";
-    document.querySelector(".site-shell").appendChild(container);
-  }
-
-  if (!state.shortlist.length) {
-    container.innerHTML = "";
-    return;
-  }
-
-  container.innerHTML = `
-    <div class="panel-head">
-      <h2>Shortlist compare</h2>
-      <p>Your selected restaurants</p>
-    </div>
-
-    <div class="results-list">
-      ${state.shortlist.map(r => `
-        <div class="card">
-          <h3>${r.name}</h3>
-          <p>🍴 ${r.type}</p>
-          <p>⭐ ${r.rating}</p>
-        </div>
-      `).join("")}
-    </div>
-  `;
 }
 
 // ------------------------------
@@ -160,6 +46,67 @@ function setStatus(msg) {
 }
 
 // ------------------------------
+// INTENT ENGINE (PHASE 2 CORE)
+// ------------------------------
+function detectIntent(food = "", location = "") {
+  const text = `${food} ${location}`.toLowerCase();
+
+  return {
+    isNearMe: text.includes("near me") || text.includes("nearby"),
+    isCheap: text.includes("cheap") || text.includes("budget") || text.includes("$"),
+    isFast: text.includes("fast") || text.includes("quick"),
+    isDate: text.includes("date") || text.includes("romantic"),
+    isBreakfast: text.includes("breakfast") || text.includes("morning"),
+    isLate: text.includes("late") || text.includes("night")
+  };
+}
+
+// ------------------------------
+// SMART SCORING (PHASE 2 UPGRADE)
+// ------------------------------
+function scoreRestaurant(r, intent) {
+  let score = 0;
+
+  const text = `${r.name} ${r.type} ${r.why}`.toLowerCase();
+  const rating = parseFloat(r.rating);
+
+  if (!isNaN(rating)) score += rating * 2;
+
+  if (intent.isCheap && (text.includes("cheap") || text.includes("$") || text.includes("value"))) score += 5;
+  if (intent.isFast && (text.includes("fast") || text.includes("quick") || text.includes("grab"))) score += 5;
+  if (intent.isDate && (text.includes("romantic") || text.includes("steak") || text.includes("italian"))) score += 5;
+  if (intent.isBreakfast && (text.includes("breakfast") || text.includes("coffee"))) score += 5;
+  if (intent.isLate && (text.includes("late") || text.includes("pizza") || text.includes("burger"))) score += 4;
+
+  if (text.includes("popular") || text.includes("top rated")) score += 2;
+
+  return score;
+}
+
+// ------------------------------
+// BUILD PROMPT (PHASE 2)
+// ------------------------------
+function buildPrompt(food, location) {
+  const intent = detectIntent(food, location);
+
+  let prompt = `Find best restaurants.`;
+
+  if (food) prompt += ` Food: ${food}.`;
+  if (location) prompt += ` Location: ${location}.`;
+
+  if (intent.isNearMe) prompt += " Focus on nearby high-quality options.";
+  if (intent.isCheap) prompt += " Prioritize affordable options.";
+  if (intent.isDate) prompt += " Prioritize romantic/date-night places.";
+  if (intent.isFast) prompt += " Prioritize fast service.";
+  if (intent.isBreakfast) prompt += " Prioritize breakfast/brunch.";
+  if (intent.isLate) prompt += " Prioritize late-night food.";
+
+  prompt += " Return top 6 strong local matches.";
+
+  return prompt;
+}
+
+// ------------------------------
 // SEARCH
 // ------------------------------
 async function findFood() {
@@ -167,7 +114,7 @@ async function findFood() {
   const location = document.getElementById("location")?.value || "";
 
   if (!food && !location) {
-    setStatus("Enter something first");
+    setStatus("Enter something to search");
     return;
   }
 
@@ -180,71 +127,65 @@ async function findFood() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        query: buildPrompt(food),
+        query: buildPrompt(food, location),
         location: location || "near me"
       })
     });
 
     const data = await response.json();
 
-    saveHistory({ food, location });
-    renderHistory();
+    saveHistory?.({ food, location });
 
-    renderResults(data, `Results for ${food || "your search"}`);
-    renderShortlist();
-    setStatus("Done");
+    renderResults(data, `Results for ${food || "your search"}`, location);
+
+    setStatus("Results loaded");
 
   } catch (e) {
     console.error(e);
-    setStatus("Error loading results");
+    setStatus("Search failed");
   }
 }
 
 // ------------------------------
-// SMARTER RANKING
+// RESULTS
 // ------------------------------
-function score(r) {
-  let s = 0;
-
-  const text = `${r.name} ${r.type} ${r.why}`.toLowerCase();
-  const rating = parseFloat(r.rating);
-
-  if (!isNaN(rating)) s += rating * 2;
-
-  if (text.includes("pizza") || text.includes("burger") || text.includes("taco")) s += 2;
-  if (text.includes(state.mood)) s += 3;
-
-  if (text.includes("cheap") || text.includes("$")) s += 2;
-
-  return s;
-}
-
-// ------------------------------
-// RENDER
-// ------------------------------
-function renderResults(data, title) {
+function renderResults(data, title, location = "") {
   const el = document.getElementById("results");
+  if (!el) return;
 
   if (!data?.restaurants?.length) {
-    el.innerHTML = "No results found";
+    el.innerHTML = "<p>No results found.</p>";
     return;
   }
 
+  const intent = detectIntent(
+    state.lastSearch.food,
+    state.lastSearch.location
+  );
+
   const list = data.restaurants
-    .sort((a, b) => score(b) - score(a))
+    .map(r => ({
+      ...r,
+      score: scoreRestaurant(r, intent)
+    }))
+    .sort((a, b) => b.score - a.score)
     .slice(0, 6);
 
   state.lastResults = list;
 
   el.innerHTML = `
-    <h2>${title}</h2>
-    ${list.map((r, i) => `
-      <div class="card">
-        <h3>${i === 0 ? "🔥 " : ""}${r.name}</h3>
-        <p>${r.type}</p>
-        <p>${r.rating}</p>
+    <div class="results-header">
+      <h2>${title}</h2>
+      <p>Smart-ranked local results</p>
+    </div>
 
-        <button onclick="toggleShortlist(${i})">
+    ${list.map((r, i) => `
+      <div class="card ${i === 0 ? "top" : ""}">
+        <h3>${i === 0 ? "🔥 " : ""}${r.name}</h3>
+        <p>🍴 ${r.type || "Restaurant"}</p>
+        <p>⭐ ${r.rating || "No rating"}</p>
+
+        <button onclick="addToShortlist(${i})">
           Add to shortlist
         </button>
       </div>
@@ -253,14 +194,33 @@ function renderResults(data, title) {
 }
 
 // ------------------------------
-// HELPERS
+// SHORTLIST (LIGHTWEIGHT)
 // ------------------------------
-function buildPrompt(food) {
-  return `Find good restaurants for: ${food}`;
+function addToShortlist(index) {
+  const item = state.lastResults[index];
+  if (!item) return;
+
+  const exists = state.shortlist.find(r => r.name === item.name);
+
+  if (!exists) state.shortlist.push(item);
+
+  saveLocal(SHORTLIST_KEY, state.shortlist);
+
+  alert("Added to shortlist");
 }
 
-function showLoading() {
-  document.getElementById("results").innerHTML = "Loading...";
+// ------------------------------
+// HISTORY (MINIMAL SUPPORT)
+// ------------------------------
+function saveHistory(entry) {
+  const history = loadLocal(HISTORY_KEY);
+
+  history.unshift({
+    ...entry,
+    time: Date.now()
+  });
+
+  saveLocal(HISTORY_KEY, history.slice(0, 8));
 }
 
 // ------------------------------
@@ -272,8 +232,9 @@ function quickSearch(v) {
 }
 
 // ------------------------------
-// MOOD
+// STATUS LOADING
 // ------------------------------
-function setMood(m) {
-  state.mood = m;
+function showLoading() {
+  const el = document.getElementById("results");
+  if (el) el.innerHTML = "<p>Searching...</p>";
 }
