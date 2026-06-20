@@ -4,24 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Best Food Near You | Restaurant AI Finder</title>
+  <title id="seoTitle">Best Food Near You | AI Restaurant Finder</title>
 
-  <meta name="description" content="Find the best restaurants near you. AI-ranked food results by city and cuisine." />
+  <meta name="description" id="seoDesc" content="Find the best restaurants near you ranked by AI." />
   <meta name="robots" content="index, follow" />
 
   <link rel="stylesheet" href="/css/style.css"/>
-
-  <style>
-    .links a {
-      color: #f97316;
-      text-decoration: none;
-      display: block;
-      margin: 6px 0;
-    }
-    .links a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
 
 <body>
@@ -29,6 +17,7 @@
   <div class="app">
 
     <h1 id="pageTitle">Best Food Near You</h1>
+
     <p id="pageDesc">Discover top-rated restaurants ranked by AI.</p>
 
     <div class="search-box">
@@ -39,20 +28,53 @@
 
     <div id="results"></div>
 
-    <hr />
+    <hr/>
 
-    <h3>Explore Cities</h3>
+    <h3>Explore More Pages</h3>
+
     <div class="links">
-      <a href="/st-louis-pizza.html">St. Louis Pizza</a>
-      <a href="/chicago-pizza.html">Chicago Pizza</a>
-      <a href="/new-york-sushi.html">New York Sushi</a>
-      <a href="/miami-burger.html">Miami Burgers</a>
-      <a href="/austin-tacos.html">Austin Tacos</a>
+      <a href="/seo-engine.html?city=st-louis&food=pizza">St. Louis Pizza</a>
+      <a href="/seo-engine.html?city=chicago&food=pizza">Chicago Pizza</a>
+      <a href="/seo-engine.html?city=new-york&food=sushi">New York Sushi</a>
+      <a href="/seo-engine.html?city=miami&food=burger">Miami Burgers</a>
+      <a href="/seo-engine.html?city=austin&food=tacos">Austin Tacos</a>
     </div>
 
   </div>
 
   <script src="/js/app.js"></script>
+
+  <script>
+    function getParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        city: params.get("city"),
+        food: params.get("food")
+      };
+    }
+
+    function loadSEO() {
+      const { city, food } = getParams();
+
+      if (!city || !food) return;
+
+      const title = `Best ${food} in ${city.replace("-", " ")}`;
+      const desc = `Find the best ${food} in ${city.replace("-", " ")} ranked by AI.`;
+
+      document.getElementById("pageTitle").innerText = title;
+      document.getElementById("pageDesc").innerText = desc;
+
+      document.getElementById("food").value = food;
+      document.getElementById("location").value = city.replace("-", " ");
+
+      document.title = title;
+      document.getElementById("seoDesc").content = desc;
+
+      findFood();
+    }
+
+    window.onload = loadSEO;
+  </script>
 
 </body>
 </html>
