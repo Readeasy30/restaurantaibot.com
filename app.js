@@ -1,7 +1,26 @@
+
+// STATE (simple + stable)
+// =========================
+
+let mood = "";
+
+function setMood(selected) {
+  mood = selected;
+}
+
+// =========================
+// MAIN FUNCTION
+// =========================
+
 async function findFood() {
-  const food = document.getElementById("food").value;
-  const location = document.getElementById("location").value;
+  const food = document.getElementById("food").value.trim();
+  const location = document.getElementById("location").value.trim();
   const results = document.getElementById("results");
+
+  if (!food && !location) {
+    results.innerHTML = "<p>Please enter something first.</p>";
+    return;
+  }
 
   results.innerHTML = "Searching...";
 
@@ -12,8 +31,8 @@ async function findFood() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        query: food,
-        location: location
+        query: `Find ${mood ? mood + " style " : ""}food for: ${food || "any food"}`,
+        location: location || "near me"
       })
     });
 
@@ -31,14 +50,14 @@ async function findFood() {
     results.innerHTML = data.restaurants.map(r => `
       <div class="card">
         <h3>${r.name}</h3>
-        <p>🍴 ${r.type || "Unknown type"}</p>
+        <p>🍴 ${r.type || "Restaurant"}</p>
         <p>⭐ ${r.rating || "No rating"}</p>
         <p>${r.why || ""}</p>
       </div>
     `).join("");
 
   } catch (err) {
-    results.innerHTML = "<p>Error getting results. Try again.</p>";
     console.error(err);
+    results.innerHTML = "<p>Something went wrong. Try again.</p>";
   }
 }
