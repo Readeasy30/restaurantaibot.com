@@ -5,60 +5,57 @@ const state = {
   lastResults: []
 };
 
-// ----------------------
-// INIT
-// ----------------------
 document.addEventListener("DOMContentLoaded", () => {
   renderModeBar();
   setStatus("Ready");
 });
 
-// ----------------------
-// MODE SYSTEM
-// ----------------------
-function setMode(mode) {
-  state.mode = mode;
-
-  if (mode === "explore") quickSearch("pizza");
-  if (mode === "trending") trendingSearch();
-
-  setStatus("Mode: " + mode);
-}
-
+// --------------------
+// MODE BAR
+// --------------------
 function renderModeBar() {
   const el = document.getElementById("modeBar");
 
   el.innerHTML = `
-    <button onclick="setMode('search')">🔎 Search</button>
-    <button onclick="setMode('explore')">🌎 Explore</button>
-    <button onclick="setMode('trending')">🔥 Trending</button>
+    <button onclick="setMode('search')">Search</button>
+    <button onclick="setMode('explore')">Explore</button>
+    <button onclick="setMode('trending')">Trending</button>
   `;
 }
 
-// ----------------------
+function setMode(mode) {
+  state.mode = mode;
+
+  if (mode === "trending") trendingSearch();
+  if (mode === "explore") quickSearch("pizza");
+
+  setStatus("Mode: " + mode);
+}
+
+// --------------------
 // STATUS
-// ----------------------
+// --------------------
 function setStatus(msg) {
   const el = document.getElementById("statusBar");
   if (el) el.textContent = msg;
 }
 
-// ----------------------
-// SEARCH ENGINE
-// ----------------------
-function buildQuery(food, location) {
-  return `best ${food || "food"} in ${location || "my area"} near me top rated restaurants`;
+// --------------------
+// SEO QUERY ENGINE
+// --------------------
+function buildSEOQuery(food, location) {
+  return `best ${food || "food"} in ${location || "my area"} near me top rated restaurants open now`;
 }
 
-// ----------------------
+// --------------------
 // MAIN SEARCH
-// ----------------------
+// --------------------
 async function findFood() {
   const food = document.getElementById("food").value || "";
   const location = document.getElementById("location").value || "";
 
   if (!food && !location) {
-    setStatus("Enter something to search");
+    setStatus("Enter search term");
     return;
   }
 
@@ -69,7 +66,7 @@ async function findFood() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        query: buildQuery(food, location),
+        query: buildSEOQuery(food, location),
         location: location || "near me"
       })
     });
@@ -77,18 +74,17 @@ async function findFood() {
     const data = await res.json();
 
     render(data, food, location);
-
     setStatus("Results loaded");
 
-  } catch (e) {
-    console.error(e);
+  } catch (err) {
+    console.error(err);
     setStatus("Search failed");
   }
 }
 
-// ----------------------
+// --------------------
 // RENDER RESULTS
-// ----------------------
+// --------------------
 function render(data, food, location) {
   const el = document.getElementById("results");
 
@@ -115,18 +111,20 @@ function render(data, food, location) {
   `;
 }
 
-// ----------------------
-// QUICK + TRENDING
-// ----------------------
-function quickSearch(v) {
-  document.getElementById("food").value = v;
+// --------------------
+// TRAFFIC LOOP
+// --------------------
+function trendingSearch() {
+  const foods = ["pizza", "burger", "sushi", "tacos", "chicken"];
+  const pick = foods[Math.floor(Math.random() * foods.length)];
+
+  document.getElementById("food").value = pick;
+  document.getElementById("location").value = "near me";
+
   findFood();
 }
 
-function trendingSearch() {
-  const trends = ["pizza", "burger", "tacos", "sushi", "chicken"];
-  const pick = trends[Math.floor(Math.random() * trends.length)];
-
-  document.getElementById("food").value = pick;
+function quickSearch(food) {
+  document.getElementById("food").value = food;
   findFood();
 }
