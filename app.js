@@ -6,7 +6,6 @@ async function findFood() {
   results.innerHTML = "Searching...";
 
   try {
-    // 🔥 YOUR API GOES HERE (replace URL below)
     const response = await fetch("https://restaurant-ai-api.wholelychit.workers.dev", {
       method: "POST",
       headers: {
@@ -18,23 +17,28 @@ async function findFood() {
       })
     });
 
+    if (!response.ok) {
+      throw new Error("API error: " + response.status);
+    }
+
     const data = await response.json();
 
-    // EXPECTED FORMAT:
-    // data.restaurants = [{name, type, rating, why}]
+    if (!data || !data.restaurants || data.restaurants.length === 0) {
+      results.innerHTML = "<p>No results found.</p>";
+      return;
+    }
 
     results.innerHTML = data.restaurants.map(r => `
       <div class="card">
         <h3>${r.name}</h3>
-        <p>🍴 ${r.type}</p>
-        <p>⭐ ${r.rating}</p>
-        <p>${r.why}</p>
+        <p>🍴 ${r.type || "Unknown type"}</p>
+        <p>⭐ ${r.rating || "No rating"}</p>
+        <p>${r.why || ""}</p>
       </div>
     `).join("");
 
   } catch (err) {
-    results.innerHTML = "Error getting results. Check API.";
+    results.innerHTML = "<p>Error getting results. Try again.</p>";
     console.error(err);
   }
 }
-🎨 STEP 3 — CLEAN UI
