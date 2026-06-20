@@ -7,7 +7,7 @@ async function findFood() {
 
   try {
     // 🔥 YOUR API GOES HERE (replace URL below)
-    const response = await fetch("YOUR_API_ENDPOINT_HERE", {
+    const response = await fetch", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
