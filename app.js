@@ -1,9 +1,65 @@
 const state = {
   mood: "",
-  mode: "search"
+  mode: "search",
+  favorites: loadFavorites()
 };
 
 const API_URL = "https://restaurant-ai-api.wholelychit.workers.dev";
+
+// -------------------------
+// Startup
+// -------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  renderFavorites();
+});
+
+// -------------------------
+// Storage
+// -------------------------
+function loadFavorites() {
+  try {
+    const raw = localStorage.getItem("restaurantAiFavorites");
+    return raw ? JSON.parse(raw) : [];
+  } catch (err) {
+    return [];
+  }
+}
+
+function saveFavorites() {
+  localStorage.setItem("restaurantAiFavorites", JSON.stringify(state.favorites));
+}
+
+function getFavoriteKey(r) {
+  return `${(r.name || "").trim().toLowerCase()}|${(r.location || "").trim().toLowerCase()}`;
+}
+
+function isFavorite(r) {
+  const key = getFavoriteKey(r);
+  return state.favorites.some(item => getFavoriteKey(item) === key);
+}
+
+function addFavorite(r) {
+  if (isFavorite(r)) return;
+
+  state.favorites.unshift(r);
+  saveFavorites();
+  renderFavorites();
+  setStatus(`Saved favorite: ${r.name}`);
+}
+
+function removeFavoriteByKey(key) {
+  state.favorites = state.favorites.filter(item => getFavoriteKey(item) !== key);
+  saveFavorites();
+  renderFavorites();
+  setStatus("Favorite removed");
+}
+
+function clearFavorites() {
+  state.favorites = [];
+  saveFavorites();
+  renderFavorites();
+  setStatus("Favorites cleared");
+}
 
 // -------------------------
 // UI helpers
@@ -119,7 +175,6 @@ function scoreRestaurant(r) {
   const rating = parseFloat(r.rating);
   if (!isNaN(rating)) score += rating * 2;
 
-  // Mood boosts
   if (
     state.mood === "cheap" &&
     (text.includes("cheap") || text.includes("value") || text.includes("budget"))
@@ -148,7 +203,6 @@ function scoreRestaurant(r) {
     score += 4;
   }
 
-  // Time boosts
   const time = getTimeContext();
 
   if (time === "morning" && (text.includes("breakfast") || text.includes("coffee") || text.includes("bagel"))) {
@@ -186,7 +240,7 @@ function buildGoogleMapsUrl(name, location) {
 }
 
 function normalizeRestaurant(r, location) {
-  const restaurant = {
+  return {
     name: r.name || "Restaurant",
     type: r.type || "Restaurant",
     rating: r.rating || "No rating",
@@ -195,10 +249,46 @@ function normalizeRestaurant(r, location) {
     phone: r.phone || "",
     address: r.address || "",
     mapsUrl: r.mapsUrl || buildGoogleMapsUrl(r.name || "restaurant", location),
-    detailsUrl: r.detailsUrl || buildGoogleSearchUrl(r.name || "restaurant", location)
+    detailsUrl: r.detailsUrl || buildGoogleSearchUrl(r.name || "restaurant", location),
+    location: location || ""
   };
+}
 
-  return restaurant;
+// -------------------------
+// Favorites rendering
+// -------------------------
+function renderFavorites() {
+  const wrap = document.getElementById("favoritesList");
+  if (!wrap) return;
+
+  if (!state.favorites.length) {
+    wrap.innerHTML = `<div class="empty-mini">No favorites saved yet.</div>`;
+    return;
+  }
+
+  wrap.innerHTML = state.favorites.map(r => {
+    const key = getFavoriteKey(r);
+    return `
+      <article class="favorite-card">
+        <h3 class="favorite-name">${r.name}</h3>
+        <div class="favorite-meta">
+          <span>🍴 ${r.type || "Restaurant"}</span>
+          <span>⭐ ${r.rating || "No rating"}</span>
+        </div>
+        <p class="favorite-why">${r.why || ""}</p>
+        <div class="card-actions">
+          <a class="card-action primary" href="${r.detailsUrl}" target="_blank" rel="noopener noreferrer">View details</a>
+          <a class="card-action" href="${r.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
+          ${r.website ? `<a class="card-action" href="${r.website}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
+          <button class="favorite-btn" type="button" onclick="removeFavoriteByKey('${escapeForJs(key)}')">Remove</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function escapeForJs(value) {
+  return String(value).replace(/'/g, "\\'");
 }
 
 // -------------------------
@@ -311,6 +401,7 @@ function renderResults(data, title, location = "") {
     <div class="results-list">
       ${list.map((r, i) => {
         const isTop = i === 0;
+        const favorite = isFavorite(r);
 
         return `
           <article class="card ${isTop ? "top-pick" : ""}">
@@ -332,10 +423,35 @@ function renderResults(data, title, location = "") {
               <a class="card-action" href="${r.mapsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
               ${r.website ? `<a class="card-action" href="${r.website}" target="_blank" rel="noopener noreferrer">Website</a>` : ""}
               ${r.phone ? `<a class="card-action" href="tel:${r.phone}">Call</a>` : ""}
+              <button
+                class="favorite-btn ${favorite ? "saved" : ""}"
+                type="button"
+                onclick='toggleFavorite(${JSON.stringify(r).replace(/'/g, "&apos;")})'
+              >
+                ${favorite ? "Saved ❤️" : "Save ❤️"}
+              </button>
             </div>
           </article>
         `;
       }).join("")}
     </div>
   `;
+}
+
+function toggleFavorite(rawRestaurant) {
+  const restaurant = typeof rawRestaurant === "string"
+    ? JSON.parse(rawRestaurant)
+    : rawRestaurant;
+
+  if (isFavorite(restaurant)) {
+    removeFavoriteByKey(getFavoriteKey(restaurant));
+  } else {
+    addFavorite(restaurant);
+  }
+
+  // refresh save buttons if current results are showing
+  const results = document.getElementById("results");
+  if (results && results.innerHTML.trim()) {
+    // no-op unless user searches again; favorites panel updates immediately
+  }
 }
