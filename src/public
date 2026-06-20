@@ -1,0 +1,41 @@
+restaurantsaibot/
+├─ src/
+│  └─ worker.js
+├─ public/
+│  ├─ css/
+│  │  └─ style.css
+│  ├─ js/
+│  │  └─ app.js
+│  └─ images/
+│     └─ avatar-mia.png
+├─ wrangler.toml
+└─ package.json
+12) What goes where
+worker.js
+
+Handles:
+
+homepage HTML response
+/api/search
+/api/chat
+/api/reserve
+/api/order
+style.css
+
+Handles:
+
+layout
+mobile styling
+cards
+forms
+avatar panel
+app.js
+
+Handles:
+
+form submit
+render results
+open reservation modal
+open order modal
+avatar chat panel
+13) Bui
