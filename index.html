@@ -1,82 +1,23 @@
-<h1 id="pageTitle">Best Food Near You</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Best Food Near You</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<p id="pageDesc">Discover top-rated restaurants ranked by AI.</p>
+<h1>Best Food Near You</h1>
 
-<div class="search-box">
-  <input id="food" placeholder="food" />
-  <input id="location" placeholder="location" />
-  <button onclick="findFood()">Search</button>
-</div>
+<div id="modeBar"></div>
+<div id="statusBar"></div>
 
-<div id="results">Loading...</div>
+<input id="food" placeholder="food">
+<input id="location" placeholder="location">
+<button onclick="findFood()">Search</button>
 
-<hr/>
+<div id="results"></div>
 
-<h3>Explore More Pages</h3>
+<script src="app.js"></script>
 
-<div class="links">
-  <a href="/seo-engine.html?city=st-louis&food=pizza">St. Louis Pizza</a>
-  <a href="/seo-engine.html?city=chicago&food=pizza">Chicago Pizza</a>
-  <a href="/seo-engine.html?city=new-york&food=sushi">New York Sushi</a>
-  <a href="/seo-engine.html?city=miami&food=burger">Miami Burgers</a>
-  <a href="/seo-engine.html?city=austin&food=tacos">Austin Tacos</a>
-</div>
-
-<script>
-function getParams() {
-  const params = new URLSearchParams(window.location.search);
-  return {
-    city: params.get("city") || "",
-    food: params.get("food") || ""
-  };
-}
-
-function buildSEOQuery(food, city) {
-  return `${food || "food"} restaurants in ${city || "near me"} best rated reviews open now`;
-}
-
-async function autoSearch() {
-  const { city, food } = getParams();
-
-  document.getElementById("food").value = food;
-  document.getElementById("location").value = city;
-
-  if (!food && !city) return;
-
-  await findFood();
-}
-
-async function findFood() {
-  const food = document.getElementById("food").value;
-  const location = document.getElementById("location").value;
-
-  const res = await fetch("https://restaurant-ai-api.wholelychit.workers.dev", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: buildSEOQuery(food, location),
-      location: location || "near me"
-    })
-  });
-
-  const data = await res.json();
-
-  const el = document.getElementById("results");
-
-  if (!data?.restaurants?.length) {
-    el.innerHTML = "No results found";
-    return;
-  }
-
-  el.innerHTML = data.restaurants.slice(0, 6).map(r => `
-    <div class="card">
-      <h3>${r.name}</h3>
-      <p>${r.type || ""}</p>
-      <p>⭐ ${r.rating || ""}</p>
-      <p>${r.why || ""}</p>
-    </div>
-  `).join("");
-}
-
-autoSearch();
-</script>
+</body>
+</html>
