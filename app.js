@@ -1,57 +1,63 @@
-function renderResults(data, title) {
-  const results = document.getElementById("results");
+function scoreRestaurant(r) {
+  let score = 0;
 
-  if (!data || !data.restaurants || data.restaurants.length === 0) {
-    results.innerHTML = "<p>No results found.</p>";
-    return;
+  const name = (r.name || "").toLowerCase();
+  const type = (r.type || "").toLowerCase();
+  const why = (r.why || "").toLowerCase();
+  const text = name + " " + type + " " + why;
+
+  // -------------------------
+  // ⭐ BASE QUALITY (more stable)
+  // -------------------------
+  const rating = parseFloat(r.rating);
+  if (!isNaN(rating)) score += rating * 2;
+
+  // -------------------------
+  // 🧠 MOOD SIGNALS (broader matching)
+  // -------------------------
+  const mood = state?.mood || "";
+
+  if (mood === "cheap" && (text.includes("cheap") || text.includes("value") || text.includes("budget"))) {
+    score += 4;
   }
 
-  const list = data.restaurants.slice(0, 5);
-
-  let timeLabel = "";
-  try {
-    timeLabel = getTimeLabel ? getTimeLabel() : "";
-  } catch (e) {
-    timeLabel = "";
+  if (mood === "date" && (text.includes("romantic") || text.includes("cozy") || text.includes("fine"))) {
+    score += 4;
   }
 
-  results.innerHTML = `
-    <div style="margin-bottom:12px;">
-      <h2 style="margin:0;">${title}</h2>
-      <p style="opacity:0.7; font-size:13px;">
-        ${timeLabel}
-      </p>
-    </div>
-  ` + list.map((r, i) => {
+  if (mood === "fast" && (text.includes("fast") || text.includes("quick") || text.includes("grab"))) {
+    score += 4;
+  }
 
-    const isTop = i === 0;
+  if (mood === "healthy" && (text.includes("healthy") || text.includes("fresh") || text.includes("salad"))) {
+    score += 4;
+  }
 
-    return `
-      <div class="card" style="
-        margin-bottom:12px;
-        padding:12px;
-        border-radius:10px;
-        border:${isTop ? "2px solid #f97316" : "1px solid #334155"};
-        background:${isTop ? "#1f2937" : "#111827"};
-      ">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <h3 style="margin:0;">
-            ${isTop ? "🔥 Top Pick" : "#" + (i + 1)}
-          </h3>
-        </div>
+  // -------------------------
+  // ⏱ TIME SIGNALS (smarter + less fragile)
+  // -------------------------
+  const hour = new Date().getHours();
 
-        <p style="margin:6px 0;">
-          🍴 ${r.type || "Restaurant"}
-        </p>
+  if (hour < 11 && (text.includes("breakfast") || text.includes("coffee"))) {
+    score += 2;
+  }
 
-        <p style="margin:6px 0;">
-          ⭐ ${r.rating || "No rating"}
-        </p>
+  if (hour >= 11 && hour < 15 && (text.includes("lunch") || text.includes("sandwich"))) {
+    score += 2;
+  }
 
-        <p style="opacity:0.85; margin:6px 0;">
-          ${r.why || ""}
-        </p>
-      </div>
-    `;
-  }).join("");
+  if (hour >= 17 && (text.includes("dinner") || text.includes("restaurant"))) {
+    score += 2;
+  }
+
+  if (hour >= 21 && (text.includes("late") || text.includes("snack"))) {
+    score += 2;
+  }
+
+  // -------------------------
+  // 🍴 DEFAULT STABILITY BOOST
+  // -------------------------
+  if (!r.rating) score += 0.5;
+
+  return score;
 }
