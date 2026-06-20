@@ -4,34 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Restaurant AI Finder | Best Food Near You</title>
+  <title>Best Food Near You | Restaurant AI Finder</title>
 
-  <meta name="description" content="Find the best restaurants near you. AI-ranked food results, trending places, and local favorites." />
+  <meta name="description" content="Find the best restaurants near you. AI-ranked food results by city and cuisine." />
+  <meta name="robots" content="index, follow" />
 
   <link rel="stylesheet" href="/css/style.css"/>
+
+  <style>
+    .links a {
+      color: #f97316;
+      text-decoration: none;
+      display: block;
+      margin: 6px 0;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
 
   <div class="app">
 
-    <h1>🍽️ Restaurant AI Finder</h1>
-    <p>Find the best food near you in seconds.</p>
+    <h1 id="pageTitle">Best Food Near You</h1>
+    <p id="pageDesc">Discover top-rated restaurants ranked by AI.</p>
 
     <div class="search-box">
-      <input id="food" placeholder="What are you craving?" />
-      <input id="location" placeholder="Location (or near me)" />
+      <input id="food" placeholder="food" />
+      <input id="location" placeholder="location" />
       <button onclick="findFood()">Search</button>
     </div>
 
-    <div class="mode-bar" id="modeBar"></div>
-
-    <div id="statusBar"></div>
-
     <div id="results"></div>
+
+    <hr />
+
+    <h3>Explore Cities</h3>
+    <div class="links">
+      <a href="/st-louis-pizza.html">St. Louis Pizza</a>
+      <a href="/chicago-pizza.html">Chicago Pizza</a>
+      <a href="/new-york-sushi.html">New York Sushi</a>
+      <a href="/miami-burger.html">Miami Burgers</a>
+      <a href="/austin-tacos.html">Austin Tacos</a>
+    </div>
 
   </div>
 
   <script src="/js/app.js"></script>
+
 </body>
 </html>
