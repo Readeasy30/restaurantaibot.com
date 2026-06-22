@@ -1,6 +1,6 @@
 # Current Task
 
-Last updated: 2026-06-14
+Last updated: 2026-06-21
 
 ## LOCKED BUILD STATE
 
@@ -14,136 +14,56 @@ GitHub is the source of truth. Cloudflare Pages should publish committed changes
 
 > Build RestaurantAIBot into a world-class AI restaurant finder for locals and travelers, with safe restaurant-owner promo and website services.
 
-## Completed and saved
+## Locked business split
 
-- Homepage SEO upgrade.
-- AI Restaurant Finder landing page.
-- Local / Traveler mode buttons.
-- Bites responsive helper avatar.
-- First-layer language choices for Bites.
-- Today’s feature demo Smart Promo Card.
-- Founder Complimentary Promo Cards public page.
-- Static Restaurant Owner Intake page.
-- Site-wide Disclaimer page naming Webmasters LLC.
-- City + cuisine SEO pages completed and linked.
-- Traveler-intent SEO pages completed and linked:
-  - Food near hotel
-  - Restaurants near airport
-  - Restaurants near convention center
-- Food/place/event/transit/market-intent SEO pages added:
-  - Local food in major cities
-  - Restaurants near farmers market
-  - Coffee near farmers market
-  - Food near public market
-  - Breakfast near public market
-  - Coffee near public market
-  - Lunch near public market
-  - Restaurants near boardwalk
-  - Dessert near boardwalk
-  - Seafood near boardwalk
-  - Coffee near boardwalk
-  - Breakfast near hotel
-  - Lunch near hotel
-  - Breakfast near airport
-  - Lunch near airport
-  - Coffee near airport
-  - Dessert near airport
-  - Food near bus station
-  - Coffee near bus station
-  - Breakfast near bus station
-  - Lunch near bus station
-  - Restaurants near ferry terminal
-  - Coffee near ferry terminal
-  - Food near cruise terminal
-  - Restaurants near college football stadium
-  - Food near sports arena
-  - Restaurants near mall food court
-  - Coffee near convention center
-  - Restaurants near theater
-  - Restaurants near movie theater
-  - Restaurants near concert venue
-  - Restaurants near zoo
-  - Restaurants near aquarium
-  - Food near theme park
-  - Coffee near train station
-  - Coffee near downtown
-  - Dessert near hotel
-  - Dessert near me
-  - Food near tourist attraction
-  - Restaurants near museum
-  - Restaurants near beach
-  - Restaurants near downtown
-  - Restaurants near old town
-  - Restaurants near college campus
-  - Restaurants near hospital
-  - Restaurants near office building
-  - Coffee near hotel
-  - Healthy food near me
-  - Food near train station
-  - Restaurants near stadium
-  - Restaurants near shopping mall
-  - Restaurants near park
-  - Lunch near me
-  - Brunch near me
-  - Group dinner near me
-  - Family dinner near me
-  - Evening food near me
-  - Special dinner near me
-- Popular Searches updated through the attraction/museum/beach/group-dinner batch.
-- Popular Searches loads `popular-extra-links.js`, which adds hotel, campus, hospital, office, downtown, Old Town, local food, theater, movie theater, concert venue, zoo, aquarium, theme park, dessert, healthy food, and station-coffee links.
-- Popular Searches loads `popular-extra-links-2.js`, which now adds public market, boardwalk, farmers market, sports arena, mall food court, airport, bus station, ferry terminal, ferry coffee, cruise terminal, college football stadium, and convention-center coffee links.
-- `sitemap-new-place-pages.xml` created as a supplemental sitemap for the sports arena / mall food court / airport meal / convention coffee batch.
-- `sitemap-transit-pages.xml` created as a supplemental sitemap for airport coffee, airport dessert, bus station food, bus station coffee, and ferry terminal pages.
-- `sitemap-terminal-pages.xml` created as a supplemental sitemap for cruise terminal, ferry coffee, bus station breakfast, bus station lunch, and college football stadium pages.
-- `sitemap-market-boardwalk-pages.xml` created as a supplemental sitemap for farmers market, public market, and boardwalk pages and is listed in `robots.txt`.
-- `sitemap-market-more.xml` created as a supplemental sitemap for public market breakfast/coffee/lunch and boardwalk seafood/coffee pages. `robots.txt` update for this file was blocked twice, but the pages are linked from Popular Searches.
-- Restaurant Cities updated with Traveler Place Searches.
-- AI Finder, Owner Resources, Owner Advertise, and Website Starter updated with stronger internal paths.
-- Local photo ambience system added and wired into high-value pages.
-- Homepage orange background polished.
+- **RestaurantAIBot** = consumer restaurant finder + restaurant-owner lead generator + proof site for the restaurant website system.
+- **Ladyfolks.com** = separate website-building business site. It is not the current repo task. It may be promoted later inside RestaurantAIBot as a clearly labeled ad/offer after RestaurantAIBot is locked.
 
-## Locked live check URLs
+## Locked owner-service pricing
 
-Check these URLs after Cloudflare deploys:
+- Visibility Check — **$10 one time**
+- Starter Profile — **$20/mo**
+- Smart Promo Card — **$50/mo**
+- Traveler Visibility — **$100/mo**
+- Website Starter — **$309 setup + $40/mo**
+- Website Pro — **$619 setup + $82/mo**
 
-1. `https://restaurantaibot.com/`
-2. `https://restaurantaibot.com/sitemap.xml`
-3. `https://restaurantaibot.com/sitemap-new-place-pages.xml`
-4. `https://restaurantaibot.com/sitemap-transit-pages.xml`
-5. `https://restaurantaibot.com/sitemap-terminal-pages.xml`
-6. `https://restaurantaibot.com/sitemap-market-boardwalk-pages.xml`
-7. `https://restaurantaibot.com/sitemap-market-more.xml`
-8. `https://restaurantaibot.com/robots.txt`
-9. `https://restaurantaibot.com/popular-searches.html`
-10. `https://restaurantaibot.com/popular-extra-links.js`
-11. `https://restaurantaibot.com/popular-extra-links-2.js`
+## Locked website-offer rules
 
-## Future expansion queue
+- Website builds should be repeatable and fast.
+- Owners should be able to self-manage routine content such as hours, specials, and menu updates whenever possible.
+- Monthly service must represent real value, not routine tiny text edits.
+- Keep the stack plain HTML/CSS/JS with GitHub + Cloudflare Pages.
 
-Only continue after Gerry asks for new work.
+## Finish order now
 
-Possible next pages:
+### 1) Tighten homepage owner CTA path
+- Keep the homepage primarily a restaurant finder.
+- Make the owner path visible but secondary.
+- Link clearly to Owner Advertise, Owner Intake, and Website Starter.
 
-- restaurants near waterfront
-- coffee near waterfront
-- seafood near waterfront
-- dessert near waterfront
-- lunch near waterfront
+### 2) Tighten owner sales pages
+- `public/owner-advertise.html`
+- `public/restaurant-owner-intake.html`
+- `public/restaurant-website-starter.html`
 
-## Connector notes
+Use the locked pricing above and the owner-friendly website language above.
 
-- Date-night and late-night wording was blocked by the connector, so safer pages were used: evening food and special dinner.
-- Full Popular Searches update was blocked once, but smaller script-based hub updates succeeded.
-- Zoo and hotel-dessert pages needed shorter wording after one blocked attempt each.
-- Full `sitemap.xml` updates were blocked on larger batches, so supplemental sitemaps were created and added to `robots.txt` when allowed.
-- `robots.txt` update for `sitemap-market-more.xml` was blocked twice; the sitemap file exists and the pages are linked from Popular Searches.
-- Loading `popular-extra-links-3.js` from `popular-searches.html` was blocked; the working solution was to fold new cards directly into `popular-extra-links-2.js`.
-- `popular-extra-links-3.js` exists but is not loaded; deletion was blocked once. It is harmless but can be removed later if the connector allows.
-- Smaller focused edits are working better than very large replacements.
-- Do not ask Gerry to edit files manually.
+### 3) Browser-test the live pages after deploy
+Check at minimum:
+- `https://restaurantaibot.com/`
+- `https://restaurantaibot.com/owner-advertise.html`
+- `https://restaurantaibot.com/restaurant-owner-intake.html`
+- `https://restaurantaibot.com/restaurant-website-starter.html`
+- `https://restaurantaibot.com/popular-searches.html`
+- `https://restaurantaibot.com/restaurant-cities.html`
+- `https://restaurantaibot.com/sitemap.xml`
+
+### 4) Only after RestaurantAIBot is locked
+Move to `ladyfolks.com` as the website-building business site.
 
 ## Safety rule
 
-No sensitive keys, private credentials, account systems, upload systems, ordering integrations, or major framework changes without direct approval.
+No sensitive keys, private credentials, account systems, upload systems, ordering integrations, major framework changes, or live paid ad/payment systems without direct approval.
 
 No random restaurant photo should be used in a way that suggests it is a verified restaurant image, owner-provided photo, or real menu item unless that is confirmed.
